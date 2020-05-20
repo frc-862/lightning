@@ -18,6 +18,7 @@ import frc.lightning.util.FaultCode.Codes;
 import java.io.IOException;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Set;
 
 /**
  * Base robot class, provides
@@ -106,6 +107,13 @@ public class LightningRobot extends TimedRobot {
             .getEntry();
             FaultCode.setNetworkTableEntry(code, nte);
         });
+
+        Set<String> names = getContainer().getAutonomousCommands().keySet();
+        for(var name : names) {
+            registerAutonomousCommmand(name, getContainer().getAutonomousCommands().get(name));
+            System.out.println("Registered " + name + " command for auton");
+        }
+
     }
 
     double getLoopTime() {

@@ -23,7 +23,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.lightning.util.LightningMath;
 import frc.lightning.util.RamseteGains;
 import frc.robot.Constants;
-import frc.robot.misc.REVGains;
+import frc.lightning.util.REVGains;
 
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
