@@ -11,7 +11,7 @@ abstract public class SystemTest extends CommandBase implements Comparable<Syste
         SystemTestCommand.register(test);
     }
 
-    enum Priority {
+    public enum Priority {
         HIGH, MED, LOW, DONT_CARE
     }
 
