@@ -1,10 +1,11 @@
-package frc.lightning.util;
+package frc.lightning.fault;
 
 import java.util.LinkedList;
 import java.util.function.BooleanSupplier;
-import java.util.List;
 
-import frc.lightning.util.FaultCode.Codes;
+import frc.lightning.fault.FaultCode.Codes;
+
+import java.util.List;
 
 public class FaultMonitor extends AbstractFaultMonitor {
     private static List<AbstractFaultMonitor> monitors = new LinkedList<>();

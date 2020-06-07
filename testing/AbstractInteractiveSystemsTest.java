@@ -10,7 +10,7 @@ package frc.lightning.testing;
 import java.util.function.BooleanSupplier;
 
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import frc.lightning.util.FaultCode;
+import frc.lightning.fault.FaultCode;
 
 /**
  * Add your docs here.

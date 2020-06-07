@@ -1,4 +1,4 @@
-package frc.lightning.util;
+package frc.lightning.ui;
 
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;

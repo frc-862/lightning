@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.Subsystem;
-import frc.lightning.util.FaultCode;
+import frc.lightning.fault.FaultCode;
 
 abstract public class SystemTest extends CommandBase implements Comparable<SystemTest> {
     public static void register(SystemTest test) {

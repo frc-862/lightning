@@ -8,7 +8,7 @@
 // verey similar to Joystick button class, but required values/methods were
 // not exposed at a protected level -- only package
 
-package frc.lightning.util;
+package frc.lightning.ui;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj2.command.button.Button;

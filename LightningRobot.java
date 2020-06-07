@@ -8,12 +8,12 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import frc.lightning.commands.DashboardWaitCommand;
+import frc.lightning.fault.FaultCode;
+import frc.lightning.fault.FaultMonitor;
+import frc.lightning.fault.TimedFaultMonitor;
+import frc.lightning.fault.FaultCode.Codes;
 import frc.lightning.logging.DataLogger;
 import frc.lightning.testing.SystemTestCommand;
-import frc.lightning.util.FaultCode;
-import frc.lightning.util.FaultMonitor;
-import frc.lightning.util.TimedFaultMonitor;
-import frc.lightning.util.FaultCode.Codes;
 
 import java.io.IOException;
 import java.util.Map;

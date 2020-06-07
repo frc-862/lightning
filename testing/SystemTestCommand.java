@@ -12,7 +12,7 @@ import java.util.PriorityQueue;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.lightning.util.FaultCode;
+import frc.lightning.fault.FaultCode;
 
 public class SystemTestCommand extends CommandBase {
     private static PriorityQueue<SystemTest> tests = new PriorityQueue<>();

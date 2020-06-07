@@ -19,14 +19,16 @@ import edu.wpi.first.wpilibj.geometry.Translation2d;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveKinematics;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveWheelSpeeds;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.lightning.util.LightningMath;
+import frc.lightning.util.REVGains;
 import frc.lightning.util.RamseteGains;
 import frc.robot.Constants;
-import frc.lightning.util.REVGains;
 
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 public class NeoDrivetrain extends SubsystemBase implements LightningDrivetrain {
     private static final double CLOSE_LOOP_RAMP_RATE = 0.6; // 0.5
@@ -48,8 +50,6 @@ public class NeoDrivetrain extends SubsystemBase implements LightningDrivetrain 
     private CANEncoder rightEncoder;
     private CANPIDController rightPIDFController;
 
-    private AHRS navx;
-
     private DifferentialDriveKinematics kinematics;
 
     private DifferentialDriveOdometry odometry;
@@ -66,15 +66,22 @@ public class NeoDrivetrain extends SubsystemBase implements LightningDrivetrain 
 
     private RamseteGains gains;
 
-    // private PigeonIMU bird;
+    private Supplier<Rotation2d> headingSupplier;
 
-    private double[] ypr = new double[3];
+    private Supplier<Integer> resetHeading;
 
-    public NeoDrivetrain(int motorCountPerSide, int firstLeftCanId, int firstRightCanId, double trackWidth, RamseteGains gains) {
+    public NeoDrivetrain(int motorCountPerSide, int firstLeftCanId, int firstRightCanId, RamseteGains gains, Supplier<Rotation2d> headingSupplier, Supplier<Integer> resetHeading) {
+        this(motorCountPerSide, firstLeftCanId, firstRightCanId, gains.getTrackWidth(), gains, headingSupplier, resetHeading);
+    }
+
+    public NeoDrivetrain(int motorCountPerSide, int firstLeftCanId, int firstRightCanId, double trackWidth, RamseteGains gains, Supplier<Rotation2d> headingSupplier, Supplier<Integer> resetHeading) {
         setName(name);
         this.motorCount = motorCountPerSide;
         this.firstLeftCanId = firstLeftCanId;
         this.firstRightCanId = firstRightCanId;
+
+        this.headingSupplier = headingSupplier;
+        this.resetHeading = resetHeading;
 
         this.gains = gains;
 
@@ -102,10 +109,10 @@ public class NeoDrivetrain extends SubsystemBase implements LightningDrivetrain 
         withEachMotor((m) -> m.setClosedLoopRampRate(CLOSE_LOOP_RAMP_RATE));
         brake();
 
-        navx = new AHRS(SPI.Port.kMXP);
-
-        // bird = new PigeonIMU(RobotMap.PIGEON_ID);
-        // bird.configFactoryDefault();
+        //TODO this does not belong in a "base" drive train class
+        //     one suggestion would be to include an interfacce that
+        //     returns a heading that is an option constructor parameter
+        // navx = new AHRS(SPI.Port.kMXP);
 
         kinematics = new DifferentialDriveKinematics(trackWidth);
 
@@ -117,13 +124,38 @@ public class NeoDrivetrain extends SubsystemBase implements LightningDrivetrain 
         
         rightPIDController = new PIDController(gains.getRight_kP(), gains.getRight_kI(), gains.getRight_kD());
         
+        SmartDashboard.putNumber("RequestedLeftVolts", 0d);
+        SmartDashboard.putNumber("RequestedRightVolts", 0d);
+
+        SmartDashboard.putNumber("PoseRotationDeg", 0d);
+        SmartDashboard.putNumber("PoseTransY", 0d);
+        SmartDashboard.putNumber("PoseTransX", 0d);
+        SmartDashboard.putNumber("PoseTransNorm", 0d);
+
+        SmartDashboard.putNumber("TrackWidthMeters", getKinematics().trackWidthMeters);
+
+        SmartDashboard.putNumber("RightTicksPerRev", rightEncoder.getCountsPerRevolution());
+        SmartDashboard.putNumber("LeftTicksPerRev", leftEncoder.getCountsPerRevolution());
+
+        SmartDashboard.putNumber("RightRotationConversionFactor", rightEncoder.getPositionConversionFactor());
+        SmartDashboard.putNumber("LeftRotationConversionFactor", leftEncoder.getPositionConversionFactor());
+
+        SmartDashboard.putNumber("RightMasterHeat", rightMaster.getMotorTemperature());
+        SmartDashboard.putNumber("LeftMasterHeat", leftMaster.getMotorTemperature());
+
         resetSensorVals();
+
     }
 
     @Override
     public void periodic() {
         super.periodic();
+
+        SmartDashboard.putNumber("RightMasterHeat", rightMaster.getMotorTemperature());
+        SmartDashboard.putNumber("LeftMasterHeat", leftMaster.getMotorTemperature());
+
         pose = odometry.update(getHeading(), getLeftDistance(), getRightDistance());
+
     }
 
     private static void setGains(CANPIDController controller, REVGains gains) {
@@ -153,11 +185,16 @@ public class NeoDrivetrain extends SubsystemBase implements LightningDrivetrain 
     @Override
     public Rotation2d getHeading() { 
         // return Rotation2d.fromDegrees((((ypr[0]+180)%360)-180));
-        return Rotation2d.fromDegrees(-navx.getAngle()); 
+        // return Rotation2d.fromDegrees(-navx.getAngle()); 
+        return headingSupplier.get();
     }
 
     @Override
     public void setOutput(double leftVolts, double rightVolts) {
+
+        SmartDashboard.putNumber("RequestedLeftVolts", leftVolts);
+        SmartDashboard.putNumber("RequestedRightVolts", rightVolts);
+
         leftMaster.setVoltage(leftVolts);
         rightMaster.setVoltage(rightVolts);
     }
@@ -177,8 +214,9 @@ public class NeoDrivetrain extends SubsystemBase implements LightningDrivetrain 
     }
 
     private void resetHeading() {
-        navx.reset();
+        // navx.reset();
         // bird.setYaw(0d);
+        resetHeading.get();
     }
 
     public void setLeftGains(REVGains gains) {

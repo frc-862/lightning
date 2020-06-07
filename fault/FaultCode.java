@@ -1,4 +1,4 @@
-package frc.lightning.util;
+package frc.lightning.fault;
 
 import java.io.IOException;
 import java.nio.file.Files;
