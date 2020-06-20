@@ -7,10 +7,8 @@
 
 package frc.lightning.subsystems;
 
-import com.kauailabs.navx.frc.AHRS;
 import com.revrobotics.*;
 import com.revrobotics.CANSparkMax.IdleMode;
-import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj.controller.SimpleMotorFeedforward;
 import edu.wpi.first.wpilibj.geometry.Pose2d;
@@ -166,6 +164,8 @@ public class NeoDrivetrain extends SubsystemBase implements LightningDrivetrain 
         controller.setIZone(gains.getkIz());
         controller.setOutputRange(gains.getkMinOutput(), gains.getkMaxOutput());
     }
+
+    public RamseteGains getGains() { return gains; }
 
     @Override
     public DifferentialDriveKinematics getKinematics() { return kinematics; }

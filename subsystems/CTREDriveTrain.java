@@ -16,19 +16,15 @@ import edu.wpi.first.wpilibj.geometry.Pose2d;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveKinematics;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.lightning.logging.DataLogger;
 import frc.lightning.util.RamseteGains;
-import frc.robot.Robot;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import com.ctre.phoenix.motorcontrol.can.VictorSPX;
-import com.fasterxml.jackson.databind.JsonSerializable.Base;
 
 public class CTREDriveTrain extends SubsystemBase implements LightningDrivetrain {
-  private static final double CLOSE_LOOP_RAMP_RATE = 0.5;
-  private static final double OPEN_LOOP_RAMP_RATE = 0.5;
+  // private static final double CLOSE_LOOP_RAMP_RATE = 0.5;
+  // private static final double OPEN_LOOP_RAMP_RATE = 0.5;
 
   // DRIVETRAIN
   private final String name = "DRIVETRAIN";
