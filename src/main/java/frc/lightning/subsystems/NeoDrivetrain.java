@@ -19,10 +19,10 @@ import edu.wpi.first.wpilibj.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.lightning.Constants;
 import frc.lightning.util.LightningMath;
 import frc.lightning.util.REVGains;
 import frc.lightning.util.RamseteGains;
-import frc.robot.Constants;
 
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;

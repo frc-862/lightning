@@ -4,9 +4,9 @@ import java.util.function.DoubleSupplier;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.lightning.Constants;
 import frc.lightning.subsystems.LightningDrivetrain;
 import frc.lightning.util.JoystickFilter;
-import frc.robot.Constants;
 
 public class VoltDrive extends CommandBase {
 

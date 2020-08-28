@@ -11,7 +11,7 @@ import com.revrobotics.CANPIDController;
 
 import edu.wpi.first.networktables.EntryListenerFlags;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import frc.robot.Constants;
+import frc.lightning.Constants;
 
 /**
  * Used to set the PID gains on various REV hardware components.
