@@ -1,5 +1,7 @@
 # lightning
 
+![gradle build](https://github.com/frc-862/lightning/workflows/gradle%20build/badge.svg)
+
 utility package for frc robots.
 
 ## Getting Started
