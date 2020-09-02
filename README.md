@@ -15,3 +15,17 @@ you can later replace repository url with a remote, as configured below
 ```bash
 git remote add lightning https://github.com/frc-862/lightning.git
 ```
+
+you must also add the line below to the project's `build.gradle` file in the `dependencies` section
+
+```groovy
+dependencies {
+  compile(project("lightning"))
+}
+```
+
+also, you will need to add the following line to the end of the project's `settings.gradle` file
+
+```groovy
+include 'lightning'
+```
