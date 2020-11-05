@@ -13,9 +13,11 @@ import java.util.PriorityQueue;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.lightning.fault.FaultCode;
+import frc.lightning.testing.SystemTest.Priority;
 
 public class SystemTestCommand extends CommandBase {
     private static PriorityQueue<SystemTest> tests = new PriorityQueue<>();
+    private static PriorityQueue<Priority> priorities = new PriorityQueue<>();
     private Iterator<SystemTest> itor;
     private SystemTest current;
 
@@ -92,7 +94,8 @@ public class SystemTestCommand extends CommandBase {
         System.out.println("Passed All Tests: " + passedAll);
     }
 
-    public static void register(SystemTest test) {
+    public static void register(SystemTest test, Priority priority) {
         tests.add(test);
+        priorities.add(priority);
     }
 }
