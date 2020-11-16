@@ -10,11 +10,15 @@ import frc.lightning.subsystems.LightningDrivetrain;
 
 public class Paths {
 
-    private Map<String, Path> paths = new HashMap<>();
+    private static Map<String, Path> paths = new HashMap<>();
 
-    public Map<String, Path> getPaths() { return paths; }
+    public static Map<String, Path> getPaths() { return paths; }
 
-    public Map<String, Command> getPathCommands(LightningDrivetrain drivetrain) {
+    public static Path getPath(String name) {
+        return paths.get(name);
+    }
+
+    public static Map<String, Command> getPathCommands(LightningDrivetrain drivetrain) {
         Map<String, Command> cmds = new HashMap<>();
         List<String> keys = new ArrayList<>(getPaths().keySet());
         for(int i = 0 ; i < getPaths().size() ; ++i) {
