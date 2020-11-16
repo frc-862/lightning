@@ -69,7 +69,7 @@ public class LightningRobot extends TimedRobot {
      */
     @Override
     public void robotInit() {
-        final var tab = Shuffleboard.getTab("Autonomous");
+        final var tab = Shuffleboard.getTab("Autonomous"); //?
         System.out.println("LightningRobot.robotInit");
         System.out.println("Starting time:" + Timer.getFPGATimestamp());
         try
@@ -90,8 +90,8 @@ public class LightningRobot extends TimedRobot {
             System.out.println("Unable to read build version information.");
         }
 
-        tab.add("Auto Mode", chooser);
-        Shuffleboard.getTab("Autonomous").add("Auto Mode", chooser);
+        tab.add("Auto Mode", chooser); //?
+        Shuffleboard.getTab("Autonomous").add("Auto Mode", chooser); //?
 
         // By this point all datalog fields should be registered
         DataLogger.preventNewDataElements();
@@ -108,11 +108,12 @@ public class LightningRobot extends TimedRobot {
             FaultCode.setNetworkTableEntry(code, nte);
         });
 
-        Set<String> names = getContainer().getAutonomousCommands().keySet();
-        for(var name : names) {
-            registerAutonomousCommmand(name, getContainer().getAutonomousCommands().get(name));
-            System.out.println("Registered " + name + " command for auton");
-        }
+        // Autonomous.load();
+        Set<String> names = getContainer().getAutonomousCommands().keySet(); //?
+        for(var name : names) { //?
+            registerAutonomousCommmand(name, getContainer().getAutonomousCommands().get(name)); //?
+            System.out.println("Registered " + name + " command for auton"); //?
+        } //?
 
     }
 
@@ -128,8 +129,9 @@ public class LightningRobot extends TimedRobot {
      *                use an actual instance new MyCommand()
      *
      */
-    int autoCommandCount = 0;
+    @Deprecated
     public void registerAutonomousCommmand(String name, Command command) {
+        int autoCommandCount = 0;
         if (autoCommandCount == 0) {
             chooser.setDefaultOption(name, command);
         } else {
@@ -138,6 +140,7 @@ public class LightningRobot extends TimedRobot {
         autoCommandCount += 1;
     }
 
+    @Deprecated
     public void registerAutonomousCommmand(Command command) {
         registerAutonomousCommmand(command.getName(), command);
     }
@@ -230,6 +233,7 @@ public class LightningRobot extends TimedRobot {
     @Override
     public void autonomousInit() {
         // LightningServer.stop_server();
+        // autonomousCommand = Autonomous.getCommand();
         autonomousCommand = new SequentialCommandGroup(new DashboardWaitCommand(), chooser.getSelected());
 
         // schedule the autonomous command (example)
