@@ -91,7 +91,7 @@ public class LightningRobot extends TimedRobot {
         }
 
         tab.add("Auto Mode", chooser);
-        Shuffleboard.getTab("Autonomous").add("Auto Mode", chooser);
+        //Shuffleboard.getTab("Autonomous").add("Auto Mode", chooser);
 
         // By this point all datalog fields should be registered
         DataLogger.preventNewDataElements();
@@ -108,10 +108,12 @@ public class LightningRobot extends TimedRobot {
             FaultCode.setNetworkTableEntry(code, nte);
         });
 
-        Set<String> names = getContainer().getAutonomousCommands().keySet();
-        for(var name : names) {
-            registerAutonomousCommmand(name, getContainer().getAutonomousCommands().get(name));
-            System.out.println("Registered " + name + " command for auton");
+        if(getContainer().getAutonomousCommands() != null) {
+            Set<String> names = getContainer().getAutonomousCommands().keySet();
+            for(var name : names) {
+                registerAutonomousCommmand(name, getContainer().getAutonomousCommands().get(name));
+                System.out.println("Registered " + name + " command for auton");
+            }
         }
 
     }
