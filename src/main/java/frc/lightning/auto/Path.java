@@ -38,7 +38,7 @@ public class Path {
      * @param name The name of the path
      * @param waypoints List of waypoints for the optimized path to follow
      */
-    private Path(String name, List<Pose2d> waypoints) {
+    public Path(String name, List<Pose2d> waypoints) {
         this(name, waypoints, false);
     }
 
@@ -48,7 +48,7 @@ public class Path {
      * @param waypoints List of waypoints for the optimized path to follow
      * @param reversed Direction robot should follow path
      */
-    private Path(String name, List<Pose2d> waypoints, boolean reversed) {
+    public Path(String name, List<Pose2d> waypoints, boolean reversed) {
         this.name = name;
         this.waypoints = waypoints;
         this.reversed = reversed;

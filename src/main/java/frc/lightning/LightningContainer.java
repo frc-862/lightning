@@ -23,6 +23,14 @@ import frc.lightning.subsystems.LightningDrivetrain;
  */
 public abstract class LightningContainer {
 
+    public LightningContainer() {
+        configureButtonBindings();
+        configureDefaultCommands();
+        configureAutonomousCommands();
+        configureSystemTests();
+        initializeDashboardCommands();
+    }
+
     protected abstract void configureButtonBindings();
 
     protected abstract void configureSystemTests();
@@ -33,10 +41,8 @@ public abstract class LightningContainer {
 
     protected abstract void initializeDashboardCommands();
 
-    public abstract List<Path> getAutonomousPaths();
+    protected abstract void configureAutonomousCommands();
 
     public abstract LightningDrivetrain getDrivetrain();
-
-    public abstract HashMap<String, Command> getAutonomousCommands();
 
 }

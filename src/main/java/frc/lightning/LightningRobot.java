@@ -24,43 +24,52 @@ import java.util.Set;
 /**
  * Base robot class, provides
  * {@link frc.lightning.logging.DataLogger logging},
- * {@link FaultMonitor fault monitoring}, and loops with varying
+ * {@link frc.lightning..fault.FaultMonitor fault monitoring}, and loops with varying
  * periods {@link LightningRobot#robotBackgroundPeriodic() background},
  * {@link LightningRobot#robotLowPriorityPeriodic() low}, and
  * {@link LightningRobot#robotMediumPriorityPeriodic() medium} priority
  * loops.
  *
- * Expands on template code to provide {@link LightningRobot#registerAutonomousCommmand(String, Command)
- * a method to register auton commands}. And integrated self test support (still in progress)
+ * Uses {@link frc.lightning.auto.Autonomous} to configure autonomous commands. Also includes
+ * self-testing support with {@link frc.lightning.testing.SystemTestCommand} (Still in progress).
  */
 public class LightningRobot extends TimedRobot {
+
     private LightningContainer container;
-    private final static double settleTime = 3.0;
+
+    private final static double SETTLE_TIME = 3.0;
+
     public DataLogger dataLogger = DataLogger.getLogger();
 
     private int counter = 0;
+
     private int medPriorityFreq = (int) Math.round(0.1 / getPeriod());
+
     private double loopTime;
+
     private int lowPriorityFreq = (int) Math.round(1 / getPeriod());
+
     private int backgroundPriorityFreq = (int) Math.round(10 / getPeriod());
 
-    Command autonomousCommand;
-
-    // SendableChooser<Command> chooser; // = new SendableChooser<>();
+    private Command autonomousCommand;
 
     public LightningRobot(LightningContainer container) {
-        // chooser = new SendableChooser<>();
         this.container = container;
     }
 
+    /**
+     * Getter for the configured robot container.
+     * @return the {@link frc.lightning.LightningContainer} for the robot.
+     */
     public LightningContainer getContainer() {
         return container;
     }
 
+    /**
+     * Nothing should happen here.
+     */
     @Override
-    public void disabledPeriodic() {
-        // do nothing
-    }
+    public void disabledPeriodic() {}
 
     /**
      * This function is run when the robot is first started up and should be
@@ -70,10 +79,12 @@ public class LightningRobot extends TimedRobot {
      */
     @Override
     public void robotInit() {
-        // final var tab = Shuffleboard.getTab("Autonomous"); //?
-
         System.out.println("LightningRobot.robotInit");
-        System.out.println("Starting time:" + Timer.getFPGATimestamp());
+
+        // Note our start time
+        System.out.println("Starting time: " + Timer.getFPGATimestamp());
+
+        // Read our version properties
         try {
             Properties props = new Properties();
             var stream = ClassLoader.getSystemResourceAsStream("version.properties");
@@ -90,9 +101,6 @@ public class LightningRobot extends TimedRobot {
             System.out.println("Unable to read build version information.");
         }
 
-        //tab.add("Auto Mode", chooser);
-        //Shuffleboard.getTab("Autonomous").add("Auto Mode", chooser);
-
         // By this point all datalog fields should be registered
         DataLogger.preventNewDataElements();
 
@@ -108,44 +116,10 @@ public class LightningRobot extends TimedRobot {
             FaultCode.setNetworkTableEntry(code, nte);
         });
 
+        // Load our autonomous chooser
         Autonomous.load();
-        // if(getContainer().getAutonomousCommands() != null) {
-        //     Set<String> names = getContainer().getAutonomousCommands().keySet();
-        //     for(var name : names) {
-        //         registerAutonomousCommmand(name, getContainer().getAutonomousCommands().get(name));
-        //         System.out.println("Registered " + name + " command for auton");
-        //     }
-        // }
 
     }
-
-    double getLoopTime() {
-        return loopTime;
-    }
-
-    // /**
-    //  * The first command registered will be the default command
-    //  *
-    //  * @param name This is the name that appears on shuffleboard
-    //  * @param command This is the command that will be started during autonomous,
-    //  *                use an actual instance new MyCommand()
-    //  *
-    //  */
-    // @Deprecated
-    // public void registerAutonomousCommmand(String name, Command command) {
-    //     int autoCommandCount = 0;
-    //     if (autoCommandCount == 0) {
-    //         chooser.setDefaultOption(name, command);
-    //     } else {
-    //         chooser.addOption(name, command);
-    //     }
-    //     autoCommandCount += 1;
-    // }
-    // 
-    // @Deprecated
-    // public void registerAutonomousCommmand(Command command) {
-    //     registerAutonomousCommmand(command.getName(), command);
-    // }
 
     /**
      * This function is called every robot packet, no matter the mode. Use
@@ -162,7 +136,7 @@ public class LightningRobot extends TimedRobot {
     @Override
     public void robotPeriodic() {
         double time = Timer.getFPGATimestamp();
-        if (time > settleTime) {
+        if (time > SETTLE_TIME) {
             counter += 1;
             if (counter % medPriorityFreq == 0) {
                 robotMediumPriorityPeriodic();
@@ -223,58 +197,66 @@ public class LightningRobot extends TimedRobot {
     }
 
     /**
+     * Getter for robot loop time.
+     */
+    private double getLoopTime() {
+        return loopTime;
+    }
+
+    /**
      * The default implementation handles getting the selected command
      * from Shuffleboard.
      *
      * TODO consider adding check for failure to communicate with Shuffleboard
      * and using the default command.
      *
-     * If you override this method, be sure to call super.autonomousInit() or
+     * If you override this method, be sure to call {@code super.autonomousInit()} or
      * the selected registered command will not be executed.
      */
     @Override
     public void autonomousInit() {
-        // LightningServer.stop_server();
-        autonomousCommand = Autonomous.getCommand();
-        // autonomousCommand = new SequentialCommandGroup(new DashboardWaitCommand(), chooser.getSelected());
-
-        // schedule the autonomous command (example)
-        if (autonomousCommand != null) {
-            autonomousCommand.schedule();
-        }
+        System.out.println("LightningRobot.autonomousInit");
+        autonomousCommand = Autonomous.getAutonomous();
+        if (autonomousCommand != null) autonomousCommand.schedule();
     }
 
+    /**
+     * The default implementation handles canceling the autonomous command.
+     *
+     * If you override this method, be sure to call {@code super.teleopInit()} or
+     * the autonomous command will not be canceled when teleop starts.
+     * 
+     * Alternatively, if you want the autonomous command to finish running 
+     * into teleop, you may override this method w/o calling {@code super.teleopInit()}
+     */
     @Override
     public void teleopInit() {
-        // LightningServer.stop_server();
-        // This makes sure that the autonomous stops running when
-        // teleop starts running. If you want the autonomous to
-        // continue until interrupted by another command, remove
-        // this line or comment it out.
-        if (autonomousCommand != null) {
-            autonomousCommand.cancel();
-        }
+        System.out.println("LightningRobot.teleopInit");
+        if (autonomousCommand != null) autonomousCommand.cancel();
     }
 
+    /**
+     * The default implementation cancles all commands and releases the default commands
+     * from the subsystems, and schedules a {@link frc.lightning.testing.SystemTestCommand}.
+     *
+     * It is reccomended that you avoid overriding this method.
+     */
     @Override
     public void testInit() {
-        System.out.println("Test Init");
+        System.out.println("LightningRobot.testInit");
         getContainer().releaseDefaultCommands();
-        // Cancels all running commands at the start of test mode.
         CommandScheduler.getInstance().cancelAll();
-
-        System.out.println("Canceled Things");
-
-        SystemTestCommand st = new SystemTestCommand();
-        st.schedule();
-        
-        System.out.println("Scheduled Systems Test");
+        (new SystemTestCommand()).schedule();
     }
 
-    // We are assuming the only way to transition out of
-    // test mode is through disabledInit
+    /**
+     * The default implementation configures the default commands in the event they have
+     * been disabled by {@link LightningRobot#testInit()}.
+     */
     @Override
     public void disabledInit() {
+        System.out.println("LightningRobot.disabledInit");
         getContainer().configureDefaultCommands();
     }
+
 }
