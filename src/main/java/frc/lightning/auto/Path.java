@@ -34,21 +34,21 @@ public class Path {
     private boolean reversed;
 
     /**
-     * Simple constrouctor creates path object
+     * Constructor creates path object
      * @param name The name of the path
      * @param waypoints List of waypoints for the optimized path to follow
      */
-    private Path (String name, List<Pose2d> waypoints) {
+    public Path(String name, List<Pose2d> waypoints) {
         this(name, waypoints, false);
     }
 
     /**
-     * Simple constrouctor creates path object
+     * Constructor creates path object
      * @param name The name of the path
      * @param waypoints List of waypoints for the optimized path to follow
      * @param reversed Direction robot should follow path
      */
-    private Path (String name, List<Pose2d> waypoints, boolean reversed) {
+    public Path(String name, List<Pose2d> waypoints, boolean reversed) {
         this.name = name;
         this.waypoints = waypoints;
         this.reversed = reversed;
