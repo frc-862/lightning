@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import frc.lightning.auto.Autonomous;
 import frc.lightning.commands.DashboardWaitCommand;
 import frc.lightning.fault.FaultCode;
 import frc.lightning.fault.FaultMonitor;
@@ -45,10 +46,10 @@ public class LightningRobot extends TimedRobot {
 
     Command autonomousCommand;
 
-    SendableChooser<Command> chooser; // = new SendableChooser<>();
+    // SendableChooser<Command> chooser; // = new SendableChooser<>();
 
     public LightningRobot(LightningContainer container) {
-        chooser = new SendableChooser<>();
+        // chooser = new SendableChooser<>();
         this.container = container;
     }
 
@@ -69,11 +70,11 @@ public class LightningRobot extends TimedRobot {
      */
     @Override
     public void robotInit() {
-        final var tab = Shuffleboard.getTab("Autonomous"); //?
+        // final var tab = Shuffleboard.getTab("Autonomous"); //?
+
         System.out.println("LightningRobot.robotInit");
         System.out.println("Starting time:" + Timer.getFPGATimestamp());
-        try
-        {
+        try {
             Properties props = new Properties();
             var stream = ClassLoader.getSystemResourceAsStream("version.properties");
             if (stream != null) {
@@ -85,13 +86,12 @@ public class LightningRobot extends TimedRobot {
                 System.out.println("Git hash: " + props.getProperty("GIT_HASH", "n/a"));
                 System.out.println("Git status: " + props.getProperty("BUILD_STATUS", "n/a"));
             }
-        } catch (IOException e)
-        {
+        } catch (IOException e) {
             System.out.println("Unable to read build version information.");
         }
 
-        tab.add("Auto Mode", chooser); //?
-        Shuffleboard.getTab("Autonomous").add("Auto Mode", chooser); //?
+        //tab.add("Auto Mode", chooser);
+        //Shuffleboard.getTab("Autonomous").add("Auto Mode", chooser);
 
         // By this point all datalog fields should be registered
         DataLogger.preventNewDataElements();
@@ -108,12 +108,14 @@ public class LightningRobot extends TimedRobot {
             FaultCode.setNetworkTableEntry(code, nte);
         });
 
-        // Autonomous.load();
-        Set<String> names = getContainer().getAutonomousCommands().keySet(); //?
-        for(var name : names) { //?
-            registerAutonomousCommmand(name, getContainer().getAutonomousCommands().get(name)); //?
-            System.out.println("Registered " + name + " command for auton"); //?
-        } //?
+        Autonomous.load();
+        // if(getContainer().getAutonomousCommands() != null) {
+        //     Set<String> names = getContainer().getAutonomousCommands().keySet();
+        //     for(var name : names) {
+        //         registerAutonomousCommmand(name, getContainer().getAutonomousCommands().get(name));
+        //         System.out.println("Registered " + name + " command for auton");
+        //     }
+        // }
 
     }
 
@@ -121,29 +123,29 @@ public class LightningRobot extends TimedRobot {
         return loopTime;
     }
 
-    /**
-     * The first command registered will be the default command
-     *
-     * @param name This is the name that appears on shuffleboard
-     * @param command This is the command that will be started during autonomous,
-     *                use an actual instance new MyCommand()
-     *
-     */
-    @Deprecated
-    public void registerAutonomousCommmand(String name, Command command) {
-        int autoCommandCount = 0;
-        if (autoCommandCount == 0) {
-            chooser.setDefaultOption(name, command);
-        } else {
-            chooser.addOption(name, command);
-        }
-        autoCommandCount += 1;
-    }
-
-    @Deprecated
-    public void registerAutonomousCommmand(Command command) {
-        registerAutonomousCommmand(command.getName(), command);
-    }
+    // /**
+    //  * The first command registered will be the default command
+    //  *
+    //  * @param name This is the name that appears on shuffleboard
+    //  * @param command This is the command that will be started during autonomous,
+    //  *                use an actual instance new MyCommand()
+    //  *
+    //  */
+    // @Deprecated
+    // public void registerAutonomousCommmand(String name, Command command) {
+    //     int autoCommandCount = 0;
+    //     if (autoCommandCount == 0) {
+    //         chooser.setDefaultOption(name, command);
+    //     } else {
+    //         chooser.addOption(name, command);
+    //     }
+    //     autoCommandCount += 1;
+    // }
+    // 
+    // @Deprecated
+    // public void registerAutonomousCommmand(Command command) {
+    //     registerAutonomousCommmand(command.getName(), command);
+    // }
 
     /**
      * This function is called every robot packet, no matter the mode. Use
@@ -233,8 +235,8 @@ public class LightningRobot extends TimedRobot {
     @Override
     public void autonomousInit() {
         // LightningServer.stop_server();
-        // autonomousCommand = Autonomous.getCommand();
-        autonomousCommand = new SequentialCommandGroup(new DashboardWaitCommand(), chooser.getSelected());
+        autonomousCommand = Autonomous.getCommand();
+        // autonomousCommand = new SequentialCommandGroup(new DashboardWaitCommand(), chooser.getSelected());
 
         // schedule the autonomous command (example)
         if (autonomousCommand != null) {

@@ -33,20 +33,19 @@ public class Autonomous {
 
     public static void load() {
         final var tab = Shuffleboard.getTab("Autonomous");
-        Set<String> names = autons.keySet();
-        for(var name : names) {
-            loadRegisteredCommand(name, autons.get(name));
-            System.out.println("Registered " + name + " command for auton");
+        if(autons != null && !autons.isEmpty()) {
+            Set<String> names = autons.keySet();
+            for(var name : names) {
+                loadRegisteredCommand(name, autons.get(name));
+                System.out.println("Registered " + name + " command for auton");
+            }
         }
         tab.add("Auto Mode", chooser);
     }
 
-    public Command getCommand() {
-        if(wait) {
-            return new SequentialCommandGroup(new DashboardWaitCommand(), chooser.getSelected());
-        } else {
-            return chooser.getSelected();
-        }
+    public static Command getCommand() {
+        if(wait) return new SequentialCommandGroup(new DashboardWaitCommand(), chooser.getSelected());
+        else return chooser.getSelected();
     }
 
     private static void loadRegisteredCommand(String name, Command command) {
