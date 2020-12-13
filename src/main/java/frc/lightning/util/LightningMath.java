@@ -1,55 +1,46 @@
 package frc.lightning.util;
 
 import edu.wpi.first.wpilibj.util.Units;
-import frc.lightning.Constants;
+import frc.lightning.LightningRobot;
 
 public class LightningMath {
-    public static double wheelCircumference =  Constants.WHEEL_DIAMETER_INCHES * Math.PI;
 
-    public static double rpmToMetersPerSecond(double rpm) {
-        return rpm / Constants.GEAR_REDUCTION * Units.inchesToMeters(wheelCircumference) / 60;
-    }
-
-    public static double rotationsToMetersTraveled(double rotations) {
-        return (rotations / Constants.GEAR_REDUCTION) * Units.inchesToMeters(wheelCircumference);
-    }
-
-    public static double talon2ips(double talon) {
+    public static double talon2ips(double talon, double wheelCircumference, double ticsPerRev) {
         // multiply 100ms by 10 to get seconds
-        return ticks2inches(talon * 10);
+        return ticks2inches(talon * 10, wheelCircumference, ticsPerRev);
     }
 
-    public static double talon2fps(double talon) {///////////////////
+    public static double talon2fps(double talon, double wheelCircumference, double ticsPerRev) {///////////////////
         // ticks /  100ms = talon
         double ticksps = talon * 10;  // ticks / sec
-        return ticks2feet(ticksps);
+        return ticks2feet(ticksps, wheelCircumference, ticsPerRev);
     }
 
-    public static double fps2talon(double fps) {//////////////////
+    public static double fps2talon(double fps, double wheelCircumference, double ticsPerRev) {//////////////////
         //double ips = fps * 12;
-        double ticksps = fps / wheelCircumference * Constants.TICS_PER_ROTATION;
+        double ticksps = fps / wheelCircumference * ticsPerRev;
         return ticksps / 10;                //ips2talon(fps*12);//fps*12 = ips
     }
 
-    public static double ips2talon(double ips) {
+    public static double ips2talon(double ips, double wheelCircumference, double ticsPerRev) {
         double ip100ms = ips / 10;
-        return inches2ticks(ip100ms);
+        return inches2ticks(ip100ms, wheelCircumference, ticsPerRev);
     }
 
-    public static double inches2ticks(double inches) {
-        return in2ft(inches) / wheelCircumference * Constants.TICS_PER_ROTATION;
+    public static double inches2ticks(double inches, double wheelCircumference, double ticsPerRev) {
+        return in2ft(inches) / wheelCircumference * ticsPerRev;
     }
 
-    public static double feet2ticks(double feet) {
-        return feet / wheelCircumference * Constants.TICS_PER_ROTATION;
+    public static double feet2ticks(double feet, double wheelCircumference, double ticsPerRev) {
+        return feet / wheelCircumference * ticsPerRev;
     }
 
-    public static double ticks2feet(double ticks) {
-        return ticks / Constants.TICS_PER_ROTATION * wheelCircumference;
+    public static double ticks2feet(double ticks, double wheelCircumference, double ticsPerRev) {
+        return ticks / ticsPerRev * wheelCircumference;
     }
 
-    public static double ticks2inches(double ticks) {
-        return ticks2feet(ticks) * 12;
+    public static double ticks2inches(double ticks, double wheelCircumference, double ticsPerRev) {
+        return ticks2feet(ticks, wheelCircumference, ticsPerRev) * 12;
     }
 
     public static double meters2feet(double meters) {
@@ -121,26 +112,32 @@ public class LightningMath {
     }
 
     public static boolean isInRange(double a, double b, double epsilon) {
-
         return Math.abs(a - b) < epsilon;
-
     }
 
-    public static double rotations2feet(double rotations) {
+    public static double rotations2feet(double rotations, double wheelCircumference) {
         return rotations * wheelCircumference;
     }
 
-    public static double feet2rotations(double feet) {
+    public static double feet2rotations(double feet, double wheelCircumference) {
         return feet / wheelCircumference;
     }
 
-    public static double rpm2fps(double rpm) {
+    public static double rpmToMetersPerSecond(double rpm, double gearReduction, double wheelCircumference) {
+        return rpm / gearReduction * Units.inchesToMeters(wheelCircumference) / 60;
+    }
+
+    public static double rotationsToMetersTraveled(double rotations, double gearReduction, double wheelCircumference) {
+        return (rotations / gearReduction) * Units.inchesToMeters(wheelCircumference);
+    }
+
+    public static double rpm2fps(double rpm, double wheelCircumference) {
         // rpm * circumference will be feet / minute
         // 60 is the number of seconds in a minute
         return rpm * wheelCircumference / 60.0;
     }
 
-    public static double fps2rpm(double fps) {
+    public static double fps2rpm(double fps, double wheelCircumference) {
         // fps * 60 will be feet / minute
         // feet / minute * circumference is rpm
         return fps * 60 / wheelCircumference;
@@ -166,9 +163,9 @@ public class LightningMath {
         return Math.abs(v1 - v2) < epsilon;
     }
 
-    public static double feet2talon(double ft) {
-        final double rotations = feet2rotations(ft);
-        return rotations * Constants.TICS_PER_ROTATION;
+    public static double feet2talon(double ft, double wheelCircumference, double ticsPerRev) {
+        final double rotations = feet2rotations(ft, wheelCircumference);
+        return rotations * ticsPerRev;
     }
 
     public static double in2meters(double inches) {
