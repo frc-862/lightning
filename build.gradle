@@ -5,7 +5,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath "edu.wpi.first:GradleRIO:2021.1.1-beta-1"
+        classpath "edu.wpi.first:GradleRIO:2021.1.1-beta-4"
     }
 }
 
