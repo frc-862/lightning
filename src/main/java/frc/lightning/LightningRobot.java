@@ -4,11 +4,9 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+
 import frc.lightning.auto.Autonomous;
-import frc.lightning.commands.DashboardWaitCommand;
 import frc.lightning.fault.FaultCode;
 import frc.lightning.fault.FaultMonitor;
 import frc.lightning.fault.TimedFaultMonitor;
@@ -19,7 +17,6 @@ import frc.lightning.testing.SystemTestCommand;
 import java.io.IOException;
 import java.util.Map;
 import java.util.Properties;
-import java.util.Set;
 
 /**
  * Base robot class, provides

@@ -7,11 +7,6 @@
 
 package frc.lightning;
 
-import java.util.HashMap;
-import java.util.List;
-
-import edu.wpi.first.wpilibj2.command.Command;
-import frc.lightning.auto.Path;
 import frc.lightning.subsystems.LightningDrivetrain;
 
 /**

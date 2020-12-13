@@ -1,14 +1,12 @@
 package frc.lightning.auto;
 
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Set;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.lightning.commands.DashboardWaitCommand;
 
 /**
@@ -112,15 +110,6 @@ public class Autonomous {
         if (autonCommandCount == 0) chooser.setDefaultOption(name, command);
         else chooser.addOption(name, command);
         autonCommandCount++;
-    }
-
-    /**
-     * Adds a {@link edu.wpi.first.wpilibj2.command.Command} to the menu on {@link edu.wpi.first.wpilibj.shuffleboard.Shuffleboard}. 
-     * The identifier will default to the class name of the command. 
-     * @param command The {@link edu.wpi.first.wpilibj2.command.Command} to be loaded.
-     */
-    private static void loadRegisteredCommand(Command command) {
-        loadRegisteredCommand(command.getName(), command);
     }
     
 }
