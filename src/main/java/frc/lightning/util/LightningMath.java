@@ -1,7 +1,6 @@
 package frc.lightning.util;
 
 import edu.wpi.first.wpilibj.util.Units;
-import frc.lightning.LightningRobot;
 
 public class LightningMath {
 

@@ -3,9 +3,12 @@ package frc.lightning.testing;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.lightning.fault.FaultCode;
 
-abstract public class SystemTest extends CommandBase implements Comparable<SystemTest> {
-    public static void register(SystemTest test, Priority priority) {
-        SystemTestCommand.register(test, priority);
+public abstract class SystemTest extends CommandBase implements Comparable<SystemTest> {
+
+    private String msg;
+
+    public static void register(SystemTest test) {
+        SystemTestCommand.register(test);
     }
 
     public enum Priority {
@@ -15,19 +18,22 @@ abstract public class SystemTest extends CommandBase implements Comparable<Syste
     private FaultCode.Codes code;
     private Priority priority;
 
-    public SystemTest(FaultCode.Codes code) {
-        this(code, Priority.DONT_CARE);
+    public SystemTest(String msg, FaultCode.Codes code) {
+        this(msg, code, Priority.DONT_CARE);
     }
 
-    public SystemTest(FaultCode.Codes code, Priority priority) {
+    public SystemTest(String msg, FaultCode.Codes code, Priority priority) {
+        this.msg = msg;
         this.code = code;
         this.priority = priority;
     }
 
-    // private double startedAt;
-
     public Priority getPriority() {
         return priority;
+    }
+
+    public String getMessage() {
+        return msg;
     }
 
     abstract public boolean didPass();
@@ -40,4 +46,5 @@ abstract public class SystemTest extends CommandBase implements Comparable<Syste
     public int compareTo(SystemTest other) {
         return priority.compareTo(other.priority);
     }
+
 }
