@@ -12,7 +12,7 @@ public abstract class SystemTest extends CommandBase implements Comparable<Syste
     }
 
     public enum Priority {
-        HIGH, MED, LOW, DONT_CARE
+        DO_FIRST, HIGH, MED, LOW, DONT_CARE
     }
 
     private FaultCode.Codes code;
