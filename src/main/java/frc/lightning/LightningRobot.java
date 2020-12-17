@@ -1,6 +1,5 @@
 package frc.lightning;
 
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -252,11 +251,7 @@ public class LightningRobot extends TimedRobot {
         System.out.println("LightningRobot.testInit");
         getContainer().releaseDefaultCommands();
         CommandScheduler.getInstance().cancelAll();
-        //stc = new SystemTestCommand();
         stc.initialize();
-        //stc.schedule();
-        //System.out.println("System Test Command sucessfully scheduled");
-        //(new SystemTestCommand()).schedule();
     }
 
     @Override
