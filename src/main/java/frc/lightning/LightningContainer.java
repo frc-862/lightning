@@ -38,6 +38,8 @@ public abstract class LightningContainer {
 
     protected abstract void configureAutonomousCommands();
 
+    public abstract LightningConfig getConfig();
+
     public abstract LightningDrivetrain getDrivetrain();
 
 }

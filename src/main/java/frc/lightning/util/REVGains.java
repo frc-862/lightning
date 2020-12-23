@@ -11,7 +11,7 @@ import com.revrobotics.CANPIDController;
 
 import edu.wpi.first.networktables.EntryListenerFlags;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import frc.lightning.Constants;
+import frc.lightning.LightningConfig;
 
 /**
  * Used to set the PID gains on various REV hardware components.
@@ -63,7 +63,7 @@ public class REVGains {
      * @param gains The gains to be tuned
      */
     public static void putGainsToBeTunedOnDash(String name, REVGains gains, CANPIDController controller) {
-        if(Constants.TUNING_ENABLED) {
+        if(LightningConfig.TUNING_ENABLED) {
             final var tab = Shuffleboard.getTab("PID Tuning");
 
             tab.add(name + " P Gain", gains.getkP())

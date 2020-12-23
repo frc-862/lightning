@@ -2,6 +2,7 @@ package frc.lightning;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
@@ -77,6 +78,9 @@ public class LightningRobot extends TimedRobot {
     @Override
     public void robotInit() {
         System.out.println("LightningRobot.robotInit");
+
+        // No Live Window for now
+        LiveWindow.disableAllTelemetry();
 
         // Note our start time
         System.out.println("Starting time: " + Timer.getFPGATimestamp());
@@ -232,6 +236,10 @@ public class LightningRobot extends TimedRobot {
         if (autonomousCommand != null) autonomousCommand.cancel();
     }
 
+    private static SystemTestCommand stc = new SystemTestCommand();
+
+    private boolean systemTestFlag = false;
+
     /**
      * The default implementation cancles all commands and releases the default commands
      * from the subsystems, and schedules a {@link frc.lightning.testing.SystemTestCommand}.
@@ -243,7 +251,18 @@ public class LightningRobot extends TimedRobot {
         System.out.println("LightningRobot.testInit");
         getContainer().releaseDefaultCommands();
         CommandScheduler.getInstance().cancelAll();
-        (new SystemTestCommand()).schedule();
+        stc.initialize();
+    }
+
+    @Override
+    public void testPeriodic() {
+        if(!stc.isFinished()) {
+            stc.execute();
+        } else if(stc.isFinished() && !systemTestFlag) {
+            stc.end(false);
+            systemTestFlag = true;
+            //this.disabledInit();
+        }
     }
 
     /**

@@ -4,16 +4,17 @@ import edu.wpi.first.wpilibj.Timer;
 import frc.lightning.fault.FaultCode;
 
 public abstract class AbstractTimedSystemTest extends SystemTest {
+
     private double timeAtStart;
+    
     private final double timeout;
 
-    public AbstractTimedSystemTest(double timeout, FaultCode.Codes code) {
-        super(code, Priority.DONT_CARE);
-        this.timeout = timeout;
+    public AbstractTimedSystemTest(String msg, double timeout, FaultCode.Codes code) {
+        this(msg, timeout, code, Priority.DONT_CARE);
     }
 
-    public AbstractTimedSystemTest(double timeout, FaultCode.Codes code, Priority priority) {
-        super(code, priority);
+    public AbstractTimedSystemTest(String msg, double timeout, FaultCode.Codes code, Priority priority) {
+        super(msg, code, priority);
         this.timeout = timeout;
     }
 

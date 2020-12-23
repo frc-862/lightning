@@ -19,7 +19,7 @@ import edu.wpi.first.wpilibj.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.lightning.Constants;
+import frc.lightning.LightningConfig;
 import frc.lightning.util.LightningMath;
 import frc.lightning.util.REVGains;
 import frc.lightning.util.RamseteGains;
@@ -68,12 +68,15 @@ public class NeoDrivetrain extends SubsystemBase implements LightningDrivetrain 
 
     private Supplier<Integer> resetHeading;
 
-    public NeoDrivetrain(int motorCountPerSide, int firstLeftCanId, int firstRightCanId, RamseteGains gains, Supplier<Rotation2d> headingSupplier, Supplier<Integer> resetHeading) {
-        this(motorCountPerSide, firstLeftCanId, firstRightCanId, gains.getTrackWidth(), gains, headingSupplier, resetHeading);
+    private LightningConfig config;
+
+    public NeoDrivetrain(LightningConfig config, int motorCountPerSide, int firstLeftCanId, int firstRightCanId, RamseteGains gains, Supplier<Rotation2d> headingSupplier, Supplier<Integer> resetHeading) {
+        this(config, motorCountPerSide, firstLeftCanId, firstRightCanId, gains.getTrackWidth(), gains, headingSupplier, resetHeading);
     }
 
-    public NeoDrivetrain(int motorCountPerSide, int firstLeftCanId, int firstRightCanId, double trackWidth, RamseteGains gains, Supplier<Rotation2d> headingSupplier, Supplier<Integer> resetHeading) {
+    public NeoDrivetrain(LightningConfig config, int motorCountPerSide, int firstLeftCanId, int firstRightCanId, double trackWidth, RamseteGains gains, Supplier<Rotation2d> headingSupplier, Supplier<Integer> resetHeading) {
         setName(name);
+        this.config = config;
         this.motorCount = motorCountPerSide;
         this.firstLeftCanId = firstLeftCanId;
         this.firstRightCanId = firstRightCanId;
@@ -314,19 +317,19 @@ public class NeoDrivetrain extends SubsystemBase implements LightningDrivetrain 
     }
 
     public double getLeftDistance() {
-        return LightningMath.rotationsToMetersTraveled(leftEncoder.getPosition());
+        return LightningMath.rotationsToMetersTraveled(leftEncoder.getPosition(), config.getGearReduction(), config.getWheelCircumferenceInches());
     }
 
     public double getRightDistance() {
-        return LightningMath.rotationsToMetersTraveled(rightEncoder.getPosition());
+        return LightningMath.rotationsToMetersTraveled(rightEncoder.getPosition(), config.getGearReduction(), config.getWheelCircumferenceInches());
     }
 
     public double getLeftVelocity() {
-        return LightningMath.rpmToMetersPerSecond(leftEncoder.getVelocity());
+        return LightningMath.rpmToMetersPerSecond(leftEncoder.getVelocity(), config.getGearReduction(), config.getWheelCircumferenceInches());
     }
 
     public double getRightVelocity() {
-        return LightningMath.rpmToMetersPerSecond(rightEncoder.getVelocity());
+        return LightningMath.rpmToMetersPerSecond(rightEncoder.getVelocity(), config.getGearReduction(), config.getWheelCircumferenceInches());
     }
 
     @Override
@@ -369,12 +372,12 @@ public class NeoDrivetrain extends SubsystemBase implements LightningDrivetrain 
 
     @Override
     public double getRightVolts() {
-        return rightMaster.getAppliedOutput() * Constants.VOLT_LIMIT;
+        return rightMaster.getAppliedOutput() * LightningConfig.VOLT_LIMIT;
     }
 
     @Override
     public double getLeftVolts() {
-        return leftMaster.getAppliedOutput() * Constants.VOLT_LIMIT;
+        return leftMaster.getAppliedOutput() * LightningConfig.VOLT_LIMIT;
     }
 
     @Override

@@ -29,7 +29,8 @@ public class FaultCode {
         RIGHT_DRIVE_FAILURE,
         DRIVE_MASTER_ERROR,
         DRIVE_PRIMARY_SLAVE_ERROR,
-        DRIVE_SECONDARY_SLAVE_ERROR;
+        DRIVE_SECONDARY_SLAVE_ERROR,
+        GENERAL;
     }
 
     private static HashSet<Codes> faults = new HashSet<>();
