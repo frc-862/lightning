@@ -4,7 +4,7 @@ import java.util.function.DoubleSupplier;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.lightning.Constants;
+import frc.lightning.LightningConfig;
 import frc.lightning.subsystems.LightningDrivetrain;
 import frc.lightning.util.JoystickFilter;
 
@@ -38,8 +38,8 @@ public class VoltDrive extends CommandBase {
         double leftVolts = filter.filter(left.getAsDouble());
         double rightVolts = filter.filter(right.getAsDouble());
 
-        leftVolts *= Constants.VOLT_LIMIT;
-        rightVolts *= Constants.VOLT_LIMIT;
+        leftVolts  *= LightningConfig.VOLT_LIMIT;
+        rightVolts *= LightningConfig.VOLT_LIMIT;
 
         SmartDashboard.putNumber("RightVolts", drivetrain.getRightVolts());
         SmartDashboard.putNumber("LeftVolts", drivetrain.getLeftVolts());

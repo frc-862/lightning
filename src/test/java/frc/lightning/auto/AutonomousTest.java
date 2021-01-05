@@ -3,11 +3,6 @@ package frc.lightning.auto;
 import org.junit.Test;
 
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import frc.lightning.auto.Autonomous;
-
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.verify;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
