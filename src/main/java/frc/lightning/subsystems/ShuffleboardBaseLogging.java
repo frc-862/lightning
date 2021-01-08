@@ -6,8 +6,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import java.util.Map;
 
-public class SmartDashDrivetrain extends SubsystemBase {
-    public SmartDashDrivetrain(LightningDrivetrain drivetrain) {
+public class ShuffleboardBaseLogging extends SubsystemBase {
+    public ShuffleboardBaseLogging(LightningDrivetrain drivetrain, IMU imu) {
         final var tab = Shuffleboard.getTab("Drivetrain");
 
         tab.addNumber("Left Velocity", () -> drivetrain.getLeftVelocity())
@@ -17,14 +17,19 @@ public class SmartDashDrivetrain extends SubsystemBase {
 
         tab.addNumber("Left Distance", () -> drivetrain.getLeftDistance());
         tab.addNumber("Right Distance", () -> drivetrain.getRightDistance());
+        
+        tab.addNumber("Left Heat", () -> drivetrain.getLeftTemp());
+        tab.addNumber("Right Heat", () -> drivetrain.getRightTemp());
 
         tab.addNumber("Pose Rotation Deg", () -> drivetrain.getPose().getRotation().getDegrees());
         tab.addNumber("Pose Trans Y", () -> drivetrain.getPose().getTranslation().getY());
         tab.addNumber("Pose Trans X", () -> drivetrain.getPose().getTranslation().getX());
         tab.addNumber("Pose Trans Norm", () -> drivetrain.getPose().getTranslation().getNorm());
 
-        tab.addNumber("Heading", () -> drivetrain.getHeading().getDegrees());
+        //tab.addNumber("Heading", () -> drivetrain.getHeading().getDegrees());
         tab.addNumber("Right Wheel Speed", () -> drivetrain.getSpeeds().rightMetersPerSecond);
         tab.addNumber("Left Wheel Speed", () -> drivetrain.getSpeeds().leftMetersPerSecond);
+
+        tab.addNumber("Heading", () -> imu.getHeading().getDegrees());
     }
 }

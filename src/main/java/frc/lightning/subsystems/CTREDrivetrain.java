@@ -8,9 +8,7 @@
 package frc.lightning.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.TalonSRXControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.ctre.phoenix.motorcontrol.can.BaseMotorController;
 
 import edu.wpi.first.wpilibj.controller.PIDController;
@@ -24,6 +22,7 @@ import edu.wpi.first.wpilibj.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.lightning.LightningConfig;
+import frc.lightning.subsystems.IMU.IMUFunction;
 import frc.lightning.util.RamseteGains;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
@@ -57,8 +56,10 @@ public class CTREDrivetrain extends SubsystemBase implements LightningDrivetrain
 
 	Supplier<Rotation2d> heading;
 
+	IMUFunction zeroHeading;
+
 	protected CTREDrivetrain(BaseMotorController leftMaster, BaseMotorController rightMaster,
-			BaseMotorController[] leftSlaves, BaseMotorController[] rightSlaves, RamseteGains gains, Supplier<Rotation2d> heading) {
+			BaseMotorController[] leftSlaves, BaseMotorController[] rightSlaves, RamseteGains gains, Supplier<Rotation2d> heading, IMUFunction zeroHeading) {
 		setName(name);
 		this.leftMaster = leftMaster;
 		this.rightMaster = rightMaster;
@@ -68,6 +69,7 @@ public class CTREDrivetrain extends SubsystemBase implements LightningDrivetrain
 		this.gains = gains;
 
 		this.heading = heading;
+		this.zeroHeading = zeroHeading;
 
 		configureFollows();
 
@@ -84,21 +86,19 @@ public class CTREDrivetrain extends SubsystemBase implements LightningDrivetrain
 
 		rightPIDController = new PIDController(gains.getRight_kP(), gains.getRight_kI(), gains.getRight_kD());
 
+		resetSensorVals();
+
 	}
 
 	@Override
 	public void periodic() {
 		super.periodic();
 
-		SmartDashboard.putNumber("RightMasterHeat", rightMaster.getTemperature());
-		SmartDashboard.putNumber("LeftMasterHeat", leftMaster.getTemperature());
+		// SmartDashboard.putNumber("RightMasterHeat", rightMaster.getTemperature());
+		// SmartDashboard.putNumber("LeftMasterHeat", leftMaster.getTemperature());
 
 		pose = odometry.update(heading.get(), getLeftDistance(), getRightDistance());
 
-	}
-
-	public void init() {
-		this.resetDistance();
 	}
 
 	protected BaseMotorController getLeftMaster() {
@@ -284,8 +284,8 @@ public class CTREDrivetrain extends SubsystemBase implements LightningDrivetrain
 	@Override
 	public void resetSensorVals() {
 		resetDistance();
-		odometry.resetPosition(new Pose2d(new Translation2d(0d, 0d), Rotation2d.fromDegrees(0d)),
-				Rotation2d.fromDegrees(0d));
+		zeroHeading.exec();
+		odometry.resetPosition(new Pose2d(new Translation2d(0d, 0d), Rotation2d.fromDegrees(0d)), Rotation2d.fromDegrees(0d));
 	}
 
 	@Override
@@ -300,6 +300,16 @@ public class CTREDrivetrain extends SubsystemBase implements LightningDrivetrain
 
 	public SimpleMotorFeedforward getFeedforward() {
 		return feedforward;
+	}
+
+	@Override
+	public double getRightTemp() {
+		return rightMaster.getTemperature();
+	}
+
+	@Override
+	public double getLeftTemp() {
+		return leftMaster.getTemperature();
 	}
 
 }
