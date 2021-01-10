@@ -120,5 +120,5 @@ public interface LightningDrivetrain extends Subsystem {
     public default double getVelocity() {
         return (getRightVelocity() + getLeftVelocity()) / 2;
     }
+    
 }
-
