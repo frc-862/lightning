@@ -23,7 +23,6 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.lightning.LightningConfig;
 import frc.lightning.subsystems.IMU.IMUFunction;
 import frc.lightning.util.LightningMath;
-import frc.lightning.util.REVGains;
 import frc.lightning.util.RamseteGains;
 
 import java.util.function.BiConsumer;
@@ -112,11 +111,6 @@ public class NeoDrivetrain extends SubsystemBase implements LightningDrivetrain 
         withEachMotor((m) -> m.setClosedLoopRampRate(CLOSE_LOOP_RAMP_RATE));
         brake();
 
-        //TODO this does not belong in a "base" drive train class
-        //     one suggestion would be to include an interfacce that
-        //     returns a heading that is an option constructor parameter
-        // navx = new AHRS(SPI.Port.kMXP);
-
         kinematics = new DifferentialDriveKinematics(trackWidth);
 
         odometry = new DifferentialDriveOdometry(heading.get(), pose);
@@ -127,24 +121,21 @@ public class NeoDrivetrain extends SubsystemBase implements LightningDrivetrain 
         
         rightPIDController = new PIDController(gains.getRight_kP(), gains.getRight_kI(), gains.getRight_kD());
         
-        SmartDashboard.putNumber("RequestedLeftVolts", 0d);
-        SmartDashboard.putNumber("RequestedRightVolts", 0d);
+        // SmartDashboard.putNumber("RequestedLeftVolts", 0d);
+        // SmartDashboard.putNumber("RequestedRightVolts", 0d);
 
-        SmartDashboard.putNumber("PoseRotationDeg", 0d);
-        SmartDashboard.putNumber("PoseTransY", 0d);
-        SmartDashboard.putNumber("PoseTransX", 0d);
-        SmartDashboard.putNumber("PoseTransNorm", 0d);
+        // SmartDashboard.putNumber("PoseRotationDeg", 0d);
+        // SmartDashboard.putNumber("PoseTransY", 0d);
+        // SmartDashboard.putNumber("PoseTransX", 0d);
+        // SmartDashboard.putNumber("PoseTransNorm", 0d);
 
-        SmartDashboard.putNumber("TrackWidthMeters", getKinematics().trackWidthMeters);
+        // SmartDashboard.putNumber("TrackWidthMeters", getKinematics().trackWidthMeters);
 
-        SmartDashboard.putNumber("RightTicksPerRev", rightEncoder.getCountsPerRevolution());
-        SmartDashboard.putNumber("LeftTicksPerRev", leftEncoder.getCountsPerRevolution());
+        // SmartDashboard.putNumber("RightTicksPerRev", rightEncoder.getCountsPerRevolution());
+        // SmartDashboard.putNumber("LeftTicksPerRev", leftEncoder.getCountsPerRevolution());
 
-        SmartDashboard.putNumber("RightRotationConversionFactor", rightEncoder.getPositionConversionFactor());
-        SmartDashboard.putNumber("LeftRotationConversionFactor", leftEncoder.getPositionConversionFactor());
-
-        //SmartDashboard.putNumber("RightMasterHeat", rightMaster.getMotorTemperature());
-        //SmartDashboard.putNumber("LeftMasterHeat", leftMaster.getMotorTemperature());
+        // SmartDashboard.putNumber("RightRotationConversionFactor", rightEncoder.getPositionConversionFactor());
+        // SmartDashboard.putNumber("LeftRotationConversionFactor", leftEncoder.getPositionConversionFactor());
 
         resetSensorVals();
 
@@ -153,21 +144,7 @@ public class NeoDrivetrain extends SubsystemBase implements LightningDrivetrain 
     @Override
     public void periodic() {
         super.periodic();
-
-        //SmartDashboard.putNumber("RightMasterHeat", rightMaster.getMotorTemperature());
-        //SmartDashboard.putNumber("LeftMasterHeat", leftMaster.getMotorTemperature());
-
         pose = odometry.update(heading.get(), getLeftDistance(), getRightDistance());
-
-    }
-
-    private static void setGains(CANPIDController controller, REVGains gains) {
-        controller.setP(gains.getkP());
-        controller.setI(gains.getkI());
-        controller.setD(gains.getkD());
-        controller.setFF(gains.getkFF());
-        controller.setIZone(gains.getkIz());
-        controller.setOutputRange(gains.getkMinOutput(), gains.getkMaxOutput());
     }
 
     public RamseteGains getGains() { return gains; }
@@ -213,28 +190,8 @@ public class NeoDrivetrain extends SubsystemBase implements LightningDrivetrain 
     @Override
     public void resetSensorVals() {
         resetDistance();
-        zeroHeading.exec(); //resetHeading();
-        // odometry.resetPosition(new Pose2d(), new Rotation2d());
+        zeroHeading.exec();
         odometry.resetPosition(new Pose2d(new Translation2d(0d, 0d), Rotation2d.fromDegrees(0d)), Rotation2d.fromDegrees(0d));
-    }
-
-    // private void resetHeading() {
-    //     // navx.reset();
-    //     // bird.setYaw(0d);
-    //     resetHeading.get();
-    // }
-
-    public void setLeftGains(REVGains gains) {
-        setGains(leftPIDFController, gains);
-    }
-
-    public void setRightGains(REVGains gains) {
-        setGains(rightPIDFController, gains);
-    }
-
-    public void setGains(REVGains gains) {
-        setGains(leftPIDFController, gains);
-        setGains(rightPIDFController, gains);
     }
 
     public void init() {
@@ -319,19 +276,19 @@ public class NeoDrivetrain extends SubsystemBase implements LightningDrivetrain 
     }
 
     public double getLeftDistance() {
-        return LightningMath.rotationsToMetersTraveled(leftEncoder.getPosition(), config.getGearReduction(), config.getWheelCircumferenceInches());
+        return LightningMath.rotationsToMetersTraveled(leftEncoder.getPosition(), config.getGearRatio(), config.getWheelCircumferenceFeet());
     }
 
     public double getRightDistance() {
-        return LightningMath.rotationsToMetersTraveled(rightEncoder.getPosition(), config.getGearReduction(), config.getWheelCircumferenceInches());
+        return LightningMath.rotationsToMetersTraveled(rightEncoder.getPosition(), config.getGearRatio(), config.getWheelCircumferenceFeet());
     }
 
     public double getLeftVelocity() {
-        return LightningMath.rpmToMetersPerSecond(leftEncoder.getVelocity(), config.getGearReduction(), config.getWheelCircumferenceInches());
+        return LightningMath.rpmToMetersPerSecond(leftEncoder.getVelocity(), config.getGearRatio(), config.getWheelCircumferenceFeet());
     }
 
     public double getRightVelocity() {
-        return LightningMath.rpmToMetersPerSecond(rightEncoder.getVelocity(), config.getGearReduction(), config.getWheelCircumferenceInches());
+        return LightningMath.rpmToMetersPerSecond(rightEncoder.getVelocity(), config.getGearRatio(), config.getWheelCircumferenceFeet());
     }
 
     @Override

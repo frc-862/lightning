@@ -17,15 +17,21 @@ public abstract class LightningConfig {
     public static final double VOLT_LIMIT = 12d;
 
     public abstract double getTicsPerRev();
+
+    public abstract double getTicsPerRevWheel();
     
     public abstract double getMaxRPM();
 
     public abstract double getWheelDiameterInches();
 
-    public abstract double getGearReduction();
+    public abstract double getGearRatio();
 
     public double getWheelCircumferenceInches() {
         return getWheelDiameterInches() * Math.PI;
+    }
+
+    public double getWheelCircumferenceFeet() {
+        return getWheelCircumferenceInches()/12;
     }
 
 }

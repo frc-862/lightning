@@ -9,13 +9,13 @@ public class LightningMath {
         return ticks2inches(talon * 10, wheelCircumference, ticsPerRev);
     }
 
-    public static double talon2fps(double talon, double wheelCircumference, double ticsPerRev) {///////////////////
+    public static double talon2fps(double talon, double wheelCircumference, double ticsPerRev) {
         // ticks /  100ms = talon
         double ticksps = talon * 10;  // ticks / sec
         return ticks2feet(ticksps, wheelCircumference, ticsPerRev);
     }
 
-    public static double fps2talon(double fps, double wheelCircumference, double ticsPerRev) {//////////////////
+    public static double fps2talon(double fps, double wheelCircumference, double ticsPerRev) {
         //double ips = fps * 12;
         double ticksps = fps / wheelCircumference * ticsPerRev;
         return ticksps / 10;                //ips2talon(fps*12);//fps*12 = ips

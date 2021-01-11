@@ -23,6 +23,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.lightning.LightningConfig;
 import frc.lightning.subsystems.IMU.IMUFunction;
+import frc.lightning.util.LightningMath;
 import frc.lightning.util.RamseteGains;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
@@ -58,7 +59,9 @@ public class CTREDrivetrain extends SubsystemBase implements LightningDrivetrain
 
 	IMUFunction zeroHeading;
 
-	protected CTREDrivetrain(BaseMotorController leftMaster, BaseMotorController rightMaster,
+	LightningConfig config;
+
+	protected CTREDrivetrain(LightningConfig config, BaseMotorController leftMaster, BaseMotorController rightMaster,
 			BaseMotorController[] leftSlaves, BaseMotorController[] rightSlaves, RamseteGains gains, Supplier<Rotation2d> heading, IMUFunction zeroHeading) {
 		setName(name);
 		this.leftMaster = leftMaster;
@@ -67,6 +70,7 @@ public class CTREDrivetrain extends SubsystemBase implements LightningDrivetrain
 		this.rightSlaves = rightSlaves;
 
 		this.gains = gains;
+		this.config = config;
 
 		this.heading = heading;
 		this.zeroHeading = zeroHeading;
@@ -93,12 +97,7 @@ public class CTREDrivetrain extends SubsystemBase implements LightningDrivetrain
 	@Override
 	public void periodic() {
 		super.periodic();
-
-		// SmartDashboard.putNumber("RightMasterHeat", rightMaster.getTemperature());
-		// SmartDashboard.putNumber("LeftMasterHeat", leftMaster.getTemperature());
-
 		pose = odometry.update(heading.get(), getLeftDistance(), getRightDistance());
-
 	}
 
 	protected BaseMotorController getLeftMaster() {
@@ -163,35 +162,43 @@ public class CTREDrivetrain extends SubsystemBase implements LightningDrivetrain
 	@Override
 	public void initMotorDirections() {}
 
+	@Override
 	public void setPower(double left, double right) {
-		rightMaster.set(ControlMode.PercentOutput, left);
-		leftMaster.set(ControlMode.PercentOutput, right);
+		// rightMaster.getBusVoltage(); //convert volts to percent output with this?
+		leftMaster.set(ControlMode.PercentOutput, left);
+		rightMaster.set(ControlMode.PercentOutput, right);
 	}
 
+	@Override
 	public void setVelocity(double left, double right) {
-		rightMaster.set(ControlMode.Velocity, left);
+		rightMaster.set(ControlMode.Velocity, left); // fps to talon?
 		leftMaster.set(ControlMode.Velocity, right);
 	}
 
+	@Override
 	public void resetDistance() {
 		leftMaster.setSelectedSensorPosition(0);
 		rightMaster.setSelectedSensorPosition(0);
 	}
 
+	@Override
 	public double getLeftDistance() {
-		return leftMaster.getSelectedSensorPosition();
+		return LightningMath.ticks2feet(leftMaster.getSelectedSensorPosition(), config.getWheelCircumferenceFeet(), config.getTicsPerRevWheel());
 	}
 
+	@Override
 	public double getRightDistance() {
-		return rightMaster.getSelectedSensorPosition();
+		return LightningMath.ticks2feet(rightMaster.getSelectedSensorPosition(), config.getWheelCircumferenceFeet(), config.getTicsPerRevWheel());
 	}
 
+	@Override
 	public double getLeftVelocity() {
-		return leftMaster.getSelectedSensorVelocity();
+		return LightningMath.talon2fps(leftMaster.getSelectedSensorVelocity(), config.getWheelCircumferenceFeet(), config.getTicsPerRevWheel());
 	}
 
+	@Override
 	public double getRightVelocity() {
-		return rightMaster.getSelectedSensorVelocity();
+		return LightningMath.talon2fps(rightMaster.getSelectedSensorVelocity(), config.getWheelCircumferenceFeet(), config.getTicsPerRevWheel());
 	}
 
 	@Override
