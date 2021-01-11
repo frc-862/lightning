@@ -20,6 +20,7 @@ import edu.wpi.first.wpilibj.kinematics.DifferentialDriveKinematics;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.util.Units;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.lightning.LightningConfig;
 import frc.lightning.subsystems.IMU.IMUFunction;
@@ -183,22 +184,22 @@ public class CTREDrivetrain extends SubsystemBase implements LightningDrivetrain
 
 	@Override
 	public double getLeftDistance() {
-		return LightningMath.ticks2feet(leftMaster.getSelectedSensorPosition(), config.getWheelCircumferenceFeet(), config.getTicsPerRevWheel());
+		return Units.feetToMeters(LightningMath.ticks2feet(leftMaster.getSelectedSensorPosition(), config.getWheelCircumferenceFeet(), config.getTicsPerRevWheel()));
 	}
 
 	@Override
 	public double getRightDistance() {
-		return LightningMath.ticks2feet(rightMaster.getSelectedSensorPosition(), config.getWheelCircumferenceFeet(), config.getTicsPerRevWheel());
+		return Units.feetToMeters(LightningMath.ticks2feet(rightMaster.getSelectedSensorPosition(), config.getWheelCircumferenceFeet(), config.getTicsPerRevWheel()));
 	}
 
 	@Override
 	public double getLeftVelocity() {
-		return LightningMath.talon2fps(leftMaster.getSelectedSensorVelocity(), config.getWheelCircumferenceFeet(), config.getTicsPerRevWheel());
+		return Units.feetToMeters(LightningMath.talon2fps(leftMaster.getSelectedSensorVelocity(), config.getWheelCircumferenceFeet(), config.getTicsPerRevWheel()));
 	}
 
 	@Override
 	public double getRightVelocity() {
-		return LightningMath.talon2fps(rightMaster.getSelectedSensorVelocity(), config.getWheelCircumferenceFeet(), config.getTicsPerRevWheel());
+		return Units.feetToMeters(LightningMath.talon2fps(rightMaster.getSelectedSensorVelocity(), config.getWheelCircumferenceFeet(), config.getTicsPerRevWheel()));
 	}
 
 	@Override
@@ -318,5 +319,10 @@ public class CTREDrivetrain extends SubsystemBase implements LightningDrivetrain
 	public double getLeftTemp() {
 		return leftMaster.getTemperature();
 	}
+
+	@Override
+    public double getAvailableVoltage() {
+        return (getLeftMaster().getBusVoltage() + getRightMaster().getBusVoltage()) / 2d;
+    }
 
 }

@@ -22,7 +22,7 @@ public class BaseRobotLogger extends SubsystemBase {
         DataLogger.addDataElement("LeftWheelSpeed", () -> drivetrain.getSpeeds().leftMetersPerSecond);
         DataLogger.addDataElement("LeftDistanceMeters", () -> drivetrain.getLeftDistance());
         DataLogger.addDataElement("RightDistanceMeters", () -> drivetrain.getRightDistance());
-
+        DataLogger.addDataElement("Voltage", () -> drivetrain.getAvailableVoltage());
         DataLogger.addDataElement("Heading", () -> this.imu.getHeading().getDegrees());
     }
 }

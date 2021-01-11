@@ -29,6 +29,8 @@ public class ShuffleboardBaseLogging extends SubsystemBase {
         //tab.addNumber("Heading", () -> drivetrain.getHeading().getDegrees());
         tab.addNumber("Right Wheel Speed", () -> drivetrain.getSpeeds().rightMetersPerSecond);
         tab.addNumber("Left Wheel Speed", () -> drivetrain.getSpeeds().leftMetersPerSecond);
+        
+        tab.addNumber("Voltage", () -> drivetrain.getAvailableVoltage());
 
         tab.addNumber("Heading", () -> imu.getHeading().getDegrees());
     }
