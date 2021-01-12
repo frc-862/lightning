@@ -70,7 +70,7 @@ public interface LightningDrivetrain extends Subsystem {
     public double getRightVelocity();
 
     public default void stop() {
-        setPower(0, 0);
+        setPower(0d, 0d);
     }
 
     public void setOutput(double leftVolts, double rightVolts);

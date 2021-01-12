@@ -1,14 +1,20 @@
 package frc.lightning.subsystems;
 
+import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
+import edu.wpi.first.wpilibj.shuffleboard.LayoutType;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.WidgetType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import java.util.Map;
 
-public class ShuffleboardBaseLogging extends SubsystemBase {
-    public ShuffleboardBaseLogging(LightningDrivetrain drivetrain, IMU imu) {
-        final var tab = Shuffleboard.getTab("Drivetrain");
+public class ShuffleboardBaseRobotDisplay extends SubsystemBase {
+
+    public static final String DRIVETRAIN_TAB_NAME = "Drivetrain";
+
+    public ShuffleboardBaseRobotDisplay(LightningDrivetrain drivetrain, IMU imu) {
+        final var tab = Shuffleboard.getTab(DRIVETRAIN_TAB_NAME);
 
         tab.addNumber("Left Velocity", () -> drivetrain.getLeftVelocity())
                 .withWidget(BuiltInWidgets.kNumberBar)
@@ -33,5 +39,7 @@ public class ShuffleboardBaseLogging extends SubsystemBase {
         tab.addNumber("Voltage", () -> drivetrain.getAvailableVoltage());
 
         tab.addNumber("Heading", () -> imu.getHeading().getDegrees());
+
     }
+
 }
