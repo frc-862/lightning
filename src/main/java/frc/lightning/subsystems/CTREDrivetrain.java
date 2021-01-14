@@ -22,8 +22,6 @@ import edu.wpi.first.wpilibj.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Units;
-import edu.wpi.first.wpilibj2.command.RunCommand;
-import edu.wpi.first.wpilibj2.command.Subsystem;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.lightning.LightningConfig;
 import frc.lightning.subsystems.IMU.IMUFunction;
@@ -66,8 +64,6 @@ public class CTREDrivetrain extends SubsystemBase implements LightningDrivetrain
 	LightningConfig config;
 
 	private int minAllowedEncoderVelocityError;
-
-	private boolean outOfSync = false;
 
 	protected CTREDrivetrain(LightningConfig config, BaseMotorController leftMaster, BaseMotorController rightMaster,
 			BaseMotorController[] leftSlaves, BaseMotorController[] rightSlaves, RamseteGains gains, Supplier<Rotation2d> heading, IMUFunction zeroHeading) {
