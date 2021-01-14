@@ -102,6 +102,9 @@ public class CTREDrivetrain extends SubsystemBase implements LightningDrivetrain
 		Shuffleboard.getTab(ShuffleboardBaseRobotDisplay.DRIVETRAIN_TAB_NAME).addBoolean("Left Motors Out Of Sync", () -> getLeftMotorsOutOfSync());
 		Shuffleboard.getTab(ShuffleboardBaseRobotDisplay.DRIVETRAIN_TAB_NAME).addBoolean("Right Motors Out Of Sync", () -> getRightMotorsOutOfSync());
 
+		leftMaster.configVoltageCompSaturation(LightningConfig.VOLT_LIMIT);
+		rightMaster.configVoltageCompSaturation(LightningConfig.VOLT_LIMIT);
+
 	}
 
 	@Override
@@ -182,7 +185,6 @@ public class CTREDrivetrain extends SubsystemBase implements LightningDrivetrain
 
 	@Override
 	public void setPower(double left, double right) {
-		// rightMaster.getBusVoltage(); //convert volts to percent output with this?
 		leftMaster.set(ControlMode.PercentOutput, left);
 		rightMaster.set(ControlMode.PercentOutput, right);
 	}
@@ -270,9 +272,9 @@ public class CTREDrivetrain extends SubsystemBase implements LightningDrivetrain
 	public void setOutput(double leftVolts, double rightVolts) {
 		SmartDashboard.putNumber("RequestedLeftVolts", leftVolts);
 		SmartDashboard.putNumber("RequestedRightVolts", rightVolts);
-
-		leftMaster.set(ControlMode.Velocity, leftVolts);
-		rightMaster.set(ControlMode.Velocity, rightVolts);
+		// TODO - use rightMaster.getBusVoltage() instead of LightningConfig.VOLT_LIMIT
+		leftMaster.set(ControlMode.PercentOutput, (leftVolts / LightningConfig.VOLT_LIMIT));
+		rightMaster.set(ControlMode.PercentOutput, (rightVolts / LightningConfig.VOLT_LIMIT));
 	}
 
 	@Override
@@ -349,7 +351,6 @@ public class CTREDrivetrain extends SubsystemBase implements LightningDrivetrain
 			if(encoder > max) max = encoder;
 			if(encoder < min) min = encoder;
 		}
-		//System.out.println("Left | Max: " + max + " | Min: " + min + " | Diff: " + (max - min));
 		return (max - min) > minAllowedEncoderVelocityError;
 	}
 
@@ -360,7 +361,6 @@ public class CTREDrivetrain extends SubsystemBase implements LightningDrivetrain
 			if(encoder > max) max = encoder;
 			if(encoder < min) min = encoder;
 		}
-		//System.out.println("Right | Max: " + max + " | Min: " + min + " | Diff: " + (max - min));
 		return (max - min) > minAllowedEncoderVelocityError;
 	}
 
