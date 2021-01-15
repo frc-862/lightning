@@ -1,5 +1,6 @@
 package frc.lightning.subsystems;
 
+import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.lightning.logging.DataLogger;
 
@@ -22,7 +23,7 @@ public class BaseRobotLogger extends SubsystemBase {
         DataLogger.addDataElement("LeftWheelSpeed", () -> drivetrain.getSpeeds().leftMetersPerSecond);
         DataLogger.addDataElement("LeftDistanceMeters", () -> drivetrain.getLeftDistance());
         DataLogger.addDataElement("RightDistanceMeters", () -> drivetrain.getRightDistance());
-        DataLogger.addDataElement("Voltage", () -> drivetrain.getAvailableVoltage());
+        DataLogger.addDataElement("Voltage", () -> RobotController.getBatteryVoltage());
         DataLogger.addDataElement("Heading", () -> this.imu.getHeading().getDegrees());
     }
 }

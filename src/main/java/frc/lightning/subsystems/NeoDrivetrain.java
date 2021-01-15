@@ -368,9 +368,4 @@ public class NeoDrivetrain extends SubsystemBase implements LightningDrivetrain 
         return leftMaster.getMotorTemperature();
     }
 
-    @Override
-    public double getAvailableVoltage() {
-        return (getLeftMaster().getBusVoltage() + getRightMaster().getBusVoltage()) / 2d;
-    }
-
 }

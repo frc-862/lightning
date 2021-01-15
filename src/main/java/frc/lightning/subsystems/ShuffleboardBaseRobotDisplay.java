@@ -1,5 +1,6 @@
 package frc.lightning.subsystems;
 
+import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -33,7 +34,7 @@ public class ShuffleboardBaseRobotDisplay extends SubsystemBase {
         tab.addNumber("Right Wheel Speed", () -> drivetrain.getSpeeds().rightMetersPerSecond);
         tab.addNumber("Left Wheel Speed", () -> drivetrain.getSpeeds().leftMetersPerSecond);
         
-        tab.addNumber("Voltage", () -> drivetrain.getAvailableVoltage());
+        tab.addNumber("Voltage", () -> RobotController.getBatteryVoltage());
 
         tab.addNumber("Heading", () -> imu.getHeading().getDegrees());
 

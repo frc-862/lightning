@@ -113,8 +113,6 @@ public interface LightningDrivetrain extends Subsystem {
 
     public void setRamseteOutput(double leftVolts, double rightVolts);
 
-    public double getAvailableVoltage();
-
     public default double getDistance() {
         return (getLeftDistance() + getRightDistance()) / 2;
     }

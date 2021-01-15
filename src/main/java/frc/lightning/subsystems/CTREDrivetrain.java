@@ -11,6 +11,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.BaseMotorController;
 
+import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj.controller.SimpleMotorFeedforward;
 import edu.wpi.first.wpilibj.geometry.Pose2d;
@@ -101,9 +102,6 @@ public class CTREDrivetrain extends SubsystemBase implements LightningDrivetrain
 
 		Shuffleboard.getTab(ShuffleboardBaseRobotDisplay.DRIVETRAIN_TAB_NAME).addBoolean("Left Motors Out Of Sync", () -> getLeftMotorsOutOfSync());
 		Shuffleboard.getTab(ShuffleboardBaseRobotDisplay.DRIVETRAIN_TAB_NAME).addBoolean("Right Motors Out Of Sync", () -> getRightMotorsOutOfSync());
-
-		leftMaster.configVoltageCompSaturation(LightningConfig.VOLT_LIMIT);
-		rightMaster.configVoltageCompSaturation(LightningConfig.VOLT_LIMIT);
 
 	}
 
@@ -270,11 +268,8 @@ public class CTREDrivetrain extends SubsystemBase implements LightningDrivetrain
 
 	@Override
 	public void setOutput(double leftVolts, double rightVolts) {
-		SmartDashboard.putNumber("RequestedLeftVolts", leftVolts);
-		SmartDashboard.putNumber("RequestedRightVolts", rightVolts);
-		// TODO - use rightMaster.getBusVoltage() instead of LightningConfig.VOLT_LIMIT
-		leftMaster.set(ControlMode.PercentOutput, (leftVolts / LightningConfig.VOLT_LIMIT));
-		rightMaster.set(ControlMode.PercentOutput, (rightVolts / LightningConfig.VOLT_LIMIT));
+		leftMaster.set(ControlMode.PercentOutput, (leftVolts / RobotController.getBatteryVoltage()));
+		rightMaster.set(ControlMode.PercentOutput, (rightVolts / RobotController.getBatteryVoltage()));
 	}
 
 	@Override
@@ -299,7 +294,6 @@ public class CTREDrivetrain extends SubsystemBase implements LightningDrivetrain
 
 	@Override
 	public void setRamseteOutput(double leftVolts, double rightVolts) {
-		// TODO verify this is the right call
 		setOutput(leftVolts, rightVolts);
 	}
 
@@ -337,11 +331,6 @@ public class CTREDrivetrain extends SubsystemBase implements LightningDrivetrain
 	@Override
 	public double getLeftTemp() {
 		return leftMaster.getTemperature();
-	}
-
-	@Override
-    public double getAvailableVoltage() {
-        return (getLeftMaster().getBusVoltage() + getRightMaster().getBusVoltage()) / 2d;
 	}
 	
 	public boolean getLeftMotorsOutOfSync() {
