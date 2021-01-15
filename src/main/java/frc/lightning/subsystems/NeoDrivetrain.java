@@ -9,6 +9,7 @@ package frc.lightning.subsystems;
 
 import com.revrobotics.*;
 import com.revrobotics.CANSparkMax.IdleMode;
+
 import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj.controller.SimpleMotorFeedforward;
 import edu.wpi.first.wpilibj.geometry.Pose2d;
@@ -20,8 +21,8 @@ import edu.wpi.first.wpilibj.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.lightning.LightningConfig;
+import frc.lightning.subsystems.IMU.IMUFunction;
 import frc.lightning.util.LightningMath;
-import frc.lightning.util.REVGains;
 import frc.lightning.util.RamseteGains;
 
 import java.util.function.BiConsumer;
@@ -64,27 +65,24 @@ public class NeoDrivetrain extends SubsystemBase implements LightningDrivetrain 
 
     private RamseteGains gains;
 
-    private Supplier<Rotation2d> headingSupplier;
+    private Supplier<Rotation2d> heading;
 
-    private Supplier<Integer> resetHeading;
+    private IMUFunction zeroHeading;
 
     private LightningConfig config;
 
-    public NeoDrivetrain(LightningConfig config, int motorCountPerSide, int firstLeftCanId, int firstRightCanId, RamseteGains gains, Supplier<Rotation2d> headingSupplier, Supplier<Integer> resetHeading) {
-        this(config, motorCountPerSide, firstLeftCanId, firstRightCanId, gains.getTrackWidth(), gains, headingSupplier, resetHeading);
-    }
 
-    public NeoDrivetrain(LightningConfig config, int motorCountPerSide, int firstLeftCanId, int firstRightCanId, double trackWidth, RamseteGains gains, Supplier<Rotation2d> headingSupplier, Supplier<Integer> resetHeading) {
+    public NeoDrivetrain(LightningConfig config, int motorCountPerSide, int firstLeftCanId, int firstRightCanId, Supplier<Rotation2d> heading, IMUFunction zeroHeading) {
         setName(name);
         this.config = config;
         this.motorCount = motorCountPerSide;
         this.firstLeftCanId = firstLeftCanId;
         this.firstRightCanId = firstRightCanId;
 
-        this.headingSupplier = headingSupplier;
-        this.resetHeading = resetHeading;
+        this.heading = heading;
+        this.zeroHeading = zeroHeading;
 
-        this.gains = gains;
+        this.gains = config.getRamseteGains();
 
         leftMotors = new CANSparkMax[motorCount];
         rightMotors = new CANSparkMax[motorCount];
@@ -110,14 +108,9 @@ public class NeoDrivetrain extends SubsystemBase implements LightningDrivetrain 
         withEachMotor((m) -> m.setClosedLoopRampRate(CLOSE_LOOP_RAMP_RATE));
         brake();
 
-        //TODO this does not belong in a "base" drive train class
-        //     one suggestion would be to include an interfacce that
-        //     returns a heading that is an option constructor parameter
-        // navx = new AHRS(SPI.Port.kMXP);
+        kinematics = new DifferentialDriveKinematics(gains.getTrackWidth());
 
-        kinematics = new DifferentialDriveKinematics(trackWidth);
-
-        odometry = new DifferentialDriveOdometry(getHeading(), pose);
+        odometry = new DifferentialDriveOdometry(heading.get(), pose);
         
         feedforward = new SimpleMotorFeedforward(gains.getkS(), gains.getkV(), gains.getkA());
 
@@ -125,24 +118,21 @@ public class NeoDrivetrain extends SubsystemBase implements LightningDrivetrain 
         
         rightPIDController = new PIDController(gains.getRight_kP(), gains.getRight_kI(), gains.getRight_kD());
         
-        SmartDashboard.putNumber("RequestedLeftVolts", 0d);
-        SmartDashboard.putNumber("RequestedRightVolts", 0d);
+        // SmartDashboard.putNumber("RequestedLeftVolts", 0d);
+        // SmartDashboard.putNumber("RequestedRightVolts", 0d);
 
-        SmartDashboard.putNumber("PoseRotationDeg", 0d);
-        SmartDashboard.putNumber("PoseTransY", 0d);
-        SmartDashboard.putNumber("PoseTransX", 0d);
-        SmartDashboard.putNumber("PoseTransNorm", 0d);
+        // SmartDashboard.putNumber("PoseRotationDeg", 0d);
+        // SmartDashboard.putNumber("PoseTransY", 0d);
+        // SmartDashboard.putNumber("PoseTransX", 0d);
+        // SmartDashboard.putNumber("PoseTransNorm", 0d);
 
-        SmartDashboard.putNumber("TrackWidthMeters", getKinematics().trackWidthMeters);
+        // SmartDashboard.putNumber("TrackWidthMeters", getKinematics().trackWidthMeters);
 
-        SmartDashboard.putNumber("RightTicksPerRev", rightEncoder.getCountsPerRevolution());
-        SmartDashboard.putNumber("LeftTicksPerRev", leftEncoder.getCountsPerRevolution());
+        // SmartDashboard.putNumber("RightTicksPerRev", rightEncoder.getCountsPerRevolution());
+        // SmartDashboard.putNumber("LeftTicksPerRev", leftEncoder.getCountsPerRevolution());
 
-        SmartDashboard.putNumber("RightRotationConversionFactor", rightEncoder.getPositionConversionFactor());
-        SmartDashboard.putNumber("LeftRotationConversionFactor", leftEncoder.getPositionConversionFactor());
-
-        SmartDashboard.putNumber("RightMasterHeat", rightMaster.getMotorTemperature());
-        SmartDashboard.putNumber("LeftMasterHeat", leftMaster.getMotorTemperature());
+        // SmartDashboard.putNumber("RightRotationConversionFactor", rightEncoder.getPositionConversionFactor());
+        // SmartDashboard.putNumber("LeftRotationConversionFactor", leftEncoder.getPositionConversionFactor());
 
         resetSensorVals();
 
@@ -151,21 +141,7 @@ public class NeoDrivetrain extends SubsystemBase implements LightningDrivetrain 
     @Override
     public void periodic() {
         super.periodic();
-
-        SmartDashboard.putNumber("RightMasterHeat", rightMaster.getMotorTemperature());
-        SmartDashboard.putNumber("LeftMasterHeat", leftMaster.getMotorTemperature());
-
-        pose = odometry.update(getHeading(), getLeftDistance(), getRightDistance());
-
-    }
-
-    private static void setGains(CANPIDController controller, REVGains gains) {
-        controller.setP(gains.getkP());
-        controller.setI(gains.getkI());
-        controller.setD(gains.getkD());
-        controller.setFF(gains.getkFF());
-        controller.setIZone(gains.getkIz());
-        controller.setOutputRange(gains.getkMinOutput(), gains.getkMaxOutput());
+        pose = odometry.update(heading.get(), getLeftDistance(), getRightDistance());
     }
 
     public RamseteGains getGains() { return gains; }
@@ -185,12 +161,12 @@ public class NeoDrivetrain extends SubsystemBase implements LightningDrivetrain 
     @Override
     public DifferentialDriveWheelSpeeds getSpeeds() { return new DifferentialDriveWheelSpeeds(getLeftVelocity(), getRightVelocity()); }
 
-    @Override
-    public Rotation2d getHeading() { 
-        // return Rotation2d.fromDegrees((((ypr[0]+180)%360)-180));
-        // return Rotation2d.fromDegrees(-navx.getAngle()); 
-        return headingSupplier.get();
-    }
+    // @Override
+    // public Rotation2d getHeading() { 
+    //     // return Rotation2d.fromDegrees((((ypr[0]+180)%360)-180));
+    //     // return Rotation2d.fromDegrees(-navx.getAngle()); 
+    //     return headingSupplier.get();
+    // }
 
     @Override
     public void setOutput(double leftVolts, double rightVolts) {
@@ -211,28 +187,8 @@ public class NeoDrivetrain extends SubsystemBase implements LightningDrivetrain 
     @Override
     public void resetSensorVals() {
         resetDistance();
-        resetHeading();
-        // odometry.resetPosition(new Pose2d(), new Rotation2d());
+        zeroHeading.exec();
         odometry.resetPosition(new Pose2d(new Translation2d(0d, 0d), Rotation2d.fromDegrees(0d)), Rotation2d.fromDegrees(0d));
-    }
-
-    private void resetHeading() {
-        // navx.reset();
-        // bird.setYaw(0d);
-        resetHeading.get();
-    }
-
-    public void setLeftGains(REVGains gains) {
-        setGains(leftPIDFController, gains);
-    }
-
-    public void setRightGains(REVGains gains) {
-        setGains(rightPIDFController, gains);
-    }
-
-    public void setGains(REVGains gains) {
-        setGains(leftPIDFController, gains);
-        setGains(rightPIDFController, gains);
     }
 
     public void init() {
@@ -317,19 +273,19 @@ public class NeoDrivetrain extends SubsystemBase implements LightningDrivetrain 
     }
 
     public double getLeftDistance() {
-        return LightningMath.rotationsToMetersTraveled(leftEncoder.getPosition(), config.getGearReduction(), config.getWheelCircumferenceInches());
+        return LightningMath.rotationsToMetersTraveled(leftEncoder.getPosition(), config.getGearRatio(), config.getWheelCircumferenceFeet());
     }
 
     public double getRightDistance() {
-        return LightningMath.rotationsToMetersTraveled(rightEncoder.getPosition(), config.getGearReduction(), config.getWheelCircumferenceInches());
+        return LightningMath.rotationsToMetersTraveled(rightEncoder.getPosition(), config.getGearRatio(), config.getWheelCircumferenceFeet());
     }
 
     public double getLeftVelocity() {
-        return LightningMath.rpmToMetersPerSecond(leftEncoder.getVelocity(), config.getGearReduction(), config.getWheelCircumferenceInches());
+        return LightningMath.rpmToMetersPerSecond(leftEncoder.getVelocity(), config.getGearRatio(), config.getWheelCircumferenceFeet());
     }
 
     public double getRightVelocity() {
-        return LightningMath.rpmToMetersPerSecond(rightEncoder.getVelocity(), config.getGearReduction(), config.getWheelCircumferenceInches());
+        return LightningMath.rpmToMetersPerSecond(rightEncoder.getVelocity(), config.getGearRatio(), config.getWheelCircumferenceFeet());
     }
 
     @Override
@@ -397,6 +353,16 @@ public class NeoDrivetrain extends SubsystemBase implements LightningDrivetrain 
     @Override
     public void setRelativePose() {
         poseOffset = pose;
+    }
+
+    @Override
+    public double getRightTemp() {
+        return rightMaster.getMotorTemperature();
+    }
+
+    @Override
+    public double getLeftTemp() {
+        return leftMaster.getMotorTemperature();
     }
 
 }

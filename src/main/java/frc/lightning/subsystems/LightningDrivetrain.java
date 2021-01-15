@@ -3,7 +3,6 @@ package frc.lightning.subsystems;
 import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj.controller.SimpleMotorFeedforward;
 import edu.wpi.first.wpilibj.geometry.Pose2d;
-import edu.wpi.first.wpilibj.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveKinematics;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.wpilibj2.command.Subsystem;
@@ -71,7 +70,7 @@ public interface LightningDrivetrain extends Subsystem {
     public double getRightVelocity();
 
     public default void stop() {
-        setPower(0, 0);
+        setPower(0d, 0d);
     }
 
     public void setOutput(double leftVolts, double rightVolts);
@@ -85,8 +84,6 @@ public interface LightningDrivetrain extends Subsystem {
     public void resetSensorVals();
 
     public RamseteGains getConstants();
-
-    public default Rotation2d getHeading() { return new Rotation2d(0d); }
 
     public default SimpleMotorFeedforward getFeedforward() {
         return null;
@@ -110,6 +107,10 @@ public interface LightningDrivetrain extends Subsystem {
     
     public double getLeftVolts();
 
+    public double getRightTemp();
+    
+    public double getLeftTemp();
+
     public void setRamseteOutput(double leftVolts, double rightVolts);
 
     public default double getDistance() {
@@ -119,5 +120,5 @@ public interface LightningDrivetrain extends Subsystem {
     public default double getVelocity() {
         return (getRightVelocity() + getLeftVelocity()) / 2;
     }
+    
 }
-

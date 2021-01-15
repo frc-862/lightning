@@ -105,9 +105,11 @@ public class LightningRobot extends TimedRobot {
         // By this point all datalog fields should be registered
         DataLogger.preventNewDataElements();
 
+        // Set up a fault monitor for our loop time
         FaultMonitor.register(new TimedFaultMonitor(Codes.SLOW_LOOPER, () -> getLoopTime() > getPeriod(),
                               0.08, "Loop is running slow: " + getLoopTime()));
 
+        // Put our fault codes on the dashboard
         FaultCode.eachCode((code, state) -> {
             var nte = Shuffleboard.getTab("Fault Codes")
             .add("FAULT_" + code.toString(), state)
