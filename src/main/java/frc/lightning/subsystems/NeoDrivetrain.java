@@ -71,11 +71,8 @@ public class NeoDrivetrain extends SubsystemBase implements LightningDrivetrain 
 
     private LightningConfig config;
 
-    public NeoDrivetrain(LightningConfig config, int motorCountPerSide, int firstLeftCanId, int firstRightCanId, RamseteGains gains, Supplier<Rotation2d> heading, IMUFunction zeroHeading) {
-        this(config, motorCountPerSide, firstLeftCanId, firstRightCanId, gains.getTrackWidth(), gains, heading, zeroHeading);
-    }
 
-    public NeoDrivetrain(LightningConfig config, int motorCountPerSide, int firstLeftCanId, int firstRightCanId, double trackWidth, RamseteGains gains, Supplier<Rotation2d> heading, IMUFunction zeroHeading) {
+    public NeoDrivetrain(LightningConfig config, int motorCountPerSide, int firstLeftCanId, int firstRightCanId, Supplier<Rotation2d> heading, IMUFunction zeroHeading) {
         setName(name);
         this.config = config;
         this.motorCount = motorCountPerSide;
@@ -85,7 +82,7 @@ public class NeoDrivetrain extends SubsystemBase implements LightningDrivetrain 
         this.heading = heading;
         this.zeroHeading = zeroHeading;
 
-        this.gains = gains;
+        this.gains = config.getRamseteGains();
 
         leftMotors = new CANSparkMax[motorCount];
         rightMotors = new CANSparkMax[motorCount];
@@ -111,7 +108,7 @@ public class NeoDrivetrain extends SubsystemBase implements LightningDrivetrain 
         withEachMotor((m) -> m.setClosedLoopRampRate(CLOSE_LOOP_RAMP_RATE));
         brake();
 
-        kinematics = new DifferentialDriveKinematics(trackWidth);
+        kinematics = new DifferentialDriveKinematics(gains.getTrackWidth());
 
         odometry = new DifferentialDriveOdometry(heading.get(), pose);
         

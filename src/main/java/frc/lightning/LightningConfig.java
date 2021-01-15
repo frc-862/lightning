@@ -7,6 +7,8 @@
 
 package frc.lightning;
 
+import frc.lightning.util.RamseteGains;
+
 /**
  * Lightning config base class. Houses constants for a robot.
  */
@@ -25,6 +27,8 @@ public abstract class LightningConfig {
     public abstract double getWheelDiameterInches();
 
     public abstract double getGearRatio();
+
+    public abstract RamseteGains getRamseteGains();
 
     public double getWheelCircumferenceInches() {
         return getWheelDiameterInches() * Math.PI;

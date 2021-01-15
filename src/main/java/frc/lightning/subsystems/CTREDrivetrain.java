@@ -21,7 +21,6 @@ import edu.wpi.first.wpilibj.kinematics.DifferentialDriveKinematics;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Units;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.lightning.LightningConfig;
@@ -67,14 +66,14 @@ public class CTREDrivetrain extends SubsystemBase implements LightningDrivetrain
 	private int minAllowedEncoderVelocityError;
 
 	protected CTREDrivetrain(LightningConfig config, BaseMotorController leftMaster, BaseMotorController rightMaster,
-			BaseMotorController[] leftSlaves, BaseMotorController[] rightSlaves, RamseteGains gains, Supplier<Rotation2d> heading, IMUFunction zeroHeading) {
+			BaseMotorController[] leftSlaves, BaseMotorController[] rightSlaves, Supplier<Rotation2d> heading, IMUFunction zeroHeading) {
 		setName(name);
 		this.leftMaster = leftMaster;
 		this.rightMaster = rightMaster;
 		this.leftSlaves = leftSlaves;
 		this.rightSlaves = rightSlaves;
 
-		this.gains = gains;
+		this.gains = config.getRamseteGains();
 		this.config = config;
 
 		this.heading = heading;
@@ -98,7 +97,7 @@ public class CTREDrivetrain extends SubsystemBase implements LightningDrivetrain
 		resetSensorVals();
 
 		// For now we will call our allowed tolerance 500% of the selected encoder's resolution
-		minAllowedEncoderVelocityError = (int) (50 * config.getTicsPerRev());
+		minAllowedEncoderVelocityError = (int) (5 * config.getTicsPerRev());
 
 		Shuffleboard.getTab(ShuffleboardBaseRobotDisplay.DRIVETRAIN_TAB_NAME).addBoolean("Left Motors Out Of Sync", () -> getLeftMotorsOutOfSync());
 		Shuffleboard.getTab(ShuffleboardBaseRobotDisplay.DRIVETRAIN_TAB_NAME).addBoolean("Right Motors Out Of Sync", () -> getRightMotorsOutOfSync());
@@ -110,13 +109,9 @@ public class CTREDrivetrain extends SubsystemBase implements LightningDrivetrain
 		super.periodic();
 		pose = odometry.update(heading.get(), getLeftDistance(), getRightDistance());
 		if(getLeftMotorsOutOfSync() || getRightMotorsOutOfSync()) {
-			// this.stop();
-			// this.setDefaultCommand(new RunCommand(() -> {}, this));
 			System.out.println("MOTORS OUT OF SYNC - CHECK THEM");
 			System.exit(1);
-			// TODO - what do we do when we crash?
 		}
-		//printDiffStr();
 	}
 
 	protected BaseMotorController getLeftMaster() {
@@ -284,12 +279,12 @@ public class CTREDrivetrain extends SubsystemBase implements LightningDrivetrain
 
 	@Override
 	public double getRightVolts() {
-		return rightMaster.getMotorOutputVoltage() * LightningConfig.VOLT_LIMIT;
+		return rightMaster.getMotorOutputVoltage();
 	}
 
 	@Override
 	public double getLeftVolts() {
-		return leftMaster.getMotorOutputVoltage() * LightningConfig.VOLT_LIMIT;
+		return leftMaster.getMotorOutputVoltage();
 	}
 
 	@Override
