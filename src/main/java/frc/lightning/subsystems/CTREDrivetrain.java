@@ -103,6 +103,11 @@ public class CTREDrivetrain extends SubsystemBase implements LightningDrivetrain
         FaultMonitor.register(new FaultMonitor(Codes.LEFT_MOTORS_OUT_OF_SYNC, () -> getLeftMotorsOutOfSync(), "Left Motors Out Of Sync", true));
         FaultMonitor.register(new FaultMonitor(Codes.RIGHT_MOTORS_OUT_OF_SYNC, () -> getRightMotorsOutOfSync(), "Right Motors Out Of Sync", true));
 
+		leftMaster.configOpenloopRamp(config.getOpenLoopRamp());
+		leftMaster.configClosedloopRamp(config.getCloseLoopRamp());
+		rightMaster.configOpenloopRamp(config.getOpenLoopRamp());
+		rightMaster.configClosedloopRamp(config.getCloseLoopRamp());
+
 	}
 
 	@Override

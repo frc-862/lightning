@@ -28,6 +28,10 @@ public abstract class LightningConfig {
 
     public abstract double getGearRatio();
 
+    public abstract double getOpenLoopRamp();
+
+    public abstract double getCloseLoopRamp();
+
     public abstract RamseteGains getRamseteGains();
 
     public double getWheelCircumferenceInches() {
