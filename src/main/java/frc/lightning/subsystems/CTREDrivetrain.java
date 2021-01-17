@@ -20,10 +20,11 @@ import edu.wpi.first.wpilibj.geometry.Translation2d;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveKinematics;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveWheelSpeeds;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.util.Units;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.lightning.LightningConfig;
+import frc.lightning.fault.FaultMonitor;
+import frc.lightning.fault.FaultCode.Codes;
 import frc.lightning.subsystems.IMU.IMUFunction;
 import frc.lightning.util.LightningMath;
 import frc.lightning.util.RamseteGains;
@@ -98,9 +99,9 @@ public class CTREDrivetrain extends SubsystemBase implements LightningDrivetrain
 
 		// For now we will call our allowed tolerance 500% of the selected encoder's resolution
 		minAllowedEncoderVelocityError = (int) (5 * config.getTicsPerRev());
-
-		Shuffleboard.getTab(ShuffleboardBaseRobotDisplay.DRIVETRAIN_TAB_NAME).addBoolean("Left Motors Out Of Sync", () -> getLeftMotorsOutOfSync());
-		Shuffleboard.getTab(ShuffleboardBaseRobotDisplay.DRIVETRAIN_TAB_NAME).addBoolean("Right Motors Out Of Sync", () -> getRightMotorsOutOfSync());
+		
+        FaultMonitor.register(new FaultMonitor(Codes.LEFT_MOTORS_OUT_OF_SYNC, () -> getLeftMotorsOutOfSync(), "Left Motors Out Of Sync", true));
+        FaultMonitor.register(new FaultMonitor(Codes.RIGHT_MOTORS_OUT_OF_SYNC, () -> getRightMotorsOutOfSync(), "Right Motors Out Of Sync", true));
 
 	}
 
@@ -108,10 +109,6 @@ public class CTREDrivetrain extends SubsystemBase implements LightningDrivetrain
 	public void periodic() {
 		super.periodic();
 		pose = odometry.update(heading.get(), getLeftDistance(), getRightDistance());
-		if(getLeftMotorsOutOfSync() || getRightMotorsOutOfSync()) {
-			System.out.println("MOTORS OUT OF SYNC - CHECK THEM");
-			System.exit(1);
-		}
 	}
 
 	protected BaseMotorController getLeftMaster() {

@@ -5,6 +5,9 @@ import java.util.function.BooleanSupplier;
 import edu.wpi.first.wpilibj.Timer;
 import frc.lightning.fault.FaultCode.Codes;
 
+/**
+ * A fault monitor that checks if a condition has existed for a given period of time
+ */
 public class TimedFaultMonitor extends AbstractFaultMonitor {
     final double duration;
     final BooleanSupplier fn;
