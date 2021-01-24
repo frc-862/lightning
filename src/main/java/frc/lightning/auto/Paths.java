@@ -34,6 +34,14 @@ public class Paths {
     }
 
     /**
+     * Adds a {@link frc.lightning.auto.Path} to the list of paths.
+     * @param path {@link frc.lightning.auto.Path} to be added.
+     */
+    public static void register(Path path) {
+        register(path.getName(), path);
+    }
+
+    /**
      * Returns the {@link frc.lightning.auto.Path} with the specified name
      * @param name Name of path to be retrieved.
      * @return {@link frc.lightning.auto.Path} with given name.

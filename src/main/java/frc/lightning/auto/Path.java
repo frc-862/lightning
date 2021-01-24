@@ -90,6 +90,15 @@ public class Path {
     }
 
     /**
+     * Constructor creates path object
+     * @param name The name of the path
+     * @param jsonPath File path to a .wpilib.json trajectory file
+     */
+    public Path(String name, String jsonPath) {
+        this(name, jsonPath, false);
+    }
+
+    /**
      * Name of path
      * @return The name of the path
      */

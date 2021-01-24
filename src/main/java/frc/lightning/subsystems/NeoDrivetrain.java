@@ -71,7 +71,6 @@ public class NeoDrivetrain extends SubsystemBase implements LightningDrivetrain 
 
     private LightningConfig config;
 
-
     public NeoDrivetrain(LightningConfig config, int motorCountPerSide, int firstLeftCanId, int firstRightCanId, Supplier<Rotation2d> heading, IMUFunction zeroHeading) {
         setName(name);
         this.config = config;
@@ -341,8 +340,7 @@ public class NeoDrivetrain extends SubsystemBase implements LightningDrivetrain 
 
     @Override
     public RamseteGains getConstants() {
-        // Override me!
-        return null;
+        return getGains();
     }
 
     @Override
