@@ -330,9 +330,9 @@ public class CTREDrivetrain extends SubsystemBase implements LightningDrivetrain
 	}
 	
 	public boolean getLeftMotorsOutOfSync() {
-		int max = Integer.MIN_VALUE, min = Integer.MAX_VALUE;
+		double max = Double.MIN_VALUE, min = Double.MAX_VALUE;
 		for(var motor : getLeftMotors()) {
-			int encoder = motor.getSelectedSensorVelocity();
+			double encoder = motor.getSelectedSensorVelocity();
 			if(encoder > max) max = encoder;
 			if(encoder < min) min = encoder;
 		}
@@ -340,9 +340,9 @@ public class CTREDrivetrain extends SubsystemBase implements LightningDrivetrain
 	}
 
 	public boolean getRightMotorsOutOfSync() {
-		int max = Integer.MIN_VALUE, min = Integer.MAX_VALUE;
+		double max = Double.MIN_VALUE, min = Double.MAX_VALUE;
 		for(var motor : getRightMotors()) {
-			int encoder = motor.getSelectedSensorVelocity();
+			double encoder = motor.getSelectedSensorVelocity();
 			if(encoder > max) max = encoder;
 			if(encoder < min) min = encoder;
 		}
