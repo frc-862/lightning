@@ -99,7 +99,6 @@ public class CTREDrivetrain extends SubsystemBase implements LightningDrivetrain
 
 		// For now we will call our allowed tolerance 500% of the selected encoder's resolution
 		minAllowedEncoderVelocityError = (int) (5 * config.getTicsPerRev());
-		
         FaultMonitor.register(new FaultMonitor(Codes.LEFT_MOTORS_OUT_OF_SYNC, () -> getLeftMotorsOutOfSync(), "Left Motors Out Of Sync", true));
         FaultMonitor.register(new FaultMonitor(Codes.RIGHT_MOTORS_OUT_OF_SYNC, () -> getRightMotorsOutOfSync(), "Right Motors Out Of Sync", true));
 

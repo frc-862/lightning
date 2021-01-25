@@ -7,6 +7,7 @@ import java.io.IOException;
 import edu.wpi.first.wpilibj.controller.RamseteController;
 import edu.wpi.first.wpilibj.geometry.Pose2d;
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
+import edu.wpi.first.wpilibj.geometry.Transform2d;
 import edu.wpi.first.wpilibj.trajectory.Trajectory;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryConfig;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryGenerator;
@@ -21,6 +22,11 @@ import frc.lightning.subsystems.LightningDrivetrain;
  * Object class representing a path the robot can follow.
  */
 public class Path {
+    
+    /**
+     * A {@link edu.wpi.first.wpilibj.geometry.Pose2d Pose2d} representation of position "zero"
+     */
+    private static final Pose2d ZERO_POSE2D = new Pose2d(0d, 0d, Rotation2d.fromDegrees(0d));
 
     /**
      * Name of the path
@@ -153,8 +159,12 @@ public class Path {
 
         Trajectory trajectory = this.getTrajectory(drivetrain);
 
+        // Translate to robot-relative trajectory
+        Transform2d transform = ZERO_POSE2D.minus(trajectory.getInitialPose());
+        Trajectory translatedTrajectory = trajectory.transformBy(transform);
+
         RamseteCommand cmd = new RamseteCommand(
-            trajectory,
+            translatedTrajectory,
             drivetrain::getRelativePose,
             new RamseteController(),
             drivetrain.getFeedforward(),

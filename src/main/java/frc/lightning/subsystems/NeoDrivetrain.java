@@ -116,22 +116,6 @@ public class NeoDrivetrain extends SubsystemBase implements LightningDrivetrain 
         leftPIDController = new PIDController(gains.getLeft_kP(), gains.getLeft_kI(), gains.getLeft_kD());
         
         rightPIDController = new PIDController(gains.getRight_kP(), gains.getRight_kI(), gains.getRight_kD());
-        
-        // SmartDashboard.putNumber("RequestedLeftVolts", 0d);
-        // SmartDashboard.putNumber("RequestedRightVolts", 0d);
-
-        // SmartDashboard.putNumber("PoseRotationDeg", 0d);
-        // SmartDashboard.putNumber("PoseTransY", 0d);
-        // SmartDashboard.putNumber("PoseTransX", 0d);
-        // SmartDashboard.putNumber("PoseTransNorm", 0d);
-
-        // SmartDashboard.putNumber("TrackWidthMeters", getKinematics().trackWidthMeters);
-
-        // SmartDashboard.putNumber("RightTicksPerRev", rightEncoder.getCountsPerRevolution());
-        // SmartDashboard.putNumber("LeftTicksPerRev", leftEncoder.getCountsPerRevolution());
-
-        // SmartDashboard.putNumber("RightRotationConversionFactor", rightEncoder.getPositionConversionFactor());
-        // SmartDashboard.putNumber("LeftRotationConversionFactor", leftEncoder.getPositionConversionFactor());
 
         resetSensorVals();
 
