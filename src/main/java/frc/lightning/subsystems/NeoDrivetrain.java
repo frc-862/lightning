@@ -30,8 +30,8 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class NeoDrivetrain extends SubsystemBase implements LightningDrivetrain {
-    private static final double CLOSE_LOOP_RAMP_RATE = 0.6; // 0.5
-    private static final double OPEN_LOOP_RAMP_RATE = 0.6; // 0.5
+    // private static final double CLOSE_LOOP_RAMP_RATE = 0.6; // 0.5
+    // private static final double OPEN_LOOP_RAMP_RATE = 0.6; // 0.5
 
     public final int firstLeftCanId;
     public final int firstRightCanId;
@@ -91,7 +91,7 @@ public class NeoDrivetrain extends SubsystemBase implements LightningDrivetrain 
         }
 
         withEachMotor((m) -> m.restoreFactoryDefaults());
-        withEachMotor((m) -> m.setMotorType(CANSparkMaxLowLevel.MotorType.kBrushless));
+        // withEachMotor((m) -> m.setMotorType(CANSparkMaxLowLevel.MotorType.kBrushless));
 
         leftMaster = leftMotors[0];
         leftEncoder = leftMaster.getEncoder(EncoderType.kHallSensor, 42);
@@ -103,8 +103,8 @@ public class NeoDrivetrain extends SubsystemBase implements LightningDrivetrain 
         rightPIDFController = rightMaster.getPIDController();
         rightPIDFController.setFeedbackDevice(rightEncoder);
 
-        withEachMotor((m) -> m.setOpenLoopRampRate(OPEN_LOOP_RAMP_RATE));
-        withEachMotor((m) -> m.setClosedLoopRampRate(CLOSE_LOOP_RAMP_RATE));
+        withEachMotor((m) -> m.setOpenLoopRampRate(config.getOpenLoopRamp()));
+        withEachMotor((m) -> m.setClosedLoopRampRate(config.getCloseLoopRamp()));
         brake();
 
         kinematics = new DifferentialDriveKinematics(gains.getTrackWidth());
@@ -144,19 +144,8 @@ public class NeoDrivetrain extends SubsystemBase implements LightningDrivetrain 
     @Override
     public DifferentialDriveWheelSpeeds getSpeeds() { return new DifferentialDriveWheelSpeeds(getLeftVelocity(), getRightVelocity()); }
 
-    // @Override
-    // public Rotation2d getHeading() { 
-    //     // return Rotation2d.fromDegrees((((ypr[0]+180)%360)-180));
-    //     // return Rotation2d.fromDegrees(-navx.getAngle()); 
-    //     return headingSupplier.get();
-    // }
-
     @Override
     public void setOutput(double leftVolts, double rightVolts) {
-
-        SmartDashboard.putNumber("RequestedLeftVolts", leftVolts);
-        SmartDashboard.putNumber("RequestedRightVolts", rightVolts);
-
         leftMaster.setVoltage(leftVolts);
         rightMaster.setVoltage(rightVolts);
     }

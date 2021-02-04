@@ -48,7 +48,6 @@ public interface LightningDrivetrain extends Subsystem {
 
     public void setPower(double left, double right);
 
-
     public default void setPower(DriveCommand cmd) {
         setPower(cmd.leftCommand, cmd.rightCommand);
     }
