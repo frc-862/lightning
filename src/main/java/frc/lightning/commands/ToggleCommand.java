@@ -3,6 +3,9 @@ package frc.lightning.commands;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
+/**
+ * Toggles from one command to another
+ */
 public class ToggleCommand extends CommandBase {
     Command cmdA;
     Command cmdB;

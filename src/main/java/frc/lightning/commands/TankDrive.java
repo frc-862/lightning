@@ -6,7 +6,10 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.lightning.subsystems.LightningDrivetrain;
 import frc.lightning.util.JoystickFilter;
 
-public class TestTankDrive extends CommandBase {
+/**
+ * Simple power based tank drive. Uses {@link frc.lightning.subsystems.LightningDrivetrain LightningDrivetrain}
+ */
+public class TankDrive extends CommandBase {
 
     LightningDrivetrain drivetrain;
     DoubleSupplier left;
@@ -16,7 +19,7 @@ public class TestTankDrive extends CommandBase {
     private double maxPower = 1.0;
     private final JoystickFilter filter = new JoystickFilter(deadband, minPower, maxPower, JoystickFilter.Mode.CUBED);
 
-    public TestTankDrive(LightningDrivetrain drivetrain, DoubleSupplier left, DoubleSupplier right) {
+    public TankDrive(LightningDrivetrain drivetrain, DoubleSupplier left, DoubleSupplier right) {
         this.drivetrain = drivetrain;
         this.left = left;
         this.right = right;

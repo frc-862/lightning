@@ -7,24 +7,32 @@ import frc.lightning.LightningConfig;
 import frc.lightning.subsystems.LightningDrivetrain;
 import frc.lightning.util.JoystickFilter;
 
+/**
+ * Simple voltage-based open loop drive. 
+ * Uses {@link frc.lightning.subsystems.LightningDrivetrain LightningDrivetrain}
+ */
 public class VoltDrive extends CommandBase {
 
     LightningDrivetrain drivetrain;
     DoubleSupplier left;
     DoubleSupplier right;
-    private double deadband = 0.15;
-    private double minPower = 0.1;
-    private double maxPower = 1.0;
-    private final JoystickFilter filter = new JoystickFilter(deadband, minPower, maxPower, JoystickFilter.Mode.CUBED);
+    private final double DEADBAND = 0.15;
+    private final double MIN_ALLOWED_PWR = 0.1;
+    private final double MAX_ALLOWED_PWR = 1.0;
+    private final JoystickFilter filter;
 
     public VoltDrive(LightningDrivetrain drivetrain, DoubleSupplier left, DoubleSupplier right) {
+        this(drivetrain, left, right, JoystickFilter.Mode.CUBED);
+    }
+
+    public VoltDrive(LightningDrivetrain drivetrain, DoubleSupplier left, DoubleSupplier right, JoystickFilter.Mode jsRamp) {
+        filter = new JoystickFilter(DEADBAND, MIN_ALLOWED_PWR, MAX_ALLOWED_PWR, jsRamp);
         this.drivetrain = drivetrain;
         this.left = left;
         this.right = right;
         addRequirements(drivetrain);
     }
 
-    // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
         double leftVolts = filter.filter(left.getAsDouble());
@@ -37,7 +45,6 @@ public class VoltDrive extends CommandBase {
 
     }
 
-    // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
         super.end(interrupted);

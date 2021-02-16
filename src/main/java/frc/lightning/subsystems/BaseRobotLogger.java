@@ -4,6 +4,9 @@ import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.lightning.logging.DataLogger;
 
+/**
+ * Base robot logging class configures logging for all {@link frc.lightning.subsystems.LightningDrivetrain LightningDrivetrain} types.
+ */
 public class BaseRobotLogger extends SubsystemBase {
     private final LightningDrivetrain drivetrain;
     private final IMU imu;

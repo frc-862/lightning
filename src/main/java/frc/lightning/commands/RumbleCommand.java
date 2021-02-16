@@ -5,8 +5,9 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-
-
+/**
+ * A command that rumbles the controller for half a second. Drivers think this is very annoying.
+ */
 public class RumbleCommand extends CommandBase {
     final double duration = 0.5;
 

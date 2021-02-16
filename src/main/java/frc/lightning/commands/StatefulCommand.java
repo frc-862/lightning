@@ -7,6 +7,9 @@ import java.lang.reflect.Method;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * A command that iterates through a list of states subclass-defined states.
+ */
 public class StatefulCommand extends CommandBase {
     private Enum<?> state;
     protected Runnable default_action = () -> {};
