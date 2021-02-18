@@ -109,16 +109,6 @@ public class LightningRobot extends TimedRobot {
         FaultMonitor.register(new TimedFaultMonitor(Codes.SLOW_LOOPER, () -> getLoopTime() > getPeriod(),
                               0.08, "Loop is running slow: " + getLoopTime()));
 
-        // Put our fault codes on the dashboard
-        FaultCode.eachCode((code, state) -> {
-            var nte = Shuffleboard.getTab("Fault Codes")
-            .add("FAULT_" + code.toString(), state)
-            .withWidget("Boolean Box")
-            .withProperties(Map.of("colorWhenTrue", "green", "colorWhenFalse", "maroon"))
-            .getEntry();
-            FaultCode.setNetworkTableEntry(code, nte);
-        });
-
         // Load our autonomous chooser
         Autonomous.load();
 
