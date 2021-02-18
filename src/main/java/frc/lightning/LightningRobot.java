@@ -5,7 +5,6 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 
 import frc.lightning.auto.Autonomous;
 import frc.lightning.fault.FaultCode;
@@ -16,7 +15,6 @@ import frc.lightning.logging.DataLogger;
 import frc.lightning.testing.SystemTestCommand;
 
 import java.io.IOException;
-import java.util.Map;
 import java.util.Properties;
 
 /**

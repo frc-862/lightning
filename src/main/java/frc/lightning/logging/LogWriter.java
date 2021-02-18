@@ -54,13 +54,13 @@ public class LogWriter implements Loop {
             }
             if (overflow) {
                 writer.write("BUFFER OVERFLOW\n");
-                // there is a small race condition here
-                // but we can live with it to keep things
-                // fast. The right fix would be to lock
-                // around the read/write to the overflow
-                // boolean, but a false positive will only
-                // happen if we were really close to overflow
-                // anyway...
+                /* there is a small race condition here
+                but we can live with it to keep things
+                fast. The right fix would be to lock
+                around the read/write to the overflow
+                boolean, but a false positive will only
+                happen if we were really close to overflow
+                anyway... */
                 overflow = false;
             }
             drain.clear();

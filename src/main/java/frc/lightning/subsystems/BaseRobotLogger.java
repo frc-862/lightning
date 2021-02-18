@@ -21,7 +21,6 @@ public class BaseRobotLogger extends SubsystemBase {
         DataLogger.addDataElement("PoseTransY", () -> drivetrain.getPose().getTranslation().getY());
         DataLogger.addDataElement("PoseTransX", () -> drivetrain.getPose().getTranslation().getX());
         DataLogger.addDataElement("PoseTransNorm", () -> drivetrain.getPose().getTranslation().getNorm());
-        //DataLogger.addDataElement("Heading", () -> drivetrain.getHeading().getDegrees());
         DataLogger.addDataElement("RightWheelSpeed", () -> drivetrain.getSpeeds().rightMetersPerSecond);
         DataLogger.addDataElement("LeftWheelSpeed", () -> drivetrain.getSpeeds().leftMetersPerSecond);
         DataLogger.addDataElement("LeftDistanceMeters", () -> drivetrain.getLeftDistance());
