@@ -118,7 +118,8 @@ public class FaultCode {
 
     /**
      * Writes the fault code, effectively logging that it has been detected in 
-     * a log file, the system error stream, and on the {@link edu.wpi.first.wpilibj.smartdashboard.SmartDashboard}
+     * a log file and the system error stream. Per {@link #update()}, they will be updated
+     * automatically on {@link edu.wpi.first.wpilibj.shuffleboard.Shuffleboard Shuffleboard}
      * @param code The {@link frc.lightning.fault.FaultCode.Codes} to be written
      * @param msg The message to write to the log file
      */

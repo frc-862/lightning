@@ -21,6 +21,7 @@ public abstract class LightningContainer {
     public LightningContainer() {
         configureButtonBindings();
         configureDefaultCommands();
+        configureAutonomousPaths();
         configureAutonomousCommands();
         configureSystemTests();
         initializeDashboardCommands();
@@ -35,6 +36,8 @@ public abstract class LightningContainer {
     protected abstract void releaseDefaultCommands();
 
     protected abstract void initializeDashboardCommands();
+
+    protected abstract void configureAutonomousPaths();
 
     protected abstract void configureAutonomousCommands();
 

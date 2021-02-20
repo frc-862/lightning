@@ -198,9 +198,6 @@ public class LightningRobot extends TimedRobot {
      * The default implementation handles getting the selected command
      * from Shuffleboard.
      *
-     * TODO consider adding check for failure to communicate with Shuffleboard
-     * and using the default command.
-     *
      * If you override this method, be sure to call {@code super.autonomousInit()} or
      * the selected registered command will not be executed.
      */
