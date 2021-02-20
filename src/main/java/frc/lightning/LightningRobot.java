@@ -27,7 +27,7 @@ import java.util.Properties;
  * loops.
  *
  * Uses {@link frc.lightning.auto.Autonomous} to configure autonomous commands. Also includes
- * self-testing support with {@link frc.lightning.testing.SystemTestCommand} (Still in progress).
+ * self-testing support with {@link frc.lightning.testing.SystemTestCommand}.
  */
 public class LightningRobot extends TimedRobot {
 
@@ -251,7 +251,6 @@ public class LightningRobot extends TimedRobot {
         } else if(stc.isFinished() && !systemTestFlag) {
             stc.end(false);
             systemTestFlag = true;
-            //this.disabledInit();
         }
     }
 
