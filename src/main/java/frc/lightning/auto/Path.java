@@ -121,7 +121,7 @@ public class Path {
      * @param drivetrain Drivetrain object of the robot the path should be configured for
      * @return A trajectory the robot can follow
      */
-    private Trajectory getTrajectory(LightningDrivetrain drivetrain) { 
+    protected Trajectory getTrajectory(LightningDrivetrain drivetrain) { 
         if(pathTrajectory != null)
             return pathTrajectory;
 
