@@ -1,0 +1,24 @@
+name: Build
+
+# This Workflow Will Be Triggered Automatically
+
+on: [push, pull_request]
+
+jobs:
+
+  # Build Library
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+    - name: Initialize Submodules 
+      uses: textbook/git-checkout-submodule-action@master
+    - name: Config JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Make gradlew Executable
+      run: chmod +x ./gradlew
+    - name: Execute Build
+      run: ./gradlew build
