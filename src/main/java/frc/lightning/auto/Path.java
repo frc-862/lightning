@@ -122,11 +122,10 @@ public class Path {
      * @return A trajectory the robot can follow
      */
     protected Trajectory getTrajectory(LightningDrivetrain drivetrain) { 
-        if(pathTrajectory != null)
-            return pathTrajectory;
 
-        TrajectoryConfig config = new TrajectoryConfig(drivetrain.getConstants().getMaxVelocity(), 
-                                                        drivetrain.getConstants().getMaxAcceleration());
+        if(pathTrajectory != null) return pathTrajectory;
+
+        TrajectoryConfig config = new TrajectoryConfig(drivetrain.getConstants().getMaxVelocity(), drivetrain.getConstants().getMaxAcceleration());
 
         config.setKinematics(drivetrain.getKinematics());
         config = config.setReversed(getReversed());
@@ -134,6 +133,8 @@ public class Path {
         try {
             pathTrajectory = TrajectoryGenerator.generateTrajectory(waypoints, config);
         } catch (RuntimeException e) {
+            System.out.println("ERROR Unable To Generate Trajectory From Path");
+            e.printStackTrace();
             pathTrajectory = TrajectoryGenerator.generateTrajectory(Arrays.asList(new Pose2d(0d, 0d, new Rotation2d()), new Pose2d(1d, 0d, new Rotation2d())), config);
         }
 
