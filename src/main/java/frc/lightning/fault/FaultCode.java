@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -57,7 +58,7 @@ public class FaultCode {
 
     static {
         eachCode((Codes c, Boolean state) -> {
-            SmartDashboard.putBoolean("FAULT_" + c.toString(), state);
+            Shuffleboard.getTab("System Faults").add("FAULT_" + c.toString(), state);
         });
         try {
             Files.write(getFaultPath(), ("######### RESTART #########\n").getBytes(), StandardOpenOption.CREATE,
@@ -122,7 +123,7 @@ public class FaultCode {
         try {
             if (!faults.contains(code)) {
                 faults.add(code);
-                SmartDashboard.putBoolean("FAULT_" + code.toString(), false);
+                Shuffleboard.getTab("System Faults").add("FAULT_" + code.toString(), false);
 
                 Files.write(Paths.get("/home/lvuser/faults.log"),
                             ("FAULT Detected: " + code.toString() + " " + msg + "\n").getBytes(),
