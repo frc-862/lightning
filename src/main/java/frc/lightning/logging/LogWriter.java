@@ -16,6 +16,7 @@ public class LogWriter implements Loop {
     private final Vector<String> drain;
     private boolean overflow = false;
     private final static int logDepth = 1000;
+    private boolean valid = true;
 
     public LogWriter(String file, int buffer_depth) {
         buffer = new ArrayBlockingQueue<>(buffer_depth);
@@ -43,6 +44,7 @@ public class LogWriter implements Loop {
 
     public void onLoop() {
         drain();
+        valid = (writer == null);
     }
 
     public void drain() {
@@ -100,5 +102,9 @@ public class LogWriter implements Loop {
 
     public void logRawString(String s) {
         overflow |= !buffer.offer(s);
+    }
+
+    public boolean isValid(){
+        return valid;
     }
 }
