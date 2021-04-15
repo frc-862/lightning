@@ -2,7 +2,9 @@
 
 ![Build](https://github.com/frc-862/lightning/workflows/Build/badge.svg)
 
-Utility package for frc robots.
+## Description
+
+This repository contains base code for Team 862's FRC robots.
 
 ## Getting Started
 
@@ -23,7 +25,7 @@ repositories {
 }
 ```
 
-You should set your `~/.gradle/gradle.properties` (Unix) or `C:\Users\<you>\.gradle\gradle.properties` (Windows) file to contain your user name as well as a GitHub Personal Access Token
+You should set your `~/.gradle/gradle.properties` (Unix) or `%HOMEPATH%\.gradle\gradle.properties` (Windows) file to contain your username as well as a GitHub Personal Access Token
 
 ```groovy
 gpr.user=<your-username>
