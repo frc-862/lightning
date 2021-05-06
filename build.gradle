@@ -15,8 +15,8 @@ plugins {
 }
 
 ext {
-    mGroupID = "frc"
-    mArtifactID = "lightning"
+    mGroupID = "com.lightningrobotics"
+    mArtifactID = "common"
     mVersionName = System.getenv("VERSION")
 }
 
@@ -33,6 +33,7 @@ sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
 
 dependencies {
+    // TODO need to make this dependable on the implementing project
     implementation wpi.deps.wpilib()
     nativeZip wpi.deps.wpilibJni(wpi.platforms.roborio)
     nativeDesktopZip wpi.deps.wpilibJni(wpi.platforms.desktop)
