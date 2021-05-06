@@ -2,18 +2,22 @@ package frc.lightning.commands;
 
 import java.util.function.DoubleSupplier;
 
+// import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.lightning.LightningConfig;
 import frc.lightning.subsystems.LightningDrivetrain;
 import frc.lightning.util.JoystickFilter;
 
+/**
+ * Simple voltage-based open loop drive. 
+ * Uses {@link frc.lightning.subsystems.LightningDrivetrain LightningDrivetrain}
+ */
 public class VoltDrive extends CommandBase {
 
     private static final double DEFAULT_DEADBAND = 0.15;
     private static final double DEFAULT_MIN_PWR = 0.1;
     private static final double DEFAULT_MAX_PWR = 1.0;
 
-    
     private final JoystickFilter filter;
 
     LightningDrivetrain drivetrain;

@@ -14,7 +14,7 @@ import frc.lightning.subsystems.LightningDrivetrain;
  * Command to be run with frc-characterization tool.
  * This command should be run in parallel with the `frc-characterization` logger.
  * Can be added to autonomous dashboard registry with 
- * {@link DrivetrainCharacterization#load(drivetrain)}.
+ * {@link frc.lightning.auto.DrivetrainCharacterization#load(LightningDrivetrain)}.
  */
 public class DrivetrainCharacterization extends CommandBase {
 

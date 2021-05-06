@@ -7,6 +7,9 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import java.util.Map;
 
+/**
+ * Base display class configures logging for all {@link frc.lightning.subsystems.LightningDrivetrain LightningDrivetrain} types.
+ */
 public class ShuffleboardBaseRobotDisplay extends SubsystemBase {
 
     public static final String DRIVETRAIN_TAB_NAME = "Drivetrain";
@@ -30,7 +33,6 @@ public class ShuffleboardBaseRobotDisplay extends SubsystemBase {
         tab.addNumber("Pose Trans X", () -> drivetrain.getPose().getTranslation().getX());
         tab.addNumber("Pose Trans Norm", () -> drivetrain.getPose().getTranslation().getNorm());
 
-        //tab.addNumber("Heading", () -> drivetrain.getHeading().getDegrees());
         tab.addNumber("Right Wheel Speed", () -> drivetrain.getSpeeds().rightMetersPerSecond);
         tab.addNumber("Left Wheel Speed", () -> drivetrain.getSpeeds().leftMetersPerSecond);
         

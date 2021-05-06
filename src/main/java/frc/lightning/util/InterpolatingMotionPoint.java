@@ -28,28 +28,4 @@ public class InterpolatingMotionPoint implements Interpolable<InterpolatingMotio
         return new InterpolatingMotionPoint(new_position, new_velocity, new_acceleration, new_heading);
     }
 
-//    @Override
-//    public double inverseInterpolate(InterpolatingMotionPoint upper, InterpolatingMotionPoint query) {
-//        double upper_to_lower = upper.time - time;
-//        if (upper_to_lower <= 0) {
-//            return 0;
-//        }
-//        double query_to_lower = query.time - time;
-//        if (query_to_lower <= 0) {
-//            return 0;
-//        }
-//        return query_to_lower / upper_to_lower;
-//    }
-//
-//    @Override
-//    public int compareTo(InterpolatingMotionPoint other) {
-//        if (other.time < time) {
-//            return 1;
-//        } else if (other.time > time) {
-//            return -1;
-//        } else {
-//            return 0;
-//        }
-//    }
-
 }

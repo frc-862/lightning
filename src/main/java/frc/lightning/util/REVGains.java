@@ -58,7 +58,7 @@ public class REVGains {
     }
 
     /**
-     * Puts a set of gains to be edited on {@link edu.wpi.first.wpilibj.smartdashboard.SmartDashboard}
+     * Puts a set of gains to be edited on {@link edu.wpi.first.wpilibj.shuffleboard.Shuffleboard Shuffleboard}
      * @param name Name of gains to be tuned (must match the name of the gains when they are retrieved)
      * @param gains The gains to be tuned
      */

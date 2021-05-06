@@ -5,7 +5,6 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 
 import frc.lightning.auto.Autonomous;
 import frc.lightning.fault.FaultCode;
@@ -16,20 +15,19 @@ import frc.lightning.logging.DataLogger;
 import frc.lightning.testing.SystemTestCommand;
 
 import java.io.IOException;
-import java.util.Map;
 import java.util.Properties;
 
 /**
  * Base robot class, provides
  * {@link frc.lightning.logging.DataLogger logging},
- * {@link frc.lightning..fault.FaultMonitor fault monitoring}, and loops with varying
+ * {@link frc.lightning.fault.FaultMonitor fault monitoring}, and loops with varying
  * periods {@link LightningRobot#robotBackgroundPeriodic() background},
  * {@link LightningRobot#robotLowPriorityPeriodic() low}, and
  * {@link LightningRobot#robotMediumPriorityPeriodic() medium} priority
  * loops.
  *
  * Uses {@link frc.lightning.auto.Autonomous} to configure autonomous commands. Also includes
- * self-testing support with {@link frc.lightning.testing.SystemTestCommand} (Still in progress).
+ * self-testing support with {@link frc.lightning.testing.SystemTestCommand}.
  */
 public class LightningRobot extends TimedRobot {
 
@@ -108,16 +106,6 @@ public class LightningRobot extends TimedRobot {
         // Set up a fault monitor for our loop time
         FaultMonitor.register(new TimedFaultMonitor(Codes.SLOW_LOOPER, () -> getLoopTime() > getPeriod(),
                               0.08, "Loop is running slow: " + getLoopTime()));
-
-        // Put our fault codes on the dashboard
-        FaultCode.eachCode((code, state) -> {
-            var nte = Shuffleboard.getTab("Fault Codes")
-            .add("FAULT_" + code.toString(), state)
-            .withWidget("Boolean Box")
-            .withProperties(Map.of("colorWhenTrue", "green", "colorWhenFalse", "maroon"))
-            .getEntry();
-            FaultCode.setNetworkTableEntry(code, nte);
-        });
 
         // Load our autonomous chooser
         Autonomous.load();
@@ -210,9 +198,6 @@ public class LightningRobot extends TimedRobot {
      * The default implementation handles getting the selected command
      * from Shuffleboard.
      *
-     * TODO consider adding check for failure to communicate with Shuffleboard
-     * and using the default command.
-     *
      * If you override this method, be sure to call {@code super.autonomousInit()} or
      * the selected registered command will not be executed.
      */
@@ -263,7 +248,6 @@ public class LightningRobot extends TimedRobot {
         } else if(stc.isFinished() && !systemTestFlag) {
             stc.end(false);
             systemTestFlag = true;
-            //this.disabledInit();
         }
     }
 

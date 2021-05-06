@@ -20,6 +20,13 @@ import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.lightning.fault.FaultCode;
 
+/**
+ * Runs all {@link SystemTest SystemTests} that have been queued with
+ * {@link SystemTest#register(SystemTest)}. The interactive test interface
+ * is on a {@link edu.wpi.first.wpilibj.shuffleboard.Shuffleboard Shuffleboard}
+ * tab called "System Tests" where users can view the current test, and pass/fail 
+ * interactive system tests.
+ */
 public class SystemTestCommand extends CommandBase {
 
 	private static PriorityQueue<SystemTest> queue = new PriorityQueue<>();
@@ -60,7 +67,7 @@ public class SystemTestCommand extends CommandBase {
 		if(failureButton != null) failureButton.setBoolean(false);
 	}
 
-	public static void register(SystemTest test) {
+	static void register(SystemTest test) {
 		if(queue.isEmpty()) {
 			queue.add(new SystemTest("Please Indicate Success to Begin Testing", FaultCode.Codes.GENERAL, SystemTest.Priority.DO_FIRST) {
 				@Override
@@ -73,6 +80,9 @@ public class SystemTestCommand extends CommandBase {
 		tab.getLayout("Tests", BuiltInLayouts.kList).add(test.getName(), queue.size());
 	}
 
+	/**
+	 * Resets the status of all system tests to incomplete.
+	 */
 	public void reset() {
 		passedAll = true;
 		isResting = true;
@@ -82,6 +92,10 @@ public class SystemTestCommand extends CommandBase {
 		resetUserIndication();
 	}
 
+	/**
+	 * Creates new SystemTestCommand. This should only be called in 
+	 * {@link frc.lightning.LightningRobot#testInit()}.
+	 */
 	public SystemTestCommand() {
 		System.out.println("SystemTest.constructor");
 		reset();
@@ -106,20 +120,6 @@ public class SystemTestCommand extends CommandBase {
 
 		successButton = functionList.add("Indicate Success", false).withWidget(BuiltInWidgets.kToggleButton).getEntry();
 		failureButton = functionList.add("Indicate Failure", false).withWidget(BuiltInWidgets.kToggleButton).getEntry();
-
-		// var successFunct = new InstantCommand(() -> {
-		// 	userIndication = UserIndication.SUCCESS;
-		// 	//current.cancel();
-		// });
-		// successFunct.setName("Indicate Success");
-		// functionList.add(successFunct);
-
-		// var failureFunct = new InstantCommand(() -> {
-		// 	userIndication = UserIndication.FAILURE;
-		// 	//current.cancel();
-		// });
-		//failureFunct.setName("Indicate Failure");
-		// functionList.add(failureFunct);
 
 		for (var test : queue) {
             for (var req : test.getRequirements()) {
@@ -202,11 +202,8 @@ public class SystemTestCommand extends CommandBase {
 
 	@Override
 	public void end(boolean interrupted) {
-		if (current != null) {
-            current.end(interrupted);
-		}
+		if (current != null) current.end(interrupted);
 		System.out.println(passedAll ? "SystemTest.passedAll" : "SystemTest.didNotPassAll");
-
 	}
 
 	@Override

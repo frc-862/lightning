@@ -19,7 +19,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 import frc.lightning.subsystems.LightningDrivetrain;
 
 /**
- * Object class representing a path the robot can follow.
+ * Object class representing a robot-relative path the robot can follow.
  */
 public class Path {
     

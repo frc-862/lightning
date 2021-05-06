@@ -14,8 +14,6 @@ import frc.lightning.commands.DashboardWaitCommand;
  * 
  * Register autonomous commands with {@link Autonomous#register(String, Command)}, and load them to
  * the "Autonomous" {@link edu.wpi.first.wpilibj.shuffleboard.Shuffleboard} tab with {@link Autonomous#load()}.
- * 
- * TODO - consider adding support for setting a default autonomous command. 
  */
 public class Autonomous {
 

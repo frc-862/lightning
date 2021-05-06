@@ -172,7 +172,11 @@ public class DataLogger implements Loop {
 
     @Override
     public void onLoop() {
-        writeValues();
+        if (writer.isValid()) {
+            writeValues();
+        } else {
+            writer = new LogWriter(logFileName().getAbsolutePath());
+        }
     }
 
     public static void logData() {

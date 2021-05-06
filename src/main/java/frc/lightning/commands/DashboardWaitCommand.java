@@ -16,45 +16,60 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import java.util.Map;
 
+/**
+ * Command that waits for a dashboard-determined amount of time to elapse before returning.
+ * This is useful for adding tunable delays to auton sequences to better-coordinate with alliance partners.
+ */
 public class DashboardWaitCommand extends CommandBase {
-  private NetworkTableEntry entry;
-  private double targetTime;
+	private NetworkTableEntry entry;
+	private double targetTime;
 
-  /**
-   * Creates a new DashboardWaitCommand.
-   */
-  public DashboardWaitCommand() { this("AutoWaitSeconds"); }
-  public DashboardWaitCommand(String key) { this(key, "Autonomous"); }
-  public DashboardWaitCommand(String key, String tab_name) {
-    final var tab = Shuffleboard.getTab(tab_name);
+	/**
+	 * Creates a new DashboardWaitCommand called {@code AutoWaitSeconds} under {@code Autonomous} shuffleboard tab.
+	 */
+	public DashboardWaitCommand() {
+		this("AutoWaitSeconds");
+	}
 
-    for (final var elem : tab.getComponents()) {
-      if (elem.getTitle().equals(key) && elem instanceof SimpleWidget) {
-        entry = ((SimpleWidget) elem).getEntry();
-      }
-    }
+	/**
+	 * Creates a new DashboardWaitCommand under {@code Autonomous} shuffleboard tab.
+	 * @param key Name of {@link edu.wpi.first.networktables.NetworkTableEntry Network Table Entry}
+	 */
+	public DashboardWaitCommand(String key) {
+		this(key, "Autonomous");
+	}
 
-    if (entry == null) {
-      entry = Shuffleboard.getTab(tab_name)
-              .add(key, 0d)
-              .withWidget(BuiltInWidgets.kNumberSlider)
-              .withProperties(Map.of("min", 0, "max", 15)) // specify widget properties here
-              .getEntry();
-    }
-  }
+	/**
+	 * Creates a new DashboardWaitCommand.
+	 * @param key Name of {@link edu.wpi.first.networktables.NetworkTableEntry Network Table Entry}
+	 * @param tab_name Name of shuffleboard tab for the entry
+	 */
+	public DashboardWaitCommand(String key, String tab_name) {
+		final var tab = Shuffleboard.getTab(tab_name);
 
-  // Called when the command is initially scheduled.
-  @Override
-  public void initialize() {
-    final double time = (entry != null) ? entry.getDouble(0) : 0;
-    System.out.println(time + "   <-----------------------TIME!!!!");
-    final double startTime = Timer.getFPGATimestamp();
-    targetTime = startTime + time;
-  }
+		for (final var elem : tab.getComponents()) {
+			if (elem.getTitle().equals(key) && elem instanceof SimpleWidget) {
+				entry = ((SimpleWidget) elem).getEntry();
+			}
+		}
 
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    return Timer.getFPGATimestamp() >= targetTime;
-  }
+		if (entry == null) {
+			entry = Shuffleboard.getTab(tab_name).add(key, 0d).withWidget(BuiltInWidgets.kNumberSlider)
+					.withProperties(Map.of("min", 0, "max", 15)).getEntry();
+		}
+	}
+
+	@Override
+	public void initialize() {
+		final double time = (entry != null) ? entry.getDouble(0) : 0;
+		System.out.println(time + "   <-----------------------TIME!!!!");
+		final double startTime = Timer.getFPGATimestamp();
+		targetTime = startTime + time;
+	}
+
+	@Override
+	public boolean isFinished() {
+		return Timer.getFPGATimestamp() >= targetTime;
+	}
+
 }

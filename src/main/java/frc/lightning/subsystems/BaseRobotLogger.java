@@ -4,6 +4,9 @@ import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.lightning.logging.DataLogger;
 
+/**
+ * Base robot logging class configures logging for all {@link frc.lightning.subsystems.LightningDrivetrain LightningDrivetrain} types.
+ */
 public class BaseRobotLogger extends SubsystemBase {
     private final LightningDrivetrain drivetrain;
     private final IMU imu;
@@ -18,7 +21,6 @@ public class BaseRobotLogger extends SubsystemBase {
         DataLogger.addDataElement("PoseTransY", () -> drivetrain.getPose().getTranslation().getY());
         DataLogger.addDataElement("PoseTransX", () -> drivetrain.getPose().getTranslation().getX());
         DataLogger.addDataElement("PoseTransNorm", () -> drivetrain.getPose().getTranslation().getNorm());
-        //DataLogger.addDataElement("Heading", () -> drivetrain.getHeading().getDegrees());
         DataLogger.addDataElement("RightWheelSpeed", () -> drivetrain.getSpeeds().rightMetersPerSecond);
         DataLogger.addDataElement("LeftWheelSpeed", () -> drivetrain.getSpeeds().leftMetersPerSecond);
         DataLogger.addDataElement("LeftDistanceMeters", () -> drivetrain.getLeftDistance());

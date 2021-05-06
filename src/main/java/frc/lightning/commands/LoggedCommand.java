@@ -3,6 +3,9 @@ package frc.lightning.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.lightning.logging.CommandLogger;
 
+/**
+ * A command that writes to {@link frc.lightning.logging.CommandLogger CommandLogger} during execution.
+ */
 public abstract class LoggedCommand extends CommandBase {
     protected CommandLogger logger = new CommandLogger(getClass().getSimpleName());
 
