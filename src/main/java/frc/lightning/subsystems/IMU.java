@@ -16,26 +16,50 @@ import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+/**
+ * Base gyroscope type. Supports the {@link com.kauailabs.navx.frc.AHRS NavX} and
+ * the {@link com.ctre.phoenix.sensors.PigeonIMU Pigeon}.
+ */
 public class IMU extends SubsystemBase {
 
+	/**
+	 * Supported IMU types
+	 */
 	public enum IMUType {
 		PIGEON, 
 		NAVX, 
 		NONE,
 	}
 
+	/**
+	 * A generic function on the IMU to support lambda structure
+	 */
 	public interface IMUFunction {
 		void exec();
 	}
 
+	/**
+	 * Creates a new {@link com.ctre.phoenix.sensors.PigeonIMU Pigeon} with 
+	 * the given ID.
+	 * @param id CAN ID of the {@link com.ctre.phoenix.sensors.PigeonIMU Pigeon}
+	 * @return IMU object configured for a {@link com.ctre.phoenix.sensors.PigeonIMU Pigeon}
+	 */
 	public static IMU pigeon(int id) {
 		return new IMU(IMUType.PIGEON, id);
 	}
 
+	/**
+	 * Creates a new {@link com.kauailabs.navx.frc.AHRS NavX}.
+	 * @return IMU object configured for the NavX (SPI)
+	 */
 	public static IMU navX() {
 		return new IMU(IMUType.NAVX);
 	}
 
+	/**
+	 * Creates a static IMU
+	 * @return IMU object that effectively does nothing
+	 */
 	public static IMU none() {
 		return new IMU(IMUType.NONE);
 	}
@@ -73,6 +97,10 @@ public class IMU extends SubsystemBase {
 		return type;
 	}
 
+	/**
+	 * Get the IMU heading as a {@link edu.wpi.first.wpilibj.geometry.Rotation2d Rotation2d}.
+	 * @return The heading
+	 */
 	public Rotation2d getHeading() {
 		if(type == IMUType.NAVX && navx != null) {
 			return Rotation2d.fromDegrees(-navx.getAngle());
@@ -83,10 +111,17 @@ public class IMU extends SubsystemBase {
 		return Rotation2d.fromDegrees(0d);
 	}
 
+	/**
+	 * A function that can be used to get the heading of the IMU
+	 * @return A supplier of {@link edu.wpi.first.wpilibj.geometry.Rotation2d Rotation2d} objects.
+	 */
 	public Supplier<Rotation2d> heading() {
 		return this::getHeading;
 	}
 
+	/**
+	 * Reset IMU heading to 0
+	 */
 	public void reset() {
 		if(type == IMUType.NAVX && navx != null) {
 			navx.reset();
@@ -96,6 +131,10 @@ public class IMU extends SubsystemBase {
 		}
 	}
 
+	/**
+	 * Function to reset IMU heading
+	 * @return An {@link IMU.IMUFunction} that zeros the IMU heading when called
+	 */
 	public IMUFunction zero() {
 		return this::reset;
 	}

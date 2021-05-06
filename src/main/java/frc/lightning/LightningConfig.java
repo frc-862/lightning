@@ -39,7 +39,7 @@ public abstract class LightningConfig {
     }
 
     public double getWheelCircumferenceFeet() {
-        return getWheelCircumferenceInches()/12;
+        return getWheelCircumferenceInches() / 12d;
     }
 
 }

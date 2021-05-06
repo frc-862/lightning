@@ -16,6 +16,7 @@ public class LogWriter implements Loop {
     private final Vector<String> drain;
     private boolean overflow = false;
     private final static int logDepth = 1000;
+    private boolean valid = true;
 
     public LogWriter(String file, int buffer_depth) {
         buffer = new ArrayBlockingQueue<>(buffer_depth);
@@ -43,6 +44,7 @@ public class LogWriter implements Loop {
 
     public void onLoop() {
         drain();
+        valid = (writer == null);
     }
 
     public void drain() {
@@ -54,13 +56,13 @@ public class LogWriter implements Loop {
             }
             if (overflow) {
                 writer.write("BUFFER OVERFLOW\n");
-                // there is a small race condition here
-                // but we can live with it to keep things
-                // fast. The right fix would be to lock
-                // around the read/write to the overflow
-                // boolean, but a false positive will only
-                // happen if we were really close to overflow
-                // anyway...
+                /* there is a small race condition here
+                but we can live with it to keep things
+                fast. The right fix would be to lock
+                around the read/write to the overflow
+                boolean, but a false positive will only
+                happen if we were really close to overflow
+                anyway... */
                 overflow = false;
             }
             drain.clear();
@@ -100,5 +102,9 @@ public class LogWriter implements Loop {
 
     public void logRawString(String s) {
         overflow |= !buffer.offer(s);
+    }
+
+    public boolean isValid(){
+        return valid;
     }
 }

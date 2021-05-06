@@ -3,6 +3,9 @@ package frc.lightning.ui;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
+/**
+ * Wrapper for XboxController
+ */
 public class XBoxController extends Joystick {
 
     public XBoxController(final int port) {

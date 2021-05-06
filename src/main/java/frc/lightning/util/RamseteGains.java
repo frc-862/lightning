@@ -10,7 +10,7 @@ package frc.lightning.util;
 import edu.wpi.first.wpilibj.util.Units;
 
 /**
- * Add your docs here.
+ * Differential drivetrain gains for use with a {@link edu.wpi.first.wpilibj2.command.RamseteCommand RamseteCommand}.
  */
 public class RamseteGains {
 
