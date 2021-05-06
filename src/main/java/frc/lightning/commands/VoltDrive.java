@@ -2,7 +2,6 @@ package frc.lightning.commands;
 
 import java.util.function.DoubleSupplier;
 
-import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.lightning.LightningConfig;
 import frc.lightning.subsystems.LightningDrivetrain;
