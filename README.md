@@ -1,27 +1,48 @@
 # lightning
 
-![gradle build](https://github.com/frc-862/lightning/workflows/gradle%20build/badge.svg)
+![Build](https://github.com/frc-862/lightning/workflows/Build/badge.svg)
 
-utility package for frc robots.
+## Description
+
+This repository contains base code for Team 862's FRC robots.
 
 ## Getting Started
 
-in root directory of WPILib robot project (must be on git), run the following
+To add the library to a WPILib Robot Project, make sure the project has all the necessary files in `vendordeps/` as seen [here](https://github.com/frc-862/lightning/tree/master/vendordeps).
 
-```bash
-git submodule add https://github.com/frc-862/lightning.git
-```
-
-you must also add the line below to the project's `build.gradle` file in the `dependencies` section
+You must also set up the following dependency repository in your `build.gradle`.
 
 ```groovy
-dependencies {
-  compile(project(':lightning'))
+repositories {
+    maven {
+        name = "GitHubPackages"
+        url = "https://maven.pkg.github.com/frc-862/lightning"
+        credentials {
+            username = project.findProperty("gpr.user")
+            password = project.findProperty("gpr.key")
+        }
+    }
 }
 ```
 
-also, you will need to add the following line to the end of the project's `settings.gradle` file
+You should set your `~/.gradle/gradle.properties` (Unix) or `%HOMEPATH%\.gradle\gradle.properties` (Windows) file to contain your username as well as a GitHub Personal Access Token
 
 ```groovy
-include ':lightning'
+gpr.user=<your-username>
+gpr.key=<your-personal-access-token>
 ```
+
+Lastly, you will need to add the library as a dependency as shown below
+
+```groovy
+dependencies {
+    implementation 'frc:lightning:<version>'
+}
+```
+
+## Contributing
+
+### Releases
+
+To publish a new version, [this action](https://github.com/frc-862/lightning/actions/workflows/deploy.yml) must be run.
+The action requires the desired version number and release title.

@@ -20,7 +20,7 @@ import java.util.Properties;
 /**
  * Base robot class, provides
  * {@link frc.lightning.logging.DataLogger logging},
- * {@link frc.lightning..fault.FaultMonitor fault monitoring}, and loops with varying
+ * {@link frc.lightning.fault.FaultMonitor fault monitoring}, and loops with varying
  * periods {@link LightningRobot#robotBackgroundPeriodic() background},
  * {@link LightningRobot#robotLowPriorityPeriodic() low}, and
  * {@link LightningRobot#robotMediumPriorityPeriodic() medium} priority

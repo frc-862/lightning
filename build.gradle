@@ -5,12 +5,19 @@ buildscript {
         }
     }
     dependencies {
-        classpath "edu.wpi.first:GradleRIO:2021.2.1"
+        classpath "edu.wpi.first:GradleRIO:2021.2.2"
     }
 }
 
 plugins {
-    id "java"
+    id 'java'
+    id 'maven-publish'
+}
+
+ext {
+    mGroupID = "frc"
+    mArtifactID = "lightning"
+    mVersionName = System.getenv("VERSION")
 }
 
 def gradleRioPluginId = 'edu.wpi.first.GradleRIO'
@@ -35,4 +42,28 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-core:3.2.4'
     simulation wpi.deps.sim.gui(wpi.platforms.desktop, false)
+}
+
+publishing {
+
+    publications {
+        gpr(MavenPublication) {
+            groupId mGroupID
+            artifactId mArtifactID
+            version mVersionName
+            from components.java
+        }
+    }
+
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/frc-862/lightning")
+            credentials {
+                username = System.getenv("USERNAME")
+                password = System.getenv("TOKEN")
+            }
+        }
+    }
+    
 }

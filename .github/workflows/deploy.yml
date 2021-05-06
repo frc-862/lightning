@@ -1,0 +1,55 @@
+name: Gradle Release
+
+# This Workflow Must Be Triggered Manually
+
+on:
+  workflow_dispatch:
+    inputs:
+      versionNumber:
+        description: 'Version Number  (i.e. 0.1.0)'
+        required: true
+      versionName:
+        description: 'Release Title  (i.e. Initial Release)'
+        required: true
+
+jobs:
+
+  # Create Release
+  release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ github.event.inputs.versionNumber }}
+          release_name: ${{ github.event.inputs.versionName }} v${{ github.event.inputs.versionNumber }}
+          draft: false
+          prerelease: false
+
+  # Release Package
+  package:
+    name: Deploy Package
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+          server-id: github
+          settings-path: ${{ github.workspace }}
+      - name: Build with Gradle
+        run: gradle build
+      - name: Publish to GitHub Packages
+        run: gradle publish
+        env:
+          USERNAME: ${{ github.actor }}
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ github.event.inputs.versionNumber }}

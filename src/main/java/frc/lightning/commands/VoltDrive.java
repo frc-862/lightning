@@ -2,6 +2,7 @@ package frc.lightning.commands;
 
 import java.util.function.DoubleSupplier;
 
+// import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.lightning.LightningConfig;
 import frc.lightning.subsystems.LightningDrivetrain;
@@ -13,32 +14,43 @@ import frc.lightning.util.JoystickFilter;
  */
 public class VoltDrive extends CommandBase {
 
+    private static final double DEFAULT_DEADBAND = 0.15;
+    private static final double DEFAULT_MIN_PWR = 0.1;
+    private static final double DEFAULT_MAX_PWR = 1.0;
+
+    private final JoystickFilter filter;
+
     LightningDrivetrain drivetrain;
     DoubleSupplier left;
     DoubleSupplier right;
-    private final double DEADBAND = 0.15;
-    private final double MIN_ALLOWED_PWR = 0.1;
-    private final double MAX_ALLOWED_PWR = 1.0;
-    private final JoystickFilter filter;
 
     public VoltDrive(LightningDrivetrain drivetrain, DoubleSupplier left, DoubleSupplier right) {
         this(drivetrain, left, right, JoystickFilter.Mode.CUBED);
     }
 
-    public VoltDrive(LightningDrivetrain drivetrain, DoubleSupplier left, DoubleSupplier right, JoystickFilter.Mode jsRamp) {
-        filter = new JoystickFilter(DEADBAND, MIN_ALLOWED_PWR, MAX_ALLOWED_PWR, jsRamp);
+    public VoltDrive(LightningDrivetrain drivetrain, DoubleSupplier left, DoubleSupplier right, JoystickFilter.Mode mode) {
+        this(drivetrain, left, right, mode, DEFAULT_DEADBAND, DEFAULT_MIN_PWR, DEFAULT_MAX_PWR);
+    }
+
+    public VoltDrive(LightningDrivetrain drivetrain, DoubleSupplier left, DoubleSupplier right, JoystickFilter.Mode mode, double deadband) {
+        this(drivetrain, left, right, mode, deadband, DEFAULT_MIN_PWR, DEFAULT_MAX_PWR);
+    }
+
+    public VoltDrive(LightningDrivetrain drivetrain, DoubleSupplier left, DoubleSupplier right, JoystickFilter.Mode mode, double deadband, double minPower, double maxPower) {
         this.drivetrain = drivetrain;
         this.left = left;
         this.right = right;
         addRequirements(drivetrain);
+        filter = new JoystickFilter(deadband, minPower, maxPower, mode);
     }
 
     @Override
     public void execute() {
+
         double leftVolts = filter.filter(left.getAsDouble());
         double rightVolts = filter.filter(right.getAsDouble());
 
-        leftVolts  *= LightningConfig.VOLT_LIMIT;
+        leftVolts  *= LightningConfig.VOLT_LIMIT; // RobotController.getBatteryVoltage(); ?
         rightVolts *= LightningConfig.VOLT_LIMIT;
 
         drivetrain.setOutput(leftVolts, rightVolts);

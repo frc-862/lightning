@@ -56,13 +56,8 @@ public class FaultCode {
     }
 
     static {
-        eachCode((Codes code, Boolean state) -> {
-            var nte = Shuffleboard.getTab("Fault Codes")
-                    .add("FAULT_" + code.toString(), state)
-                    .withWidget("Boolean Box")
-                    .withProperties(Map.of("colorWhenTrue", "green", "colorWhenFalse", "maroon"))
-                    .getEntry();
-            FaultCode.setNetworkTableEntry(code, nte);
+        eachCode((Codes c, Boolean state) -> {
+            Shuffleboard.getTab("System Faults").add("FAULT_" + c.toString(), state);
         });
         try {
             Files.write(getFaultPath(), ("######### RESTART #########\n").getBytes(), StandardOpenOption.CREATE,
@@ -101,11 +96,7 @@ public class FaultCode {
     }
 
     /**
-     * Runs the given function on each code. Something like:
-     * 
-     * eachCode((Codes c, Boolean state) -> {
-     *     // Do Something
-     * });
+     * Runs the given function on each code.
      * 
      * @param fn The {@link java.util.function.BiConsumer} function to perform on each code. 
      * The function should take a code and state (true or false) as parameters.
@@ -128,7 +119,7 @@ public class FaultCode {
         try {
             if (!faults.contains(code)) {
                 faults.add(code);
-
+                Shuffleboard.getTab("System Faults").add("FAULT_" + code.toString(), false);
                 Files.write(Paths.get("/home/lvuser/faults.log"),
                             ("FAULT Detected: " + code.toString() + " " + msg + "\n").getBytes(),
                             StandardOpenOption.CREATE,
