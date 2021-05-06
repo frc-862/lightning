@@ -1,0 +1,9 @@
+frc.lightning
+frc.lightning.auto
+frc.lightning.commands
+frc.lightning.fault
+frc.lightning.logging
+frc.lightning.subsystems
+frc.lightning.testing
+frc.lightning.ui
+frc.lightning.util
