@@ -40,6 +40,7 @@ public class CurvatureDrive {
      *                    positive.
      * @param isQuickTurn If set, overrides constant-curvature turning for
      *                    turn-in-place maneuvers.
+     * @return {@link frc.lightning.LightningDrivetrain.DriveCommand} with calculated motor output.
      */
     @SuppressWarnings({"ParameterName", "PMD.CyclomaticComplexity"})
     public LightningDrivetrain.DriveCommand curvatureDrive(double xSpeed, double zRotation, boolean isQuickTurn) {

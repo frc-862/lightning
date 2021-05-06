@@ -61,6 +61,7 @@ public class REVGains {
      * Puts a set of gains to be edited on {@link edu.wpi.first.wpilibj.shuffleboard.Shuffleboard Shuffleboard}
      * @param name Name of gains to be tuned (must match the name of the gains when they are retrieved)
      * @param gains The gains to be tuned
+     * @param controller The pid controller to which the gains belong
      */
     public static void putGainsToBeTunedOnDash(String name, REVGains gains, CANPIDController controller) {
         if(LightningConfig.TUNING_ENABLED) {
