@@ -1,5 +1,7 @@
 package com.lightningrobotics.common.util;
 
+import edu.wpi.first.wpilibj.geometry.Pose2d;
+
 public final class LightningMath {
 
     private LightningMath() {
@@ -67,6 +69,30 @@ public final class LightningMath {
 
     public static double deadZone(double input, double deadband) {
         return Math.abs(input) >= deadband ? input : 0;
+    }
+
+    /**
+     * Linearly interpolates between two values.
+     *
+     * @param startValue The start value.
+     * @param endValue   The end value.
+     * @param t          The fraction for interpolation.
+     * @return The interpolated value.
+     */
+    public static double lerp(double startValue, double endValue, double t) {
+        return startValue + (endValue - startValue) * t;
+    }
+
+    /**
+     * Linearly interpolates between two poses.
+     *
+     * @param startValue The start pose.
+     * @param endValue   The end pose.
+     * @param t          The fraction for interpolation.
+     * @return The interpolated pose.
+     */
+    public static Pose2d lerp(Pose2d startValue, Pose2d endValue, double t) {
+        return startValue.plus((endValue.minus(startValue)).times(t));
     }
 
 }

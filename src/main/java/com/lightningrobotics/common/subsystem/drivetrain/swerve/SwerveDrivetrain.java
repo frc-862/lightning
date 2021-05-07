@@ -1,5 +1,6 @@
 package com.lightningrobotics.common.subsystem.drivetrain.swerve;
 
+import com.lightningrobotics.common.geometry.trajectory.TrajectoryConstraint;
 import com.lightningrobotics.common.subsystem.drivetrain.DrivetrainSpeed;
 import com.lightningrobotics.common.subsystem.drivetrain.LightningDrivetrain;
 import com.lightningrobotics.common.subsystem.drivetrain.LightningGains;
@@ -23,6 +24,11 @@ public class SwerveDrivetrain extends LightningDrivetrain {
     @Override
     public void setDriveSpeed(DrivetrainSpeed speed) {
 
+    }
+
+    @Override
+    public TrajectoryConstraint getConstraint(double maxVelocity) {
+        return null;
     }
 
     @Override
