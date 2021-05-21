@@ -2,10 +2,8 @@ package com.lightningrobotics.common.subsystem.drivetrain.swerve;
 
 import com.lightningrobotics.common.util.LightningMath;
 
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
-import edu.wpi.first.wpilibj.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.wpilibj.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj.math.StateSpaceUtil;
 
@@ -40,4 +38,12 @@ public class SwerveModule {
         driveController.set(driveOutput);
         angleController.set(turnOutput);
     }
+    public SpeedController getDriveMotor() {
+        return driveController;
+    }
+
+    public SpeedController getRotationMotor() {
+        return angleController;
+    }
+    
 }
