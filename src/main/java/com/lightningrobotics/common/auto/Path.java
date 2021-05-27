@@ -7,13 +7,9 @@ import com.lightningrobotics.common.geometry.trajectory.Trajectory;
 import com.lightningrobotics.common.geometry.trajectory.TrajectoryConfig;
 import com.lightningrobotics.common.subsystem.drivetrain.LightningDrivetrain;
 
-import java.io.IOException;
-
 import edu.wpi.first.wpilibj.geometry.Pose2d;
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj.Filesystem;
-import edu.wpi.first.wpilibj.DriverStation;
 
 /**
  * Object class representing a path a {@link com.lightningrobotics.common.subsystem.drivetrain.LightningDrivetrain} can follow.
