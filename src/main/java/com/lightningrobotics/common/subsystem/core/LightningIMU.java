@@ -99,7 +99,10 @@ public class LightningIMU extends SubsystemBase {
 			return Rotation2d.fromDegrees(-navx.getAngle());
 		}
 		if(type == IMUType.PIGEON && ypr != null) {
-			Rotation2d.fromDegrees((((ypr[0]+180)%360)-180));
+			double heading = ypr[0];
+        	double sign = Math.signum(heading);
+        	double filteredRot = sign * (((Math.abs(heading) + 180) % 360) - 180); 
+        	return Rotation2d.fromDegrees(filteredRot);
 		}
 		return Rotation2d.fromDegrees(0d);
 	}
@@ -121,6 +124,7 @@ public class LightningIMU extends SubsystemBase {
 		}
 		if(type == IMUType.PIGEON && pigeon != null) {
 			pigeon.setYaw(0d);
+        	pigeon.setAccumZAngle(0d);
 		}
 	}
 

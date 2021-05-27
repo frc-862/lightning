@@ -57,7 +57,6 @@ public class DifferentialDrivetrain extends LightningDrivetrain {
         
         /**
          * Constructs a differential drive dynamics constraint.
-         * @param kinematics A kinematics component describing the drive geometry.
          * @param maxSpeedMetersPerSecond The max speed that a side of the robot can travel at.
          */
         public DifferentialDriveTrajectoryConstraint(double maxSpeedMetersPerSecond) {
