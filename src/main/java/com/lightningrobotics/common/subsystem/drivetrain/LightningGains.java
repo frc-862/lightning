@@ -4,22 +4,29 @@ public class LightningGains {
 
     public static final double MAX_VOLTAGE = 12d;
 
-    private int maxSpeed;
-    private int maxAcceleration;
+    private double maxSpeed;
+    private double maxAcceleration;
 
-    public int getMaxSpeed() {
+    public LightningGains() {}
+
+    public LightningGains(double maxSpeed, double maxAcceleration) {
+        this.maxSpeed = maxSpeed;
+        this.maxAcceleration = maxAcceleration;
+    }
+
+    public double getMaxSpeed() {
         return maxSpeed;
     }
 
-    public void setMaxSpeed(int maxSpeed) {
+    public void setMaxSpeed(double maxSpeed) {
         this.maxSpeed = maxSpeed;
     }
 
-    public int getMaxAcceleration() {
+    public double getMaxAcceleration() {
         return maxAcceleration;
     }
 
-    public void setMaxAcceleration(int maxAcceleration) {
+    public void setMaxAcceleration(double maxAcceleration) {
         this.maxAcceleration = maxAcceleration;
     }
 

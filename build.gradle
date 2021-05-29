@@ -43,7 +43,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-core:3.2.4'
     simulation wpi.deps.sim.gui(wpi.platforms.desktop, false)
-    compile group: 'org.ejml', name: 'ejml-all', version: '0.40'
+    compile 'org.ejml:ejml-all:0.40'
 }
 
 publishing {

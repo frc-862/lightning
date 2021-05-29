@@ -11,6 +11,16 @@ public class SwerveGains extends LightningGains {
     private boolean[] driveMotorInverts;
     private Translation2d[] wheelPositions;
 
+    public SwerveGains() {}
+
+    public SwerveGains(double maxSpeed, double maxAcceleration, double maxAngularSpeed, boolean[] turnMotorInverts, boolean[] driveMotorInverts, Translation2d[] wheelPositions) {
+        super(maxSpeed, maxAcceleration);
+        this.maxAngularSpeed = maxAngularSpeed;
+        this.turnMotorInverts = turnMotorInverts;
+        this.driveMotorInverts = driveMotorInverts;
+        this.wheelPositions = wheelPositions;
+    }
+
     public void setMaxAngularSpeed(double maxAngularSpeed){
         this.maxAngularSpeed = maxAngularSpeed;
     }

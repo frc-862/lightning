@@ -9,31 +9,32 @@ import edu.wpi.first.wpilibj.geometry.Rotation2d;
 
 public class SwerveModule {
 
+    SwerveGains gains;
+
     SpeedController driveMotor;
     SpeedController angleMotor;
     DoubleSupplier angle;
 
-    SwerveGains gains;
-
     SwerveModuleState moduleState;
 
-    public SwerveModule(SpeedController driveController, SpeedController angleController, DoubleSupplier angle, SwerveGains gains){
+    public SwerveModule(SwerveGains gains, SpeedController driveController, SpeedController angleController, DoubleSupplier angle) {
+        this.gains = gains;
         this.driveMotor = driveController;
         this.angleMotor = angleController;
         this.angle = angle;
-        this.gains = gains;
     }
 
     /**
      * Set drive and angular state.
-     * @param desiredState 
-     * @param currentRotation Current rotation of the robot.
+     * @param desiredState Target state to move motors to.
      */
     public void setDesiredState(SwerveModuleState desiredState){
 
         Rotation2d currentRotation = getAngle();
 
         SwerveModuleState state = SwerveModuleState.optimize(desiredState, currentRotation);
+
+        // TODO use some kind of closed loop control
 
         driveMotor.set(state.speedMetersPerSecond / gains.getMaxSpeed());
 

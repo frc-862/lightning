@@ -78,7 +78,7 @@ public class SwerveDrivetrain extends LightningDrivetrain {
             normalize(this.gains.getMaxSpeed());
         }
 
-        public SwerveDrivetrainSpeed(DrivetrainSpeed speed, SwerveGains gains, Translation2d... wheelsMeters) {
+        public SwerveDrivetrainSpeed(DrivetrainSpeed speed, SwerveGains gains) {
             this(speed, gains, new Translation2d());
         }
 
