@@ -17,10 +17,10 @@ public class SwerveModule {
 
     SwerveModuleState moduleState;
 
-    public SwerveModule(SwerveGains gains, SpeedController driveController, SpeedController angleController, DoubleSupplier angle) {
+    public SwerveModule(SwerveGains gains, SpeedController driveMotor, SpeedController angleMotor, DoubleSupplier angle) {
         this.gains = gains;
-        this.driveMotor = driveController;
-        this.angleMotor = angleController;
+        this.driveMotor = driveMotor;
+        this.angleMotor = angleMotor;
         this.angle = angle;
     }
 

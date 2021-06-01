@@ -88,23 +88,36 @@ public class ControllerDrive extends CommandBase {
     public void execute() {
 
         switch (controlType) {
+            
             case TANK:
                 var leftSpeed = filter.filter(inputs.get(0).getAsDouble());
                 var rightSpeed = filter.filter(inputs.get(1).getAsDouble());
                 differentialDrivetrain.tankDrive(leftSpeed, rightSpeed);
                 break;
+            
             case ARCADE:
                 var speed = filter.filter(inputs.get(0).getAsDouble());
                 var rot = filter.filter(inputs.get(1).getAsDouble());
                 differentialDrivetrain.arcadeDrive(speed, rot);
                 break;
+            
             case SWERVE_ROBOT_RELATIVE:
-                swerveDrivetrain.stop();
+                var xSpeed = filter.filter(inputs.get(0).getAsDouble());
+                var ySpeed = filter.filter(inputs.get(1).getAsDouble());
+                var angularSpeed = filter.filter(inputs.get(2).getAsDouble());
+                swerveDrivetrain.swerveDriveRobotRelative(xSpeed, ySpeed, angularSpeed);
                 break;
+            
             case SWERVE_FIELD_RELATIVE:
+                var xFieldSpeed = filter.filter(inputs.get(0).getAsDouble());
+                var yFieldSpeed = filter.filter(inputs.get(1).getAsDouble());
+                var angularFieldSpeed = filter.filter(inputs.get(2).getAsDouble());
+                swerveDrivetrain.swerveDriveRobotRelative(xFieldSpeed, yFieldSpeed, angularFieldSpeed);
                 break;
+            
             default:
                 drivetrain.stop();
+        
         }
 
     }
