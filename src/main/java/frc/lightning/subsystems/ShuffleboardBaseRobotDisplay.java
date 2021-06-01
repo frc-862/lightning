@@ -14,7 +14,7 @@ public class ShuffleboardBaseRobotDisplay extends SubsystemBase {
 
     public static final String DRIVETRAIN_TAB_NAME = "Drivetrain";
 
-    public ShuffleboardBaseRobotDisplay(LightningDrivetrain drivetrain, IMU imu) {
+    public ShuffleboardBaseRobotDisplay(LightningDrivetrain drivetrain, LightningIMU imu) {
         final var tab = Shuffleboard.getTab(DRIVETRAIN_TAB_NAME);
 
         tab.addNumber("Left Velocity", () -> drivetrain.getLeftVelocity())
