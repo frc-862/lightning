@@ -3,71 +3,15 @@ package com.lightningrobotics.common.subsystem.drivetrain.differential;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
-import com.lightningrobotics.common.geometry.kinematics.LightningKinematics;
-import com.lightningrobotics.common.auto.trajectory.TrajectoryConstraint;
+import com.lightningrobotics.common.geometry.kinematics.differential.DifferentialDrivetrainState;
 import com.lightningrobotics.common.geometry.kinematics.*;
 import com.lightningrobotics.common.subsystem.drivetrain.LightningDrivetrain;
 import com.lightningrobotics.common.subsystem.drivetrain.LightningGains;
 import com.lightningrobotics.common.util.LightningMath;
 
 import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.geometry.Pose2d;
 
 public class DifferentialDrivetrain extends LightningDrivetrain {
-
-    /**
-     * A class that enforces constraints on the differential drive kinematics. This
-     * can be used to ensure that the trajectory is constructed so that the
-     * commanded velocities for both sides of the drivetrain stay below a certain
-     * limit.
-     */
-    private class DifferentialDriveTrajectoryConstraint implements TrajectoryConstraint {
-
-        private final double maxSpeedMetersPerSecond;
-
-        /**
-         * Constructs a differential drive dynamics constraint.
-         * @param maxSpeedMetersPerSecond The max speed that a side of the robot can travel at.
-         */
-        public DifferentialDriveTrajectoryConstraint(double maxSpeedMetersPerSecond) {
-            this.maxSpeedMetersPerSecond = maxSpeedMetersPerSecond;
-        }
-
-        /**
-         * Returns the max velocity given the current pose and curvature.
-         * @param poseMeters The pose at the current point in the trajectory.
-         * @param curvatureRadPerMeter The curvature at the current point in the trajectory.
-         * @param velocityMetersPerSecond The velocity at the current point in the trajectory before constraints are applied.
-         * @return The absolute maximum velocity.
-         */
-        @Override
-        public double getMaxVelocityMetersPerSecond(Pose2d poseMeters, double curvatureRadPerMeter, double velocityMetersPerSecond) {
-
-            // Create an object to represent the current drivetrain speeds.
-            var drivetrainSpeed = new DrivetrainSpeed(velocityMetersPerSecond, 0, velocityMetersPerSecond * curvatureRadPerMeter);
-
-            // Get the wheel speeds and normalize them to within the max velocity.
-            var speed = new DifferentialDrivetrainSpeed(drivetrainSpeed, gains);
-            speed.normalize(maxSpeedMetersPerSecond);
-
-            // Return the new linear chassis speed.
-            return speed.toDrivetrainSpeed().vx;
-
-        }
-
-        /**
-         * Returns the minimum and maximum allowable acceleration for the trajectory
-         * given pose, curvature, and speed.
-         * @param poseMeters The pose at the current point in the trajectory.
-         * @param curvatureRadPerMeter The curvature at the current point in the trajectory.
-         * @param velocityMetersPerSecond The speed at the current point in the trajectory.
-         * @return The min and max acceleration bounds.
-         */
-        @Override
-        public AccelerationLimit getMinMaxAccelerationMetersPerSecondSq(Pose2d poseMeters, double curvatureRadPerMeter, double velocityMetersPerSecond) {
-            return new AccelerationLimit();
-        }
-    }
 
     private DifferentialGains gains;
 
@@ -101,16 +45,8 @@ public class DifferentialDrivetrain extends LightningDrivetrain {
 
     @Override
     public void setDriveSpeed(DrivetrainSpeed speed) {
-        var diffSpeed = new DifferentialDrivetrainSpeed(speed, gains);
-        var leftOutput = (diffSpeed.left / gains.getMaxSpeed());
-        var rightOutput = (diffSpeed.right / gains.getMaxSpeed());
-
-        tankDrive(leftOutput, rightOutput);
-    }
-
-    @Override
-    public TrajectoryConstraint getConstraint(double maxVelocity) {
-        return new DifferentialDriveTrajectoryConstraint(maxVelocity);
+        var state = (DifferentialDrivetrainState) gains.getKinematics().inverse(speed);
+        tankDrive(state.getLeftSpeed(), state.getRightSpeed());
     }
 
     @Override

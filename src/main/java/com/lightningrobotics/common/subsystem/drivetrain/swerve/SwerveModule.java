@@ -16,7 +16,7 @@ public class SwerveModule {
 
     private final SwerveGains gains;
     private final SpeedController driveMotor;
-    private final SpeedController angleMotor;
+    private final SpeedController azimuthMotor;
     private final Supplier<Rotation2d> moduleAngle;
     private final DoubleSupplier driveMotorVelocity;
     private final PIDFController driveController;
@@ -32,7 +32,7 @@ public class SwerveModule {
 
         this.gains = gains;
         this.driveMotor = driveMotor;
-        this.angleMotor = angleMotor;
+        this.azimuthMotor = angleMotor;
         this.moduleAngle = moduleAngle;
         this.driveMotorVelocity = driveMotorVelocity;
         this.driveController = driveController;
@@ -54,8 +54,8 @@ public class SwerveModule {
         return driveMotor;
     }
 
-    public SpeedController getAngleMotor() {
-        return angleMotor;
+    public SpeedController getAzimuthMotor() {
+        return azimuthMotor;
     }
 
     public void setState(SwerveModuleState target) {
@@ -64,18 +64,22 @@ public class SwerveModule {
         var state = SwerveModuleState.optimize(target, getModuleAngle());
 
         // Set drive output
-        final var drive = state.velocity / gains.getMaxRealSpeed();
-        // final var drive = driveController.calculate(getVelocity(), state.velocity);
+        var drive = 0d;
+        if (driveController != null) {
+            drive = driveController.calculate(getVelocity(), state.velocity);
+        } else {
+            drive = state.velocity / gains.getMaxRealSpeed();
+        }
         driveMotor.set(drive);
 
         // Set angle output
         final var angle = angleController.calculate(getModuleAngle().getRadians(), state.angle.getRadians());
-        angleMotor.set(angle);
+        azimuthMotor.set(angle);
 
     }
 
     public void setRawAzimuthPower(double pwr) {
-        angleMotor.set(pwr);
+        azimuthMotor.set(pwr);
     }
 
     public void setRawDrivePower(double pwr) {

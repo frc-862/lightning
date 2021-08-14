@@ -46,7 +46,7 @@ public class TrajectoryConfig {
         maxVelocity = drivetrain.getGains().getMaxSpeed();
         maxAcceleration = drivetrain.getGains().getMaxAcceleration();
         constraints = new ArrayList<>();
-        addConstraint(drivetrain.getConstraint(maxVelocity));
+        //addConstraint(drivetrain.getConstraint(maxVelocity)); // TODO may need to implement this
         this.reversed = reversed;
     }
 

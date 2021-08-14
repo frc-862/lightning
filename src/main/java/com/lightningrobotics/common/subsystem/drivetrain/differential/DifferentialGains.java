@@ -1,8 +1,11 @@
 package com.lightningrobotics.common.subsystem.drivetrain.differential;
 
+import com.lightningrobotics.common.geometry.kinematics.differential.DifferentialKinematics;
 import com.lightningrobotics.common.subsystem.drivetrain.LightningGains;
 
 public class DifferentialGains extends LightningGains {
+
+    private DifferentialKinematics kinematics;
 
     private boolean[] leftInverts;
     private boolean[] rightInverts;
@@ -15,6 +18,11 @@ public class DifferentialGains extends LightningGains {
         this.trackWidth = trackWidth;
         this.leftInverts = leftInverts;
         this.rightInverts = rightInverts;
+        this.kinematics = new DifferentialKinematics(this);
+    }
+
+    public DifferentialKinematics getKinematics() {
+        return kinematics;
     }
 
     public int getTrackWidth() {

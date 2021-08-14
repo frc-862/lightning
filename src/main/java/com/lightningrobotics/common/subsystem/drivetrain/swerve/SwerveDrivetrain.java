@@ -1,121 +1,71 @@
 package com.lightningrobotics.common.subsystem.drivetrain.swerve;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.function.Consumer;
 
-import com.lightningrobotics.common.auto.trajectory.TrajectoryConstraint;
-import com.lightningrobotics.common.geometry.LightningKinematics;
 import com.lightningrobotics.common.geometry.kinematics.DrivetrainSpeed;
+import com.lightningrobotics.common.geometry.kinematics.swerve.SwerveDrivetrainState;
 import com.lightningrobotics.common.geometry.kinematics.swerve.SwerveModuleState;
 import com.lightningrobotics.common.subsystem.drivetrain.LightningDrivetrain;
 import com.lightningrobotics.common.subsystem.drivetrain.LightningGains;
 
-import org.ejml.simple.SimpleMatrix;
-
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
-import edu.wpi.first.wpilibj.geometry.Translation2d;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 
-public class SwerveDrivetrain extends LightningDrivetrain {
+public abstract class SwerveDrivetrain extends LightningDrivetrain {
+
+    public enum Modules {
+        FRONT_LEFT(0),
+        FRONT_RIGHT(1),
+        REAR_LEFT(2),
+        REAR_RIGHT(3);
+        private int moduleID;
+        Modules(int moduleID) { this.moduleID = moduleID; }
+        public int getModuleID() { return moduleID; }
+    }
 
     private SwerveGains gains;
 
     private SwerveModule[] modules;
 
-    private static class SwerveDrivetrainSpeed implements LightningKinematics {
+    private SwerveDrivetrainState state;
+    private DrivetrainSpeed speed;
 
-        private final SimpleMatrix inverseKinematics;
-        private final SimpleMatrix forwardKinematics;
 
-        private final int numModules;
-        private final Translation2d[] modules;
-        private Translation2d prevCoR = new Translation2d();
-
-        private SwerveModuleState[] moduleStates;
-
-        private SwerveGains gains;
-
-        public SwerveDrivetrainSpeed(DrivetrainSpeed speed, SwerveGains gains, Translation2d centerOfRotationMeters) {
-            this.gains = gains;
-
-            numModules = gains.getWheelsDisplacements().length;
-            modules = Arrays.copyOf(gains.getWheelsDisplacements(), numModules);
-            inverseKinematics = new SimpleMatrix(numModules * 2, 3);
-
-            for (int i = 0; i < numModules; i++) {
-                inverseKinematics.setRow(i * 2 + 0, 0, /* Start Data */ 1, 0, -modules[i].getY());
-                inverseKinematics.setRow(i * 2 + 1, 0, /* Start Data */ 0, 1, +modules[i].getX());
-            }
-            forwardKinematics = inverseKinematics.pseudoInverse();
-
-            if (!centerOfRotationMeters.equals(prevCoR)) {
-                for (int i = 0; i < numModules; i++) {
-                    inverseKinematics.setRow(i * 2 + 0, 0, /* Start Data */ 1, 0, -modules[i].getY() + centerOfRotationMeters.getY());
-                    inverseKinematics.setRow(i * 2 + 1, 0, /* Start Data */ 0, 1, +modules[i].getX() - centerOfRotationMeters.getX());
-                }
-                prevCoR = centerOfRotationMeters;
-            }
-
-            var speedVector = new SimpleMatrix(3, 1);
-            speedVector.setColumn(0, 0, speed.vx, speed.vy, speed.omega);
-
-            var moduleStatesMatrix = inverseKinematics.mult(speedVector);
-            SwerveModuleState[] moduleStates = new SwerveModuleState[numModules];
-
-            for (int i = 0; i < numModules; i++) {
-                var x = moduleStatesMatrix.get(i * 2, 0);
-                var y = moduleStatesMatrix.get(i * 2 + 1, 0);
-
-                var s = Math.hypot(x, y);
-                Rotation2d angle = new Rotation2d(x, y);
-
-                moduleStates[i] = new SwerveModuleState(s, angle);
-            }
-
-            this.moduleStates = moduleStates;
-
-            normalize(this.gains.getMaxSpeed());
-        }
-
-        public SwerveDrivetrainSpeed(DrivetrainSpeed speed, SwerveGains gains) {
-            this(speed, gains, new Translation2d());
-        }
-
-        @Override
-        public void normalize(double maxSpeed) {
-            double realMaxSpeed = Collections.max(Arrays.asList(moduleStates)).speedMetersPerSecond;
-            if (realMaxSpeed > maxSpeed) {
-                for (SwerveModuleState moduleState : moduleStates) {
-                    moduleState.speedMetersPerSecond = moduleState.speedMetersPerSecond / realMaxSpeed * maxSpeed;
-                }
-            }
-        }
-
-        @Override
-        public DrivetrainSpeed toDrivetrainSpeed() {
-            var wheelStates = moduleStates;
-            var moduleStatesMatrix = new SimpleMatrix(numModules * 2, 1);
-
-            for (int i = 0; i < numModules; i++) {
-                var module = wheelStates[i];
-                moduleStatesMatrix.set(i * 2, 0, module.speedMetersPerSecond * module.angle.getCos());
-                moduleStatesMatrix.set(i * 2 + 1, module.speedMetersPerSecond * module.angle.getSin());
-            }
-
-            var speedVector = forwardKinematics.mult(moduleStatesMatrix);
-            return new DrivetrainSpeed(speedVector.get(0, 0), speedVector.get(1, 0), speedVector.get(2, 0));
-        }
-
-        public SwerveModuleState[] getStates() {
-            return this.moduleStates;
-        }
-
-    }
+    protected abstract SwerveModule makeModule(Module module, int driveID, int angleID, int encoderID, Rotation2d offset);
 
     public SwerveDrivetrain(SwerveGains gains, SwerveModule... modules) {
         this.gains = gains;
         this.modules = modules;
+
+        this.state = new SwerveDrivetrainState(new SwerveModuleState[]{
+            new SwerveModuleState(0d, modules[Modules.FRONT_LEFT.getModuleID()].getModuleAngle()),
+            new SwerveModuleState(0d, modules[Modules.FRONT_RIGHT.getModuleID()].getModuleAngle()),
+            new SwerveModuleState(0d, modules[Modules.REAR_LEFT.getModuleID()].getModuleAngle()),
+            new SwerveModuleState(0d, modules[Modules.REAR_RIGHT.getModuleID()].getModuleAngle())
+        });
+
+        // Initialize zero drive speed
+        speed = new DrivetrainSpeed();
+
+        // Put some data on shuffleboard
+        var tab = Shuffleboard.getTab("Swerve Module States");
+
+        tab.addString("FL Real", () -> modules[Modules.FRONT_LEFT.getModuleID()].getState().toString());
+        tab.addString("FL Target", () -> state.getStates()[Modules.FRONT_LEFT.getModuleID()].toString());
+
+        tab.addString("FR Real", () -> modules[Modules.FRONT_RIGHT.getModuleID()].getState().toString());
+        tab.addString("FR Target", () -> state.getStates()[Modules.FRONT_RIGHT.getModuleID()].toString());
+
+        tab.addString("RL Real", () -> modules[Modules.REAR_LEFT.getModuleID()].getState().toString());
+        tab.addString("RL Target", () -> state.getStates()[Modules.REAR_LEFT.getModuleID()].toString());
+
+        tab.addString("RR Real", () -> modules[Modules.REAR_RIGHT.getModuleID()].getState().toString());
+        tab.addString("RR Target", () -> state.getStates()[Modules.REAR_RIGHT.getModuleID()].toString());
+
+        tab.addString("Target Speed", () -> speed.toString());
+        tab.addString("Real Speed", () -> gains.getKinematics().forward(state).toString());
+
     }
 
     @Override
@@ -126,25 +76,22 @@ public class SwerveDrivetrain extends LightningDrivetrain {
         if (driveInverts.length == modules.length && turnInverts.length == modules.length) {
             for (var i = 0; i < modules.length; ++i) {
                 modules[i].getDriveMotor().setInverted(driveInverts[i]);
-                modules[i].getRotationMotor().setInverted(turnInverts[i]);
+                modules[i].getAzimuthMotor().setInverted(turnInverts[i]);
             }
         }
     }
 
     @Override
     public void setDriveSpeed(DrivetrainSpeed speed) {
-        var states = new SwerveDrivetrainSpeed(speed, gains).getStates();
+        //var states = new SwerveDrivetrainSpeed(speed, gains).getStates();
+        var state = (SwerveDrivetrainState) gains.getKinematics().inverse(speed);
+        var swerveModuleStates = state.getStates();
 
-        for (int i = 0; i < states.length; i++) {
+        for (int i = 0; i < swerveModuleStates.length; i++) {
             SwerveModule module = modules[i];
-            SwerveModuleState state = states[i];
-            module.setDesiredState(state);
+            SwerveModuleState moduleState = swerveModuleStates[i];
+            module.setState(moduleState);
         }
-    }
-
-    @Override
-    public TrajectoryConstraint getConstraint(double maxVelocity) {
-        return null;
     }
 
     @Override
@@ -154,15 +101,7 @@ public class SwerveDrivetrain extends LightningDrivetrain {
 
     @Override
     public void stop() {
-        this.setDriveSpeed(new DrivetrainSpeed(0d, 0d, 0d));
-    }
-
-    public void swerveDriveFieldRelative(double xSpeed, double ySpeed, double rot, Rotation2d currentHeading) {
-        setDriveSpeed(DrivetrainSpeed.fromFieldRelativeSpeeds(xSpeed, ySpeed, rot, currentHeading));
-    }
-
-    public void swerveDriveRobotRelative(double xSpeed, double ySpeed, double angularSpeed) {
-        setDriveSpeed(new DrivetrainSpeed(xSpeed, ySpeed, angularSpeed));
+        this.setDriveSpeed(new DrivetrainSpeed());
     }
 
     protected void withEachModule(Consumer<SwerveModule> op) {
@@ -173,8 +112,8 @@ public class SwerveDrivetrain extends LightningDrivetrain {
         for(var module : modules) op.accept(module.getDriveMotor());
     }
 
-    protected void withEachRotationMotor(Consumer<SpeedController> op) {
-        for(var module : modules) op.accept(module.getRotationMotor());
+    protected void withEachAzimuthMotor(Consumer<SpeedController> op) {
+        for(var module : modules) op.accept(module.getAzimuthMotor());
     }
 
 }

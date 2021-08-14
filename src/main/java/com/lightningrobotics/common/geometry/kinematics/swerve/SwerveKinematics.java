@@ -1,27 +1,29 @@
 package com.lightningrobotics.common.geometry.kinematics.swerve;
 
 import com.lightningrobotics.common.geometry.kinematics.DrivetrainSpeed;
+import com.lightningrobotics.common.geometry.kinematics.DrivetrainState;
+import com.lightningrobotics.common.geometry.kinematics.LightningKinematics;
+import com.lightningrobotics.common.subsystem.drivetrain.swerve.SwerveGains;
+import com.lightningrobotics.common.util.LightningMath;
 
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
 
-public class SwerveKinematics {
+public class SwerveKinematics implements LightningKinematics {
 
-    private SwerveModuleState[] states;
-
-    private DrivetrainSpeed speed;
+    private SwerveGains gains;
 
     private double W;
     private double L;
     private double R;
 
-    public SwerveKinematics(double width, double length) {
-        this.W = width;
-        this.L = length;
+    public SwerveKinematics(SwerveGains gains) {
+        this.W = gains.getWidth();
+        this.L = gains.getLength();
         this.R = Math.sqrt(W * W + L * L);
-        this.states = new SwerveModuleState[DrivetrainConstants.NUM_MODULES];
     }
 
-    public SwerveModuleState[] inverse(DrivetrainSpeed speed) {
+    @Override
+    public DrivetrainState inverse(DrivetrainSpeed speed) {
 
         var FWD = speed.vx;
         var STR = speed.vy;
@@ -42,31 +44,34 @@ public class SwerveKinematics {
         var RL_Angle = Math.atan2(A, D);
         var RR_Angle = Math.atan2(A, C);
 
-        var MAX = UtilMath.max(FR_Speed, FL_Speed, RL_Speed, RR_Speed);
+        var MAX = LightningMath.max(FR_Speed, FL_Speed, RL_Speed, RR_Speed);
 
-        if(MAX > DrivetrainConstants.MAX_SPEED) {
+        if(MAX > gains.getMaxSpeed()) {
             FR_Speed /= MAX;
             FL_Speed /= MAX;
             RL_Speed /= MAX;
             RR_Speed /= MAX;
         }
 
-        return new SwerveModuleState[]{
+        return new SwerveDrivetrainState(new SwerveModuleState[]{
             new SwerveModuleState(FL_Speed, new Rotation2d(FL_Angle)),
             new SwerveModuleState(FR_Speed, new Rotation2d(FR_Angle)),
             new SwerveModuleState(RL_Speed, new Rotation2d(RL_Angle)),
             new SwerveModuleState(RR_Speed, new Rotation2d(RR_Angle))
-        };
+        });
 
     }
 
     @Override
-    public DrivetrainSpeed forward(SwerveModuleState[] states) {
+    public DrivetrainSpeed forward(DrivetrainState state) {
 
-        var FL = states[Drivetrain.Modules.FRONT_LEFT.getIdx()];
-        var FR = states[Drivetrain.Modules.FRONT_RIGHT.getIdx()];
-        var RL = states[Drivetrain.Modules.BACK_LEFT.getIdx()];
-        var RR = states[Drivetrain.Modules.BACK_RIGHT.getIdx()];
+        var swerveState = (SwerveDrivetrainState) state;
+        var states = swerveState.getStates();
+
+        var FL = states[0];
+        var FR = states[1];
+        var RL = states[2];
+        var RR = states[3];
 
         var BFL = FL.angle.getSin() * FL.velocity;
         var DFL = FL.angle.getCos() * FL.velocity;
@@ -99,18 +104,8 @@ public class SwerveKinematics {
 
         var speed = new DrivetrainSpeed(FWD, STR, ROT);
 
-        this.speed = speed;
-
         return speed;
 
-    }
-
-    public SwerveModuleState[] getStates() {
-        return states;
-    }
-
-    public DrivetrainSpeed getSpeed() {
-        return speed;
     }
 
 }
