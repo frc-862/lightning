@@ -3,9 +3,9 @@ package com.lightningrobotics.common.subsystem.drivetrain.differential;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
-import com.lightningrobotics.common.geometry.LightningKinematics;
-import com.lightningrobotics.common.geometry.trajectory.TrajectoryConstraint;
-import com.lightningrobotics.common.subsystem.drivetrain.DrivetrainSpeed;
+import com.lightningrobotics.common.geometry.kinematics.LightningKinematics;
+import com.lightningrobotics.common.auto.trajectory.TrajectoryConstraint;
+import com.lightningrobotics.common.geometry.kinematics.*;
 import com.lightningrobotics.common.subsystem.drivetrain.LightningDrivetrain;
 import com.lightningrobotics.common.subsystem.drivetrain.LightningGains;
 import com.lightningrobotics.common.util.LightningMath;
@@ -14,36 +14,6 @@ import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.geometry.Pose2d;
 
 public class DifferentialDrivetrain extends LightningDrivetrain {
-
-    private static class DifferentialDrivetrainSpeed implements LightningKinematics {
-
-        public double left;
-        public double right;
-
-        private DifferentialGains gains;
-
-        public DifferentialDrivetrainSpeed(DrivetrainSpeed speed, DifferentialGains gains) {
-            this.gains = gains;
-            this.left = speed.vx - gains.getTrackWidth() / 2 * speed.omega;
-            this.right = speed.vx + gains.getTrackWidth() / 2 * speed.omega;
-            normalize(gains.getMaxSpeed());
-        }
-
-        @Override
-        public void normalize(double maxSpeed) {
-            double realMaxSpeed = Math.max(Math.abs(left), Math.abs(right));
-            if (realMaxSpeed > maxSpeed) {
-                left /= (realMaxSpeed * maxSpeed);
-                right /= (realMaxSpeed * maxSpeed);
-            }
-        }
-
-        @Override
-        public DrivetrainSpeed toDrivetrainSpeed() {
-            return new DrivetrainSpeed((left + right) / 2, 0, (right - left) / gains.getTrackWidth());
-        }
-
-    }
 
     /**
      * A class that enforces constraints on the differential drive kinematics. This
@@ -54,7 +24,7 @@ public class DifferentialDrivetrain extends LightningDrivetrain {
     private class DifferentialDriveTrajectoryConstraint implements TrajectoryConstraint {
 
         private final double maxSpeedMetersPerSecond;
-        
+
         /**
          * Constructs a differential drive dynamics constraint.
          * @param maxSpeedMetersPerSecond The max speed that a side of the robot can travel at.
@@ -229,3 +199,4 @@ public class DifferentialDrivetrain extends LightningDrivetrain {
     }
 
 }
+

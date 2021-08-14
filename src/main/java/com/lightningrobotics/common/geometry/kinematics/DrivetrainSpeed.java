@@ -1,4 +1,4 @@
-package com.lightningrobotics.common.subsystem.drivetrain;
+package com.lightningrobotics.common.geometry.kinematics;
 
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
 

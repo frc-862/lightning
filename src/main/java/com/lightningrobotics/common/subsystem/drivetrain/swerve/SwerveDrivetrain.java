@@ -4,10 +4,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.function.Consumer;
 
+import com.lightningrobotics.common.auto.trajectory.TrajectoryConstraint;
 import com.lightningrobotics.common.geometry.LightningKinematics;
+import com.lightningrobotics.common.geometry.kinematics.DrivetrainSpeed;
 import com.lightningrobotics.common.geometry.kinematics.swerve.SwerveModuleState;
-import com.lightningrobotics.common.geometry.trajectory.TrajectoryConstraint;
-import com.lightningrobotics.common.subsystem.drivetrain.DrivetrainSpeed;
 import com.lightningrobotics.common.subsystem.drivetrain.LightningDrivetrain;
 import com.lightningrobotics.common.subsystem.drivetrain.LightningGains;
 

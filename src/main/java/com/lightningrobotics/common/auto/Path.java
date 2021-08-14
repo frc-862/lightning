@@ -3,8 +3,8 @@ package com.lightningrobotics.common.auto;
 import java.util.Arrays;
 import java.util.List;
 
-import com.lightningrobotics.common.geometry.trajectory.Trajectory;
-import com.lightningrobotics.common.geometry.trajectory.TrajectoryConfig;
+import com.lightningrobotics.common.auto.trajectory.Trajectory;
+import com.lightningrobotics.common.auto.trajectory.TrajectoryConfig;
 import com.lightningrobotics.common.subsystem.drivetrain.LightningDrivetrain;
 
 import edu.wpi.first.wpilibj.geometry.Pose2d;

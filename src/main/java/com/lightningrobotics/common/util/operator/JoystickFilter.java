@@ -2,6 +2,9 @@ package com.lightningrobotics.common.util.operator;
 
 import com.lightningrobotics.common.util.LightningMath;
 
+/**
+ * Filter for joystick input to enhance driver controll.
+ */
 public class JoystickFilter {
 
     public enum Mode {

@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.geometry.Translation2d;
 
 public class SwerveGains extends LightningGains {
     
+    private double maxRealSpeed;
     private double maxAngularSpeed;
     private boolean[] turnMotorInverts;
     private boolean[] driveMotorInverts;
@@ -13,8 +14,9 @@ public class SwerveGains extends LightningGains {
 
     public SwerveGains() {}
 
-    public SwerveGains(double maxSpeed, double maxAcceleration, double maxAngularSpeed, boolean[] turnMotorInverts, boolean[] driveMotorInverts, Translation2d[] wheelPositions) {
+    public SwerveGains(double maxSpeed, double maxRealSpeed, double maxAcceleration, double maxAngularSpeed, boolean[] turnMotorInverts, boolean[] driveMotorInverts, Translation2d[] wheelPositions) {
         super(maxSpeed, maxAcceleration);
+        this.maxRealSpeed = maxRealSpeed;
         this.maxAngularSpeed = maxAngularSpeed;
         this.turnMotorInverts = turnMotorInverts;
         this.driveMotorInverts = driveMotorInverts;
@@ -52,6 +54,14 @@ public class SwerveGains extends LightningGains {
 
     public void setDriveMotorInverts(boolean[] driveMotorInverts) {
         this.driveMotorInverts = driveMotorInverts;
+    }
+
+    public double getMaxRealSpeed() {
+        return maxRealSpeed;
+    }
+
+    public void setMaxRealSpeed(double maxRealSpeed) {
+        this.maxRealSpeed = maxRealSpeed;
     }
 
 }

@@ -1,6 +1,7 @@
 package com.lightningrobotics.common.subsystem.drivetrain;
 
-import com.lightningrobotics.common.geometry.trajectory.TrajectoryConstraint;
+import com.lightningrobotics.common.auto.trajectory.TrajectoryConstraint;
+import com.lightningrobotics.common.geometry.kinematics.DrivetrainSpeed;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 

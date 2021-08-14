@@ -5,7 +5,7 @@
 // This file is based on WPILib trajectory.
 // https://github.com/wpilibsuite/allwpilib/blob/main/wpimath/src/main/java/edu/wpi/first/wpilibj/trajectory/constraint/TrajectoryConstraint.java
 
-package com.lightningrobotics.common.geometry.trajectory;
+package com.lightningrobotics.common.auto.trajectory;
 
 import edu.wpi.first.wpilibj.geometry.Pose2d;
 

@@ -1,4 +1,4 @@
-package com.lightningrobotics.common.geometry.trajectory;
+package com.lightningrobotics.common.auto.trajectory;
 
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
