@@ -17,6 +17,7 @@ public class SwerveKinematics implements LightningKinematics {
     private double R;
 
     public SwerveKinematics(SwerveGains gains) {
+        this.gains = gains;
         this.W = gains.getWidth();
         this.L = gains.getLength();
         this.R = Math.sqrt(W * W + L * L);

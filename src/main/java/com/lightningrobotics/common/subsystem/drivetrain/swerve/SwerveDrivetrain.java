@@ -9,7 +9,6 @@ import com.lightningrobotics.common.subsystem.drivetrain.LightningDrivetrain;
 import com.lightningrobotics.common.subsystem.drivetrain.LightningGains;
 
 import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 
 public abstract class SwerveDrivetrain extends LightningDrivetrain {
@@ -30,9 +29,6 @@ public abstract class SwerveDrivetrain extends LightningDrivetrain {
 
     private SwerveDrivetrainState state;
     private DrivetrainSpeed speed;
-
-
-    protected abstract SwerveModule makeModule(Module module, int driveID, int angleID, int encoderID, Rotation2d offset);
 
     public SwerveDrivetrain(SwerveGains gains, SwerveModule... modules) {
         this.gains = gains;
