@@ -24,7 +24,7 @@ public class LightningFaultCodes {
             this.name = name;
         }
 
-        public boolean isState() {
+        public boolean getState() {
             return state;
         }
 
@@ -35,6 +35,10 @@ public class LightningFaultCodes {
     }
 
     private static List<Code> codes = new ArrayList<>();
+
+    static {
+        codes.add(new Code("GENERAL_FAULT", false));
+    }
 
     public static void addFaultCode(String name, boolean state) {
         addFaultCode(new Code(name, state));        
@@ -48,9 +52,13 @@ public class LightningFaultCodes {
         codes.add(code);
     }
 
-    public static Code getFaultCode() {
-        // TODO finish implementing
-        return null;
+    public static Code getFaultCode(String name) {
+        for (var code : codes) {
+            if (code.getName().equals(name)) {
+                return code;
+            }
+        }
+        return getFaultCode("GENERAL_FAULT");
     }
     
 }
