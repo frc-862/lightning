@@ -3,7 +3,7 @@ package com.lightningrobotics.common.command.drivetrain.differential;
 import java.util.function.DoubleSupplier;
 
 import com.lightningrobotics.common.subsystem.drivetrain.differential.DifferentialDrivetrain;
-import com.lightningrobotics.common.util.operator.JoystickFilter;
+import com.lightningrobotics.common.util.filter.JoystickFilter;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 

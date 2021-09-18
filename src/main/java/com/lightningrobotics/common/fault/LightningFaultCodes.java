@@ -16,6 +16,10 @@ public class LightningFaultCodes {
             this.state = state;
         }
 
+        public Code(String name) {
+            this(name, false);
+        }
+
         public String getName() {
             return name;
         }
@@ -37,7 +41,13 @@ public class LightningFaultCodes {
     private static List<Code> codes = new ArrayList<>();
 
     static {
-        codes.add(new Code("GENERAL_FAULT", false));
+        codes.add(new Code("GENERAL_FAULT"));
+        codes.add(new Code("LOW_MAIN_VOLTAGE"));
+        codes.add(new Code("SLOW_LOOPER"));
+        codes.add(new Code("MISMATCHED_MOTION_PROFILES"));
+        codes.add(new Code("NAVX_ERROR"));
+        codes.add(new Code("INTERNAL_ERROR"));
+        codes.add(new Code("DRIVETRAIN"));
     }
 
     public static void addFaultCode(String name, boolean state) {

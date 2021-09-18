@@ -4,7 +4,7 @@ import com.lightningrobotics.common.geometry.kinematics.DrivetrainSpeed;
 import com.lightningrobotics.common.subsystem.core.LightningIMU;
 import com.lightningrobotics.common.subsystem.drivetrain.swerve.SwerveDrivetrain;
 import com.lightningrobotics.common.subsystem.drivetrain.swerve.SwerveGains;
-import com.lightningrobotics.common.util.operator.JoystickFilter;
+import com.lightningrobotics.common.util.filter.JoystickFilter;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;

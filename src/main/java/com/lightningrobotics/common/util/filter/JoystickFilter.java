@@ -1,4 +1,4 @@
-package com.lightningrobotics.common.util.operator;
+package com.lightningrobotics.common.util.filter;
 
 import com.lightningrobotics.common.util.LightningMath;
 
