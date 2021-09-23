@@ -33,6 +33,8 @@ gpr.user=<your-username>
 gpr.key=<your-personal-access-token>
 ```
 
+Note that you do not need to be a member of the [@frc-862](https://github.com/frc-862) organization to have access to this project.
+
 Lastly, you will need to add the library as a dependency as shown below
 
 ```groovy
