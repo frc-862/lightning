@@ -1,10 +1,3 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2019 FIRST. All Rights Reserved.                             */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
-
 package frc.lightning.subsystems;
 
 import java.util.function.Supplier;
@@ -20,7 +13,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
  * Base gyroscope type. Supports the {@link com.kauailabs.navx.frc.AHRS NavX} and
  * the {@link com.ctre.phoenix.sensors.PigeonIMU Pigeon}.
  */
-public class IMU extends SubsystemBase {
+public class LightningIMU extends SubsystemBase {
 
 	/**
 	 * Supported IMU types
@@ -44,24 +37,24 @@ public class IMU extends SubsystemBase {
 	 * @param id CAN ID of the {@link com.ctre.phoenix.sensors.PigeonIMU Pigeon}
 	 * @return IMU object configured for a {@link com.ctre.phoenix.sensors.PigeonIMU Pigeon}
 	 */
-	public static IMU pigeon(int id) {
-		return new IMU(IMUType.PIGEON, id);
+	public static LightningIMU pigeon(int id) {
+		return new LightningIMU(IMUType.PIGEON, id);
 	}
 
 	/**
 	 * Creates a new {@link com.kauailabs.navx.frc.AHRS NavX}.
 	 * @return IMU object configured for the NavX (SPI)
 	 */
-	public static IMU navX() {
-		return new IMU(IMUType.NAVX);
+	public static LightningIMU navX() {
+		return new LightningIMU(IMUType.NAVX);
 	}
 
 	/**
 	 * Creates a static IMU
 	 * @return IMU object that effectively does nothing
 	 */
-	public static IMU none() {
-		return new IMU(IMUType.NONE);
+	public static LightningIMU none() {
+		return new LightningIMU(IMUType.NONE);
 	}
 
 	private IMUType type;
@@ -72,7 +65,7 @@ public class IMU extends SubsystemBase {
 
 	private double[] ypr = null;
 
-	private IMU(IMUType type, int id) {
+	private LightningIMU(IMUType type, int id) {
 		this.type = type;
 		switch (type) {
 			case PIGEON:
@@ -89,7 +82,7 @@ public class IMU extends SubsystemBase {
 		
 	}
 
-	private IMU(IMUType type) {
+	private LightningIMU(IMUType type) {
 		this(type, -1);
 	}
 
@@ -106,7 +99,10 @@ public class IMU extends SubsystemBase {
 			return Rotation2d.fromDegrees(-navx.getAngle());
 		}
 		if(type == IMUType.PIGEON && ypr != null) {
-			Rotation2d.fromDegrees((((ypr[0]+180)%360)-180));
+			double heading = ypr[0];
+        	double sign = Math.signum(heading);
+        	double filteredRot = sign * (((Math.abs(heading) + 180) % 360) - 180); 
+        	return Rotation2d.fromDegrees(filteredRot);
 		}
 		return Rotation2d.fromDegrees(0d);
 	}
@@ -128,12 +124,13 @@ public class IMU extends SubsystemBase {
 		}
 		if(type == IMUType.PIGEON && pigeon != null) {
 			pigeon.setYaw(0d);
+        	pigeon.setAccumZAngle(0d);
 		}
 	}
 
 	/**
 	 * Function to reset IMU heading
-	 * @return An {@link IMU.IMUFunction} that zeros the IMU heading when called
+	 * @return An {@link LightningIMU.IMUFunction} that zeros the IMU heading when called
 	 */
 	public IMUFunction zero() {
 		return this::reset;

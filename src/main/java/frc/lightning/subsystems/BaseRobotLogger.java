@@ -9,9 +9,9 @@ import frc.lightning.logging.DataLogger;
  */
 public class BaseRobotLogger extends SubsystemBase {
     private final LightningDrivetrain drivetrain;
-    private final IMU imu;
+    private final LightningIMU imu;
 
-    public BaseRobotLogger(LightningDrivetrain dt, IMU imu) {
+    public BaseRobotLogger(LightningDrivetrain dt, LightningIMU imu) {
         this.drivetrain = dt;
         this.imu = imu;
 

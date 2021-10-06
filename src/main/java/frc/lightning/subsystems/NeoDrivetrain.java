@@ -20,7 +20,7 @@ import edu.wpi.first.wpilibj.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.lightning.LightningConfig;
-import frc.lightning.subsystems.IMU.IMUFunction;
+import frc.lightning.subsystems.LightningIMU.IMUFunction;
 import frc.lightning.util.LightningMath;
 import frc.lightning.util.RamseteGains;
 

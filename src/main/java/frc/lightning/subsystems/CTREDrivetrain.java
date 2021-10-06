@@ -25,7 +25,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.lightning.LightningConfig;
 import frc.lightning.fault.FaultMonitor;
 import frc.lightning.fault.FaultCode.Codes;
-import frc.lightning.subsystems.IMU.IMUFunction;
+import frc.lightning.subsystems.LightningIMU.IMUFunction;
 import frc.lightning.util.LightningMath;
 import frc.lightning.util.RamseteGains;
 import java.util.function.BiConsumer;
