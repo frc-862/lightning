@@ -159,7 +159,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Base robot logging class configures logging for all <a href="frc/lightning/subsystems/LightningDrivetrain.html" title="interface in frc.lightning.subsystems"><code>LightningDrivetrain</code></a> types.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="frc/lightning/subsystems/BaseRobotLogger.html#%3Cinit%3E(frc.lightning.subsystems.LightningDrivetrain,frc.lightning.subsystems.IMU)">BaseRobotLogger(LightningDrivetrain, IMU)</a></span> - Constructor for class frc.lightning.subsystems.<a href="frc/lightning/subsystems/BaseRobotLogger.html" title="class in frc.lightning.subsystems">BaseRobotLogger</a></dt>
+<dt><span class="memberNameLink"><a href="frc/lightning/subsystems/BaseRobotLogger.html#%3Cinit%3E(frc.lightning.subsystems.LightningDrivetrain,frc.lightning.subsystems.LightningIMU)">BaseRobotLogger(LightningDrivetrain, LightningIMU)</a></span> - Constructor for class frc.lightning.subsystems.<a href="frc/lightning/subsystems/BaseRobotLogger.html" title="class in frc.lightning.subsystems">BaseRobotLogger</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="frc/lightning/ui/XBoxController.html#bButton">bButton</a></span> - Variable in class frc.lightning.ui.<a href="frc/lightning/ui/XBoxController.html" title="class in frc.lightning.ui">XBoxController</a></dt>
 <dd>&nbsp;</dd>
@@ -254,7 +254,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><a href="frc/lightning/subsystems/CTREDrivetrain.html" title="class in frc.lightning.subsystems"><span class="typeNameLink">CTREDrivetrain</span></a> - Class in <a href="frc/lightning/subsystems/package-summary.html">frc.lightning.subsystems</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="frc/lightning/subsystems/CTREDrivetrain.html#%3Cinit%3E(frc.lightning.LightningConfig,com.ctre.phoenix.motorcontrol.can.BaseMotorController,com.ctre.phoenix.motorcontrol.can.BaseMotorController,com.ctre.phoenix.motorcontrol.can.BaseMotorController%5B%5D,com.ctre.phoenix.motorcontrol.can.BaseMotorController%5B%5D,java.util.function.Supplier,frc.lightning.subsystems.IMU.IMUFunction)">CTREDrivetrain(LightningConfig, BaseMotorController, BaseMotorController, BaseMotorController[], BaseMotorController[], Supplier&lt;Rotation2d&gt;, IMU.IMUFunction)</a></span> - Constructor for class frc.lightning.subsystems.<a href="frc/lightning/subsystems/CTREDrivetrain.html" title="class in frc.lightning.subsystems">CTREDrivetrain</a></dt>
+<dt><span class="memberNameLink"><a href="frc/lightning/subsystems/CTREDrivetrain.html#%3Cinit%3E(frc.lightning.LightningConfig,com.ctre.phoenix.motorcontrol.can.BaseMotorController,com.ctre.phoenix.motorcontrol.can.BaseMotorController,com.ctre.phoenix.motorcontrol.can.BaseMotorController%5B%5D,com.ctre.phoenix.motorcontrol.can.BaseMotorController%5B%5D,java.util.function.Supplier,frc.lightning.subsystems.LightningIMU.IMUFunction)">CTREDrivetrain(LightningConfig, BaseMotorController, BaseMotorController, BaseMotorController[], BaseMotorController[], Supplier&lt;Rotation2d&gt;, LightningIMU.IMUFunction)</a></span> - Constructor for class frc.lightning.subsystems.<a href="frc/lightning/subsystems/CTREDrivetrain.html" title="class in frc.lightning.subsystems">CTREDrivetrain</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="frc/lightning/util/JoystickFilter.Mode.html#CUBED">CUBED</a></span> - frc.lightning.util.<a href="frc/lightning/util/JoystickFilter.Mode.html" title="enum in frc.lightning.util">JoystickFilter.Mode</a></dt>
 <dd>&nbsp;</dd>
@@ -394,7 +394,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="frc/lightning/subsystems/LightningDrivetrain.DriveCommand.html#equals(java.lang.Object)">equals(Object)</a></span> - Method in class frc.lightning.subsystems.<a href="frc/lightning/subsystems/LightningDrivetrain.DriveCommand.html" title="class in frc.lightning.subsystems">LightningDrivetrain.DriveCommand</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="frc/lightning/subsystems/IMU.IMUFunction.html#exec()">exec()</a></span> - Method in interface frc.lightning.subsystems.<a href="frc/lightning/subsystems/IMU.IMUFunction.html" title="interface in frc.lightning.subsystems">IMU.IMUFunction</a></dt>
+<dt><span class="memberNameLink"><a href="frc/lightning/subsystems/LightningIMU.IMUFunction.html#exec()">exec()</a></span> - Method in interface frc.lightning.subsystems.<a href="frc/lightning/subsystems/LightningIMU.IMUFunction.html" title="interface in frc.lightning.subsystems">LightningIMU.IMUFunction</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="frc/lightning/auto/DrivetrainCharacterization.html#execute()">execute()</a></span> - Method in class frc.lightning.auto.<a href="frc/lightning/auto/DrivetrainCharacterization.html" title="class in frc.lightning.auto">DrivetrainCharacterization</a></dt>
 <dd>&nbsp;</dd>
@@ -618,7 +618,7 @@ $</div>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="frc/lightning/logging/DataLogger.html#getHeader()">getHeader()</a></span> - Method in class frc.lightning.logging.<a href="frc/lightning/logging/DataLogger.html" title="class in frc.lightning.logging">DataLogger</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="frc/lightning/subsystems/IMU.html#getHeading()">getHeading()</a></span> - Method in class frc.lightning.subsystems.<a href="frc/lightning/subsystems/IMU.html" title="class in frc.lightning.subsystems">IMU</a></dt>
+<dt><span class="memberNameLink"><a href="frc/lightning/subsystems/LightningIMU.html#getHeading()">getHeading()</a></span> - Method in class frc.lightning.subsystems.<a href="frc/lightning/subsystems/LightningIMU.html" title="class in frc.lightning.subsystems">LightningIMU</a></dt>
 <dd>
 <div class="block">Get the IMU heading as a <code>Rotation2d</code>.</div>
 </dd>
@@ -894,7 +894,7 @@ $</div>
 <dd>
 <div class="block">Obtains an optimized trajectory the robot should follow so it hits all the waypoints</div>
 </dd>
-<dt><span class="memberNameLink"><a href="frc/lightning/subsystems/IMU.html#getType()">getType()</a></span> - Method in class frc.lightning.subsystems.<a href="frc/lightning/subsystems/IMU.html" title="class in frc.lightning.subsystems">IMU</a></dt>
+<dt><span class="memberNameLink"><a href="frc/lightning/subsystems/LightningIMU.html#getType()">getType()</a></span> - Method in class frc.lightning.subsystems.<a href="frc/lightning/subsystems/LightningIMU.html" title="class in frc.lightning.subsystems">LightningIMU</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="frc/lightning/subsystems/LightningDrivetrain.html#getVelocity()">getVelocity()</a></span> - Method in interface frc.lightning.subsystems.<a href="frc/lightning/subsystems/LightningDrivetrain.html" title="interface in frc.lightning.subsystems">LightningDrivetrain</a></dt>
 <dd>
@@ -927,7 +927,7 @@ $</div>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="frc/lightning/util/InterpolatingMotionPoint.html#heading">heading</a></span> - Variable in class frc.lightning.util.<a href="frc/lightning/util/InterpolatingMotionPoint.html" title="class in frc.lightning.util">InterpolatingMotionPoint</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="frc/lightning/subsystems/IMU.html#heading()">heading()</a></span> - Method in class frc.lightning.subsystems.<a href="frc/lightning/subsystems/IMU.html" title="class in frc.lightning.subsystems">IMU</a></dt>
+<dt><span class="memberNameLink"><a href="frc/lightning/subsystems/LightningIMU.html#heading()">heading()</a></span> - Method in class frc.lightning.subsystems.<a href="frc/lightning/subsystems/LightningIMU.html" title="class in frc.lightning.subsystems">LightningIMU</a></dt>
 <dd>
 <div class="block">A function that can be used to get the heading of the IMU</div>
 </dd>
@@ -939,18 +939,6 @@ $</div>
 </a>
 <h2 class="title">I</h2>
 <dl>
-<dt><a href="frc/lightning/subsystems/IMU.html" title="class in frc.lightning.subsystems"><span class="typeNameLink">IMU</span></a> - Class in <a href="frc/lightning/subsystems/package-summary.html">frc.lightning.subsystems</a></dt>
-<dd>
-<div class="block">Base gyroscope type.</div>
-</dd>
-<dt><a href="frc/lightning/subsystems/IMU.IMUFunction.html" title="interface in frc.lightning.subsystems"><span class="typeNameLink">IMU.IMUFunction</span></a> - Interface in <a href="frc/lightning/subsystems/package-summary.html">frc.lightning.subsystems</a></dt>
-<dd>
-<div class="block">A generic function on the IMU to support lambda structure</div>
-</dd>
-<dt><a href="frc/lightning/subsystems/IMU.IMUType.html" title="enum in frc.lightning.subsystems"><span class="typeNameLink">IMU.IMUType</span></a> - Enum in <a href="frc/lightning/subsystems/package-summary.html">frc.lightning.subsystems</a></dt>
-<dd>
-<div class="block">Supported IMU types</div>
-</dd>
 <dt><span class="memberNameLink"><a href="frc/lightning/util/LightningMath.html#in2ft(double)">in2ft(double)</a></span> - Static method in class frc.lightning.util.<a href="frc/lightning/util/LightningMath.html" title="class in frc.lightning.util">LightningMath</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="frc/lightning/util/LightningMath.html#in2meters(double)">in2meters(double)</a></span> - Static method in class frc.lightning.util.<a href="frc/lightning/util/LightningMath.html" title="class in frc.lightning.util">LightningMath</a></dt>
@@ -1161,6 +1149,18 @@ $</div>
 <dd>
 <div class="block">Sample command that can be applied to LightningDrivetrain type</div>
 </dd>
+<dt><a href="frc/lightning/subsystems/LightningIMU.html" title="class in frc.lightning.subsystems"><span class="typeNameLink">LightningIMU</span></a> - Class in <a href="frc/lightning/subsystems/package-summary.html">frc.lightning.subsystems</a></dt>
+<dd>
+<div class="block">Base gyroscope type.</div>
+</dd>
+<dt><a href="frc/lightning/subsystems/LightningIMU.IMUFunction.html" title="interface in frc.lightning.subsystems"><span class="typeNameLink">LightningIMU.IMUFunction</span></a> - Interface in <a href="frc/lightning/subsystems/package-summary.html">frc.lightning.subsystems</a></dt>
+<dd>
+<div class="block">A generic function on the IMU to support lambda structure</div>
+</dd>
+<dt><a href="frc/lightning/subsystems/LightningIMU.IMUType.html" title="enum in frc.lightning.subsystems"><span class="typeNameLink">LightningIMU.IMUType</span></a> - Enum in <a href="frc/lightning/subsystems/package-summary.html">frc.lightning.subsystems</a></dt>
+<dd>
+<div class="block">Supported IMU types</div>
+</dd>
 <dt><a href="frc/lightning/util/LightningMath.html" title="class in frc.lightning.util"><span class="typeNameLink">LightningMath</span></a> - Class in <a href="frc/lightning/util/package-summary.html">frc.lightning.util</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="frc/lightning/util/LightningMath.html#%3Cinit%3E()">LightningMath()</a></span> - Constructor for class frc.lightning.util.<a href="frc/lightning/util/LightningMath.html" title="class in frc.lightning.util">LightningMath</a></dt>
@@ -1291,23 +1291,23 @@ $</div>
 </a>
 <h2 class="title">N</h2>
 <dl>
-<dt><span class="memberNameLink"><a href="frc/lightning/subsystems/IMU.html#navX()">navX()</a></span> - Static method in class frc.lightning.subsystems.<a href="frc/lightning/subsystems/IMU.html" title="class in frc.lightning.subsystems">IMU</a></dt>
+<dt><span class="memberNameLink"><a href="frc/lightning/subsystems/LightningIMU.html#navX()">navX()</a></span> - Static method in class frc.lightning.subsystems.<a href="frc/lightning/subsystems/LightningIMU.html" title="class in frc.lightning.subsystems">LightningIMU</a></dt>
 <dd>
 <div class="block">Creates a new <code>NavX</code>.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="frc/lightning/subsystems/IMU.IMUType.html#NAVX">NAVX</a></span> - frc.lightning.subsystems.<a href="frc/lightning/subsystems/IMU.IMUType.html" title="enum in frc.lightning.subsystems">IMU.IMUType</a></dt>
+<dt><span class="memberNameLink"><a href="frc/lightning/subsystems/LightningIMU.IMUType.html#NAVX">NAVX</a></span> - frc.lightning.subsystems.<a href="frc/lightning/subsystems/LightningIMU.IMUType.html" title="enum in frc.lightning.subsystems">LightningIMU.IMUType</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="frc/lightning/fault/FaultCode.Codes.html#NAVX_ERROR">NAVX_ERROR</a></span> - frc.lightning.fault.<a href="frc/lightning/fault/FaultCode.Codes.html" title="enum in frc.lightning.fault">FaultCode.Codes</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="frc/lightning/subsystems/NeoDrivetrain.html" title="class in frc.lightning.subsystems"><span class="typeNameLink">NeoDrivetrain</span></a> - Class in <a href="frc/lightning/subsystems/package-summary.html">frc.lightning.subsystems</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="frc/lightning/subsystems/NeoDrivetrain.html#%3Cinit%3E(frc.lightning.LightningConfig,int,int,int,java.util.function.Supplier,frc.lightning.subsystems.IMU.IMUFunction)">NeoDrivetrain(LightningConfig, int, int, int, Supplier&lt;Rotation2d&gt;, IMU.IMUFunction)</a></span> - Constructor for class frc.lightning.subsystems.<a href="frc/lightning/subsystems/NeoDrivetrain.html" title="class in frc.lightning.subsystems">NeoDrivetrain</a></dt>
+<dt><span class="memberNameLink"><a href="frc/lightning/subsystems/NeoDrivetrain.html#%3Cinit%3E(frc.lightning.LightningConfig,int,int,int,java.util.function.Supplier,frc.lightning.subsystems.LightningIMU.IMUFunction)">NeoDrivetrain(LightningConfig, int, int, int, Supplier&lt;Rotation2d&gt;, LightningIMU.IMUFunction)</a></span> - Constructor for class frc.lightning.subsystems.<a href="frc/lightning/subsystems/NeoDrivetrain.html" title="class in frc.lightning.subsystems">NeoDrivetrain</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="frc/lightning/subsystems/IMU.html#none()">none()</a></span> - Static method in class frc.lightning.subsystems.<a href="frc/lightning/subsystems/IMU.html" title="class in frc.lightning.subsystems">IMU</a></dt>
+<dt><span class="memberNameLink"><a href="frc/lightning/subsystems/LightningIMU.html#none()">none()</a></span> - Static method in class frc.lightning.subsystems.<a href="frc/lightning/subsystems/LightningIMU.html" title="class in frc.lightning.subsystems">LightningIMU</a></dt>
 <dd>
 <div class="block">Creates a static IMU</div>
 </dd>
-<dt><span class="memberNameLink"><a href="frc/lightning/subsystems/IMU.IMUType.html#NONE">NONE</a></span> - frc.lightning.subsystems.<a href="frc/lightning/subsystems/IMU.IMUType.html" title="enum in frc.lightning.subsystems">IMU.IMUType</a></dt>
+<dt><span class="memberNameLink"><a href="frc/lightning/subsystems/LightningIMU.IMUType.html#NONE">NONE</a></span> - frc.lightning.subsystems.<a href="frc/lightning/subsystems/LightningIMU.IMUType.html" title="enum in frc.lightning.subsystems">LightningIMU.IMUType</a></dt>
 <dd>&nbsp;</dd>
 </dl>
 <a id="I:O">
@@ -1395,16 +1395,16 @@ $</div>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="frc/lightning/subsystems/CTREDrivetrain.html#periodic()">periodic()</a></span> - Method in class frc.lightning.subsystems.<a href="frc/lightning/subsystems/CTREDrivetrain.html" title="class in frc.lightning.subsystems">CTREDrivetrain</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="frc/lightning/subsystems/IMU.html#periodic()">periodic()</a></span> - Method in class frc.lightning.subsystems.<a href="frc/lightning/subsystems/IMU.html" title="class in frc.lightning.subsystems">IMU</a></dt>
+<dt><span class="memberNameLink"><a href="frc/lightning/subsystems/LightningIMU.html#periodic()">periodic()</a></span> - Method in class frc.lightning.subsystems.<a href="frc/lightning/subsystems/LightningIMU.html" title="class in frc.lightning.subsystems">LightningIMU</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="frc/lightning/subsystems/NeoDrivetrain.html#periodic()">periodic()</a></span> - Method in class frc.lightning.subsystems.<a href="frc/lightning/subsystems/NeoDrivetrain.html" title="class in frc.lightning.subsystems">NeoDrivetrain</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="frc/lightning/subsystems/IMU.html#pigeon(int)">pigeon(int)</a></span> - Static method in class frc.lightning.subsystems.<a href="frc/lightning/subsystems/IMU.html" title="class in frc.lightning.subsystems">IMU</a></dt>
+<dt><span class="memberNameLink"><a href="frc/lightning/subsystems/LightningIMU.html#pigeon(int)">pigeon(int)</a></span> - Static method in class frc.lightning.subsystems.<a href="frc/lightning/subsystems/LightningIMU.html" title="class in frc.lightning.subsystems">LightningIMU</a></dt>
 <dd>
 <div class="block">Creates a new <code>Pigeon</code> with 
  the given ID.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="frc/lightning/subsystems/IMU.IMUType.html#PIGEON">PIGEON</a></span> - frc.lightning.subsystems.<a href="frc/lightning/subsystems/IMU.IMUType.html" title="enum in frc.lightning.subsystems">IMU.IMUType</a></dt>
+<dt><span class="memberNameLink"><a href="frc/lightning/subsystems/LightningIMU.IMUType.html#PIGEON">PIGEON</a></span> - frc.lightning.subsystems.<a href="frc/lightning/subsystems/LightningIMU.IMUType.html" title="enum in frc.lightning.subsystems">LightningIMU.IMUType</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="frc/lightning/util/InterpolatingMotionPoint.html#position">position</a></span> - Variable in class frc.lightning.util.<a href="frc/lightning/util/InterpolatingMotionPoint.html" title="class in frc.lightning.util">InterpolatingMotionPoint</a></dt>
 <dd>&nbsp;</dd>
@@ -1469,7 +1469,7 @@ $</div>
 </dd>
 <dt><span class="memberNameLink"><a href="frc/lightning/logging/CommandLogger.html#reset()">reset()</a></span> - Method in class frc.lightning.logging.<a href="frc/lightning/logging/CommandLogger.html" title="class in frc.lightning.logging">CommandLogger</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="frc/lightning/subsystems/IMU.html#reset()">reset()</a></span> - Method in class frc.lightning.subsystems.<a href="frc/lightning/subsystems/IMU.html" title="class in frc.lightning.subsystems">IMU</a></dt>
+<dt><span class="memberNameLink"><a href="frc/lightning/subsystems/LightningIMU.html#reset()">reset()</a></span> - Method in class frc.lightning.subsystems.<a href="frc/lightning/subsystems/LightningIMU.html" title="class in frc.lightning.subsystems">LightningIMU</a></dt>
 <dd>
 <div class="block">Reset IMU heading to 0</div>
 </dd>
@@ -1738,7 +1738,7 @@ $</div>
 <dd>
 <div class="block">Base display class configures logging for all <a href="frc/lightning/subsystems/LightningDrivetrain.html" title="interface in frc.lightning.subsystems"><code>LightningDrivetrain</code></a> types.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="frc/lightning/subsystems/ShuffleboardBaseRobotDisplay.html#%3Cinit%3E(frc.lightning.subsystems.LightningDrivetrain,frc.lightning.subsystems.IMU)">ShuffleboardBaseRobotDisplay(LightningDrivetrain, IMU)</a></span> - Constructor for class frc.lightning.subsystems.<a href="frc/lightning/subsystems/ShuffleboardBaseRobotDisplay.html" title="class in frc.lightning.subsystems">ShuffleboardBaseRobotDisplay</a></dt>
+<dt><span class="memberNameLink"><a href="frc/lightning/subsystems/ShuffleboardBaseRobotDisplay.html#%3Cinit%3E(frc.lightning.subsystems.LightningDrivetrain,frc.lightning.subsystems.LightningIMU)">ShuffleboardBaseRobotDisplay(LightningDrivetrain, LightningIMU)</a></span> - Constructor for class frc.lightning.subsystems.<a href="frc/lightning/subsystems/ShuffleboardBaseRobotDisplay.html" title="class in frc.lightning.subsystems">ShuffleboardBaseRobotDisplay</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="frc/lightning/util/SimpleSchedule.html" title="class in frc.lightning.util"><span class="typeNameLink">SimpleSchedule</span></a> - Class in <a href="frc/lightning/util/package-summary.html">frc.lightning.util</a></dt>
 <dd>&nbsp;</dd>
@@ -1945,7 +1945,7 @@ $</div>
 <dd>
 <div class="block">Returns the enum constant of this type with the specified name.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="frc/lightning/subsystems/IMU.IMUType.html#valueOf(java.lang.String)">valueOf(String)</a></span> - Static method in enum frc.lightning.subsystems.<a href="frc/lightning/subsystems/IMU.IMUType.html" title="enum in frc.lightning.subsystems">IMU.IMUType</a></dt>
+<dt><span class="memberNameLink"><a href="frc/lightning/subsystems/LightningIMU.IMUType.html#valueOf(java.lang.String)">valueOf(String)</a></span> - Static method in enum frc.lightning.subsystems.<a href="frc/lightning/subsystems/LightningIMU.IMUType.html" title="enum in frc.lightning.subsystems">LightningIMU.IMUType</a></dt>
 <dd>
 <div class="block">Returns the enum constant of this type with the specified name.</div>
 </dd>
@@ -1962,7 +1962,7 @@ $</div>
 <div class="block">Returns an array containing the constants of this enum type, in
 the order they are declared.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="frc/lightning/subsystems/IMU.IMUType.html#values()">values()</a></span> - Static method in enum frc.lightning.subsystems.<a href="frc/lightning/subsystems/IMU.IMUType.html" title="enum in frc.lightning.subsystems">IMU.IMUType</a></dt>
+<dt><span class="memberNameLink"><a href="frc/lightning/subsystems/LightningIMU.IMUType.html#values()">values()</a></span> - Static method in enum frc.lightning.subsystems.<a href="frc/lightning/subsystems/LightningIMU.IMUType.html" title="enum in frc.lightning.subsystems">LightningIMU.IMUType</a></dt>
 <dd>
 <div class="block">Returns an array containing the constants of this enum type, in
 the order they are declared.</div>
@@ -2068,7 +2068,7 @@ the order they are declared.</div>
 </a>
 <h2 class="title">Z</h2>
 <dl>
-<dt><span class="memberNameLink"><a href="frc/lightning/subsystems/IMU.html#zero()">zero()</a></span> - Method in class frc.lightning.subsystems.<a href="frc/lightning/subsystems/IMU.html" title="class in frc.lightning.subsystems">IMU</a></dt>
+<dt><span class="memberNameLink"><a href="frc/lightning/subsystems/LightningIMU.html#zero()">zero()</a></span> - Method in class frc.lightning.subsystems.<a href="frc/lightning/subsystems/LightningIMU.html" title="class in frc.lightning.subsystems">LightningIMU</a></dt>
 <dd>
 <div class="block">Function to reset IMU heading</div>
 </dd>
