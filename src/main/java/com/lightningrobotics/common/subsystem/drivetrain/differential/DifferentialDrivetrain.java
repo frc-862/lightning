@@ -91,6 +91,8 @@ public class DifferentialDrivetrain extends LightningDrivetrain {
     }
 
     public void tankDrive(double leftSpeed, double rightSpeed) {
+        leftSpeed = LightningMath.constrain(leftSpeed, -1.0, 1.0);
+        rightSpeed = LightningMath.constrain(rightSpeed, -1.0, 1.0);
         setLeftOutput(leftSpeed);
         setRightOutput(rightSpeed);
     }
