@@ -9,11 +9,11 @@ public class DifferentialGains extends LightningGains {
 
     private boolean[] leftInverts;
     private boolean[] rightInverts;
-    private int trackWidth; 
+    private double trackWidth; 
 
     public DifferentialGains() {}
 
-    public DifferentialGains(double maxSpeed, double maxAcceleration, int trackWidth, boolean[] leftInverts, boolean[] rightInverts) {
+    public DifferentialGains(double maxSpeed, double maxAcceleration, double trackWidth, boolean[] leftInverts, boolean[] rightInverts) {
         super(maxSpeed, maxAcceleration);
         this.trackWidth = trackWidth;
         this.leftInverts = leftInverts;
@@ -25,7 +25,7 @@ public class DifferentialGains extends LightningGains {
         return kinematics;
     }
 
-    public int getTrackWidth() {
+    public double getTrackWidth() {
         return trackWidth;
     }
 
