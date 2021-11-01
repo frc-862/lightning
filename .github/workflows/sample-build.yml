@@ -19,7 +19,7 @@ jobs:
       with:
         java-version: 11
     - name: Make gradlew Executable
-      run: chmod +x ./gradlew
+      run: chmod +x ./samples/swerve-simple/gradlew
     - name: Execute Build
       run: ./samples/swerve-simple/gradlew build
 
@@ -36,6 +36,6 @@ jobs:
       with:
         java-version: 11
     - name: Make gradlew Executable
-      run: chmod +x ./gradlew
+      run: chmod +x ./samples/differential-simple/gradlew
     - name: Execute Build
       run: ./samples/differential-simple/gradlew build
