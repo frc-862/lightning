@@ -1,7 +1,8 @@
 # lightning
 
 ![Build](https://github.com/frc-862/lightning/workflows/Build/badge.svg)
-[![Docs](https://readthedocs.org/projects/pip/badge/)](https://frc-862.github.io/lightning/)
+![Build Samples](https://github.com/frc-862/lightning/actions/workflows/sample-build.yml/badge.svg)
+[![Javadoc](https://github.com/frc-862/lightning/actions/workflows/javadoc.yml/badge.svg)](https://frc-862.github.io/lightning/)
 
 ## Description
 
