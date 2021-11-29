@@ -45,10 +45,12 @@ jobs:
           java-version: 11
           server-id: github
           settings-path: ${{ github.workspace }}
+      - name: Make gradlew Executable
+        run: chmod +x ./gradlew
       - name: Build with Gradle
-        run: gradle build
+        run: ./gradlew build
       - name: Publish to GitHub Packages
-        run: gradle publish
+        run: ./gradlew publish
         env:
           USERNAME: ${{ github.actor }}
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
