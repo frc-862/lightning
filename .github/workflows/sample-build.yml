@@ -21,7 +21,7 @@ jobs:
     - name: Execute Build
       run: ./samples/swerve-simple/gradlew build
 
-  # Build Simple Swerve
+  # Build Swerve
   swerve-auton:
     runs-on: ubuntu-latest
     steps:
@@ -50,3 +50,18 @@ jobs:
       run: chmod +x ./samples/differential-simple/gradlew
     - name: Execute Build
       run: ./samples/differential-simple/gradlew build
+
+  # Build Differential
+  differential-auton:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+    - name: Config JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Make gradlew Executable
+      run: chmod +x ./samples/differential-auton/gradlew
+    - name: Execute Build
+      run: ./samples/differential-auton/gradlew build
