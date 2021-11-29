@@ -6,6 +6,8 @@ import java.util.List;
 import com.lightningrobotics.common.auto.trajectory.Trajectory;
 import com.lightningrobotics.common.auto.trajectory.TrajectoryConfig;
 import com.lightningrobotics.common.subsystem.drivetrain.LightningDrivetrain;
+import com.lightningrobotics.common.subsystem.drivetrain.differential.DifferentialDrivetrain;
+import com.lightningrobotics.common.subsystem.drivetrain.swerve.SwerveDrivetrain;
 
 import edu.wpi.first.wpilibj.geometry.Pose2d;
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
@@ -35,6 +37,15 @@ public class Path {
      * Trajectory of the path
      */
     private Trajectory trajectory;
+
+    /**
+     * Constructor creates path object
+     * @param name The name of the path
+     * @param waypoints List of waypoints for the optimized path to follow
+     */
+    public Path(List<Pose2d> waypoints) {
+        this("", waypoints, false);
+    }
 
     /**
      * Constructor creates path object
@@ -104,10 +115,18 @@ public class Path {
      * Retrieves the path represented as a command
      * @param drivetrain Drivetrain object of the robot the path should be configured for
      * @return A {@link edu.wpi.first.wpilibj2.command.Command command} representing the path that can be driven by the given drivetrain
+     * @throws Exception
      */
-    public Command getCommand(LightningDrivetrain drivetrain) {
+    public Command getCommand(LightningDrivetrain drivetrain) throws Exception {
         trajectory = this.getTrajectory(drivetrain);
-        // TODO add rest
+        if(drivetrain instanceof DifferentialDrivetrain) {
+            // some diff drive things
+        } else if(drivetrain instanceof SwerveDrivetrain) {
+
+        } else {
+            throw new Exception("ERROR: Unsupported Drivetrain Type.\nA drivetrain like no other!");
+        }
+        //TODO implement
         return null;
     }
     

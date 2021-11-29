@@ -45,13 +45,13 @@ public class SwerveKinematics implements LightningKinematics {
         var RL_Angle = Math.atan2(A, D);
         var RR_Angle = Math.atan2(A, C);
 
-        var MAX = LightningMath.max(FR_Speed, FL_Speed, RL_Speed, RR_Speed);
+        var maxWheelSpeed = LightningMath.max(FR_Speed, FL_Speed, RL_Speed, RR_Speed);
 
-        if(MAX > gains.getMaxSpeed()) {
-            FR_Speed /= MAX;
-            FL_Speed /= MAX;
-            RL_Speed /= MAX;
-            RR_Speed /= MAX;
+        if(maxWheelSpeed > gains.getMaxSpeed()) {
+            FR_Speed = (FR_Speed / maxWheelSpeed) * gains.getMaxSpeed();
+            FL_Speed = (FL_Speed / maxWheelSpeed) * gains.getMaxSpeed();
+            RL_Speed = (RL_Speed / maxWheelSpeed) * gains.getMaxSpeed();
+            RR_Speed = (RR_Speed / maxWheelSpeed) * gains.getMaxSpeed();
         }
 
         return new SwerveDrivetrainState(new SwerveModuleState[]{
