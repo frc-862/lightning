@@ -12,8 +12,6 @@ jobs:
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
-    - name: Initialize Submodules 
-      uses: textbook/git-checkout-submodule-action@master
     - name: Config JDK 11
       uses: actions/setup-java@v1
       with:

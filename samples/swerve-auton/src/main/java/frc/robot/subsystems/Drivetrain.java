@@ -16,14 +16,14 @@ import edu.wpi.first.wpilibj.geometry.Rotation2d;
 public class Drivetrain extends SwerveDrivetrain {
 
     private static final SwerveGains SWERVE_GAINS = new SwerveGains(
-        22.5, // width
-        22.5, // length
-        16.2, // maxSpeed
-        16.2, // maxRealSpeed
-        10, // maxAcceleration
-        16.2, // maxAngularSpeed
-        new boolean[]{true, true, true, true}, // turnMotorInverts
-        new boolean[]{false, false, false, false} // driveMotorInverts
+        22.5, 
+        22.5,
+        1,
+        17.2,
+        10,
+        4 * Math.PI,
+        new boolean[]{true, true, true, true},
+        new boolean[]{false, false, false, false}
     );
 
     public Drivetrain() {
