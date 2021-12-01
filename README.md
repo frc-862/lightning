@@ -1,8 +1,9 @@
 # lightning
 
 ![Build](https://github.com/frc-862/lightning/workflows/Build/badge.svg)
-[![Build Samples](https://github.com/frc-862/lightning/actions/workflows/sample-build.yml/badge.svg)](https://github.com/frc-862/lightning/tree/develop/samples)
+[![Build Samples](https://github.com/frc-862/lightning/actions/workflows/sample-build.yml/badge.svg)](https://github.com/frc-862/lightning/tree/develop/samples)\
 [![Javadoc](https://github.com/frc-862/lightning/actions/workflows/javadoc.yml/badge.svg)](https://frc-862.github.io/lightning/)
+[![GitHub Package Registry Version](https://img.shields.io/github/release/frc-862/lightning.svg?label=GPR%20Version&logo=github&color=orange)](https://github.com/github/learning-lab-components/packages/11396)
 
 ## Description
 
