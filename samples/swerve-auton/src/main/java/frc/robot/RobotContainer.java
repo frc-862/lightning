@@ -6,6 +6,7 @@ import com.lightningrobotics.common.LightningContainer;
 import com.lightningrobotics.common.auto.Autonomous;
 import com.lightningrobotics.common.auto.Path;
 import com.lightningrobotics.common.command.drivetrain.swerve.SwerveDriveCommand;
+import com.lightningrobotics.common.geometry.LightningOdometer;
 import com.lightningrobotics.common.subsystem.core.LightningIMU;
 import com.lightningrobotics.common.subsystem.drivetrain.LightningDrivetrain;
 import com.lightningrobotics.common.subsystem.drivetrain.swerve.SwerveDrivetrain;
@@ -23,6 +24,8 @@ public class RobotContainer extends LightningContainer {
 	private static final LightningIMU imu = LightningIMU.pigeon(19);
 
 	private static final SwerveDrivetrain drivetrain = new Drivetrain();
+
+	private static final LightningOdometer lo = new LightningOdometer(drivetrain.getGains().getKinematics(), imu);
 
 	@Override
 	protected void configureButtonBindings() { }

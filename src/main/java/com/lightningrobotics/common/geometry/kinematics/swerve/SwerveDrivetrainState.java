@@ -18,4 +18,9 @@ public class SwerveDrivetrainState extends DrivetrainState {
         this.states = states;
     }
 
+    @Override
+    public DrivetrainState getState() {
+        return this;
+    }
+
 }
