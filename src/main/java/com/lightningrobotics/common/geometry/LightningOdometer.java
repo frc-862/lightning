@@ -4,7 +4,6 @@ import com.lightningrobotics.common.geometry.kinematics.DrivetrainState;
 import com.lightningrobotics.common.geometry.kinematics.LightningKinematics;
 import com.lightningrobotics.common.geometry.kinematics.swerve.SwerveDrivetrainState;
 import com.lightningrobotics.common.subsystem.core.LightningIMU;
-import com.lightningrobotics.common.subsystem.drivetrain.LightningDrivetrain;
 
 import edu.wpi.first.wpilibj.geometry.Pose2d;
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
@@ -23,7 +22,6 @@ public class LightningOdometer extends SubsystemBase {
     private Rotation2d previousAngle;
 
     private LightningIMU imu;
-    private LightningDrivetrain drivetrain;
     private SwerveDrivetrainState state;
 
     public LightningOdometer(LightningKinematics kinematics, Pose2d initialPose, LightningIMU imu) {
