@@ -42,9 +42,6 @@ public class RobotContainer extends LightningContainer {
 	protected void initializeDashboardCommands() { }
 
 	@Override
-	protected void configureAutonomousPaths() { }
-
-	@Override
 	protected void configureAutonomousCommands() {
 		try {
 			Autonomous.register("Test Swerve Auton", 

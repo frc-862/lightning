@@ -1,7 +1,7 @@
 package com.lightningrobotics.common.testing;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import com.lightningrobotics.common.fault.FaultCode;
+import com.lightningrobotics.common.fault.LightningFaultCodes;
 
 /**
  * Base testing class. System tests run when the robot is enabled in test mode 
@@ -32,27 +32,27 @@ public abstract class SystemTest extends CommandBase implements Comparable<Syste
         DO_FIRST, HIGH, MED, LOW, DONT_CARE
     }
 
-    private FaultCode.Codes code;
+    private LightningFaultCodes.Code code;
     private Priority priority;
 
     /**
      * Creates a new SystemTest
      * @param msg Dashboard display message for the SystemTest
-     * @param code {@link com.lightningrobotics.common.fault.FaultCode.Codes FaultCode} relating
+     * @param code {@link com.lightningrobotics.common.fault.LightningFaultCodes.Code FaultCode} relating
      * to the SystemTest
      */
-    public SystemTest(String msg, FaultCode.Codes code) {
+    public SystemTest(String msg, LightningFaultCodes.Code code) {
         this(msg, code, Priority.DONT_CARE);
     }
 
     /**
      * Creates a new SystemTest
      * @param msg Dashboard display message for the SystemTest
-     * @param code {@link com.lightningrobotics.common.fault.FaultCode.Codes FaultCode} relating
+     * @param code {@link com.lightningrobotics.common.fault.LightningFaultCodes.Code FaultCode} relating
      * to the SystemTest
      * @param priority {@link SystemTest.Priority} of the SystemTest
      */
-    public SystemTest(String msg, FaultCode.Codes code, Priority priority) {
+    public SystemTest(String msg, LightningFaultCodes.Code code, Priority priority) {
         this.msg = msg;
         this.code = code;
         this.priority = priority;
@@ -81,11 +81,11 @@ public abstract class SystemTest extends CommandBase implements Comparable<Syste
     abstract public boolean didPass();
 
     /**
-     * The relating {@link com.lightningrobotics.common.fault.FaultCode.Codes FaultCode} 
+     * The relating {@link com.lightningrobotics.common.fault.LightningFaultCodes.Code FaultCode} 
      * corresponding to the SystemTest
      * @return The corresponding FaultCode
      */
-    public FaultCode.Codes getCode() {
+    public LightningFaultCodes.Code getCode() {
         return code;
     }
 
