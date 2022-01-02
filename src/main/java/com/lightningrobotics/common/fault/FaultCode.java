@@ -20,44 +20,25 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
  */
 public class FaultCode {
 
-    /**
-     * All possible fault codes on the robot
-     * TODO - make abstract - be able to add Codes dynamically, see LightningFaultCode
-     */
-    public enum Codes {
-        LEFT_ENCODER_NOT_FOUND,
-        RIGHT_ENCODER_NOT_FOUND,
-        LOW_MAIN_VOLTAGE,
-        SLOW_LOOPER,
-        MISMATCHED_MOTION_PROFILES,
-        NAVX_ERROR,
-        INTERNAL_ERROR,
-        DRIVETRAIN,
-        LEFT_DRIVE_FAILURE,
-        RIGHT_DRIVE_FAILURE,
-        DRIVE_MASTER_ERROR,
-        DRIVE_PRIMARY_SLAVE_ERROR,
-        DRIVE_SECONDARY_SLAVE_ERROR,
-        RIGHT_MOTORS_OUT_OF_SYNC,
-        LEFT_MOTORS_OUT_OF_SYNC,
-        GENERAL;
-    }
-
-    private static HashSet<Codes> faults = new HashSet<>();
-    private static Map<Codes, NetworkTableEntry> networkTableMap = new HashMap<>();
+    private static final String FAULT_PATH = "/home/lvuser/faults.log";
+    private static HashSet<LightningFaultCodes.Code> faults = new HashSet<>();
+    private static Map<LightningFaultCodes.Code, NetworkTableEntry> networkTableMap = new HashMap<>();
     private static boolean dummy_light = false;
 
     /**
-     * Links a {@link com.lightningrobotics.common.fault.FaultCode.Codes} with a {@link edu.wpi.first.networktables.NetworkTableEntry}
-     * @param code The {@link com.lightningrobotics.common.fault.FaultCode.Codes} that needs to be linked with an NT entry
+     * Links a {@link com.lightningrobotics.common.fault.LightningFaultCodes.Code} with a {@link edu.wpi.first.networktables.NetworkTableEntry}
+     * @param code The {@link com.lightningrobotics.common.fault.LightningFaultCodes.Code} that needs to be linked with an NT entry
      * @param nte The {@link edu.wpi.first.networktables.NetworkTableEntry} to link the fault to
      */
-    public static void setNetworkTableEntry(Codes code, NetworkTableEntry nte) {
+    public static void setNetworkTableEntry(LightningFaultCodes.Code code, NetworkTableEntry nte) {
         networkTableMap.put(code, nte);
     }
 
-    static {
-        eachCode((Codes code, Boolean state) -> {
+    /**
+     * Push each fault code to the dashboard
+     */
+    public static void init() {
+        eachCode((LightningFaultCodes.Code code, Boolean state) -> {
             var nte = Shuffleboard.getTab("Fault Codes")
                     .add("FAULT_" + code.toString(), state)
                     .withWidget("Boolean Box")
@@ -79,23 +60,23 @@ public class FaultCode {
      * @return The path to the fault log file
      */
     private static Path getFaultPath() {
-        return Paths.get("/home/lvuser/faults.log");
+        return Paths.get(FAULT_PATH);
     }
 
     /**
      * Writes the given fault code
-     * @param code The {@link com.lightningrobotics.common.fault.FaultCode.Codes} to be written
+     * @param code The {@link com.lightningrobotics.common.fault.LightningFaultCodes.Code} to be written
      */
-    public static void write(Codes code) {
+    public static void write(LightningFaultCodes.Code code) {
         write(code, "");
     }
 
     /**
      * Updates the {@link edu.wpi.first.networktables.NetworkTableEntry} for each 
-     * {@link com.lightningrobotics.common.fault.FaultCode.Codes}.
+     * {@link com.lightningrobotics.common.fault.LightningFaultCodes.Code}.
      */
     public static void update() {
-        eachCode((Codes c, Boolean state) -> {
+        eachCode((LightningFaultCodes.Code c, Boolean state) -> {
             final var entry = networkTableMap.get(c);
             if (entry != null) entry.setBoolean(state);
         });
@@ -107,8 +88,8 @@ public class FaultCode {
      * @param fn The {@link java.util.function.BiConsumer} function to perform on each code. 
      * The function should take a code and state (true or false) as parameters.
      */
-    public static void eachCode(BiConsumer<Codes, Boolean> fn) {
-        for (Codes c : Codes.values()) {
+    public static void eachCode(BiConsumer<LightningFaultCodes.Code, Boolean> fn) {
+        for (LightningFaultCodes.Code c : LightningFaultCodes.getCodes()) {
             fn.accept(c, !faults.contains(c));
         }
     }
@@ -117,15 +98,16 @@ public class FaultCode {
      * Writes the fault code, effectively logging that it has been detected in 
      * a log file and the system error stream. Per {@link #update()}, they will be updated
      * automatically on {@link edu.wpi.first.wpilibj.shuffleboard.Shuffleboard Shuffleboard}
-     * @param code The {@link com.lightningrobotics.common.fault.FaultCode.Codes} to be written
+     * @param code The {@link com.lightningrobotics.common.fault.LightningFaultCodes.Code} to be written
      * @param msg The message to write to the log file
      */
-    public static void write(Codes code, String msg) {
+    public static void write(LightningFaultCodes.Code code, String msg) {
         dummy_light = true;
         try {
             if (!faults.contains(code)) {
                 faults.add(code);
-                Files.write(Paths.get("/home/lvuser/faults.log"),
+                code.setState(true);
+                Files.write(getFaultPath(),
                             ("FAULT Detected: " + code.toString() + " " + msg + "\n").getBytes(),
                             StandardOpenOption.CREATE,
                             StandardOpenOption.APPEND);
@@ -156,7 +138,7 @@ public class FaultCode {
         Map<String, Object> result = new HashMap<>();
         Map<String, Object> faults = new HashMap<>();
 
-        eachCode((Codes c, Boolean state) -> {
+        eachCode((LightningFaultCodes.Code c, Boolean state) -> {
             faults.put("FAULT_" + c.toString(), state);
         });
 

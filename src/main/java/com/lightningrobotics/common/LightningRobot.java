@@ -9,8 +9,8 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import com.lightningrobotics.common.auto.Autonomous;
 import com.lightningrobotics.common.fault.FaultCode;
 import com.lightningrobotics.common.fault.FaultMonitor;
+import com.lightningrobotics.common.fault.LightningFaultCodes;
 import com.lightningrobotics.common.fault.TimedFaultMonitor;
-import com.lightningrobotics.common.fault.FaultCode.Codes;
 import com.lightningrobotics.common.logging.DataLogger;
 import com.lightningrobotics.common.testing.SystemTestCommand;
 
@@ -65,7 +65,7 @@ public class LightningRobot extends TimedRobot {
      * Nothing should happen here.
      */
     @Override
-    public void disabledPeriodic() {}
+    public void disabledPeriodic() { /* Do Nothing */ }
 
     /**
      * This function is run when the robot is first started up and should be
@@ -103,11 +103,14 @@ public class LightningRobot extends TimedRobot {
         // By this point all datalog fields should be registered
         DataLogger.preventNewDataElements();
 
+        // Also by this point, all fault codes should be registered, so we can throw them up on the dashboard
+        FaultCode.init();
+
         // Set up a fault monitor for our loop time
-        FaultMonitor.register(new TimedFaultMonitor(Codes.SLOW_LOOPER, () -> getLoopTime() > getPeriod(),
+        FaultMonitor.register(new TimedFaultMonitor(LightningFaultCodes.getFaultCode("SLOW_LOOPER"), () -> getLoopTime() > getPeriod(),
                               0.08, "Loop is running slow: " + getLoopTime()));
 
-        // Load our autonomous chooser
+        // Load our autonomous chooser to the dashboard
         Autonomous.load();
 
     }

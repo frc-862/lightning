@@ -2,7 +2,7 @@ package com.lightningrobotics.common.fault;
 
 import java.util.function.DoubleSupplier;
 import edu.wpi.first.wpilibj.Timer;
-import com.lightningrobotics.common.fault.FaultCode.Codes;
+import com.lightningrobotics.common.fault.LightningFaultCodes.Code;
 
 /**
  * A fault monitor that ensures a given value remains unchanged for a duration of time
@@ -14,7 +14,7 @@ public class UnchangingFaultMonitor extends AbstractFaultMonitor {
     private final double epsilon;
     private double previousValue;
 
-    public UnchangingFaultMonitor(Codes code, DoubleSupplier fn, double duration, double epsilon, String msg) {
+    public UnchangingFaultMonitor(Code code, DoubleSupplier fn, double duration, double epsilon, String msg) {
         super(code, msg);
         this.fn = fn;
         this.epsilon = epsilon;

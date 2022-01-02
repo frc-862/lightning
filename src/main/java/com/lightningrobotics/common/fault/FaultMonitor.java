@@ -3,7 +3,7 @@ package com.lightningrobotics.common.fault;
 import java.util.LinkedList;
 import java.util.function.BooleanSupplier;
 
-import com.lightningrobotics.common.fault.FaultCode.Codes;
+import com.lightningrobotics.common.fault.LightningFaultCodes.Code;
 
 import java.util.List;
 
@@ -12,6 +12,7 @@ import java.util.List;
  * also provides a means to register ad check other fault monitors
  */
 public class FaultMonitor extends AbstractFaultMonitor {
+
     private static List<AbstractFaultMonitor> monitors = new LinkedList<>();
 
     final BooleanSupplier fn;
@@ -31,16 +32,16 @@ public class FaultMonitor extends AbstractFaultMonitor {
         monitors.forEach(fm -> fm.check());
     }
 
-    public FaultMonitor(Codes code, BooleanSupplier fn, String msg, boolean fatal) {
+    public FaultMonitor(Code code, BooleanSupplier fn, String msg, boolean fatal) {
         super(code, msg, fatal);
         this.fn = fn;
     }
 
-    public FaultMonitor(Codes code, BooleanSupplier fn, String msg) {
+    public FaultMonitor(Code code, BooleanSupplier fn, String msg) {
         this(code, fn, msg, false);
     }
 
-    public FaultMonitor(Codes code, BooleanSupplier fn) {
+    public FaultMonitor(Code code, BooleanSupplier fn) {
         this(code, fn, "FAULT: " + code.toString());
     }
 

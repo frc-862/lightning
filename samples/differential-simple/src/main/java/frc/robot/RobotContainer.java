@@ -36,9 +36,6 @@ public class RobotContainer extends LightningContainer {
 	protected void initializeDashboardCommands() { }
 
 	@Override
-	protected void configureAutonomousPaths() { }
-
-	@Override
 	protected void configureAutonomousCommands() { }
 
 	@Override
