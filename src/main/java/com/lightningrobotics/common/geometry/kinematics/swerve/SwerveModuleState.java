@@ -1,6 +1,6 @@
 package com.lightningrobotics.common.geometry.kinematics.swerve;
 
-import edu.wpi.first.wpilibj.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Rotation2d;
 
 public class SwerveModuleState implements Comparable<SwerveModuleState> {
 

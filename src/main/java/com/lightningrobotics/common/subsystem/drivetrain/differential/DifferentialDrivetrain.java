@@ -9,18 +9,18 @@ import com.lightningrobotics.common.subsystem.drivetrain.LightningDrivetrain;
 import com.lightningrobotics.common.subsystem.drivetrain.LightningGains;
 import com.lightningrobotics.common.util.LightningMath;
 
-import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 
 public class DifferentialDrivetrain extends LightningDrivetrain {
 
     private DifferentialGains gains;
 
-    private SpeedController[] leftMotors;
-    private SpeedController[] rightMotors;
+    private MotorController[] leftMotors;
+    private MotorController[] rightMotors;
 
     private int motorCount = 0;
 
-    public DifferentialDrivetrain(DifferentialGains gains, SpeedController[] leftMotors, SpeedController[] rightMotors) {
+    public DifferentialDrivetrain(DifferentialGains gains, MotorController[] leftMotors, MotorController[] rightMotors) {
         this.gains = gains;
         this.leftMotors = leftMotors;
         this.rightMotors = rightMotors;
@@ -105,31 +105,31 @@ public class DifferentialDrivetrain extends LightningDrivetrain {
         withEachRightMotor(m -> m.set(LightningMath.constrain(output, -1.0, 1.0)));
     }
 
-    protected void withEachMotor(Consumer<SpeedController> op) {
+    protected void withEachMotor(Consumer<MotorController> op) {
         for (var i = 0; i < motorCount; ++i) {
             op.accept(leftMotors[i]);
             op.accept(rightMotors[i]);
         }
     }
 
-    protected void withEachLeftMotor(Consumer<SpeedController> op) {
+    protected void withEachLeftMotor(Consumer<MotorController> op) {
         for (var i = 0; i < motorCount; ++i)
             op.accept(leftMotors[i]);
     }
 
-    protected void withEachRightMotor(Consumer<SpeedController> op) {
+    protected void withEachRightMotor(Consumer<MotorController> op) {
         for (var i = 0; i < motorCount; ++i)
             op.accept(rightMotors[i]);
     }
 
-    protected void withEachMotorIndexed(BiConsumer<SpeedController, Integer> op) {
+    protected void withEachMotorIndexed(BiConsumer<MotorController, Integer> op) {
         for (var i = 0; i < motorCount; ++i) {
             op.accept(leftMotors[i], i);
             op.accept(rightMotors[i], i);
         }
     }
 
-    protected void withEachMotor(BiConsumer<SpeedController, SpeedController> op) {
+    protected void withEachMotor(BiConsumer<MotorController, MotorController> op) {
         for (var i = 0; i < motorCount; ++i) {
             op.accept(leftMotors[i], leftMotors[0]);
             op.accept(rightMotors[i], rightMotors[0]);

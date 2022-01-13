@@ -7,7 +7,6 @@ import com.lightningrobotics.common.subsystem.drivetrain.LightningDrivetrain;
 import com.lightningrobotics.common.subsystem.drivetrain.differential.DifferentialDrivetrain;
 
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.GenericHID.Hand;
 import frc.robot.subsystems.Drivetrain;
 
 public class RobotContainer extends LightningContainer {
@@ -26,7 +25,7 @@ public class RobotContainer extends LightningContainer {
 
 	@Override
 	protected void configureDefaultCommands() {
-		drivetrain.setDefaultCommand(new DifferentialTankDrive(drivetrain, ()-> -driver.getY(Hand.kLeft), () -> -driver.getY(Hand.kRight)));
+		drivetrain.setDefaultCommand(new DifferentialTankDrive(drivetrain, ()-> -driver.getLeftY(), () -> -driver.getRightY()));
 	}
 
 	@Override

@@ -7,7 +7,7 @@
 
 package com.lightningrobotics.common.auto.trajectory;
 
-import edu.wpi.first.wpilibj.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Pose2d;
 
 /**
  * An interface for defining user-defined velocity and acceleration constraints

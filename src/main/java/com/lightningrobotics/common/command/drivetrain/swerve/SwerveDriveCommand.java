@@ -43,9 +43,9 @@ public class SwerveDriveCommand extends CommandBase {
     public void execute() {
 
         // Get filtered joystick input
-        var xInput    = filter.filter(-controller.getY(GenericHID.Hand.kLeft));
-        var yInput    = filter.filter(+controller.getX(GenericHID.Hand.kLeft));
-        var rotInput  = filter.filter(+controller.getX(GenericHID.Hand.kRight));
+        var xInput    = filter.filter(-controller.getLeftY());
+        var yInput    = filter.filter(+controller.getLeftX());
+        var rotInput  = filter.filter(+controller.getRightX());
 
         // Constrain magnitude vector from joysticks to w/in practical range
         var magnitude = Math.sqrt((xInput * xInput) + (yInput * yInput));
