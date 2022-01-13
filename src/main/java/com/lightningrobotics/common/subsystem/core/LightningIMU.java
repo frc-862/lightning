@@ -6,7 +6,7 @@ import com.ctre.phoenix.sensors.PigeonIMU;
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.SPI;
-import edu.wpi.first.wpilibj.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 /**
@@ -91,7 +91,7 @@ public class LightningIMU extends SubsystemBase {
     }
 
     /**
-     * Get the IMU heading as a {@link edu.wpi.first.wpilibj.geometry.Rotation2d Rotation2d}.
+     * Get the IMU heading as a {@link edu.wpi.first.math.geometry.Rotation2d Rotation2d}.
      * @return The heading
      */
     public Rotation2d getHeading() {
@@ -109,7 +109,7 @@ public class LightningIMU extends SubsystemBase {
 
     /**
      * A function that can be used to get the heading of the IMU
-     * @return A supplier of {@link edu.wpi.first.wpilibj.geometry.Rotation2d Rotation2d} objects.
+     * @return A supplier of {@link edu.wpi.first.math.geometry.Rotation2d Rotation2d} objects.
      */
     public Supplier<Rotation2d> heading() {
         return this::getHeading;

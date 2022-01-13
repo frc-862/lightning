@@ -6,8 +6,8 @@ import java.util.function.Supplier;
 import com.lightningrobotics.common.controller.PIDFController;
 import com.lightningrobotics.common.geometry.kinematics.swerve.SwerveModuleState;
 
-import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.geometry.Rotation2d;
+import edu.wpi.first.wpilibj.motorcontrol.MotorController;
+import edu.wpi.first.math.geometry.Rotation2d;
 
 /**
  * Represents a single swerve module with both drive and azimuth control.
@@ -15,16 +15,16 @@ import edu.wpi.first.wpilibj.geometry.Rotation2d;
 public class SwerveModule {
 
     private final SwerveGains gains;
-    private final SpeedController driveMotor;
-    private final SpeedController azimuthMotor;
+    private final MotorController driveMotor;
+    private final MotorController azimuthMotor;
     private final Supplier<Rotation2d> moduleAngle;
     private final DoubleSupplier driveMotorVelocity;
     private final PIDFController driveController;
     private final PIDFController angleController;
 
     public SwerveModule(SwerveGains gains,
-            SpeedController driveMotor,
-            SpeedController angleMotor,
+            MotorController driveMotor,
+            MotorController angleMotor,
             Supplier<Rotation2d> moduleAngle,
             DoubleSupplier driveMotorVelocity,
             PIDFController driveController,
@@ -50,11 +50,11 @@ public class SwerveModule {
         return driveMotorVelocity.getAsDouble();
     }
 
-    public SpeedController getDriveMotor() {
+    public MotorController getDriveMotor() {
         return driveMotor;
     }
 
-    public SpeedController getAzimuthMotor() {
+    public MotorController getAzimuthMotor() {
         return azimuthMotor;
     }
 

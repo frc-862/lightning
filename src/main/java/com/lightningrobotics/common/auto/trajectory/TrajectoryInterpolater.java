@@ -31,7 +31,7 @@ package com.lightningrobotics.common.auto.trajectory;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.wpi.first.wpilibj.spline.PoseWithCurvature;
+import edu.wpi.first.math.spline.PoseWithCurvature;
 
 /** 
  * Class used to parameterize a trajectory by time. 

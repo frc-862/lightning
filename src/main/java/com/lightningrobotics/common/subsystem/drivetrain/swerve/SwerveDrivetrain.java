@@ -8,7 +8,7 @@ import com.lightningrobotics.common.geometry.kinematics.swerve.SwerveModuleState
 import com.lightningrobotics.common.subsystem.drivetrain.LightningDrivetrain;
 import com.lightningrobotics.common.subsystem.drivetrain.LightningGains;
 
-import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 
 public abstract class SwerveDrivetrain extends LightningDrivetrain {
@@ -104,11 +104,11 @@ public abstract class SwerveDrivetrain extends LightningDrivetrain {
         for(var module : modules) op.accept(module);
     }
 
-    protected void withEachDriveMotor(Consumer<SpeedController> op) {
+    protected void withEachDriveMotor(Consumer<MotorController> op) {
         for(var module : modules) op.accept(module.getDriveMotor());
     }
 
-    protected void withEachAzimuthMotor(Consumer<SpeedController> op) {
+    protected void withEachAzimuthMotor(Consumer<MotorController> op) {
         for(var module : modules) op.accept(module.getAzimuthMotor());
     }
 
