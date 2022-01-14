@@ -5,7 +5,7 @@ import com.lightningrobotics.common.logging.CommandLogger;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /**
- * A command that writes to {@link frc.lightning.logging.CommandLogger CommandLogger} during execution.
+ * A command that writes to {@link com.lightningrobotics.common.logging.CommandLogger CommandLogger} during execution.
  */
 public abstract class LoggedCommand extends CommandBase {
 
