@@ -26,8 +26,8 @@
     catch(err) {
     }
 //-->
-var data = {"i0":2,"i1":2,"i2":2,"i3":2,"i4":2,"i5":2,"i6":2,"i7":2,"i8":2,"i9":2,"i10":2,"i11":2,"i12":2,"i13":2,"i14":2,"i15":2,"i16":4,"i17":2,"i18":2,"i19":2,"i20":1,"i21":2,"i22":2,"i23":2,"i24":2,"i25":1,"i26":2,"i27":4,"i28":2,"i29":2,"i30":2,"i31":1,"i32":2,"i33":2,"i34":1,"i35":4,"i36":2,"i37":2,"i38":2,"i39":2,"i40":2,"i41":2,"i42":2,"i43":1,"i44":2,"i45":2,"i46":2,"i47":2,"i48":2,"i49":2,"i50":2,"i51":2,"i52":2,"i53":2,"i54":2,"i55":2,"i56":2,"i57":2,"i58":2,"i59":2,"i60":2,"i61":2,"i62":4,"i63":2,"i64":2,"i65":2,"i66":2,"i67":2,"i68":2,"i69":2,"i70":1,"i71":2,"i72":2};
-var tabs = {65535:["t0","All Classes"],1:["t1","Interface Summary"],2:["t2","Class Summary"],4:["t3","Enum Summary"]};
+var data = {"i0":2,"i1":2,"i2":2,"i3":2,"i4":2,"i5":2,"i6":2,"i7":2,"i8":2,"i9":2,"i10":2,"i11":2,"i12":2,"i13":2,"i14":2,"i15":2,"i16":2,"i17":2,"i18":2,"i19":2,"i20":2,"i21":2,"i22":2,"i23":4,"i24":2,"i25":2,"i26":2,"i27":2,"i28":2,"i29":2,"i30":2,"i31":2,"i32":1,"i33":4,"i34":1,"i35":2,"i36":2,"i37":2,"i38":2,"i39":2,"i40":2,"i41":2,"i42":1,"i43":2,"i44":2,"i45":2,"i46":2,"i47":2,"i48":2,"i49":4,"i50":2,"i51":2,"i52":2,"i53":2,"i54":2,"i55":2,"i56":4,"i57":2,"i58":2,"i59":2,"i60":2,"i61":1,"i62":2,"i63":2,"i64":8,"i65":2,"i66":2,"i67":2,"i68":1,"i69":2};
+var tabs = {65535:["t0","All Classes"],1:["t1","Interface Summary"],2:["t2","Class Summary"],4:["t3","Enum Summary"],8:["t4","Exception Summary"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
 var tableTab = "tableTab";
@@ -104,412 +104,381 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <ul class="blockList">
 <li class="blockList">
 <table class="typeSummary">
-<caption><span id="t0" class="activeTableTab"><span>All Classes</span><span class="tabEnd">&nbsp;</span></span><span id="t1" class="tableTab"><span><a href="javascript:show(1);">Interface Summary</a></span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Class Summary</a></span><span class="tabEnd">&nbsp;</span></span><span id="t3" class="tableTab"><span><a href="javascript:show(4);">Enum Summary</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<caption><span id="t0" class="activeTableTab"><span>All Classes</span><span class="tabEnd">&nbsp;</span></span><span id="t1" class="tableTab"><span><a href="javascript:show(1);">Interface Summary</a></span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Class Summary</a></span><span class="tabEnd">&nbsp;</span></span><span id="t3" class="tableTab"><span><a href="javascript:show(4);">Enum Summary</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Exception Summary</a></span><span class="tabEnd">&nbsp;</span></span></caption>
 <tr>
 <th class="colFirst" scope="col">Class</th>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><a href="frc/lightning/fault/AbstractFaultMonitor.html" title="class in frc.lightning.fault">AbstractFaultMonitor</a></td>
+<td class="colFirst"><a href="com/lightningrobotics/common/fault/AbstractFaultMonitor.html" title="class in com.lightningrobotics.common.fault">AbstractFaultMonitor</a></td>
 <th class="colLast" scope="row">
-<div class="block">Base <a href="frc/lightning/fault/FaultCode.Codes.html" title="enum in frc.lightning.fault"><code>FaultCode.Codes</code></a> checking functionality</div>
+<div class="block">Base <a href="com/lightningrobotics/common/fault/LightningFaultCodes.Code.html" title="class in com.lightningrobotics.common.fault"><code>LightningFaultCodes.Code</code></a> checking functionality</div>
 </th>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><a href="frc/lightning/testing/AbstractTimedSystemTest.html" title="class in frc.lightning.testing">AbstractTimedSystemTest</a></td>
+<td class="colFirst"><a href="com/lightningrobotics/common/testing/AbstractTimedSystemTest.html" title="class in com.lightningrobotics.common.testing">AbstractTimedSystemTest</a></td>
 <th class="colLast" scope="row">
-<div class="block">Abstract <a href="frc/lightning/testing/SystemTest.html" title="class in frc.lightning.testing"><code>SystemTest</code></a> that runs for a given period of time.</div>
+<div class="block">Abstract <a href="com/lightningrobotics/common/testing/SystemTest.html" title="class in com.lightningrobotics.common.testing"><code>SystemTest</code></a> that runs for a given period of time.</div>
 </th>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><a href="frc/lightning/auto/Autonomous.html" title="class in frc.lightning.auto">Autonomous</a></td>
+<td class="colFirst"><a href="com/lightningrobotics/common/auto/Autonomous.html" title="class in com.lightningrobotics.common.auto">Autonomous</a></td>
 <th class="colLast" scope="row">
 <div class="block">Autonomous command configuration class.</div>
 </th>
 </tr>
 <tr id="i3" class="rowColor">
-<td class="colFirst"><a href="frc/lightning/subsystems/BaseRobotLogger.html" title="class in frc.lightning.subsystems">BaseRobotLogger</a></td>
-<th class="colLast" scope="row">
-<div class="block">Base robot logging class configures logging for all <a href="frc/lightning/subsystems/LightningDrivetrain.html" title="interface in frc.lightning.subsystems"><code>LightningDrivetrain</code></a> types.</div>
-</th>
+<td class="colFirst"><a href="com/lightningrobotics/common/command/drivetrain/Characterize.html" title="class in com.lightningrobotics.common.command.drivetrain">Characterize</a></td>
+<th class="colLast" scope="row">&nbsp;</th>
 </tr>
 <tr id="i4" class="altColor">
-<td class="colFirst"><a href="frc/lightning/logging/CommandLogger.html" title="class in frc.lightning.logging">CommandLogger</a></td>
+<td class="colFirst"><a href="com/lightningrobotics/common/logging/CommandLogger.html" title="class in com.lightningrobotics.common.logging">CommandLogger</a></td>
 <th class="colLast" scope="row">&nbsp;</th>
 </tr>
 <tr id="i5" class="rowColor">
-<td class="colFirst"><a href="frc/lightning/logging/CrashTracker.html" title="class in frc.lightning.logging">CrashTracker</a></td>
+<td class="colFirst"><a href="com/lightningrobotics/common/controller/Controller.html" title="class in com.lightningrobotics.common.controller">Controller</a></td>
+<th class="colLast" scope="row">
+<div class="block">Represents an abstract closed loop controller.</div>
+</th>
+</tr>
+<tr id="i6" class="altColor">
+<td class="colFirst"><a href="com/lightningrobotics/common/logging/CrashTracker.html" title="class in com.lightningrobotics.common.logging">CrashTracker</a></td>
 <th class="colLast" scope="row">
 <div class="block">Tracks start-up and caught crash events, logging them to a file which dosn't
  roll over</div>
 </th>
 </tr>
-<tr id="i6" class="altColor">
-<td class="colFirst"><a href="frc/lightning/logging/CrashTrackingRunnable.html" title="class in frc.lightning.logging">CrashTrackingRunnable</a></td>
+<tr id="i7" class="rowColor">
+<td class="colFirst"><a href="com/lightningrobotics/common/logging/CrashTrackingRunnable.html" title="class in com.lightningrobotics.common.logging">CrashTrackingRunnable</a></td>
 <th class="colLast" scope="row">
 <div class="block">Runnable class with reports all uncaught throws to CrashTracker</div>
 </th>
 </tr>
-<tr id="i7" class="rowColor">
-<td class="colFirst"><a href="frc/lightning/subsystems/CTREDrivetrain.html" title="class in frc.lightning.subsystems">CTREDrivetrain</a></td>
-<th class="colLast" scope="row">&nbsp;</th>
-</tr>
 <tr id="i8" class="altColor">
-<td class="colFirst"><a href="frc/lightning/commands/CurvatureDrive.html" title="class in frc.lightning.commands">CurvatureDrive</a></td>
+<td class="colFirst"><a href="com/lightningrobotics/common/logging/DataLogger.html" title="class in com.lightningrobotics.common.logging">DataLogger</a></td>
 <th class="colLast" scope="row">&nbsp;</th>
 </tr>
 <tr id="i9" class="rowColor">
-<td class="colFirst"><a href="frc/lightning/commands/DashboardWaitCommand.html" title="class in frc.lightning.commands">DashboardWaitCommand</a></td>
-<th class="colLast" scope="row">
-<div class="block">Command that waits for a dashboard-determined amount of time to elapse before returning.</div>
-</th>
+<td class="colFirst"><a href="com/lightningrobotics/common/logging/DataLoggerOutOfBand.html" title="class in com.lightningrobotics.common.logging">DataLoggerOutOfBand</a></td>
+<th class="colLast" scope="row">&nbsp;</th>
 </tr>
 <tr id="i10" class="altColor">
-<td class="colFirst"><a href="frc/lightning/logging/DataLogger.html" title="class in frc.lightning.logging">DataLogger</a></td>
+<td class="colFirst"><a href="com/lightningrobotics/common/subsystem/drivetrain/differential/DifferentialDrivetrain.html" title="class in com.lightningrobotics.common.subsystem.drivetrain.differential">DifferentialDrivetrain</a></td>
 <th class="colLast" scope="row">&nbsp;</th>
 </tr>
 <tr id="i11" class="rowColor">
-<td class="colFirst"><a href="frc/lightning/logging/DataLoggerOutOfBand.html" title="class in frc.lightning.logging">DataLoggerOutOfBand</a></td>
+<td class="colFirst"><a href="com/lightningrobotics/common/geometry/kinematics/differential/DifferentialDrivetrainState.html" title="class in com.lightningrobotics.common.geometry.kinematics.differential">DifferentialDrivetrainState</a></td>
 <th class="colLast" scope="row">&nbsp;</th>
 </tr>
 <tr id="i12" class="altColor">
-<td class="colFirst"><a href="frc/lightning/auto/DrivetrainCharacterization.html" title="class in frc.lightning.auto">DrivetrainCharacterization</a></td>
-<th class="colLast" scope="row">
-<div class="block">Command to be run with frc-characterization tool.</div>
-</th>
+<td class="colFirst"><a href="com/lightningrobotics/common/subsystem/drivetrain/differential/DifferentialGains.html" title="class in com.lightningrobotics.common.subsystem.drivetrain.differential">DifferentialGains</a></td>
+<th class="colLast" scope="row">&nbsp;</th>
 </tr>
 <tr id="i13" class="rowColor">
-<td class="colFirst"><a href="frc/lightning/ui/EitherButtonTrigger.html" title="class in frc.lightning.ui">EitherButtonTrigger</a></td>
-<th class="colLast" scope="row">
-<div class="block">Created by phurley on 12/7/16.</div>
-</th>
+<td class="colFirst"><a href="com/lightningrobotics/common/geometry/kinematics/differential/DifferentialKinematics.html" title="class in com.lightningrobotics.common.geometry.kinematics.differential">DifferentialKinematics</a></td>
+<th class="colLast" scope="row">&nbsp;</th>
 </tr>
 <tr id="i14" class="altColor">
-<td class="colFirst"><a href="frc/lightning/util/ExponentialSmoothingFilter.html" title="class in frc.lightning.util">ExponentialSmoothingFilter</a></td>
+<td class="colFirst"><a href="com/lightningrobotics/common/command/drivetrain/differential/DifferentialTankDrive.html" title="class in com.lightningrobotics.common.command.drivetrain.differential">DifferentialTankDrive</a></td>
 <th class="colLast" scope="row">&nbsp;</th>
 </tr>
 <tr id="i15" class="rowColor">
-<td class="colFirst"><a href="frc/lightning/fault/FaultCode.html" title="class in frc.lightning.fault">FaultCode</a></td>
+<td class="colFirst"><a href="com/lightningrobotics/common/geometry/kinematics/DrivetrainSpeed.html" title="class in com.lightningrobotics.common.geometry.kinematics">DrivetrainSpeed</a></td>
+<th class="colLast" scope="row">
+<div class="block">Class represents a speed vector for the robot, relative to the robot.</div>
+</th>
+</tr>
+<tr id="i16" class="altColor">
+<td class="colFirst"><a href="com/lightningrobotics/common/geometry/kinematics/DrivetrainState.html" title="class in com.lightningrobotics.common.geometry.kinematics">DrivetrainState</a></td>
+<th class="colLast" scope="row">
+<div class="block">Base class for a drivetrain state, such a collection of 
+ <a href="com/lightningrobotics/common/geometry/kinematics/swerve/SwerveModuleState.html" title="class in com.lightningrobotics.common.geometry.kinematics.swerve"><code>Module States</code></a>.</div>
+</th>
+</tr>
+<tr id="i17" class="rowColor">
+<td class="colFirst"><a href="com/lightningrobotics/common/util/operator/trigger/EitherButtonTrigger.html" title="class in com.lightningrobotics.common.util.operator.trigger">EitherButtonTrigger</a></td>
+<th class="colLast" scope="row">
+<div class="block">Only performs the action, when either button is pressed.</div>
+</th>
+</tr>
+<tr id="i18" class="altColor">
+<td class="colFirst"><a href="com/lightningrobotics/common/fault/FaultCode.html" title="class in com.lightningrobotics.common.fault">FaultCode</a></td>
 <th class="colLast" scope="row">
 <div class="block">Error codes for robot and means to log them</div>
 </th>
 </tr>
-<tr id="i16" class="altColor">
-<td class="colFirst"><a href="frc/lightning/fault/FaultCode.Codes.html" title="enum in frc.lightning.fault">FaultCode.Codes</a></td>
+<tr id="i19" class="rowColor">
+<td class="colFirst"><a href="com/lightningrobotics/common/command/core/FaultCommand.html" title="class in com.lightningrobotics.common.command.core">FaultCommand</a></td>
 <th class="colLast" scope="row">
-<div class="block">All possible fault codes on the robot</div>
+<div class="block">Command to trigger a <a href="com/lightningrobotics/common/fault/LightningFaultCodes.Code.html" title="class in com.lightningrobotics.common.fault"><code>LightningFaultCodes.Code</code></a></div>
 </th>
 </tr>
-<tr id="i17" class="rowColor">
-<td class="colFirst"><a href="frc/lightning/fault/FaultCommand.html" title="class in frc.lightning.fault">FaultCommand</a></td>
+<tr id="i20" class="altColor">
+<td class="colFirst"><a href="com/lightningrobotics/common/fault/FaultMonitor.html" title="class in com.lightningrobotics.common.fault">FaultMonitor</a></td>
 <th class="colLast" scope="row">
-<div class="block">Command to trigger a <a href="frc/lightning/fault/FaultCode.Codes.html" title="enum in frc.lightning.fault"><code>FaultCode.Codes</code></a></div>
-</th>
-</tr>
-<tr id="i18" class="altColor">
-<td class="colFirst"><a href="frc/lightning/fault/FaultMonitor.html" title="class in frc.lightning.fault">FaultMonitor</a></td>
-<th class="colLast" scope="row">
-<div class="block">Basic implementation of an <a href="frc/lightning/fault/AbstractFaultMonitor.html" title="class in frc.lightning.fault"><code>AbstractFaultMonitor</code></a> that 
+<div class="block">Basic implementation of an <a href="com/lightningrobotics/common/fault/AbstractFaultMonitor.html" title="class in com.lightningrobotics.common.fault"><code>AbstractFaultMonitor</code></a> that 
  also provides a means to register ad check other fault monitors</div>
 </th>
 </tr>
-<tr id="i19" class="rowColor">
-<td class="colFirst"><a href="frc/lightning/util/HallEffect.html" title="class in frc.lightning.util">HallEffect</a></td>
-<th class="colLast" scope="row">&nbsp;</th>
-</tr>
-<tr id="i20" class="altColor">
-<td class="colFirst"><a href="frc/lightning/util/Interpolable.html" title="interface in frc.lightning.util">Interpolable</a>&lt;<a href="frc/lightning/util/Interpolable.html" title="type parameter in Interpolable">T</a>&gt;</td>
-<th class="colLast" scope="row">
-<div class="block">Interpolable is an interface used by an Interpolating Tree as the Value type.</div>
-</th>
-</tr>
 <tr id="i21" class="rowColor">
-<td class="colFirst"><a href="frc/lightning/util/InterpolatedMap.html" title="class in frc.lightning.util">InterpolatedMap</a></td>
+<td class="colFirst"><a href="com/lightningrobotics/common/command/drivetrain/FollowTrajectory.html" title="class in com.lightningrobotics.common.command.drivetrain">FollowTrajectory</a></td>
 <th class="colLast" scope="row">&nbsp;</th>
 </tr>
 <tr id="i22" class="altColor">
-<td class="colFirst"><a href="frc/lightning/util/InterpolatingDouble.html" title="class in frc.lightning.util">InterpolatingDouble</a></td>
+<td class="colFirst"><a href="com/lightningrobotics/common/util/filter/JoystickFilter.html" title="class in com.lightningrobotics.common.util.filter">JoystickFilter</a></td>
 <th class="colLast" scope="row">
-<div class="block">A Double that can be interpolated using the InterpolatingTreeMap.</div>
+<div class="block">Filter for joystick input to enhance driver controll.</div>
 </th>
 </tr>
 <tr id="i23" class="rowColor">
-<td class="colFirst"><a href="frc/lightning/util/InterpolatingMotionPoint.html" title="class in frc.lightning.util">InterpolatingMotionPoint</a></td>
-<th class="colLast" scope="row">
-<div class="block">A Double that can be interpolated using the InterpolatingTreeMap.</div>
-</th>
+<td class="colFirst"><a href="com/lightningrobotics/common/util/filter/JoystickFilter.Mode.html" title="enum in com.lightningrobotics.common.util.filter">JoystickFilter.Mode</a></td>
+<th class="colLast" scope="row">&nbsp;</th>
 </tr>
 <tr id="i24" class="altColor">
-<td class="colFirst"><a href="frc/lightning/util/InterpolatingTreeMap.html" title="class in frc.lightning.util">InterpolatingTreeMap</a>&lt;<a href="frc/lightning/util/InterpolatingTreeMap.html" title="type parameter in InterpolatingTreeMap">K</a> extends <a href="frc/lightning/util/InverseInterpolable.html" title="interface in frc.lightning.util">InverseInterpolable</a>&lt;<a href="frc/lightning/util/InterpolatingTreeMap.html" title="type parameter in InterpolatingTreeMap">K</a>&gt; &amp; java.lang.Comparable&lt;<a href="frc/lightning/util/InterpolatingTreeMap.html" title="type parameter in InterpolatingTreeMap">K</a>&gt;,&#8203;<a href="frc/lightning/util/InterpolatingTreeMap.html" title="type parameter in InterpolatingTreeMap">V</a> extends <a href="frc/lightning/util/Interpolable.html" title="interface in frc.lightning.util">Interpolable</a>&lt;<a href="frc/lightning/util/InterpolatingTreeMap.html" title="type parameter in InterpolatingTreeMap">V</a>&gt;&gt;</td>
-<th class="colLast" scope="row">
-<div class="block">Interpolating Tree Maps are used to get values at points that are not defined by making a guess from points that are
- defined.</div>
-</th>
+<td class="colFirst"><a href="com/lightningrobotics/common/util/filter/KalmanFilter.html" title="class in com.lightningrobotics.common.util.filter">KalmanFilter</a></td>
+<th class="colLast" scope="row">&nbsp;</th>
 </tr>
 <tr id="i25" class="rowColor">
-<td class="colFirst"><a href="frc/lightning/util/InverseInterpolable.html" title="interface in frc.lightning.util">InverseInterpolable</a>&lt;<a href="frc/lightning/util/InverseInterpolable.html" title="type parameter in InverseInterpolable">T</a>&gt;</td>
-<th class="colLast" scope="row">
-<div class="block">InverseInterpolable is an interface used by an Interpolating Tree as the Key type.</div>
-</th>
-</tr>
-<tr id="i26" class="altColor">
-<td class="colFirst"><a href="frc/lightning/util/JoystickFilter.html" title="class in frc.lightning.util">JoystickFilter</a></td>
-<th class="colLast" scope="row">&nbsp;</th>
-</tr>
-<tr id="i27" class="rowColor">
-<td class="colFirst"><a href="frc/lightning/util/JoystickFilter.Mode.html" title="enum in frc.lightning.util">JoystickFilter.Mode</a></td>
-<th class="colLast" scope="row">&nbsp;</th>
-</tr>
-<tr id="i28" class="altColor">
-<td class="colFirst"><a href="frc/lightning/util/KalmanFilter.html" title="class in frc.lightning.util">KalmanFilter</a></td>
-<th class="colLast" scope="row">&nbsp;</th>
-</tr>
-<tr id="i29" class="rowColor">
-<td class="colFirst"><a href="frc/lightning/LightningConfig.html" title="class in frc.lightning">LightningConfig</a></td>
-<th class="colLast" scope="row">
-<div class="block">Lightning config base class.</div>
-</th>
-</tr>
-<tr id="i30" class="altColor">
-<td class="colFirst"><a href="frc/lightning/LightningContainer.html" title="class in frc.lightning">LightningContainer</a></td>
+<td class="colFirst"><a href="com/lightningrobotics/common/LightningContainer.html" title="class in com.lightningrobotics.common">LightningContainer</a></td>
 <th class="colLast" scope="row">
 <div class="block">This class is where the bulk of the robot should be declared.</div>
 </th>
 </tr>
+<tr id="i26" class="altColor">
+<td class="colFirst"><a href="com/lightningrobotics/common/subsystem/core/LightningCore.html" title="class in com.lightningrobotics.common.subsystem.core">LightningCore</a></td>
+<th class="colLast" scope="row">&nbsp;</th>
+</tr>
+<tr id="i27" class="rowColor">
+<td class="colFirst"><a href="com/lightningrobotics/common/subsystem/drivetrain/LightningDrivetrain.html" title="class in com.lightningrobotics.common.subsystem.drivetrain">LightningDrivetrain</a></td>
+<th class="colLast" scope="row">&nbsp;</th>
+</tr>
+<tr id="i28" class="altColor">
+<td class="colFirst"><a href="com/lightningrobotics/common/fault/LightningFaultCodes.html" title="class in com.lightningrobotics.common.fault">LightningFaultCodes</a></td>
+<th class="colLast" scope="row">
+<div class="block">Class representing a set of fault codes, or enumerated things that can go wrong.</div>
+</th>
+</tr>
+<tr id="i29" class="rowColor">
+<td class="colFirst"><a href="com/lightningrobotics/common/fault/LightningFaultCodes.Code.html" title="class in com.lightningrobotics.common.fault">LightningFaultCodes.Code</a></td>
+<th class="colLast" scope="row">
+<div class="block">A base class that represents a single fault code</div>
+</th>
+</tr>
+<tr id="i30" class="altColor">
+<td class="colFirst"><a href="com/lightningrobotics/common/subsystem/drivetrain/LightningGains.html" title="class in com.lightningrobotics.common.subsystem.drivetrain">LightningGains</a></td>
+<th class="colLast" scope="row">&nbsp;</th>
+</tr>
 <tr id="i31" class="rowColor">
-<td class="colFirst"><a href="frc/lightning/subsystems/LightningDrivetrain.html" title="interface in frc.lightning.subsystems">LightningDrivetrain</a></td>
-<th class="colLast" scope="row">
-<div class="block">Base differential drivetrain type that is capable of following motion profiles.</div>
-</th>
-</tr>
-<tr id="i32" class="altColor">
-<td class="colFirst"><a href="frc/lightning/subsystems/LightningDrivetrain.DriveCommand.html" title="class in frc.lightning.subsystems">LightningDrivetrain.DriveCommand</a></td>
-<th class="colLast" scope="row">
-<div class="block">Sample command that can be applied to LightningDrivetrain type</div>
-</th>
-</tr>
-<tr id="i33" class="rowColor">
-<td class="colFirst"><a href="frc/lightning/subsystems/LightningIMU.html" title="class in frc.lightning.subsystems">LightningIMU</a></td>
+<td class="colFirst"><a href="com/lightningrobotics/common/subsystem/core/LightningIMU.html" title="class in com.lightningrobotics.common.subsystem.core">LightningIMU</a></td>
 <th class="colLast" scope="row">
 <div class="block">Base gyroscope type.</div>
 </th>
 </tr>
-<tr id="i34" class="altColor">
-<td class="colFirst"><a href="frc/lightning/subsystems/LightningIMU.IMUFunction.html" title="interface in frc.lightning.subsystems">LightningIMU.IMUFunction</a></td>
+<tr id="i32" class="altColor">
+<td class="colFirst"><a href="com/lightningrobotics/common/subsystem/core/LightningIMU.IMUFunction.html" title="interface in com.lightningrobotics.common.subsystem.core">LightningIMU.IMUFunction</a></td>
 <th class="colLast" scope="row">
 <div class="block">A generic function on the IMU to support lambda structure</div>
 </th>
 </tr>
-<tr id="i35" class="rowColor">
-<td class="colFirst"><a href="frc/lightning/subsystems/LightningIMU.IMUType.html" title="enum in frc.lightning.subsystems">LightningIMU.IMUType</a></td>
+<tr id="i33" class="rowColor">
+<td class="colFirst"><a href="com/lightningrobotics/common/subsystem/core/LightningIMU.IMUType.html" title="enum in com.lightningrobotics.common.subsystem.core">LightningIMU.IMUType</a></td>
 <th class="colLast" scope="row">
 <div class="block">Supported IMU types</div>
 </th>
 </tr>
+<tr id="i34" class="altColor">
+<td class="colFirst"><a href="com/lightningrobotics/common/geometry/kinematics/LightningKinematics.html" title="interface in com.lightningrobotics.common.geometry.kinematics">LightningKinematics</a></td>
+<th class="colLast" scope="row">
+<div class="block">Base kinematics interface.</div>
+</th>
+</tr>
+<tr id="i35" class="rowColor">
+<td class="colFirst"><a href="com/lightningrobotics/common/util/LightningMath.html" title="class in com.lightningrobotics.common.util">LightningMath</a></td>
+<th class="colLast" scope="row">&nbsp;</th>
+</tr>
 <tr id="i36" class="altColor">
-<td class="colFirst"><a href="frc/lightning/util/LightningMath.html" title="class in frc.lightning.util">LightningMath</a></td>
+<td class="colFirst"><a href="com/lightningrobotics/common/geometry/LightningOdometer.html" title="class in com.lightningrobotics.common.geometry">LightningOdometer</a></td>
 <th class="colLast" scope="row">&nbsp;</th>
 </tr>
 <tr id="i37" class="rowColor">
-<td class="colFirst"><a href="frc/lightning/LightningRobot.html" title="class in frc.lightning">LightningRobot</a></td>
+<td class="colFirst"><a href="com/lightningrobotics/common/LightningRobot.html" title="class in com.lightningrobotics.common">LightningRobot</a></td>
 <th class="colLast" scope="row">
 <div class="block">Base robot class, provides
- <a href="frc/lightning/logging/DataLogger.html" title="class in frc.lightning.logging"><code>logging</code></a>,
- <a href="frc/lightning/fault/FaultMonitor.html" title="class in frc.lightning.fault"><code>fault monitoring</code></a>, and loops with varying
- periods <a href="frc/lightning/LightningRobot.html#robotBackgroundPeriodic()"><code>background</code></a>,
- <a href="frc/lightning/LightningRobot.html#robotLowPriorityPeriodic()"><code>low</code></a>, and
- <a href="frc/lightning/LightningRobot.html#robotMediumPriorityPeriodic()"><code>medium</code></a> priority
+ <a href="com/lightningrobotics/common/logging/DataLogger.html" title="class in com.lightningrobotics.common.logging"><code>logging</code></a>,
+ <a href="com/lightningrobotics/common/fault/FaultMonitor.html" title="class in com.lightningrobotics.common.fault"><code>fault monitoring</code></a>, and loops with varying
+ periods <a href="com/lightningrobotics/common/LightningRobot.html#robotBackgroundPeriodic()"><code>background</code></a>,
+ <a href="com/lightningrobotics/common/LightningRobot.html#robotLowPriorityPeriodic()"><code>low</code></a>, and
+ <a href="com/lightningrobotics/common/LightningRobot.html#robotMediumPriorityPeriodic()"><code>medium</code></a> priority
  loops.</div>
 </th>
 </tr>
 <tr id="i38" class="altColor">
-<td class="colFirst"><a href="frc/lightning/util/LightningTimer.html" title="class in frc.lightning.util">LightningTimer</a></td>
+<td class="colFirst"><a href="com/lightningrobotics/common/command/core/LogCommand.html" title="class in com.lightningrobotics.common.command.core">LogCommand</a></td>
 <th class="colLast" scope="row">&nbsp;</th>
 </tr>
 <tr id="i39" class="rowColor">
-<td class="colFirst"><a href="frc/lightning/logging/LogCommand.html" title="class in frc.lightning.logging">LogCommand</a></td>
+<td class="colFirst"><a href="com/lightningrobotics/common/command/core/LoggedCommand.html" title="class in com.lightningrobotics.common.command.core">LoggedCommand</a></td>
 <th class="colLast" scope="row">
-<div class="block">Created by phurley on 12/7/16.</div>
+<div class="block">A command that writes to <a href="com/lightningrobotics/common/logging/CommandLogger.html" title="class in com.lightningrobotics.common.logging"><code>CommandLogger</code></a> during execution.</div>
 </th>
 </tr>
 <tr id="i40" class="altColor">
-<td class="colFirst"><a href="frc/lightning/commands/LoggedCommand.html" title="class in frc.lightning.commands">LoggedCommand</a></td>
-<th class="colLast" scope="row">
-<div class="block">A command that writes to <a href="frc/lightning/logging/CommandLogger.html" title="class in frc.lightning.logging"><code>CommandLogger</code></a> during execution.</div>
-</th>
+<td class="colFirst"><a href="com/lightningrobotics/common/logging/LoggerValue.html" title="class in com.lightningrobotics.common.logging">LoggerValue</a></td>
+<th class="colLast" scope="row">&nbsp;</th>
 </tr>
 <tr id="i41" class="rowColor">
-<td class="colFirst"><a href="frc/lightning/logging/LoggerValue.html" title="class in frc.lightning.logging">LoggerValue</a></td>
+<td class="colFirst"><a href="com/lightningrobotics/common/logging/LogWriter.html" title="class in com.lightningrobotics.common.logging">LogWriter</a></td>
 <th class="colLast" scope="row">&nbsp;</th>
 </tr>
 <tr id="i42" class="altColor">
-<td class="colFirst"><a href="frc/lightning/logging/LogWriter.html" title="class in frc.lightning.logging">LogWriter</a></td>
-<th class="colLast" scope="row">&nbsp;</th>
-</tr>
-<tr id="i43" class="rowColor">
-<td class="colFirst"><a href="frc/lightning/util/Loop.html" title="interface in frc.lightning.util">Loop</a></td>
+<td class="colFirst"><a href="com/lightningrobotics/common/util/Loop.html" title="interface in com.lightningrobotics.common.util">Loop</a></td>
 <th class="colLast" scope="row">
 <div class="block">Interface for loops, which are routine that run periodically in the robot
  code (such as periodic gyroscope calibration, etc.)</div>
 </th>
 </tr>
-<tr id="i44" class="altColor">
-<td class="colFirst"><a href="frc/lightning/util/MovingAverageFilter.html" title="class in frc.lightning.util">MovingAverageFilter</a></td>
+<tr id="i43" class="rowColor">
+<td class="colFirst"><a href="com/lightningrobotics/common/util/filter/MovingAverageFilter.html" title="class in com.lightningrobotics.common.util.filter">MovingAverageFilter</a></td>
 <th class="colLast" scope="row">&nbsp;</th>
+</tr>
+<tr id="i44" class="altColor">
+<td class="colFirst"><a href="com/lightningrobotics/common/auto/Path.html" title="class in com.lightningrobotics.common.auto">Path</a></td>
+<th class="colLast" scope="row">
+<div class="block">Object class representing a path a <a href="com/lightningrobotics/common/subsystem/drivetrain/LightningDrivetrain.html" title="class in com.lightningrobotics.common.subsystem.drivetrain"><code>LightningDrivetrain</code></a> can follow.</div>
+</th>
 </tr>
 <tr id="i45" class="rowColor">
-<td class="colFirst"><a href="frc/lightning/subsystems/NeoDrivetrain.html" title="class in frc.lightning.subsystems">NeoDrivetrain</a></td>
-<th class="colLast" scope="row">&nbsp;</th>
+<td class="colFirst"><a href="com/lightningrobotics/common/controller/PIDFController.html" title="class in com.lightningrobotics.common.controller">PIDFController</a></td>
+<th class="colLast" scope="row">
+<div class="block">Simple PID controller with simple Feedforward coefficient.</div>
+</th>
 </tr>
 <tr id="i46" class="altColor">
-<td class="colFirst"><a href="frc/lightning/auto/Path.html" title="class in frc.lightning.auto">Path</a></td>
-<th class="colLast" scope="row">
-<div class="block">Object class representing a robot-relative path the robot can follow.</div>
-</th>
-</tr>
-<tr id="i47" class="rowColor">
-<td class="colFirst"><a href="frc/lightning/auto/PathConfigCommand.html" title="class in frc.lightning.auto">PathConfigCommand</a></td>
-<th class="colLast" scope="row">
-<div class="block">TeleOp mode that write waypoints to a file to be used in a path.</div>
-</th>
-</tr>
-<tr id="i48" class="altColor">
-<td class="colFirst"><a href="frc/lightning/auto/Paths.html" title="class in frc.lightning.auto">Paths</a></td>
-<th class="colLast" scope="row">
-<div class="block">List of <a href="frc/lightning/auto/Path.html" title="class in frc.lightning.auto"><code>Path</code></a> objects a robot is configured to follow.</div>
-</th>
-</tr>
-<tr id="i49" class="rowColor">
-<td class="colFirst"><a href="frc/lightning/auto/PathUtils.html" title="class in frc.lightning.auto">PathUtils</a></td>
-<th class="colLast" scope="row">&nbsp;</th>
-</tr>
-<tr id="i50" class="altColor">
-<td class="colFirst"><a href="frc/lightning/ui/POVButton.html" title="class in frc.lightning.ui">POVButton</a></td>
-<th class="colLast" scope="row">&nbsp;</th>
-</tr>
-<tr id="i51" class="rowColor">
-<td class="colFirst"><a href="frc/lightning/util/RamseteGains.html" title="class in frc.lightning.util">RamseteGains</a></td>
-<th class="colLast" scope="row">
-<div class="block">Differential drivetrain gains for use with a <code>RamseteCommand</code>.</div>
-</th>
-</tr>
-<tr id="i52" class="altColor">
-<td class="colFirst"><a href="frc/lightning/util/REVGains.html" title="class in frc.lightning.util">REVGains</a></td>
-<th class="colLast" scope="row">
-<div class="block">Used to set the PID gains on various REV hardware components.</div>
-</th>
-</tr>
-<tr id="i53" class="rowColor">
-<td class="colFirst"><a href="frc/lightning/commands/RumbleCommand.html" title="class in frc.lightning.commands">RumbleCommand</a></td>
-<th class="colLast" scope="row">
-<div class="block">A command that rumbles the controller for half a second.</div>
-</th>
-</tr>
-<tr id="i54" class="altColor">
-<td class="colFirst"><a href="frc/lightning/commands/RunCommandTime.html" title="class in frc.lightning.commands">RunCommandTime</a></td>
-<th class="colLast" scope="row">&nbsp;</th>
-</tr>
-<tr id="i55" class="rowColor">
-<td class="colFirst"><a href="frc/lightning/subsystems/ShuffleboardBaseRobotDisplay.html" title="class in frc.lightning.subsystems">ShuffleboardBaseRobotDisplay</a></td>
-<th class="colLast" scope="row">
-<div class="block">Base display class configures logging for all <a href="frc/lightning/subsystems/LightningDrivetrain.html" title="interface in frc.lightning.subsystems"><code>LightningDrivetrain</code></a> types.</div>
-</th>
-</tr>
-<tr id="i56" class="altColor">
-<td class="colFirst"><a href="frc/lightning/util/SimpleSchedule.html" title="class in frc.lightning.util">SimpleSchedule</a></td>
-<th class="colLast" scope="row">&nbsp;</th>
-</tr>
-<tr id="i57" class="rowColor">
-<td class="colFirst"><a href="frc/lightning/commands/StatefulCommand.html" title="class in frc.lightning.commands">StatefulCommand</a></td>
+<td class="colFirst"><a href="com/lightningrobotics/common/command/core/StatefulCommand.html" title="class in com.lightningrobotics.common.command.core">StatefulCommand</a></td>
 <th class="colLast" scope="row">
 <div class="block">A command that iterates through a list of states subclass-defined states.</div>
 </th>
 </tr>
-<tr id="i58" class="altColor">
-<td class="colFirst"><a href="frc/lightning/util/StatefulCommand.html" title="class in frc.lightning.util">StatefulCommand</a></td>
+<tr id="i47" class="rowColor">
+<td class="colFirst"><a href="com/lightningrobotics/common/command/drivetrain/swerve/SwerveDriveCommand.html" title="class in com.lightningrobotics.common.command.drivetrain.swerve">SwerveDriveCommand</a></td>
 <th class="colLast" scope="row">&nbsp;</th>
 </tr>
-<tr id="i59" class="rowColor">
-<td class="colFirst"><a href="frc/lightning/util/StateMachine.html" title="class in frc.lightning.util">StateMachine</a></td>
+<tr id="i48" class="altColor">
+<td class="colFirst"><a href="com/lightningrobotics/common/subsystem/drivetrain/swerve/SwerveDrivetrain.html" title="class in com.lightningrobotics.common.subsystem.drivetrain.swerve">SwerveDrivetrain</a></td>
 <th class="colLast" scope="row">&nbsp;</th>
 </tr>
-<tr id="i60" class="altColor">
-<td class="colFirst"><a href="frc/lightning/auto/SubsequentPath.html" title="class in frc.lightning.auto">SubsequentPath</a></td>
+<tr id="i49" class="rowColor">
+<td class="colFirst"><a href="com/lightningrobotics/common/subsystem/drivetrain/swerve/SwerveDrivetrain.Modules.html" title="enum in com.lightningrobotics.common.subsystem.drivetrain.swerve">SwerveDrivetrain.Modules</a></td>
+<th class="colLast" scope="row">&nbsp;</th>
+</tr>
+<tr id="i50" class="altColor">
+<td class="colFirst"><a href="com/lightningrobotics/common/geometry/kinematics/swerve/SwerveDrivetrainState.html" title="class in com.lightningrobotics.common.geometry.kinematics.swerve">SwerveDrivetrainState</a></td>
+<th class="colLast" scope="row">&nbsp;</th>
+</tr>
+<tr id="i51" class="rowColor">
+<td class="colFirst"><a href="com/lightningrobotics/common/subsystem/drivetrain/swerve/SwerveGains.html" title="class in com.lightningrobotics.common.subsystem.drivetrain.swerve">SwerveGains</a></td>
+<th class="colLast" scope="row">&nbsp;</th>
+</tr>
+<tr id="i52" class="altColor">
+<td class="colFirst"><a href="com/lightningrobotics/common/geometry/kinematics/swerve/SwerveKinematics.html" title="class in com.lightningrobotics.common.geometry.kinematics.swerve">SwerveKinematics</a></td>
+<th class="colLast" scope="row">&nbsp;</th>
+</tr>
+<tr id="i53" class="rowColor">
+<td class="colFirst"><a href="com/lightningrobotics/common/subsystem/drivetrain/swerve/SwerveModule.html" title="class in com.lightningrobotics.common.subsystem.drivetrain.swerve">SwerveModule</a></td>
 <th class="colLast" scope="row">
-<div class="block">A <a href="frc/lightning/auto/Path.html" title="class in frc.lightning.auto"><code>Path</code></a> that will not be relative to zero or force the 
- <a href="frc/lightning/subsystems/LightningDrivetrain.html" title="interface in frc.lightning.subsystems"><code>Drivetrain</code></a> to
- zero its <code>Pose</code> before starting.</div>
+<div class="block">Represents a single swerve module with both drive and azimuth control.</div>
 </th>
 </tr>
-<tr id="i61" class="rowColor">
-<td class="colFirst"><a href="frc/lightning/testing/SystemTest.html" title="class in frc.lightning.testing">SystemTest</a></td>
+<tr id="i54" class="altColor">
+<td class="colFirst"><a href="com/lightningrobotics/common/geometry/kinematics/swerve/SwerveModuleState.html" title="class in com.lightningrobotics.common.geometry.kinematics.swerve">SwerveModuleState</a></td>
+<th class="colLast" scope="row">&nbsp;</th>
+</tr>
+<tr id="i55" class="rowColor">
+<td class="colFirst"><a href="com/lightningrobotics/common/testing/SystemTest.html" title="class in com.lightningrobotics.common.testing">SystemTest</a></td>
 <th class="colLast" scope="row">
 <div class="block">Base testing class.</div>
 </th>
 </tr>
-<tr id="i62" class="altColor">
-<td class="colFirst"><a href="frc/lightning/testing/SystemTest.Priority.html" title="enum in frc.lightning.testing">SystemTest.Priority</a></td>
+<tr id="i56" class="altColor">
+<td class="colFirst"><a href="com/lightningrobotics/common/testing/SystemTest.Priority.html" title="enum in com.lightningrobotics.common.testing">SystemTest.Priority</a></td>
 <th class="colLast" scope="row">
 <div class="block">Importance of the SystemTest.</div>
 </th>
 </tr>
-<tr id="i63" class="rowColor">
-<td class="colFirst"><a href="frc/lightning/testing/SystemTestCommand.html" title="class in frc.lightning.testing">SystemTestCommand</a></td>
+<tr id="i57" class="rowColor">
+<td class="colFirst"><a href="com/lightningrobotics/common/testing/SystemTestCommand.html" title="class in com.lightningrobotics.common.testing">SystemTestCommand</a></td>
 <th class="colLast" scope="row">
-<div class="block">Runs all <a href="frc/lightning/testing/SystemTest.html" title="class in frc.lightning.testing"><code>SystemTests</code></a> that have been queued with
- <a href="frc/lightning/testing/SystemTest.html#register(frc.lightning.testing.SystemTest)"><code>SystemTest.register(SystemTest)</code></a>.</div>
+<div class="block">Runs all <a href="com/lightningrobotics/common/testing/SystemTest.html" title="class in com.lightningrobotics.common.testing"><code>SystemTests</code></a> that have been queued with
+ <a href="com/lightningrobotics/common/testing/SystemTest.html#register(com.lightningrobotics.common.testing.SystemTest)"><code>SystemTest.register(SystemTest)</code></a>.</div>
 </th>
 </tr>
-<tr id="i64" class="altColor">
-<td class="colFirst"><a href="frc/lightning/commands/TankDrive.html" title="class in frc.lightning.commands">TankDrive</a></td>
-<th class="colLast" scope="row">
-<div class="block">Simple power based tank drive.</div>
-</th>
-</tr>
-<tr id="i65" class="rowColor">
-<td class="colFirst"><a href="frc/lightning/util/ThreadScheduler.html" title="class in frc.lightning.util">ThreadScheduler</a></td>
-<th class="colLast" scope="row">&nbsp;</th>
-</tr>
-<tr id="i66" class="altColor">
-<td class="colFirst"><a href="frc/lightning/fault/TimedFaultMonitor.html" title="class in frc.lightning.fault">TimedFaultMonitor</a></td>
+<tr id="i58" class="altColor">
+<td class="colFirst"><a href="com/lightningrobotics/common/fault/TimedFaultMonitor.html" title="class in com.lightningrobotics.common.fault">TimedFaultMonitor</a></td>
 <th class="colLast" scope="row">
 <div class="block">A fault monitor that checks if a condition has existed for a given period of time</div>
 </th>
 </tr>
-<tr id="i67" class="rowColor">
-<td class="colFirst"><a href="frc/lightning/commands/ToggleCommand.html" title="class in frc.lightning.commands">ToggleCommand</a></td>
+<tr id="i59" class="rowColor">
+<td class="colFirst"><a href="com/lightningrobotics/common/auto/trajectory/Trajectory.html" title="class in com.lightningrobotics.common.auto.trajectory">Trajectory</a></td>
 <th class="colLast" scope="row">
-<div class="block">Toggles from one command to another</div>
+<div class="block">Represents a time-parameterized trajectory.</div>
 </th>
 </tr>
-<tr id="i68" class="altColor">
-<td class="colFirst"><a href="frc/lightning/ui/TwoButtonTrigger.html" title="class in frc.lightning.ui">TwoButtonTrigger</a></td>
+<tr id="i60" class="altColor">
+<td class="colFirst"><a href="com/lightningrobotics/common/auto/trajectory/TrajectoryConfig.html" title="class in com.lightningrobotics.common.auto.trajectory">TrajectoryConfig</a></td>
+<th class="colLast" scope="row">
+<div class="block">Represents the configuration for generating a trajectory.</div>
+</th>
+</tr>
+<tr id="i61" class="rowColor">
+<td class="colFirst"><a href="com/lightningrobotics/common/auto/trajectory/TrajectoryConstraint.html" title="interface in com.lightningrobotics.common.auto.trajectory">TrajectoryConstraint</a></td>
+<th class="colLast" scope="row">
+<div class="block">An interface for defining user-defined velocity and acceleration constraints
+ while generating trajectories.</div>
+</th>
+</tr>
+<tr id="i62" class="altColor">
+<td class="colFirst"><a href="com/lightningrobotics/common/auto/trajectory/TrajectoryConstraint.AccelerationLimit.html" title="class in com.lightningrobotics.common.auto.trajectory">TrajectoryConstraint.AccelerationLimit</a></td>
+<th class="colLast" scope="row">
+<div class="block">Represents a minimum and maximum acceleration.</div>
+</th>
+</tr>
+<tr id="i63" class="rowColor">
+<td class="colFirst"><a href="com/lightningrobotics/common/auto/trajectory/TrajectoryInterpolater.html" title="class in com.lightningrobotics.common.auto.trajectory">TrajectoryInterpolater</a></td>
+<th class="colLast" scope="row">
+<div class="block">Class used to parameterize a trajectory by time.</div>
+</th>
+</tr>
+<tr id="i64" class="altColor">
+<td class="colFirst"><a href="com/lightningrobotics/common/auto/trajectory/TrajectoryInterpolater.TrajectoryGenerationException.html" title="class in com.lightningrobotics.common.auto.trajectory">TrajectoryInterpolater.TrajectoryGenerationException</a></td>
+<th class="colLast" scope="row">&nbsp;</th>
+</tr>
+<tr id="i65" class="rowColor">
+<td class="colFirst"><a href="com/lightningrobotics/common/auto/trajectory/TrajectoryState.html" title="class in com.lightningrobotics.common.auto.trajectory">TrajectoryState</a></td>
+<th class="colLast" scope="row">
+<div class="block">Represents a time-parameterized trajectory.</div>
+</th>
+</tr>
+<tr id="i66" class="altColor">
+<td class="colFirst"><a href="com/lightningrobotics/common/util/operator/trigger/TwoButtonTrigger.html" title="class in com.lightningrobotics.common.util.operator.trigger">TwoButtonTrigger</a></td>
 <th class="colLast" scope="row">
 <div class="block">Only performs the action, when both buttons are pressed.</div>
 </th>
 </tr>
-<tr id="i69" class="rowColor">
-<td class="colFirst"><a href="frc/lightning/fault/UnchangingFaultMonitor.html" title="class in frc.lightning.fault">UnchangingFaultMonitor</a></td>
+<tr id="i67" class="rowColor">
+<td class="colFirst"><a href="com/lightningrobotics/common/fault/UnchangingFaultMonitor.html" title="class in com.lightningrobotics.common.fault">UnchangingFaultMonitor</a></td>
 <th class="colLast" scope="row">
 <div class="block">A fault monitor that ensures a given value remains unchanged for a duration of time</div>
 </th>
 </tr>
-<tr id="i70" class="altColor">
-<td class="colFirst"><a href="frc/lightning/util/ValueFilter.html" title="interface in frc.lightning.util">ValueFilter</a></td>
-<th class="colLast" scope="row">
-<div class="block">Created by phurley on 12/7/16.</div>
-</th>
+<tr id="i68" class="altColor">
+<td class="colFirst"><a href="com/lightningrobotics/common/util/filter/ValueFilter.html" title="interface in com.lightningrobotics.common.util.filter">ValueFilter</a></td>
+<th class="colLast" scope="row">&nbsp;</th>
 </tr>
-<tr id="i71" class="rowColor">
-<td class="colFirst"><a href="frc/lightning/commands/VoltDrive.html" title="class in frc.lightning.commands">VoltDrive</a></td>
+<tr id="i69" class="rowColor">
+<td class="colFirst"><a href="com/lightningrobotics/common/command/core/WaitCommand.html" title="class in com.lightningrobotics.common.command.core">WaitCommand</a></td>
 <th class="colLast" scope="row">
-<div class="block">Simple voltage-based open loop drive.</div>
-</th>
-</tr>
-<tr id="i72" class="altColor">
-<td class="colFirst"><a href="frc/lightning/ui/XBoxController.html" title="class in frc.lightning.ui">XBoxController</a></td>
-<th class="colLast" scope="row">
-<div class="block">Wrapper for XboxController</div>
+<div class="block">Command that waits for a dashboard-determined amount of time to elapse before returning.</div>
 </th>
 </tr>
 </table>
