@@ -1,7 +1,9 @@
 # lightning
 
 ![Build](https://github.com/frc-862/lightning/workflows/Build/badge.svg)
-[![Docs](https://readthedocs.org/projects/pip/badge/)](https://frc-862.github.io/lightning/)
+[![Build Samples](https://github.com/frc-862/lightning/actions/workflows/sample-build.yml/badge.svg)](https://github.com/frc-862/lightning/tree/develop/samples)\
+[![Javadoc](https://github.com/frc-862/lightning/actions/workflows/javadoc.yml/badge.svg)](https://frc-862.github.io/lightning/)
+[![GitHub Package Registry Version](https://img.shields.io/github/release/frc-862/lightning.svg?label=GPR%20Version&logo=github&color=orange)](https://github.com/frc-862/lightning/packages/1123041)
 
 ## Description
 
@@ -33,13 +35,17 @@ gpr.user=<your-username>
 gpr.key=<your-personal-access-token>
 ```
 
+Note that you do not need to be a member of the [@frc-862](https://github.com/frc-862) organization to have access to this project.
+
 Lastly, you will need to add the library as a dependency as shown below
 
 ```groovy
 dependencies {
-    implementation 'frc:lightning:<version>'
+    implementation 'com.lightningrobotics:common:<version>'
 }
 ```
+
+The latest version of this repository (for `<version>` above) is [![Latest Version](https://img.shields.io/github/release/frc-862/lightning.svg?label=version&color=blue)](https://github.com/frc-862/lightning/packages/1123041).
 
 ## Contributing
 
