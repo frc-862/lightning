@@ -4,6 +4,7 @@ import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 import com.lightningrobotics.common.geometry.kinematics.differential.DifferentialDrivetrainState;
+import com.lightningrobotics.common.controller.PIDFController;
 import com.lightningrobotics.common.geometry.LightningOdometer;
 import com.lightningrobotics.common.geometry.kinematics.*;
 import com.lightningrobotics.common.subsystem.core.LightningIMU;
@@ -21,6 +22,8 @@ public class DifferentialDrivetrain extends LightningDrivetrain {
     private LightningIMU IMU = LightningIMU.pigeon(19);
 
     private DifferentialGains gains;
+
+    private PIDFController
 
     private MotorController[] leftMotors;
     private MotorController[] rightMotors;
@@ -77,6 +80,10 @@ public class DifferentialDrivetrain extends LightningDrivetrain {
         return Odometer.getPose();
     }
 
+    public DifferentialDrivetrainState getDrivetrainState(){
+        return state;
+    }
+
     public void arcadeDrive(double speed, double rot) {
         speed = LightningMath.constrain(speed, -1.0, 1.0);
         rot = LightningMath.constrain(rot, -1.0, 1.0);
@@ -113,6 +120,11 @@ public class DifferentialDrivetrain extends LightningDrivetrain {
         rightSpeed = LightningMath.constrain(rightSpeed, -1.0, 1.0);
         setLeftOutput(leftSpeed);
         setRightOutput(rightSpeed);
+    }
+
+    public void setVoltage(double leftVoltage, double rightVoltage){
+        withEachLeftMotor(m -> m.setVoltage(leftVoltage));
+        withEachRightMotor(m -> m.setVoltage(rightVoltage));
     }
 
     protected void setLeftOutput(double output) {

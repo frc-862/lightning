@@ -11,10 +11,13 @@ import com.lightningrobotics.common.subsystem.drivetrain.differential.Differenti
 import com.lightningrobotics.common.subsystem.drivetrain.swerve.SwerveDrivetrain;
 
 import edu.wpi.first.math.controller.HolonomicDriveController;
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.controller.RamseteController;
+import edu.wpi.first.math.controller.SimpleMotorFeedforward;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
+import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.math.trajectory.TrajectoryConfig;
 import edu.wpi.first.math.trajectory.TrajectoryGenerator;
@@ -127,22 +130,38 @@ public class Path {
     /**
      * Retrieves the path represented as a command
      * @param drivetrain Drivetrain object of the robot the path should be configured for
+     * @param closedLoop Whether to use PID controlled loop
      * @return A {@link edu.wpi.first.wpilibj2.command.Command command} representing the path that can be driven by the given drivetrain
      * @throws Exception if given drivetrain is unsupported
      */
-    public Command getCommand(LightningDrivetrain drivetrain) throws Exception { 
+    public Command getCommand(LightningDrivetrain drivetrain, boolean closedLoop) throws Exception { 
         trajectory = this.getTrajectory(drivetrain);
         if(drivetrain instanceof DifferentialDrivetrain) {
-            // TODO later add check for PID
-            
-            BiConsumer<Double, Double> bi =  (left, right)-> drivetrain.setDriveSpeed(new DrivetrainSpeed(left, right, 0));
-            return new RamseteCommand(trajectory, 
-            drivetrain::getPose, 
-            new RamseteController(), 
-            (DifferentialDriveKinematics)drivetrain.getGains().getKinematics(), 
-            bi, 
-            drivetrain);
-
+            if(closedLoop){
+                // TODO: find a way to retriev feedforward, left PID controller, and right PID controller
+                BiConsumer<Double, Double> voltageConsumer = (l, r) -> ((DifferentialDrivetrain)drivetrain).setVoltage(l,r);
+                return new RamseteCommand(trajectory, 
+                drivetrain::getPose, 
+                new RamseteController(), 
+                new SimpleMotorFeedforward(0,0,0),
+                (DifferentialDriveKinematics)drivetrain.getGains().getKinematics(), 
+                () -> new DifferentialDriveWheelSpeeds(
+                    ((DifferentialDrivetrain)drivetrain).getDrivetrainState().getLeftSpeed(), 
+                    ((DifferentialDrivetrain)drivetrain).getDrivetrainState().getRightSpeed()), 
+                new PIDController(0,0,0), 
+                new PIDController(0,0,0), 
+                voltageConsumer, 
+                drivetrain);
+            }
+            else{
+                BiConsumer<Double, Double> speedConsumer =  (left, right)-> drivetrain.setDriveSpeed(new DrivetrainSpeed(left, right, 0));
+                return new RamseteCommand(trajectory, 
+                drivetrain::getPose, 
+                new RamseteController(), 
+                (DifferentialDriveKinematics)drivetrain.getGains().getKinematics(), 
+                speedConsumer, 
+                drivetrain);
+            }
         } else if(drivetrain instanceof SwerveDrivetrain) {
 
         } else {
