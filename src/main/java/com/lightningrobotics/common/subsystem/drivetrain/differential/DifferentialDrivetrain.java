@@ -22,9 +22,7 @@ public class DifferentialDrivetrain extends LightningDrivetrain {
     private LightningIMU IMU = LightningIMU.pigeon(19);
 
     private DifferentialGains gains;
-
-    private PIDFController
-
+    
     private MotorController[] leftMotors;
     private MotorController[] rightMotors;
 
