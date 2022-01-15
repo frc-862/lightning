@@ -21,6 +21,7 @@ public class DifferentialGains extends LightningGains {
         this.kinematics = new DifferentialKinematics(this);
     }
 
+    @Override
     public DifferentialKinematics getKinematics() {
         return kinematics;
     }

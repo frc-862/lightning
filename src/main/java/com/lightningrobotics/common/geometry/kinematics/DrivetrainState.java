@@ -5,5 +5,7 @@ package com.lightningrobotics.common.geometry.kinematics;
  * {@link com.lightningrobotics.common.geometry.kinematics.swerve.SwerveModuleState Module States}.
  */
 public class DrivetrainState {
+    // this is a super call of swerve and differential
+
 }
 

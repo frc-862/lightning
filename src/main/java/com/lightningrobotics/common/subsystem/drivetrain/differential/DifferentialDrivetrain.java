@@ -4,14 +4,21 @@ import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 import com.lightningrobotics.common.geometry.kinematics.differential.DifferentialDrivetrainState;
+import com.lightningrobotics.common.geometry.LightningOdometer;
 import com.lightningrobotics.common.geometry.kinematics.*;
+import com.lightningrobotics.common.subsystem.core.LightningIMU;
 import com.lightningrobotics.common.subsystem.drivetrain.LightningDrivetrain;
 import com.lightningrobotics.common.subsystem.drivetrain.LightningGains;
 import com.lightningrobotics.common.util.LightningMath;
 
+import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 
 public class DifferentialDrivetrain extends LightningDrivetrain {
+
+    private DifferentialDrivetrainState state;
+    private LightningOdometer Odometer;
+    private LightningIMU IMU = LightningIMU.pigeon(19);
 
     private DifferentialGains gains;
 
@@ -24,6 +31,7 @@ public class DifferentialDrivetrain extends LightningDrivetrain {
         this.gains = gains;
         this.leftMotors = leftMotors;
         this.rightMotors = rightMotors;
+        this.Odometer = new LightningOdometer(gains.getKinematics(), IMU.getHeading());
 
         configureMotors();
         if (leftMotors.length == rightMotors.length)
@@ -45,7 +53,7 @@ public class DifferentialDrivetrain extends LightningDrivetrain {
 
     @Override
     public void setDriveSpeed(DrivetrainSpeed speed) {
-        var state = (DifferentialDrivetrainState) gains.getKinematics().inverse(speed);
+        state = (DifferentialDrivetrainState) gains.getKinematics().inverse(speed);
         tankDrive(state.getLeftSpeed(), state.getRightSpeed());
     }
 
@@ -57,6 +65,16 @@ public class DifferentialDrivetrain extends LightningDrivetrain {
     @Override
     public void stop() {
         tankDrive(0.0, 0.0);
+    }
+
+    @Override
+    public void periodic() {
+        Odometer.update(IMU.getHeading(), state);
+    }
+
+    @Override
+    public Pose2d getPose(){
+        return Odometer.getPose();
     }
 
     public void arcadeDrive(double speed, double rot) {

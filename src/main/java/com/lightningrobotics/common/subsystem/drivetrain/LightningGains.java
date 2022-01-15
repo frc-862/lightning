@@ -1,5 +1,7 @@
 package com.lightningrobotics.common.subsystem.drivetrain;
 
+import com.lightningrobotics.common.geometry.kinematics.LightningKinematics;
+
 public class LightningGains {
 
     public static final double MAX_VOLTAGE = 12d;
@@ -29,5 +31,14 @@ public class LightningGains {
     public void setMaxAcceleration(double maxAcceleration) {
         this.maxAcceleration = maxAcceleration;
     }
+
+    public LightningKinematics getKinematics(){
+        return null;
+    }
+
+    public double getTrackWidth() {
+        return 0;
+    }
+
 
 }

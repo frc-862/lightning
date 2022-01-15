@@ -2,16 +2,25 @@ package com.lightningrobotics.common.auto;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.BiConsumer;
 
-import com.lightningrobotics.common.auto.trajectory.Trajectory;
-import com.lightningrobotics.common.auto.trajectory.TrajectoryConfig;
+import com.lightningrobotics.common.command.drivetrain.swerve.SwerveDriveCommand;
+import com.lightningrobotics.common.geometry.kinematics.DrivetrainSpeed;
 import com.lightningrobotics.common.subsystem.drivetrain.LightningDrivetrain;
 import com.lightningrobotics.common.subsystem.drivetrain.differential.DifferentialDrivetrain;
 import com.lightningrobotics.common.subsystem.drivetrain.swerve.SwerveDrivetrain;
 
+import edu.wpi.first.math.controller.HolonomicDriveController;
+import edu.wpi.first.math.controller.RamseteController;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
+import edu.wpi.first.math.trajectory.Trajectory;
+import edu.wpi.first.math.trajectory.TrajectoryConfig;
+import edu.wpi.first.math.trajectory.TrajectoryGenerator;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.RamseteCommand;
+import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 
 /**
  * Object class representing a path a {@link com.lightningrobotics.common.subsystem.drivetrain.LightningDrivetrain} can follow.
@@ -81,23 +90,28 @@ public class Path {
 
     /**
      * Obtains an optimized trajectory the robot should follow so it hits all the waypoints
+     * @param <TrajectoryConfig>
      * @param drivetrain Drivetrain object of the robot the path should be configured for
      * @return A trajectory the robot can follow
      */
-    protected Trajectory getTrajectory(LightningDrivetrain drivetrain) { 
-        if(trajectory != null) return trajectory;
+    public Trajectory getTrajectory(LightningDrivetrain drivetrain) { 
 
-        TrajectoryConfig config = new TrajectoryConfig(drivetrain, getReversed());
+        TrajectoryConfig config = new TrajectoryConfig(drivetrain.getGains().getMaxSpeed(), 
+                                                        drivetrain.getGains().getMaxAcceleration());
 
-        try {
-            trajectory = Trajectory.from(waypoints, config);
+        config.setKinematics(new DifferentialDriveKinematics(drivetrain.getGains().getTrackWidth()));
+        config = config.setReversed(getReversed());
+
+        Trajectory trajectory;
+
+        try{
+            trajectory = TrajectoryGenerator.generateTrajectory(waypoints, config);
         } catch (RuntimeException e) {
-            System.out.println("ERROR Unable To Generate Trajectory From Path");
-            e.printStackTrace();
-            trajectory = Trajectory.from(Arrays.asList(new Pose2d(0d, 0d, new Rotation2d()), new Pose2d(1d, 0d, new Rotation2d())), config);
+            trajectory = TrajectoryGenerator.generateTrajectory(Arrays.asList(new Pose2d(0d, 0d, new Rotation2d()), new Pose2d(1d, 0d, new Rotation2d())), config);
         }
 
         return trajectory; 
+
     }
 
     /**
@@ -116,16 +130,25 @@ public class Path {
      * @return A {@link edu.wpi.first.wpilibj2.command.Command command} representing the path that can be driven by the given drivetrain
      * @throws Exception if given drivetrain is unsupported
      */
-    public Command getCommand(LightningDrivetrain drivetrain) throws Exception {
+    public Command getCommand(LightningDrivetrain drivetrain) throws Exception { 
         trajectory = this.getTrajectory(drivetrain);
         if(drivetrain instanceof DifferentialDrivetrain) {
-            // some diff drive things
+            // TODO later add check for PID
+            
+            BiConsumer<Double, Double> bi =  (left, right)-> drivetrain.setDriveSpeed(new DrivetrainSpeed(left, right, 0));
+            return new RamseteCommand(trajectory, 
+            drivetrain::getPose, 
+            new RamseteController(), 
+            (DifferentialDriveKinematics)drivetrain.getGains().getKinematics(), 
+            bi, 
+            drivetrain);
+
         } else if(drivetrain instanceof SwerveDrivetrain) {
 
         } else {
             throw new Exception("ERROR: Unsupported Drivetrain Type.\nA drivetrain like no other!");
         }
-        //TODO implement
+        // TODO to implement
         return null;
     }
     
