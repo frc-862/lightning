@@ -10,18 +10,14 @@ public class DifferentialGains extends LightningGains {
     private boolean[] leftInverts;
     private boolean[] rightInverts;
     private double trackWidth; 
-    private double gearRatio;
-    private double wheelCircumference;
 
     public DifferentialGains() {}
 
-    public DifferentialGains(double maxSpeed, double maxAcceleration, double trackWidth, boolean[] leftInverts, boolean[] rightInverts, double gearRatio, double wheelCircumference) {
+    public DifferentialGains(double maxSpeed, double maxAcceleration, double trackWidth, boolean[] leftInverts, boolean[] rightInverts) {
         super(maxSpeed, maxAcceleration);
         this.trackWidth = trackWidth;
         this.leftInverts = leftInverts;
         this.rightInverts = rightInverts;
-        this.gearRatio = gearRatio;
-        this.wheelCircumference = wheelCircumference;
         this.kinematics = new DifferentialKinematics(this);
     }
 
@@ -52,14 +48,6 @@ public class DifferentialGains extends LightningGains {
 
     public void setRightInverts(boolean[] rightInverts) {
         this.rightInverts = rightInverts;
-    }
-
-    public double getGearRatio(){
-        return gearRatio;
-    }
-
-    public double getWheelCircumference(){
-        return wheelCircumference;
     }
 
 }

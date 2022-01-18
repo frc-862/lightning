@@ -2,6 +2,7 @@ package com.lightningrobotics.common.subsystem.drivetrain.differential;
 
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
+import java.util.function.DoubleSupplier;
 
 import com.lightningrobotics.common.geometry.kinematics.differential.DifferentialDrivetrainState;
 import com.lightningrobotics.common.controller.PIDFController;
@@ -27,17 +28,17 @@ public class DifferentialDrivetrain extends LightningDrivetrain {
     
     private MotorController[] leftMotors;
     private MotorController[] rightMotors;
-    private Encoder leftEncoder;
-    private Encoder rightEncoder;
+    private DoubleSupplier leftVelocity;
+    private DoubleSupplier rightVelocity;
 
     private int motorCount = 0;
 
-    public DifferentialDrivetrain(DifferentialGains gains, MotorController[] leftMotors, MotorController[] rightMotors, Encoder leftEncoder, Encoder rightEncoder) {
+    public DifferentialDrivetrain(DifferentialGains gains, MotorController[] leftMotors, MotorController[] rightMotors, DoubleSupplier leftVelocity, DoubleSupplier rightVelocity) {
         this.gains = gains;
         this.leftMotors = leftMotors;
         this.rightMotors = rightMotors;
-        this.leftEncoder = leftEncoder;
-        this.rightEncoder = rightEncoder;
+        this.leftVelocity = leftVelocity;
+        this.rightVelocity = rightVelocity;
         this.Odometer = new LightningOdometer(gains.getKinematics(), IMU.getHeading());
 
         configureMotors();
@@ -76,20 +77,12 @@ public class DifferentialDrivetrain extends LightningDrivetrain {
 
     @Override
     public void periodic() {
-        //Odometer.update(IMU.getHeading(), state);
+        state = new DifferentialDrivetrainState(leftVelocity.getAsDouble(), rightVelocity.getAsDouble());
     }
 
     @Override
     public Pose2d getPose(){
         return Odometer.getPose();
-    }
-
-    public double getLeftVelocity() {
-        return LightningMath.rpmToMetersPerSecond(leftEncoder.getRate(), gains.getGearRatio(), gains.getWheelCircumference());
-    }
-
-    public double getRightVelocity() {
-        return LightningMath.rpmToMetersPerSecond(rightEncoder.getRate(), gains.getGearRatio(), gains.getWheelCircumference());
     }
 
     public DifferentialDrivetrainState getDrivetrainState(){

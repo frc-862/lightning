@@ -143,13 +143,13 @@ public class Path {
             return new RamseteCommand(trajectory, 
             drivetrain::getPose, 
             new RamseteController(), 
-            new SimpleMotorFeedforward(0,0,0),
+            new SimpleMotorFeedforward(0.1,0.1,0.1),
             new DifferentialDriveKinematics(drivetrain.getGains().getTrackWidth()), 
             () -> new DifferentialDriveWheelSpeeds(
                 ((DifferentialDrivetrain)drivetrain).getDrivetrainState().getLeftSpeed(), 
                 ((DifferentialDrivetrain)drivetrain).getDrivetrainState().getRightSpeed()), 
-            new PIDController(0.05,0,0), 
-            new PIDController(0.05,0,0), 
+            new PIDController(0.1,0,0), 
+            new PIDController(0.1,0,0), 
             voltageConsumer, 
             drivetrain);
 
@@ -166,7 +166,6 @@ public class Path {
         } else {
             throw new Exception("ERROR: Unsupported Drivetrain Type.\nA drivetrain like no other!");
         }
-        // TODO to implement
         return null;
     }
     

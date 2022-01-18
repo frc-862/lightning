@@ -32,7 +32,9 @@ public class Drivetrain extends DifferentialDrivetrain {
                 new WPI_TalonFX(4),
                 new WPI_TalonFX(5),
                 new WPI_TalonFX(6),
-            }
+            },
+            () -> (new WPI_TalonFX(1).getSelectedSensorVelocity() * 10d) * (6.16 * Math.PI / (2048d * 15d)),
+            () -> (new WPI_TalonFX(4).getSelectedSensorVelocity() * 10d) * (6.16 * Math.PI / (2048d * 15d))
         );
     }
     
