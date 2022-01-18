@@ -1,6 +1,6 @@
 package com.lightningrobotics.common.geometry.kinematics;
 
-import edu.wpi.first.wpilibj.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Rotation2d;
 
 /**
  * Class represents a speed vector for the robot, relative to the robot.

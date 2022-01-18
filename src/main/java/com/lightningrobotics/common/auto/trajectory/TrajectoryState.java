@@ -11,7 +11,7 @@ import java.util.Objects;
 
 import com.lightningrobotics.common.util.LightningMath;
 
-import edu.wpi.first.wpilibj.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Pose2d;
 
 /**
  * Represents a time-parameterized trajectory. The trajectory contains of

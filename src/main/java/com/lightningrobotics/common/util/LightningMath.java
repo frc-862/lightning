@@ -1,6 +1,6 @@
 package com.lightningrobotics.common.util;
 
-import edu.wpi.first.wpilibj.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Pose2d;
 
 public final class LightningMath {
 
@@ -16,6 +16,7 @@ public final class LightningMath {
      * @param value Value to clamp.
      * @param low The lower boundary to which to clamp value.
      * @param high The higher boundary to which to clamp value.
+     * @return clamped value.
      */
     public static int clamp(int value, int low, int high) {
         return Math.max(low, Math.min(value, high));
@@ -25,7 +26,8 @@ public final class LightningMath {
      * Returns value clamped between low and high boundaries.
      * @param value Value to clamp.
      * @param low The lower boundary to which to clamp value.
-     * @param highThe higher boundary to which to clamp value.
+     * @param high The higher boundary to which to clamp value.
+     * @return clamped value.
      */
     public static double clamp(double value, double low, double high) {
         return Math.max(low, Math.min(value, high));
@@ -36,6 +38,7 @@ public final class LightningMath {
      * @param input Input value to wrap.
      * @param minimumInput The minimum value expected from the input.
      * @param maximumInput The maximum value expected from the input.
+     * @return mod of input value
      */
     public static double inputModulus(double input, double minimumInput, double maximumInput) {
         double modulus = maximumInput - minimumInput;
@@ -54,6 +57,7 @@ public final class LightningMath {
     /**
      * Wraps an angle to the range -pi to pi radians.
      * @param angleRadians Angle to wrap in radians.
+     * @return constrained angle from -pi to pi
      */
     public static double angleModulus(double angleRadians) {
         return inputModulus(angleRadians, -Math.PI, Math.PI);

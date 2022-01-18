@@ -22,8 +22,7 @@ public class DifferentialDrivetrainState extends DrivetrainState {
 
     @Override
     public DrivetrainState getState() {
-        // TODO fixme
-        return null;
+        return (DifferentialDrivetrainState) this;
     } 
 
 }

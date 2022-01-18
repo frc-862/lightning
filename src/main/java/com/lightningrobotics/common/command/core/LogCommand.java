@@ -1,12 +1,9 @@
-package com.lightningrobotics.common.logging;
+package com.lightningrobotics.common.command.core;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import java.util.function.Supplier;
 
-/**
- * Created by phurley on 12/7/16.
- */
 public class LogCommand extends CommandBase {
     final Supplier<String> msg;
 

@@ -11,7 +11,7 @@ import com.lightningrobotics.common.subsystem.drivetrain.swerve.SwerveDrivetrain
 import com.lightningrobotics.common.subsystem.drivetrain.swerve.SwerveGains;
 import com.lightningrobotics.common.subsystem.drivetrain.swerve.SwerveModule;
 
-import edu.wpi.first.wpilibj.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Rotation2d;
 
 public class Drivetrain extends SwerveDrivetrain {
 

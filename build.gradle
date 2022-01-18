@@ -1,3 +1,5 @@
+import edu.wpi.first.gradlerio.deploy.roborio.RoboRIO
+
 buildscript {
     repositories {
         maven {
@@ -5,12 +7,12 @@ buildscript {
         }
     }
     dependencies {
-        classpath "edu.wpi.first:GradleRIO:2021.3.1"
+        classpath "edu.wpi.first:GradleRIO:2022.2.1"
     }
 }
 
 plugins {
-    id 'java'
+    id "java"
     id 'maven-publish'
 }
 
@@ -33,17 +35,14 @@ sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
 
 dependencies {
-    // TODO need to make this dependable on the implementing project
-    implementation wpi.deps.wpilib()
-    nativeZip wpi.deps.wpilibJni(wpi.platforms.roborio)
-    nativeDesktopZip wpi.deps.wpilibJni(wpi.platforms.desktop)
-    implementation wpi.deps.vendor.java()
-    nativeZip wpi.deps.vendor.jni(wpi.platforms.roborio)
-    nativeDesktopZip wpi.deps.vendor.jni(wpi.platforms.desktop)
+
+    implementation wpi.java.deps.wpilib()
+    implementation wpi.java.vendor.java()
+    implementation 'org.ejml:ejml-all:0.40'
+
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-core:3.2.4'
-    simulation wpi.deps.sim.gui(wpi.platforms.desktop, false)
-    compile 'org.ejml:ejml-all:0.40'
+
 }
 
 publishing {

@@ -6,7 +6,7 @@ import com.lightningrobotics.common.geometry.kinematics.LightningKinematics;
 import com.lightningrobotics.common.subsystem.drivetrain.swerve.SwerveGains;
 import com.lightningrobotics.common.util.LightningMath;
 
-import edu.wpi.first.wpilibj.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Rotation2d;
 
 public class SwerveKinematics implements LightningKinematics {
 

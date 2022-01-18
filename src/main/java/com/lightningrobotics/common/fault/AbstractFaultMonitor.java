@@ -1,23 +1,23 @@
 package com.lightningrobotics.common.fault;
 
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import com.lightningrobotics.common.fault.FaultCode.Codes;
+import com.lightningrobotics.common.fault.LightningFaultCodes.Code;
 
 /**
- * Base {@link com.lightningrobotics.common.fault.FaultCode.Codes} checking functionality
+ * Base {@link com.lightningrobotics.common.fault.LightningFaultCodes.Code} checking functionality
  */
 public abstract class AbstractFaultMonitor {
-    protected Codes code;
+    protected Code code;
     protected String msg;
     protected boolean fatal;
 
     /**
      * Creates a new abstract fault monitor
-     * @param code  The {@link com.lightningrobotics.common.fault.FaultCode.Codes} to be monitored
+     * @param code  The {@link com.lightningrobotics.common.fault.LightningFaultCodes.Code} to be monitored
      * @param msg   The message to use should the fault be written
      * @param fatal If the fault is fatal and should stop the robot
      */
-    public AbstractFaultMonitor(Codes code, String msg, boolean fatal) {
+    public AbstractFaultMonitor(Code code, String msg, boolean fatal) {
         this.code = code;
         this.msg = msg;
         this.fatal = fatal;
@@ -25,19 +25,19 @@ public abstract class AbstractFaultMonitor {
 
     /**
      * Creates a new non-fatal abstract fault monitor
-     * @param code The {@link com.lightningrobotics.common.fault.FaultCode.Codes} to be monitored
+     * @param code The {@link com.lightningrobotics.common.fault.LightningFaultCodes.Code} to be monitored
      * @param msg  The message to use should the fault be written
      */
-    public AbstractFaultMonitor(Codes code, String msg) {
+    public AbstractFaultMonitor(Code code, String msg) {
         this(code, msg, false);
     }
 
     /**
      * Creates a new non-fatal abstract fault monitor
-     * @param code The {@link com.lightningrobotics.common.fault.FaultCode.Codes} to be monitored
+     * @param code The {@link com.lightningrobotics.common.fault.LightningFaultCodes.Code} to be monitored
      */
-    public AbstractFaultMonitor(Codes code) {
-        this(code, "FAULT " + code.name(), false);
+    public AbstractFaultMonitor(Code code) {
+        this(code, "FAULT " + code.getName(), false);
     }
 
     /**

@@ -4,7 +4,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.lightningrobotics.common.subsystem.drivetrain.differential.DifferentialDrivetrain;
 import com.lightningrobotics.common.subsystem.drivetrain.differential.DifferentialGains;
 
-import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 
 public class Drivetrain extends DifferentialDrivetrain {
 
@@ -19,12 +19,12 @@ public class Drivetrain extends DifferentialDrivetrain {
     public Drivetrain() {
         super(
             DIFFERENTIAL_GAINS, 
-            new SpeedController[]{
+            new MotorController[]{
                 new WPI_TalonFX(1),
                 new WPI_TalonFX(2),
                 new WPI_TalonFX(3)
             }, 
-            new SpeedController[]{
+            new MotorController[]{
                 new WPI_TalonFX(4),
                 new WPI_TalonFX(5),
                 new WPI_TalonFX(6),

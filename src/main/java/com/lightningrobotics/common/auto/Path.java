@@ -9,8 +9,8 @@ import com.lightningrobotics.common.subsystem.drivetrain.LightningDrivetrain;
 import com.lightningrobotics.common.subsystem.drivetrain.differential.DifferentialDrivetrain;
 import com.lightningrobotics.common.subsystem.drivetrain.swerve.SwerveDrivetrain;
 
-import edu.wpi.first.wpilibj.geometry.Pose2d;
-import edu.wpi.first.wpilibj.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.Command;
 
 /**
@@ -40,7 +40,6 @@ public class Path {
 
     /**
      * Constructor creates path object
-     * @param name The name of the path
      * @param waypoints List of waypoints for the optimized path to follow
      */
     public Path(List<Pose2d> waypoints) {
@@ -115,7 +114,7 @@ public class Path {
      * Retrieves the path represented as a command
      * @param drivetrain Drivetrain object of the robot the path should be configured for
      * @return A {@link edu.wpi.first.wpilibj2.command.Command command} representing the path that can be driven by the given drivetrain
-     * @throws Exception
+     * @throws Exception if given drivetrain is unsupported
      */
     public Command getCommand(LightningDrivetrain drivetrain) throws Exception {
         trajectory = this.getTrajectory(drivetrain);

@@ -1,10 +1,3 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2019 FIRST. All Rights Reserved.                             */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
-
 package com.lightningrobotics.common.testing;
 
 import java.util.Iterator;
@@ -19,6 +12,7 @@ import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardLayout;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import com.lightningrobotics.common.fault.FaultCode;
+import com.lightningrobotics.common.fault.LightningFaultCodes;
 
 /**
  * Runs all {@link SystemTest SystemTests} that have been queued with
@@ -69,7 +63,7 @@ public class SystemTestCommand extends CommandBase {
 
 	static void register(SystemTest test) {
 		if(queue.isEmpty()) {
-			queue.add(new SystemTest("Please Indicate Success to Begin Testing", FaultCode.Codes.GENERAL, SystemTest.Priority.DO_FIRST) {
+			queue.add(new SystemTest("Please Indicate Success to Begin Testing", LightningFaultCodes.getFaultCode("GENERAL"), SystemTest.Priority.DO_FIRST) {
 				@Override
 				public boolean didPass() {
 					return false;

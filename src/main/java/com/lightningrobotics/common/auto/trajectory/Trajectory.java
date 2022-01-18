@@ -11,15 +11,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import edu.wpi.first.wpilibj.geometry.Pose2d;
-import edu.wpi.first.wpilibj.geometry.Rotation2d;
-import edu.wpi.first.wpilibj.geometry.Transform2d;
-import edu.wpi.first.wpilibj.geometry.Translation2d;
-import edu.wpi.first.wpilibj.spline.PoseWithCurvature;
-import edu.wpi.first.wpilibj.spline.Spline;
-import edu.wpi.first.wpilibj.spline.SplineHelper;
-import edu.wpi.first.wpilibj.spline.SplineParameterizer;
-import edu.wpi.first.wpilibj.spline.SplineParameterizer.MalformedSplineException;
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Transform2d;
+import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.math.spline.PoseWithCurvature;
+import edu.wpi.first.math.spline.Spline;
+import edu.wpi.first.math.spline.SplineHelper;
+import edu.wpi.first.math.spline.SplineParameterizer;
+import edu.wpi.first.math.spline.SplineParameterizer.MalformedSplineException;
 
 /**
  * Represents a time-parameterized trajectory. The trajectory contains of
