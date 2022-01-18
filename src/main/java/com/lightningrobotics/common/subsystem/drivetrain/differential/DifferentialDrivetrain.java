@@ -13,7 +13,9 @@ import com.lightningrobotics.common.subsystem.drivetrain.LightningGains;
 import com.lightningrobotics.common.util.LightningMath;
 
 import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
+import pabeles.concurrency.IntRangeConsumer;
 
 public class DifferentialDrivetrain extends LightningDrivetrain {
 
@@ -25,13 +27,17 @@ public class DifferentialDrivetrain extends LightningDrivetrain {
     
     private MotorController[] leftMotors;
     private MotorController[] rightMotors;
+    private Encoder leftEncoder;
+    private Encoder rightEncoder;
 
     private int motorCount = 0;
 
-    public DifferentialDrivetrain(DifferentialGains gains, MotorController[] leftMotors, MotorController[] rightMotors) {
+    public DifferentialDrivetrain(DifferentialGains gains, MotorController[] leftMotors, MotorController[] rightMotors, Encoder leftEncoder, Encoder rightEncoder) {
         this.gains = gains;
         this.leftMotors = leftMotors;
         this.rightMotors = rightMotors;
+        this.leftEncoder = leftEncoder;
+        this.rightEncoder = rightEncoder;
         this.Odometer = new LightningOdometer(gains.getKinematics(), IMU.getHeading());
 
         configureMotors();
@@ -70,12 +76,20 @@ public class DifferentialDrivetrain extends LightningDrivetrain {
 
     @Override
     public void periodic() {
-        Odometer.update(IMU.getHeading(), state);
+        //Odometer.update(IMU.getHeading(), state);
     }
 
     @Override
     public Pose2d getPose(){
         return Odometer.getPose();
+    }
+
+    public double getLeftVelocity() {
+        return LightningMath.rpmToMetersPerSecond(leftEncoder.getRate(), gains.getGearRatio(), gains.getWheelCircumference());
+    }
+
+    public double getRightVelocity() {
+        return LightningMath.rpmToMetersPerSecond(rightEncoder.getRate(), gains.getGearRatio(), gains.getWheelCircumference());
     }
 
     public DifferentialDrivetrainState getDrivetrainState(){

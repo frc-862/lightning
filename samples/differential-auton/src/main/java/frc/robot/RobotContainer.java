@@ -46,7 +46,7 @@ public class RobotContainer extends LightningContainer {
 		try {
 			Autonomous.register("Test Differential Auton", 
 			(new Path(Arrays.asList(new Pose2d(0d, 0d, Rotation2d.fromDegrees(0d)), 
-				new Pose2d(1d, 0d, Rotation2d.fromDegrees(0d))))).getCommand(drivetrain, false));
+				new Pose2d(1d, 0d, Rotation2d.fromDegrees(0d))))).getCommand(drivetrain));
 		} catch(Exception e) {
 			System.err.println("Unexpected Error: " + e.getMessage());
 		}

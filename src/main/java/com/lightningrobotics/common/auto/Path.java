@@ -134,35 +134,34 @@ public class Path {
      * @return A {@link edu.wpi.first.wpilibj2.command.Command command} representing the path that can be driven by the given drivetrain
      * @throws Exception if given drivetrain is unsupported
      */
-    public Command getCommand(LightningDrivetrain drivetrain, boolean closedLoop) throws Exception { 
+    public Command getCommand(LightningDrivetrain drivetrain) throws Exception { 
         trajectory = this.getTrajectory(drivetrain);
         if(drivetrain instanceof DifferentialDrivetrain) {
-            if(closedLoop){
-                // TODO: find a way to retriev feedforward, left PID controller, and right PID controller
-                BiConsumer<Double, Double> voltageConsumer = (l, r) -> ((DifferentialDrivetrain)drivetrain).setVoltage(l,r);
-                return new RamseteCommand(trajectory, 
-                drivetrain::getPose, 
-                new RamseteController(), 
-                new SimpleMotorFeedforward(0,0,0),
-                (DifferentialDriveKinematics)drivetrain.getGains().getKinematics(), 
-                () -> new DifferentialDriveWheelSpeeds(
-                    ((DifferentialDrivetrain)drivetrain).getDrivetrainState().getLeftSpeed(), 
-                    ((DifferentialDrivetrain)drivetrain).getDrivetrainState().getRightSpeed()), 
-                new PIDController(0,0,0), 
-                new PIDController(0,0,0), 
-                voltageConsumer, 
-                drivetrain);
-            }
-            else{
-                BiConsumer<Double, Double> speedConsumer =  (left, right)-> drivetrain.setDriveSpeed(new DrivetrainSpeed(left, right, 0));
-                return new RamseteCommand(trajectory, 
-                drivetrain::getPose, 
-                new RamseteController(), 
-                (DifferentialDriveKinematics)drivetrain.getGains().getKinematics(), 
-                speedConsumer, 
-                drivetrain);
-            }
-        } else if(drivetrain instanceof SwerveDrivetrain) {
+
+            // TODO: find a way to retriev feedforward, left PID controller, and right PID controller
+            BiConsumer<Double, Double> voltageConsumer = (l, r) -> ((DifferentialDrivetrain)drivetrain).setVoltage(l,r);
+            return new RamseteCommand(trajectory, 
+            drivetrain::getPose, 
+            new RamseteController(), 
+            new SimpleMotorFeedforward(0,0,0),
+            new DifferentialDriveKinematics(drivetrain.getGains().getTrackWidth()), 
+            () -> new DifferentialDriveWheelSpeeds(
+                ((DifferentialDrivetrain)drivetrain).getDrivetrainState().getLeftSpeed(), 
+                ((DifferentialDrivetrain)drivetrain).getDrivetrainState().getRightSpeed()), 
+            new PIDController(0.05,0,0), 
+            new PIDController(0.05,0,0), 
+            voltageConsumer, 
+            drivetrain);
+
+            // BiConsumer<Double, Double> speedConsumer =  (left, right)-> drivetrain.setDriveSpeed(new DrivetrainSpeed(left, right, 0));
+            // return new RamseteCommand(trajectory, 
+            // drivetrain::getPose, 
+            // new RamseteController(), 
+            // (DifferentialDriveKinematics)drivetrain.getGains().getKinematics(), 
+            // speedConsumer, 
+            // drivetrain);
+            
+        }else if(drivetrain instanceof SwerveDrivetrain) {
 
         } else {
             throw new Exception("ERROR: Unsupported Drivetrain Type.\nA drivetrain like no other!");
