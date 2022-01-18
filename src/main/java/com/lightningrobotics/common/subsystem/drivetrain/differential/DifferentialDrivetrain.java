@@ -13,8 +13,8 @@ import com.lightningrobotics.common.subsystem.drivetrain.LightningDrivetrain;
 import com.lightningrobotics.common.subsystem.drivetrain.LightningGains;
 import com.lightningrobotics.common.util.LightningMath;
 
+import edu.wpi.first.math.controller.SimpleMotorFeedforward;
 import edu.wpi.first.math.geometry.Pose2d;
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import pabeles.concurrency.IntRangeConsumer;
 
@@ -30,15 +30,21 @@ public class DifferentialDrivetrain extends LightningDrivetrain {
     private MotorController[] rightMotors;
     private DoubleSupplier leftVelocity;
     private DoubleSupplier rightVelocity;
+    private PIDFController leftDriveController;
+    private PIDFController rightDriveController;
+    private SimpleMotorFeedforward ffController;
 
     private int motorCount = 0;
 
-    public DifferentialDrivetrain(DifferentialGains gains, MotorController[] leftMotors, MotorController[] rightMotors, DoubleSupplier leftVelocity, DoubleSupplier rightVelocity) {
+    public DifferentialDrivetrain(DifferentialGains gains, MotorController[] leftMotors, MotorController[] rightMotors, DoubleSupplier leftVelocity, DoubleSupplier rightVelocity, PIDFController leftDriveController, PIDFController rightDriveController, SimpleMotorFeedforward ffController) {
         this.gains = gains;
         this.leftMotors = leftMotors;
         this.rightMotors = rightMotors;
         this.leftVelocity = leftVelocity;
         this.rightVelocity = rightVelocity;
+        this.leftDriveController = leftDriveController;
+        this.rightDriveController = rightDriveController;
+        this.ffController = ffController;
         this.Odometer = new LightningOdometer(gains.getKinematics(), IMU.getHeading());
 
         configureMotors();
@@ -87,6 +93,18 @@ public class DifferentialDrivetrain extends LightningDrivetrain {
 
     public DifferentialDrivetrainState getDrivetrainState(){
         return state;
+    }
+
+    public PIDFController getLeftriveController(){
+        return leftDriveController;
+    }
+
+    public PIDFController getRightriveController(){
+        return rightDriveController;
+    }
+
+    public SimpleMotorFeedforward getFeedforwardController(){
+        return ffController;
     }
 
     public void arcadeDrive(double speed, double rot) {

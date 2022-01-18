@@ -4,26 +4,25 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.BiConsumer;
 
+import com.lightningrobotics.common.auto.trajectory.Trajectory;
+import com.lightningrobotics.common.auto.trajectory.TrajectoryConfig;
+import com.lightningrobotics.common.command.drivetrain.differential.RamseteCommand;
 import com.lightningrobotics.common.command.drivetrain.swerve.SwerveDriveCommand;
+import com.lightningrobotics.common.controller.RamseteController;
 import com.lightningrobotics.common.geometry.kinematics.DrivetrainSpeed;
+import com.lightningrobotics.common.geometry.kinematics.differential.DifferentialDrivetrainState;
+import com.lightningrobotics.common.geometry.kinematics.differential.DifferentialKinematics;
 import com.lightningrobotics.common.subsystem.drivetrain.LightningDrivetrain;
 import com.lightningrobotics.common.subsystem.drivetrain.differential.DifferentialDrivetrain;
+import com.lightningrobotics.common.subsystem.drivetrain.differential.DifferentialGains;
 import com.lightningrobotics.common.subsystem.drivetrain.swerve.SwerveDrivetrain;
 
 import edu.wpi.first.math.controller.HolonomicDriveController;
 import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.math.controller.RamseteController;
 import edu.wpi.first.math.controller.SimpleMotorFeedforward;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
-import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
-import edu.wpi.first.math.trajectory.Trajectory;
-import edu.wpi.first.math.trajectory.TrajectoryConfig;
-import edu.wpi.first.math.trajectory.TrajectoryGenerator;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.RamseteCommand;
-import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 
 /**
  * Object class representing a path a {@link com.lightningrobotics.common.subsystem.drivetrain.LightningDrivetrain} can follow.
@@ -98,23 +97,19 @@ public class Path {
      * @return A trajectory the robot can follow
      */
     public Trajectory getTrajectory(LightningDrivetrain drivetrain) { 
+        if(trajectory != null) return trajectory;
 
-        TrajectoryConfig config = new TrajectoryConfig(drivetrain.getGains().getMaxSpeed(), 
-                                                        drivetrain.getGains().getMaxAcceleration());
+        TrajectoryConfig config = new TrajectoryConfig(drivetrain, getReversed());
 
-        config.setKinematics(new DifferentialDriveKinematics(drivetrain.getGains().getTrackWidth()));
-        config = config.setReversed(getReversed());
-
-        Trajectory trajectory;
-
-        try{
-            trajectory = TrajectoryGenerator.generateTrajectory(waypoints, config);
+        try {
+            trajectory = Trajectory.from(waypoints, config);
         } catch (RuntimeException e) {
-            trajectory = TrajectoryGenerator.generateTrajectory(Arrays.asList(new Pose2d(0d, 0d, new Rotation2d()), new Pose2d(1d, 0d, new Rotation2d())), config);
+            System.out.println("ERROR Unable To Generate Trajectory From Path");
+            e.printStackTrace();
+            trajectory = Trajectory.from(Arrays.asList(new Pose2d(0d, 0d, new Rotation2d()), new Pose2d(1d, 0d, new Rotation2d())), config);
         }
 
         return trajectory; 
-
     }
 
     /**
@@ -130,26 +125,22 @@ public class Path {
     /**
      * Retrieves the path represented as a command
      * @param drivetrain Drivetrain object of the robot the path should be configured for
-     * @param closedLoop Whether to use PID controlled loop
      * @return A {@link edu.wpi.first.wpilibj2.command.Command command} representing the path that can be driven by the given drivetrain
      * @throws Exception if given drivetrain is unsupported
      */
     public Command getCommand(LightningDrivetrain drivetrain) throws Exception { 
         trajectory = this.getTrajectory(drivetrain);
         if(drivetrain instanceof DifferentialDrivetrain) {
-
-            // TODO: find a way to retriev feedforward, left PID controller, and right PID controller
+            DifferentialDrivetrain differentialDrivetrain = (DifferentialDrivetrain)drivetrain;
             BiConsumer<Double, Double> voltageConsumer = (l, r) -> ((DifferentialDrivetrain)drivetrain).setVoltage(l,r);
             return new RamseteCommand(trajectory, 
             drivetrain::getPose, 
             new RamseteController(), 
-            new SimpleMotorFeedforward(0.1,0.1,0.1),
-            new DifferentialDriveKinematics(drivetrain.getGains().getTrackWidth()), 
-            () -> new DifferentialDriveWheelSpeeds(
-                ((DifferentialDrivetrain)drivetrain).getDrivetrainState().getLeftSpeed(), 
-                ((DifferentialDrivetrain)drivetrain).getDrivetrainState().getRightSpeed()), 
-            new PIDController(0.1,0,0), 
-            new PIDController(0.1,0,0), 
+            differentialDrivetrain.getFeedforwardController(),
+            (DifferentialKinematics)drivetrain.getGains().getKinematics(), 
+            () -> differentialDrivetrain.getDrivetrainState(), 
+            differentialDrivetrain.getLeftriveController(), 
+            differentialDrivetrain.getRightriveController(), 
             voltageConsumer, 
             drivetrain);
 
