@@ -21,7 +21,7 @@ import pabeles.concurrency.IntRangeConsumer;
 public class DifferentialDrivetrain extends LightningDrivetrain {
 
     private DifferentialDrivetrainState state;
-    private LightningOdometer Odometer;
+    private LightningOdometer odometer;
     private LightningIMU IMU = LightningIMU.pigeon(19);
 
     private DifferentialGains gains;
@@ -45,7 +45,7 @@ public class DifferentialDrivetrain extends LightningDrivetrain {
         this.leftDriveController = leftDriveController;
         this.rightDriveController = rightDriveController;
         this.ffController = ffController;
-        this.Odometer = new LightningOdometer(gains.getKinematics(), IMU.getHeading());
+        this.odometer = new LightningOdometer(gains.getKinematics(), IMU.getHeading());
 
         configureMotors();
         if (leftMotors.length == rightMotors.length)
@@ -84,11 +84,12 @@ public class DifferentialDrivetrain extends LightningDrivetrain {
     @Override
     public void periodic() {
         state = new DifferentialDrivetrainState(leftVelocity.getAsDouble(), rightVelocity.getAsDouble());
+        odometer.update(IMU.getHeading(), state);
     }
 
     @Override
     public Pose2d getPose(){
-        return Odometer.getPose();
+        return odometer.getPose();
     }
 
     public DifferentialDrivetrainState getDrivetrainState(){
