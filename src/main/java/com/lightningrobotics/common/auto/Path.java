@@ -2,13 +2,24 @@ package com.lightningrobotics.common.auto;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.BiConsumer;
 
 import com.lightningrobotics.common.auto.trajectory.Trajectory;
 import com.lightningrobotics.common.auto.trajectory.TrajectoryConfig;
+import com.lightningrobotics.common.command.drivetrain.differential.RamseteCommand;
+import com.lightningrobotics.common.command.drivetrain.swerve.SwerveDriveCommand;
+import com.lightningrobotics.common.controller.RamseteController;
+import com.lightningrobotics.common.geometry.kinematics.DrivetrainSpeed;
+import com.lightningrobotics.common.geometry.kinematics.differential.DifferentialDrivetrainState;
+import com.lightningrobotics.common.geometry.kinematics.differential.DifferentialKinematics;
 import com.lightningrobotics.common.subsystem.drivetrain.LightningDrivetrain;
 import com.lightningrobotics.common.subsystem.drivetrain.differential.DifferentialDrivetrain;
+import com.lightningrobotics.common.subsystem.drivetrain.differential.DifferentialGains;
 import com.lightningrobotics.common.subsystem.drivetrain.swerve.SwerveDrivetrain;
 
+import edu.wpi.first.math.controller.HolonomicDriveController;
+import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.math.controller.SimpleMotorFeedforward;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -81,10 +92,11 @@ public class Path {
 
     /**
      * Obtains an optimized trajectory the robot should follow so it hits all the waypoints
+     * @param <TrajectoryConfig>
      * @param drivetrain Drivetrain object of the robot the path should be configured for
      * @return A trajectory the robot can follow
      */
-    protected Trajectory getTrajectory(LightningDrivetrain drivetrain) { 
+    public Trajectory getTrajectory(LightningDrivetrain drivetrain) { 
         if(trajectory != null) return trajectory;
 
         TrajectoryConfig config = new TrajectoryConfig(drivetrain, getReversed());
@@ -116,16 +128,35 @@ public class Path {
      * @return A {@link edu.wpi.first.wpilibj2.command.Command command} representing the path that can be driven by the given drivetrain
      * @throws Exception if given drivetrain is unsupported
      */
-    public Command getCommand(LightningDrivetrain drivetrain) throws Exception {
+    public Command getCommand(LightningDrivetrain drivetrain) throws Exception { 
         trajectory = this.getTrajectory(drivetrain);
         if(drivetrain instanceof DifferentialDrivetrain) {
-            // some diff drive things
-        } else if(drivetrain instanceof SwerveDrivetrain) {
+            DifferentialDrivetrain differentialDrivetrain = (DifferentialDrivetrain)drivetrain;
+            BiConsumer<Double, Double> voltageConsumer = (l, r) -> ((DifferentialDrivetrain)drivetrain).setVoltage(l,r);
+            return new RamseteCommand(trajectory, 
+            drivetrain::getPose, 
+            new RamseteController(), 
+            differentialDrivetrain.getFeedforwardController(),
+            (DifferentialKinematics)drivetrain.getGains().getKinematics(), 
+            () -> differentialDrivetrain.getDrivetrainState(), 
+            differentialDrivetrain.getLeftriveController(), 
+            differentialDrivetrain.getRightriveController(), 
+            voltageConsumer, 
+            drivetrain);
+
+            // BiConsumer<Double, Double> speedConsumer =  (left, right)-> drivetrain.setDriveSpeed(new DrivetrainSpeed(left, right, 0));
+            // return new RamseteCommand(trajectory, 
+            // drivetrain::getPose, 
+            // new RamseteController(), 
+            // (DifferentialDriveKinematics)drivetrain.getGains().getKinematics(), 
+            // speedConsumer, 
+            // drivetrain);
+            
+        }else if(drivetrain instanceof SwerveDrivetrain) {
 
         } else {
             throw new Exception("ERROR: Unsupported Drivetrain Type.\nA drivetrain like no other!");
         }
-        //TODO implement
         return null;
     }
     

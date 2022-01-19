@@ -13,7 +13,7 @@ public class RobotContainer extends LightningContainer {
 
 	private static final XboxController driver = new XboxController(0);
 
-	private static final LightningIMU imu = LightningIMU.pigeon(19);
+	// private static final LightningIMU imu = LightningIMU.pigeon(19);
 
 	private static final DifferentialDrivetrain drivetrain = new Drivetrain();
 

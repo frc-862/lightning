@@ -1,9 +1,11 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
+import com.lightningrobotics.common.controller.PIDFController;
 import com.lightningrobotics.common.subsystem.drivetrain.differential.DifferentialDrivetrain;
 import com.lightningrobotics.common.subsystem.drivetrain.differential.DifferentialGains;
 
+import edu.wpi.first.math.controller.SimpleMotorFeedforward;
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 
 public class Drivetrain extends DifferentialDrivetrain {
@@ -28,7 +30,13 @@ public class Drivetrain extends DifferentialDrivetrain {
                 new WPI_TalonFX(4),
                 new WPI_TalonFX(5),
                 new WPI_TalonFX(6),
-            }
+            },
+            () -> (new WPI_TalonFX(1).getSelectedSensorVelocity() * 10d) * (6.16 * Math.PI / (2048d * 15d)),
+            () -> (new WPI_TalonFX(4).getSelectedSensorVelocity() * 10d) * (6.16 * Math.PI / (2048d * 15d)),
+            // Temporary
+            new PIDFController(0, 0, 0, 0),
+            new PIDFController(0, 0, 0, 0),
+            new SimpleMotorFeedforward(0, 0)
         );
     }
     

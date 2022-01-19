@@ -22,6 +22,11 @@ public class DifferentialGains extends LightningGains {
         this.setKinematics(kinematics);
     }
 
+    @Override
+    public DifferentialKinematics getKinematics() {
+        return kinematics;
+    }
+
     public double getTrackWidth() {
         return trackWidth;
     }

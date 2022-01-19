@@ -1,6 +1,7 @@
 package com.lightningrobotics.common.util;
 
 import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.util.Units;
 
 public final class LightningMath {
 
@@ -163,4 +164,14 @@ public final class LightningMath {
         return startValue.plus((endValue.minus(startValue)).times(t));
     }
 
+    /**
+     * Converts motor rotational speed to linear speed
+     * @param rpm
+     * @param gearReduction
+     * @param wheelCircumference
+     * @return
+     */
+    public static double rpmToMetersPerSecond(double rpm, double gearReduction, double wheelCircumference) {
+        return rpm / gearReduction * Units.inchesToMeters(wheelCircumference) / 60;
+    }
 }
