@@ -25,10 +25,7 @@ public class SwerveGains extends LightningGains {
         this.turnMotorInverts = turnMotorInverts;
         this.driveMotorInverts = driveMotorInverts;
         this.kinematics = new SwerveKinematics(this);
-    }
-    
-    public LightningKinematics getKinematics() {
-        return kinematics;
+        this.setKinematics(kinematics);
     }
 
     public double getWidth() {

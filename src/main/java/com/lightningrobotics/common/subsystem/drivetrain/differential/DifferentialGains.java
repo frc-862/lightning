@@ -19,10 +19,7 @@ public class DifferentialGains extends LightningGains {
         this.leftInverts = leftInverts;
         this.rightInverts = rightInverts;
         this.kinematics = new DifferentialKinematics(this);
-    }
-
-    public DifferentialKinematics getKinematics() {
-        return kinematics;
+        this.setKinematics(kinematics);
     }
 
     public double getTrackWidth() {
