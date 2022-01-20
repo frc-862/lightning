@@ -16,9 +16,7 @@ public abstract class LightningDrivetrain extends SubsystemBase {
 
     public abstract void stop();
 
-    public DrivetrainState getDriveState() {
-        return null;
-    }
+    public abstract DrivetrainState getDriveState();
     
     public abstract Pose2d getPose();
 

@@ -138,7 +138,7 @@ public class Path {
             new RamseteController(), 
             differentialDrivetrain.getFeedforwardController(),
             (DifferentialKinematics)drivetrain.getGains().getKinematics(), 
-            () -> differentialDrivetrain.getDrivetrainState(), 
+            () -> (DifferentialDrivetrainState)differentialDrivetrain.getDriveState(), 
             differentialDrivetrain.getLeftriveController(), 
             differentialDrivetrain.getRightriveController(), 
             voltageConsumer, 

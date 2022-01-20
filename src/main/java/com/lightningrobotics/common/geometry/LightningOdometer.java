@@ -51,6 +51,7 @@ public class LightningOdometer extends SubsystemBase {
 
     @Override
     public void periodic() {
+        System.out.println("----------------" + drivetrain.getDriveState() + "=====");
         update(drivetrain.getDriveState());
     }
 

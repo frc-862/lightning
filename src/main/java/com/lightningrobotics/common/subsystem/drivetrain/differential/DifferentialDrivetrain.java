@@ -20,7 +20,7 @@ import pabeles.concurrency.IntRangeConsumer;
 
 public class DifferentialDrivetrain extends LightningDrivetrain {
 
-    private DifferentialDrivetrainState state;
+    private DifferentialDrivetrainState state = new DifferentialDrivetrainState(0,0);
     private LightningOdometer odometer;
     private LightningIMU IMU = LightningIMU.pigeon(19);
 
@@ -54,6 +54,14 @@ public class DifferentialDrivetrain extends LightningDrivetrain {
 
     @Override
     public void configureMotors() {
+        leftMotors[0].setInverted(false);
+        leftMotors[1].setInverted(false);
+        leftMotors[2].setInverted(false);
+
+        rightMotors[0].setInverted(true);
+        rightMotors[1].setInverted(true);
+        rightMotors[2].setInverted(true);
+        /*
         var leftInverts = gains.getLeftInverts();
         var rightInverts = gains.getRightInverts();
 
@@ -62,7 +70,7 @@ public class DifferentialDrivetrain extends LightningDrivetrain {
                 leftMotors[i].setInverted(leftInverts[i]);
             for (var i = 0; i < rightMotors.length; ++i)
                 rightMotors[i].setInverted(rightInverts[i]);
-        }
+        }*/
     }
 
     @Override
@@ -96,7 +104,8 @@ public class DifferentialDrivetrain extends LightningDrivetrain {
         return odometer.getPose();
     }
 
-    public DifferentialDrivetrainState getDrivetrainState(){
+    @Override
+    public DrivetrainState getDriveState(){
         return state;
     }
 
@@ -171,13 +180,17 @@ public class DifferentialDrivetrain extends LightningDrivetrain {
     }
 
     protected void withEachLeftMotor(Consumer<MotorController> op) {
+        op.accept(leftMotors[0]);
+        /*
         for (var i = 0; i < motorCount; ++i)
-            op.accept(leftMotors[i]);
+            op.accept(leftMotors[i]);*/
     }
 
     protected void withEachRightMotor(Consumer<MotorController> op) {
+        op.accept(rightMotors[0]);
+        /*
         for (var i = 0; i < motorCount; ++i)
-            op.accept(rightMotors[i]);
+            op.accept(rightMotors[i]);*/
     }
 
     protected void withEachMotorIndexed(BiConsumer<MotorController, Integer> op) {
