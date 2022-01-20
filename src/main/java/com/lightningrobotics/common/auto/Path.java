@@ -6,7 +6,7 @@ import java.util.function.BiConsumer;
 
 import com.lightningrobotics.common.auto.trajectory.Trajectory;
 import com.lightningrobotics.common.auto.trajectory.TrajectoryConfig;
-import com.lightningrobotics.common.command.drivetrain.differential.RamseteCommand;
+import com.lightningrobotics.common.command.drivetrain.differential.FollowTrajectory;
 import com.lightningrobotics.common.command.drivetrain.swerve.SwerveDriveCommand;
 import com.lightningrobotics.common.controller.RamseteController;
 import com.lightningrobotics.common.geometry.kinematics.DrivetrainSpeed;
@@ -133,7 +133,7 @@ public class Path {
         if(drivetrain instanceof DifferentialDrivetrain) {
             DifferentialDrivetrain differentialDrivetrain = (DifferentialDrivetrain)drivetrain;
             BiConsumer<Double, Double> voltageConsumer = (l, r) -> ((DifferentialDrivetrain)drivetrain).setVoltage(l,r);
-            return new RamseteCommand(trajectory, 
+            return new FollowTrajectory(trajectory, 
             drivetrain::getPose, 
             new RamseteController(), 
             differentialDrivetrain.getFeedforwardController(),

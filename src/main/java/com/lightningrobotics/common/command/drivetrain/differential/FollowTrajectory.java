@@ -36,7 +36,7 @@ import com.lightningrobotics.common.geometry.kinematics.differential.Differentia
  *
  * <p>This class is provided by the NewCommands VendorDep
  */
-public class RamseteCommand extends CommandBase {
+public class FollowTrajectory extends CommandBase {
   private final Timer m_timer = new Timer();
   private final Trajectory m_trajectory;
   private final Supplier<Pose2d> m_pose;
@@ -72,7 +72,7 @@ public class RamseteCommand extends CommandBase {
    *     the robot drive.
    * @param requirements The subsystems to require.
    */
-  public RamseteCommand(
+  public FollowTrajectory(
       Trajectory trajectory,
       Supplier<Pose2d> pose,
       RamseteController controller,

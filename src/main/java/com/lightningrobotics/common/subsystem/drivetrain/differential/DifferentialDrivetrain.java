@@ -45,7 +45,7 @@ public class DifferentialDrivetrain extends LightningDrivetrain {
         this.leftDriveController = leftDriveController;
         this.rightDriveController = rightDriveController;
         this.ffController = ffController;
-        this.odometer = new LightningOdometer(gains.getKinematics(), IMU.getHeading());
+        this.odometer = new LightningOdometer(gains.getKinematics(), IMU, this);
 
         configureMotors();
         if (leftMotors.length == rightMotors.length)
@@ -84,7 +84,11 @@ public class DifferentialDrivetrain extends LightningDrivetrain {
     @Override
     public void periodic() {
         state = new DifferentialDrivetrainState(leftVelocity.getAsDouble(), rightVelocity.getAsDouble());
-        odometer.update(IMU.getHeading(), state);
+        odometer.update(state);
+    }
+
+    public DrivetrainState getDriveTrainState() {
+        return state;
     }
 
     @Override

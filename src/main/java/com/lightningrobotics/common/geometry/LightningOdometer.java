@@ -2,7 +2,10 @@ package com.lightningrobotics.common.geometry;
 
 import com.lightningrobotics.common.geometry.kinematics.DrivetrainState;
 import com.lightningrobotics.common.geometry.kinematics.LightningKinematics;
+import com.lightningrobotics.common.geometry.kinematics.differential.DifferentialDrivetrainState;
 import com.lightningrobotics.common.subsystem.core.LightningIMU;
+import com.lightningrobotics.common.subsystem.drivetrain.LightningDrivetrain;
+import com.lightningrobotics.common.subsystem.drivetrain.differential.DifferentialDrivetrain;
 
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -19,20 +22,21 @@ public class LightningOdometer extends SubsystemBase {
 
     private Rotation2d headingOffset;
     private Rotation2d previousAngle;
+    private LightningDrivetrain drivetrain;
 
     private LightningIMU imu;
-    private DrivetrainState state;
 
-    public LightningOdometer(LightningKinematics kinematics, Pose2d initialPose, LightningIMU imu) {
+    public LightningOdometer(LightningKinematics kinematics, Pose2d initialPose, LightningIMU imu, LightningDrivetrain drivetrain) {
         this.kinematics = kinematics;
         this.pose = initialPose;
         this.headingOffset = pose.getRotation().minus(imu.getHeading());
         this.previousAngle = initialPose.getRotation();
         this.imu = imu;
+        this.drivetrain = drivetrain;
     }
 
-    public LightningOdometer(LightningKinematics kinematics, LightningIMU imu) {
-        this(kinematics, new Pose2d(), imu);
+    public LightningOdometer(LightningKinematics kinematics, LightningIMU imu, LightningDrivetrain drivetrain) {
+        this(kinematics, new Pose2d(), imu, drivetrain);
     }
     
     public void reset(Pose2d pose) {
@@ -47,7 +51,7 @@ public class LightningOdometer extends SubsystemBase {
 
     @Override
     public void periodic() {
-        update(state.getState());
+        update(drivetrain.getDriveState());
     }
 
     public Pose2d update(DrivetrainState state) {

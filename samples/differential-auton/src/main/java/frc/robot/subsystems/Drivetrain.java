@@ -36,9 +36,9 @@ public class Drivetrain extends DifferentialDrivetrain {
             () -> (new WPI_TalonFX(1).getSelectedSensorVelocity() * 10d) * (6.16 * Math.PI / (2048d * 15d)),
             () -> (new WPI_TalonFX(4).getSelectedSensorVelocity() * 10d) * (6.16 * Math.PI / (2048d * 15d)),
             // PID Values Placeholders
-            new PIDFController(0.1, 0.1, 0.1, 0),
-            new PIDFController(0.1, 0.1, 0.1, 0),
-            new SimpleMotorFeedforward(0.1, 0.1, 0.1)
+            new PIDFController(0.01, 0.01, 0.01, 0),
+            new PIDFController(0.01, 0.01, 0.01, 0),
+            new SimpleMotorFeedforward(0.01, 0.01, 0.01)
         );
     }
     
