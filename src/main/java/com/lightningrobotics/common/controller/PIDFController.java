@@ -17,8 +17,8 @@ public class PIDFController extends Controller {
     private boolean continuous = false;
     private double maximumInput;
     private double minimumInput;
-    private double maximumIntegral = 1.0;
-    private double minimumIntegral = -1.0;
+    private double maximumIntegral = 1.0d;
+    private double minimumIntegral = -1.0d;
 
     private double error;
     private double prevError;
@@ -26,7 +26,11 @@ public class PIDFController extends Controller {
     private double direction;
 
     public PIDFController(double kP, double kI, double kD, double kF) {
-        this(kP, kI, kD, kF, 0.02);
+        this(kP, kI, kD, kF, 0.02d);
+    }
+
+    public PIDFController(double kP, double kI, double kD) {
+        this(kP, kI, kD, 0d, 0.02d);
     }
 
     public PIDFController(double kP, double kI, double kD, double kF, double period) {

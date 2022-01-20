@@ -9,11 +9,17 @@ public class LightningGains {
     private double maxSpeed;
     private double maxAcceleration;
 
+    private LightningKinematics kinematics;
+
     public LightningGains() {}
 
     public LightningGains(double maxSpeed, double maxAcceleration) {
         this.maxSpeed = maxSpeed;
         this.maxAcceleration = maxAcceleration;
+    }
+
+    public void setKinematics(LightningKinematics kinematics) {
+        this.kinematics = kinematics;
     }
 
     public double getMaxSpeed() {
@@ -31,14 +37,14 @@ public class LightningGains {
     public void setMaxAcceleration(double maxAcceleration) {
         this.maxAcceleration = maxAcceleration;
     }
-
-    public LightningKinematics getKinematics(){
-        return null;
+    
+    public LightningKinematics getKinematics() {
+        return kinematics;
     }
 
+    // TODO this should not be here - more of a diff drive/diff gains thing
     public double getTrackWidth() {
         return 0;
     }
-
 
 }
