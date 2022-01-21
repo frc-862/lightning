@@ -20,8 +20,6 @@ public class RobotContainer extends LightningContainer {
 
 	private static final XboxController driver = new XboxController(0);
 
-	private static final LightningIMU imu = LightningIMU.pigeon(19);
-
 	private static final DifferentialDrivetrain drivetrain = new Drivetrain();
 
 	@Override
@@ -46,7 +44,7 @@ public class RobotContainer extends LightningContainer {
 		try {
 			Autonomous.register("Test Differential Auton", 
 			(new Path(Arrays.asList(new Pose2d(0d, 0d, Rotation2d.fromDegrees(0d)), 
-				new Pose2d(1d, 0d, Rotation2d.fromDegrees(0d))))).getCommand(drivetrain));
+				new Pose2d(3d, 0d, Rotation2d.fromDegrees(0d))))).getCommand(drivetrain));
 		} catch(Exception e) {
 			System.err.println("Unexpected Error: " + e.getMessage());
 		}

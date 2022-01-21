@@ -22,8 +22,6 @@ public class DifferentialDrivetrain extends LightningDrivetrain {
 
     private DifferentialDrivetrainState state = new DifferentialDrivetrainState(0,0);
     private LightningOdometer odometer;
-    private LightningIMU IMU = LightningIMU.pigeon(19);
-
     private DifferentialGains gains;
     
     private MotorController[] leftMotors;
@@ -36,7 +34,7 @@ public class DifferentialDrivetrain extends LightningDrivetrain {
 
     private int motorCount = 0;
 
-    public DifferentialDrivetrain(DifferentialGains gains, MotorController[] leftMotors, MotorController[] rightMotors, DoubleSupplier leftVelocity, DoubleSupplier rightVelocity, PIDFController leftDriveController, PIDFController rightDriveController, SimpleMotorFeedforward ffController) {
+    public DifferentialDrivetrain(DifferentialGains gains, MotorController[] leftMotors, MotorController[] rightMotors, LightningIMU IMU, DoubleSupplier leftVelocity, DoubleSupplier rightVelocity, PIDFController leftDriveController, PIDFController rightDriveController, SimpleMotorFeedforward ffController) {
         this.gains = gains;
         this.leftMotors = leftMotors;
         this.rightMotors = rightMotors;
@@ -54,14 +52,7 @@ public class DifferentialDrivetrain extends LightningDrivetrain {
 
     @Override
     public void configureMotors() {
-        leftMotors[0].setInverted(false);
-        leftMotors[1].setInverted(false);
-        leftMotors[2].setInverted(false);
-
-        rightMotors[0].setInverted(true);
-        rightMotors[1].setInverted(true);
-        rightMotors[2].setInverted(true);
-        /*
+        
         var leftInverts = gains.getLeftInverts();
         var rightInverts = gains.getRightInverts();
 
@@ -70,7 +61,7 @@ public class DifferentialDrivetrain extends LightningDrivetrain {
                 leftMotors[i].setInverted(leftInverts[i]);
             for (var i = 0; i < rightMotors.length; ++i)
                 rightMotors[i].setInverted(rightInverts[i]);
-        }*/
+        }
     }
 
     @Override
