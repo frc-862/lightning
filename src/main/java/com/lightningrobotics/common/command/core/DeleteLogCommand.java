@@ -43,7 +43,7 @@ public class DeleteLogCommand extends CommandBase {
       logFiles= log_folder.listFiles();
 
       for (int i = 0; i < filesToKeep; i++) {
-        logFiles[i].renameTo(new File(String.format("/home/lvuser/log/%s-%05d-dl.log", "greg", i + 1)));
+        logFiles[i].renameTo(new File(String.format("/home/lvuser/log/%s-%05d-dl.log", getClass().getSimpleName(), i + 1)));
       }
 
       isDone = true;
