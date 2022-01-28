@@ -16,8 +16,8 @@ public class DeleteLogCommand extends CommandBase {
 
   private boolean isDone;
 
-  File log_folder = new File("/home/lvuser/log");
-  File logFiles[] = log_folder.listFiles();
+  File logFolder = new File("/home/lvuser/log");
+  File logFiles[] = logFolder.listFiles(); // TODO: add method of finding size of directory
   
   public DeleteLogCommand(int filesToKeep) {
     this.filesToKeep = filesToKeep;
@@ -40,14 +40,13 @@ public class DeleteLogCommand extends CommandBase {
         logFiles[i].delete();
       }
 
-      logFiles= log_folder.listFiles();
+      logFiles = logFolder.listFiles();
 
       for (int i = 0; i < filesToKeep; i++) {
         logFiles[i].renameTo(new File(String.format("/home/lvuser/log/%s-%05d-dl.log", getClass().getSimpleName(), i + 1)));
       }
-
-      isDone = true;
     }
+    isDone = true;
   }
 
   public int getLogAmount() {
