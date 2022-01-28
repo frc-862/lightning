@@ -9,7 +9,7 @@ public class DifferentialGains extends LightningGains {
 
     private boolean[] leftInverts;
     private boolean[] rightInverts;
-    private double trackWidth; 
+    private double trackWidth;
 
     public DifferentialGains() {}
 

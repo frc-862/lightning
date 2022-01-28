@@ -209,6 +209,8 @@ public class LightningRobot extends TimedRobot {
         System.out.println("LightningRobot.autonomousInit");
         autonomousCommand = Autonomous.getAutonomous();
         if (autonomousCommand != null) autonomousCommand.schedule();
+
+        
     }
 
     /**

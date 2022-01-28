@@ -6,21 +6,25 @@ package com.lightningrobotics.common.command.drivetrain.differential;
 
 import static edu.wpi.first.wpilibj.util.ErrorMessages.requireNonNullParam;
 
-import edu.wpi.first.math.controller.SimpleMotorFeedforward;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 
 import java.util.function.BiConsumer;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
+import javax.smartcardio.ResponseAPDU;
+
 import com.lightningrobotics.common.auto.trajectory.Trajectory;
+import com.lightningrobotics.common.controller.FeedForwardController;
 import com.lightningrobotics.common.controller.PIDFController;
 import com.lightningrobotics.common.controller.RamseteController;
 import com.lightningrobotics.common.geometry.kinematics.DrivetrainSpeed;
 import com.lightningrobotics.common.geometry.kinematics.differential.DifferentialDrivetrainState;
 import com.lightningrobotics.common.geometry.kinematics.differential.DifferentialKinematics;
+import com.lightningrobotics.common.subsystem.drivetrain.differential.DifferentialDrivetrain;
 
 /**
  * A command that uses a RAMSETE controller ({@link RamseteController}) to follow a trajectory
@@ -36,12 +40,13 @@ import com.lightningrobotics.common.geometry.kinematics.differential.Differentia
  *
  * <p>This class is provided by the NewCommands VendorDep
  */
+
 public class FollowTrajectory extends CommandBase {
   private final Timer m_timer = new Timer();
   private final Trajectory m_trajectory;
   private final Supplier<Pose2d> m_pose;
   private final RamseteController m_follower;
-  private final SimpleMotorFeedforward m_feedforward;
+  private final FeedForwardController m_feedforward;
   private final DifferentialKinematics m_kinematics;
   private final Supplier<DifferentialDrivetrainState> m_speeds;
   private final PIDFController m_leftController;
@@ -76,7 +81,7 @@ public class FollowTrajectory extends CommandBase {
       Trajectory trajectory,
       Supplier<Pose2d> pose,
       RamseteController controller,
-      SimpleMotorFeedforward feedforward,
+      FeedForwardController feedforward,
       DifferentialKinematics kinematics,
       Supplier<DifferentialDrivetrainState> wheelSpeeds,
       PIDFController leftController,
@@ -157,7 +162,7 @@ public class FollowTrajectory extends CommandBase {
   }
 
   @Override
-  public void end(boolean interrupted) {
+  public void end(boolean interrupted) {    
     m_timer.stop();
 
     if (interrupted) {

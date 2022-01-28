@@ -19,7 +19,7 @@ import com.lightningrobotics.common.subsystem.drivetrain.swerve.SwerveDrivetrain
 
 import edu.wpi.first.math.controller.HolonomicDriveController;
 import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.math.controller.SimpleMotorFeedforward;
+import com.lightningrobotics.common.controller.FeedForwardController;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -142,7 +142,14 @@ public class Path {
             differentialDrivetrain.getLeftriveController(), 
             differentialDrivetrain.getRightriveController(), 
             voltageConsumer, 
-            drivetrain);
+            drivetrain) 
+            {
+                @Override
+                public void initialize() {
+                    super.initialize();
+                    differentialDrivetrain.resetPose();
+                };
+            };
 
             // BiConsumer<Double, Double> speedConsumer =  (left, right)-> drivetrain.setDriveSpeed(new DrivetrainSpeed(left, right, 0));
             // return new RamseteCommand(trajectory, 

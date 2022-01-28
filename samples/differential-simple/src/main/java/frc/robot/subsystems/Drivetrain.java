@@ -5,7 +5,7 @@ import com.lightningrobotics.common.controller.PIDFController;
 import com.lightningrobotics.common.subsystem.drivetrain.differential.DifferentialDrivetrain;
 import com.lightningrobotics.common.subsystem.drivetrain.differential.DifferentialGains;
 
-import edu.wpi.first.math.controller.SimpleMotorFeedforward;
+import com.lightningrobotics.common.controller.FeedForwardController;
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 
 public class Drivetrain extends DifferentialDrivetrain {
@@ -26,8 +26,8 @@ public class Drivetrain extends DifferentialDrivetrain {
         5d,
         5d,
         0.5583711759,
-        new boolean[]{false, true, true},
-        new boolean[]{true, false, false} 
+        new boolean[]{true, false, false},
+        new boolean[]{false, true, true} 
     );
 
     
@@ -39,9 +39,9 @@ public class Drivetrain extends DifferentialDrivetrain {
             () -> (((WPI_TalonFX)leftMotors[0]).getSelectedSensorVelocity() * 10d) * (6.16 * Math.PI / (2048d * 15d)),
             () -> (((WPI_TalonFX)rightMotors[0]).getSelectedSensorVelocity() * 10d) * (6.16 * Math.PI / (2048d * 15d)),
             // Temporary
-            new PIDFController(0, 0, 0, 0),
-            new PIDFController(0, 0, 0, 0),
-            new SimpleMotorFeedforward(0, 0)
+            new PIDFController(0.6865, 0, 0, 0),
+            new PIDFController(0.6865, 0, 0, 0),
+            new FeedForwardController(0.53606, 1.0146, 0.03217)
         );
     }
 

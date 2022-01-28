@@ -1,7 +1,7 @@
 {
   "SysId": {
-    "Analysis Type": "Drivetrain",
-    "AnalyzerJSONLocation": "C:\\Users\\Ndas1\\characterization configs\\qusar\\sysid_data20220120-212115.json",
+    "Analysis Type": "General Mechanism",
+    "AnalyzerJSONLocation": "C:\\Users\\Ndas1\\characterization configs\\qusar\\sysid_data20220122-092406.json",
     "NetworkTables Settings": {
       "serverTeam": "862"
     },

@@ -1,79 +1,116 @@
+// Copyright (c) FIRST and other WPILib contributors.
+// Open Source Software; you can modify and/or share it under the terms of
+// the WPILib BSD license file in the root directory of this project.
 package com.lightningrobotics.common.geometry;
 
-import com.lightningrobotics.common.geometry.kinematics.DrivetrainState;
-import com.lightningrobotics.common.geometry.kinematics.LightningKinematics;
-import com.lightningrobotics.common.geometry.kinematics.differential.DifferentialDrivetrainState;
-import com.lightningrobotics.common.subsystem.core.LightningIMU;
-import com.lightningrobotics.common.subsystem.drivetrain.LightningDrivetrain;
-import com.lightningrobotics.common.subsystem.drivetrain.differential.DifferentialDrivetrain;
-
+import edu.wpi.first.math.MathSharedStore;
+import edu.wpi.first.math.MathUsageId;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Twist2d;
-import edu.wpi.first.util.WPIUtilJNI;
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class LightningOdometer extends SubsystemBase {
-    
-    private final LightningKinematics kinematics;
+/**
+ * Class for differential drive odometry. Odometry allows you to track the robot's position on the
+ * field over the course of a match using readings from 2 encoders and a gyroscope.
+ *
+ * <p>Teams can use odometry during the autonomous period for complex tasks like path following.
+ * Furthermore, odometry can be used for latency compensation when using computer-vision systems.
+ *
+ * <p>It is important that you reset your encoders to zero before using this class. Any subsequent
+ * pose resets also require the encoders to be reset to zero.
+ */
+public class LightningOdometer {
+  private Pose2d m_poseMeters;
 
-    private Pose2d pose;
-    private double prevTime;
+  private Rotation2d m_gyroOffset;
+  private Rotation2d m_previousAngle;
 
-    private Rotation2d headingOffset;
-    private Rotation2d previousAngle;
-    private LightningDrivetrain drivetrain;
+  private double m_prevLeftDistance;
+  private double m_prevRightDistance;
 
-    private LightningIMU imu;
+  /**
+   * Constructs a DifferentialDriveOdometry object.
+   *
+   * @param gyroAngle The angle reported by the gyroscope.
+   * @param initialPoseMeters The starting position of the robot on the field.
+   */
+  public LightningOdometer(Rotation2d gyroAngle, Pose2d initialPoseMeters) {
+    m_poseMeters = initialPoseMeters;
+    m_gyroOffset = m_poseMeters.getRotation().minus(gyroAngle);
+    m_previousAngle = initialPoseMeters.getRotation();
+    MathSharedStore.reportUsage(MathUsageId.kOdometry_DifferentialDrive, 1);
+  }
 
-    public LightningOdometer(LightningKinematics kinematics, Pose2d initialPose, LightningIMU imu, LightningDrivetrain drivetrain) {
-        this.kinematics = kinematics;
-        this.pose = initialPose;
-        this.headingOffset = pose.getRotation().minus(imu.getHeading());
-        this.previousAngle = initialPose.getRotation();
-        this.imu = imu;
-        this.drivetrain = drivetrain;
-    }
+  /**
+   * Constructs a DifferentialDriveOdometry object with the default pose at the origin.
+   *
+   * @param gyroAngle The angle reported by the gyroscope.
+   */
+  public LightningOdometer(Rotation2d gyroAngle) {
+    this(gyroAngle, new Pose2d());
+  }
 
-    public LightningOdometer(LightningKinematics kinematics, LightningIMU imu, LightningDrivetrain drivetrain) {
-        this(kinematics, new Pose2d(), imu, drivetrain);
-    }
-    
-    public void reset(Pose2d pose) {
-        this.pose = pose;
-        this.previousAngle = pose.getRotation();
-        this.headingOffset = pose.getRotation().minus(imu.getHeading());
-    }
+  /**
+   * Resets the robot's position on the field.
+   *
+   * <p>You NEED to reset your encoders (to zero) when calling this method.
+   *
+   * <p>The gyroscope angle does not need to be reset here on the user's robot code. The library
+   * automatically takes care of offsetting the gyro angle.
+   *
+   * @param poseMeters The position on the field that your robot is at.
+   * @param gyroAngle The angle reported by the gyroscope.
+   */
+  public void resetPosition(Pose2d poseMeters, Rotation2d gyroAngle) {
+    m_poseMeters = poseMeters;
+    m_previousAngle = poseMeters.getRotation();
+    m_gyroOffset = m_poseMeters.getRotation().minus(gyroAngle);
 
-    public Pose2d getPose() {
-        return pose;
-    }
+    m_prevLeftDistance = 0.0;
+    m_prevRightDistance = 0.0;
+  }
 
-    @Override
-    public void periodic() {
-        System.out.println("----------------" + drivetrain.getDriveState() + "=====");
-        update(drivetrain.getDriveState());
-    }
+  public void setPose(Pose2d pose){
+    m_poseMeters = pose;
+  }
 
-    public Pose2d update(DrivetrainState state) {
-        return updateTime(WPIUtilJNI.now() * 1.0E-6, imu.getHeading(), state);
-    }
+  /**
+   * Returns the position of the robot on the field.
+   *
+   * @return The pose of the robot (x and y are in meters).
+   */
+  public Pose2d getPoseMeters() {
+    return m_poseMeters;
+  }
 
-    public Pose2d updateTime(double currentTime, Rotation2d heading, DrivetrainState state) {
+  /**
+   * Updates the robot position on the field using distance measurements from encoders. This method
+   * is more numerically accurate than using velocities to integrate the pose and is also
+   * advantageous for teams that are using lower CPR encoders.
+   *
+   * @param gyroAngle The angle reported by the gyroscope.
+   * @param leftDistanceMeters The distance traveled by the left encoder.
+   * @param rightDistanceMeters The distance traveled by the right encoder.
+   * @return The new pose of the robot.
+   */
+  public Pose2d update(
+      Rotation2d gyroAngle, double leftDistanceMeters, double rightDistanceMeters) {
+    double deltaLeftDistance = leftDistanceMeters - m_prevLeftDistance;
+    double deltaRightDistance = rightDistanceMeters - m_prevRightDistance;
 
-        var elapsed = (prevTime >= 0d) ? currentTime - prevTime : 0d;
-        prevTime = currentTime;
-        
-        var theta = heading.plus(headingOffset);
+    m_prevLeftDistance = leftDistanceMeters;
+    m_prevRightDistance = rightDistanceMeters;
 
-        var ds = kinematics.forward(state);
+    double averageDeltaDistance = (deltaLeftDistance + deltaRightDistance) / 2.0;
+    var angle = gyroAngle.plus(m_gyroOffset);
 
-        var twist = new Twist2d(ds.vx * elapsed, ds.vy * elapsed, theta.minus(previousAngle).getRadians());
-        var next = pose.exp(twist);
+    var newPose =
+        m_poseMeters.exp(
+            new Twist2d(averageDeltaDistance, 0.0, angle.minus(m_previousAngle).getRadians()));
 
-        return next;
+    m_previousAngle = angle;
 
-    }
-    
+    m_poseMeters = new Pose2d(newPose.getTranslation(), angle);
+    return m_poseMeters;
+  }
 }
-
