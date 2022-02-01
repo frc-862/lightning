@@ -1,5 +1,6 @@
 package com.lightningrobotics.common.auto;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.BiConsumer;
@@ -22,7 +23,13 @@ import edu.wpi.first.math.controller.PIDController;
 import com.lightningrobotics.common.controller.FeedForwardController;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj2.command.Command;
+
+import java.io.*;
+import java.lang.Math;
+import java.nio.file.Paths;
+import java.util.Scanner;
 
 /**
  * Object class representing a path a {@link com.lightningrobotics.common.subsystem.drivetrain.LightningDrivetrain} can follow.
@@ -57,6 +64,10 @@ public class Path {
         this("", waypoints, false);
     }
 
+    public Path(List<Pose2d> waypoints, boolean reversed){
+        this("", waypoints, reversed);
+    }
+
     /**
      * Constructor creates path object
      * @param name The name of the path
@@ -76,6 +87,62 @@ public class Path {
         this.name = name;
         this.waypoints = waypoints;
         this.reversed = reversed;
+    }
+
+    public Path(String fname, boolean reversed){
+
+        List<Pose2d> waypoints = new ArrayList<Pose2d>();
+
+        File file = Paths.get(Filesystem.getDeployDirectory().getAbsolutePath(), "paths", fname).toFile();
+
+        double max_y = 8.229;
+
+        try {
+            Scanner in = new Scanner(file);
+            in.useDelimiter(",");
+            in.nextLine(); // Skip first line with "X Y Theta"
+
+            double start_x = in.nextDouble();
+            double start_y = max_y + in.nextDouble();
+            double start_theta_x = in.nextDouble();
+            double start_theta_y = in.nextDouble();
+            double start_theta = Math.toDegrees(Math.atan2(start_theta_y, start_theta_x));
+            
+            waypoints.add(new Pose2d((start_x - start_x), (start_y - start_y),  Rotation2d.fromDegrees((start_theta - start_theta))));
+
+            in.nextLine();
+            
+            while(in.hasNextDouble()) {
+                double x = in.nextDouble() - start_x;
+                double y = Math.abs((max_y + in.nextDouble() - start_y));
+                if (reversed == true){
+                    y = -y;
+                    x = -x;
+                }
+                double theta_x = in.nextDouble();
+                double theta_y = in.nextDouble();
+                double theta = Math.toDegrees(Math.atan2(theta_y, theta_x)) - start_theta;
+
+                if(theta < -180){
+                    theta = theta + 360;
+                } 
+                else if(theta > 180){
+                    theta = theta - 360;
+                }
+
+                waypoints.add(new Pose2d(y, x, Rotation2d.fromDegrees(theta))); // TODO change cause quasar is weird
+
+                in.nextLine();
+            }
+            in.close();
+        } catch (Exception e) {
+            System.err.println("COULD NOT READ PATH");
+            e.printStackTrace();
+        }
+
+        this.waypoints = waypoints;
+        this.reversed = reversed;
+        this.name = "";
     }
 
     /**

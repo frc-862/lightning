@@ -52,24 +52,20 @@ public class RobotContainer extends LightningContainer {
 			System.err.println("Unexpected Error: " + e.getMessage());
 		}
 		try {
-			Autonomous.register("Test Differential Auton 1", 
-			(new Path(Arrays.asList(new Pose2d(0d, 0d, Rotation2d.fromDegrees(0d)), 
-				new Pose2d(1d, 0d, Rotation2d.fromDegrees(0d))))).getCommand(drivetrain));
+			Autonomous.register("1/2 ball path", 
+			(new Path("1-2Ball.path", false)).getCommand(drivetrain));
 		} catch(Exception e) {
 			System.err.println("Unexpected Error: " + e.getMessage());
 		}
 		try {
-			Autonomous.register("Test Differential Auton 4", 
-			(new Path(Arrays.asList(new Pose2d(0d, 0d, Rotation2d.fromDegrees(0d)), 
-				new Pose2d(4d, 0d, Rotation2d.fromDegrees(0d))))).getCommand(drivetrain));
+			Autonomous.register("3 ball terminal", 
+			(new Path("3BallTerminal.path", false)).getCommand(drivetrain));
 		} catch(Exception e) {
 			System.err.println("Unexpected Error: " + e.getMessage());
 		}
 		try {
-			Autonomous.register("S-path auton", 
-			(new Path(Arrays.asList(new Pose2d(0d, 0d, Rotation2d.fromDegrees(0d)),
-				new Pose2d(2d, -1.5d, Rotation2d.fromDegrees(-180d))
-				))).getCommand(drivetrain));
+			Autonomous.register("3 ball hanger", 
+			(new Path("3BallHanger.path", false)).getCommand(drivetrain));
 		} catch(Exception e) {
 			System.err.println("Unexpected Error: " + e.getMessage());
 		}

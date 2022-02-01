@@ -15,8 +15,6 @@ import java.util.function.BiConsumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-import javax.smartcardio.ResponseAPDU;
-
 import com.lightningrobotics.common.auto.trajectory.Trajectory;
 import com.lightningrobotics.common.controller.FeedForwardController;
 import com.lightningrobotics.common.controller.PIDFController;

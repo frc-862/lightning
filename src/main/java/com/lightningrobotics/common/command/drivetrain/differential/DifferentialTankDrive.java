@@ -39,6 +39,9 @@ public class DifferentialTankDrive extends CommandBase {
         double leftPwr = filter.filter(left.getAsDouble());
         double rightPwr = filter.filter(right.getAsDouble());
 
+        SmartDashboard.putNumber("left pwr output", leftPwr);
+        SmartDashboard.putNumber("right pwr output", rightPwr);
+
         SmartDashboard.getNumber("left pwr", leftPwr);
         SmartDashboard.getNumber("right pwr", rightPwr);
 
