@@ -95,9 +95,12 @@ public class Path {
 
         File file = Paths.get(Filesystem.getDeployDirectory().getAbsolutePath(), "paths", fname).toFile();
 
-        double max_y = 8.229;
-
         try {
+            double x_prime;
+            double y_prime;
+
+            double max_y = 8.229;
+
             Scanner in = new Scanner(file);
             in.useDelimiter(",");
             in.nextLine(); // Skip first line with "X Y Theta"
@@ -107,18 +110,24 @@ public class Path {
             double start_theta_x = in.nextDouble();
             double start_theta_y = in.nextDouble();
             double start_theta = Math.toDegrees(Math.atan2(start_theta_y, start_theta_x));
+        
+            double rotaional_theta = start_theta;
             
+            in.nextLine();
             waypoints.add(new Pose2d((start_x - start_x), (start_y - start_y),  Rotation2d.fromDegrees((start_theta - start_theta))));
 
-            in.nextLine();
-            
             while(in.hasNextDouble()) {
                 double x = in.nextDouble() - start_x;
-                double y = Math.abs((max_y + in.nextDouble() - start_y));
-                if (reversed == true){
+                double y = (max_y + in.nextDouble()) - start_y;
+                
+                x_prime = (x * Math.cos(Math.toRadians(rotaional_theta))) + (y * Math.sin(Math.toRadians(rotaional_theta)));
+                y_prime = -(x * Math.sin(Math.toRadians(rotaional_theta))) + (y * Math.cos(Math.toRadians(rotaional_theta)));
+
+                if (reversed == true){ // TODO: check if these really need to be sign filpped
                     y = -y;
                     x = -x;
                 }
+
                 double theta_x = in.nextDouble();
                 double theta_y = in.nextDouble();
                 double theta = Math.toDegrees(Math.atan2(theta_y, theta_x)) - start_theta;
@@ -130,7 +139,7 @@ public class Path {
                     theta = theta - 360;
                 }
 
-                waypoints.add(new Pose2d(y, x, Rotation2d.fromDegrees(theta))); // TODO change cause quasar is weird
+                waypoints.add(new Pose2d(x_prime, y_prime, Rotation2d.fromDegrees(theta)));
 
                 in.nextLine();
             }

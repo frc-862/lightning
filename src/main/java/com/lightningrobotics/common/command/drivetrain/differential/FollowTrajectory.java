@@ -7,6 +7,7 @@ package com.lightningrobotics.common.command.drivetrain.differential;
 import static edu.wpi.first.wpilibj.util.ErrorMessages.requireNonNullParam;
 
 import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.Subsystem;
@@ -23,6 +24,7 @@ import com.lightningrobotics.common.geometry.kinematics.DrivetrainSpeed;
 import com.lightningrobotics.common.geometry.kinematics.differential.DifferentialDrivetrainState;
 import com.lightningrobotics.common.geometry.kinematics.differential.DifferentialKinematics;
 import com.lightningrobotics.common.subsystem.drivetrain.differential.DifferentialDrivetrain;
+import com.lightningrobotics.common.subsystem.drivetrain.differential.DifferentialGains;
 
 /**
  * A command that uses a RAMSETE controller ({@link RamseteController}) to follow a trajectory
@@ -84,9 +86,9 @@ public class FollowTrajectory extends CommandBase {
       Supplier<DifferentialDrivetrainState> wheelSpeeds,
       PIDFController leftController,
       PIDFController rightController,
-      BiConsumer<Double, Double> outputVolts,
+      BiConsumer<Double, Double> outputVolts, 
       Subsystem... requirements) {
-    m_trajectory = requireNonNullParam(trajectory, "trajectory", "RamseteCommand");
+    m_trajectory = requireNonNullParam(trajectory, "trajectory", "RamseteCommand"); // TODO: change all remseteCommand to followTrajectory
     m_pose = requireNonNullParam(pose, "pose", "RamseteCommand");
     m_follower = requireNonNullParam(controller, "controller", "RamseteCommand");
     m_feedforward = feedforward;

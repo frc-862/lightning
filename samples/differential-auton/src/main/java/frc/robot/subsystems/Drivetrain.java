@@ -35,8 +35,8 @@ public class Drivetrain extends DifferentialDrivetrain {
     };
 
     private static final DifferentialGains DIFFERENTIAL_GAINS = new DifferentialGains(
-        1.5d,
-        1.5d,
+        1d,
+        1d,
         0.5583711759,
         new boolean[]{true, false, false},
         new boolean[]{false, true, true} 

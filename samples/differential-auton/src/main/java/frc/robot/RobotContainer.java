@@ -69,6 +69,18 @@ public class RobotContainer extends LightningContainer {
 		} catch(Exception e) {
 			System.err.println("Unexpected Error: " + e.getMessage());
 		}
+		try {
+			Autonomous.register("1 meter", 
+			(new Path("1Meter.path", false)).getCommand(drivetrain));
+		} catch(Exception e) {
+			System.err.println("Unexpected Error: " + e.getMessage());
+		}
+		try {
+			Autonomous.register("1 meter forward 1 meter right", 
+			(new Path("1Forward1right.path", false)).getCommand(drivetrain));
+		} catch(Exception e) {
+			System.err.println("Unexpected Error: " + e.getMessage());
+		}
 	}
 
 	
