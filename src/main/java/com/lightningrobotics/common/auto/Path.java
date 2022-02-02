@@ -8,7 +8,7 @@ import java.util.function.BiConsumer;
 import com.lightningrobotics.common.auto.trajectory.Trajectory;
 import com.lightningrobotics.common.auto.trajectory.TrajectoryConfig;
 import com.lightningrobotics.common.command.drivetrain.differential.FollowTrajectory;
-import com.lightningrobotics.common.controller.RamseteController;
+import com.lightningrobotics.common.controller.DiffDriveController;
 import com.lightningrobotics.common.geometry.kinematics.differential.DifferentialDrivetrainState;
 import com.lightningrobotics.common.geometry.kinematics.differential.DifferentialKinematics;
 import com.lightningrobotics.common.subsystem.drivetrain.LightningDrivetrain;
@@ -231,7 +231,7 @@ public class Path {
 
             return new FollowTrajectory(trajectory,
                     drivetrain::getPose,
-                    new RamseteController(),
+                    new DiffDriveController(),
                     differentialDrivetrain.getFeedForwardController(),
                     (DifferentialKinematics) drivetrain.getGains().getKinematics(),
                     () -> (DifferentialDrivetrainState) differentialDrivetrain.getDriveState(),

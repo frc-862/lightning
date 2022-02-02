@@ -19,7 +19,7 @@ import java.util.function.Supplier;
 import com.lightningrobotics.common.auto.trajectory.Trajectory;
 import com.lightningrobotics.common.controller.FeedForwardController;
 import com.lightningrobotics.common.controller.PIDFController;
-import com.lightningrobotics.common.controller.RamseteController;
+import com.lightningrobotics.common.controller.DiffDriveController;
 import com.lightningrobotics.common.geometry.kinematics.DrivetrainSpeed;
 import com.lightningrobotics.common.geometry.kinematics.differential.DifferentialDrivetrainState;
 import com.lightningrobotics.common.geometry.kinematics.differential.DifferentialKinematics;
@@ -27,7 +27,7 @@ import com.lightningrobotics.common.subsystem.drivetrain.differential.Differenti
 import com.lightningrobotics.common.subsystem.drivetrain.differential.DifferentialGains;
 
 /**
- * A command that uses a RAMSETE controller ({@link RamseteController}) to follow a trajectory
+ * A command that uses a RAMSETE controller ({@link DiffDriveController}) to follow a trajectory
  * {@link Trajectory} with a differential drive.
  *
  * <p>The command handles trajectory-following, PID calculations, and feedforwards internally. This
@@ -45,7 +45,7 @@ public class FollowTrajectory extends CommandBase {
   private final Timer m_timer = new Timer();
   private final Trajectory m_trajectory;
   private final Supplier<Pose2d> m_pose;
-  private final RamseteController m_follower;
+  private final DiffDriveController m_follower;
   private final FeedForwardController m_feedforward;
   private final DifferentialKinematics m_kinematics;
   private final Supplier<DifferentialDrivetrainState> m_speeds;
@@ -80,7 +80,7 @@ public class FollowTrajectory extends CommandBase {
   public FollowTrajectory(
       Trajectory trajectory,
       Supplier<Pose2d> pose,
-      RamseteController controller,
+      DiffDriveController controller,
       FeedForwardController feedforward,
       DifferentialKinematics kinematics,
       Supplier<DifferentialDrivetrainState> wheelSpeeds,
