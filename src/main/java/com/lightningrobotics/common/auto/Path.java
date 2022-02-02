@@ -8,19 +8,13 @@ import java.util.function.BiConsumer;
 import com.lightningrobotics.common.auto.trajectory.Trajectory;
 import com.lightningrobotics.common.auto.trajectory.TrajectoryConfig;
 import com.lightningrobotics.common.command.drivetrain.differential.FollowTrajectory;
-import com.lightningrobotics.common.command.drivetrain.swerve.SwerveDriveCommand;
 import com.lightningrobotics.common.controller.RamseteController;
-import com.lightningrobotics.common.geometry.kinematics.DrivetrainSpeed;
 import com.lightningrobotics.common.geometry.kinematics.differential.DifferentialDrivetrainState;
 import com.lightningrobotics.common.geometry.kinematics.differential.DifferentialKinematics;
 import com.lightningrobotics.common.subsystem.drivetrain.LightningDrivetrain;
 import com.lightningrobotics.common.subsystem.drivetrain.differential.DifferentialDrivetrain;
-import com.lightningrobotics.common.subsystem.drivetrain.differential.DifferentialGains;
 import com.lightningrobotics.common.subsystem.drivetrain.swerve.SwerveDrivetrain;
 
-import edu.wpi.first.math.controller.HolonomicDriveController;
-import edu.wpi.first.math.controller.PIDController;
-import com.lightningrobotics.common.controller.FeedForwardController;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.Filesystem;
@@ -32,7 +26,9 @@ import java.nio.file.Paths;
 import java.util.Scanner;
 
 /**
- * Object class representing a path a {@link com.lightningrobotics.common.subsystem.drivetrain.LightningDrivetrain} can follow.
+ * Object class representing a path a
+ * {@link com.lightningrobotics.common.subsystem.drivetrain.LightningDrivetrain}
+ * can follow.
  */
 public class Path {
 
@@ -58,19 +54,21 @@ public class Path {
 
     /**
      * Constructor creates path object
+     * 
      * @param waypoints List of waypoints for the optimized path to follow
      */
     public Path(List<Pose2d> waypoints) {
         this("", waypoints, false);
     }
 
-    public Path(List<Pose2d> waypoints, boolean reversed){
+    public Path(List<Pose2d> waypoints, boolean reversed) {
         this("", waypoints, reversed);
     }
 
     /**
      * Constructor creates path object
-     * @param name The name of the path
+     * 
+     * @param name      The name of the path
      * @param waypoints List of waypoints for the optimized path to follow
      */
     public Path(String name, List<Pose2d> waypoints) {
@@ -79,9 +77,10 @@ public class Path {
 
     /**
      * Constructor creates path object
-     * @param name The name of the path
+     * 
+     * @param name      The name of the path
      * @param waypoints List of waypoints for the optimized path to follow
-     * @param reversed Direction robot should follow path
+     * @param reversed  Direction robot should follow path
      */
     public Path(String name, List<Pose2d> waypoints, boolean reversed) {
         this.name = name;
@@ -89,7 +88,7 @@ public class Path {
         this.reversed = reversed;
     }
 
-    public Path(String fname, boolean reversed){
+    public Path(String fname, boolean reversed) {
 
         List<Pose2d> waypoints = new ArrayList<Pose2d>();
 
@@ -110,20 +109,23 @@ public class Path {
             double start_theta_x = in.nextDouble();
             double start_theta_y = in.nextDouble();
             double start_theta = Math.toDegrees(Math.atan2(start_theta_y, start_theta_x));
-        
-            double rotaional_theta = start_theta;
-            
-            in.nextLine();
-            waypoints.add(new Pose2d((start_x - start_x), (start_y - start_y),  Rotation2d.fromDegrees((start_theta - start_theta))));
 
-            while(in.hasNextDouble()) {
+            double rotaional_theta = start_theta;
+
+            in.nextLine();
+            waypoints.add(new Pose2d((start_x - start_x), (start_y - start_y),
+                    Rotation2d.fromDegrees((start_theta - start_theta))));
+
+            while (in.hasNextDouble()) {
                 double x = in.nextDouble() - start_x;
                 double y = (max_y + in.nextDouble()) - start_y;
-                
-                x_prime = (x * Math.cos(Math.toRadians(rotaional_theta))) + (y * Math.sin(Math.toRadians(rotaional_theta)));
-                y_prime = -(x * Math.sin(Math.toRadians(rotaional_theta))) + (y * Math.cos(Math.toRadians(rotaional_theta)));
 
-                if (reversed == true){ // TODO: check if these really need to be sign filpped
+                x_prime = (x * Math.cos(Math.toRadians(rotaional_theta)))
+                        + (y * Math.sin(Math.toRadians(rotaional_theta)));
+                y_prime = -(x * Math.sin(Math.toRadians(rotaional_theta)))
+                        + (y * Math.cos(Math.toRadians(rotaional_theta)));
+
+                if (reversed == true) { // TODO: check if these really need to be sign filpped
                     y = -y;
                     x = -x;
                 }
@@ -132,10 +134,9 @@ public class Path {
                 double theta_y = in.nextDouble();
                 double theta = Math.toDegrees(Math.atan2(theta_y, theta_x)) - start_theta;
 
-                if(theta < -180){
+                if (theta < -180) {
                     theta = theta + 360;
-                } 
-                else if(theta > 180){
+                } else if (theta > 180) {
                     theta = theta - 360;
                 }
 
@@ -156,24 +157,34 @@ public class Path {
 
     /**
      * Name of path
+     * 
      * @return The name of the path
      */
-    public String getName() { return name; }
+    public String getName() {
+        return name;
+    }
 
     /**
      * Direction path should be followed
+     * 
      * @return The direction the path should be followed
      */
-    public boolean getReversed() { return reversed; }
+    public boolean getReversed() {
+        return reversed;
+    }
 
     /**
-     * Obtains an optimized trajectory the robot should follow so it hits all the waypoints
+     * Obtains an optimized trajectory the robot should follow so it hits all the
+     * waypoints
+     * 
      * @param <TrajectoryConfig>
-     * @param drivetrain Drivetrain object of the robot the path should be configured for
+     * @param drivetrain         Drivetrain object of the robot the path should be
+     *                           configured for
      * @return A trajectory the robot can follow
      */
-    public Trajectory getTrajectory(LightningDrivetrain drivetrain) { 
-        if(trajectory != null) return trajectory;
+    public Trajectory getTrajectory(LightningDrivetrain drivetrain) {
+        if (trajectory != null)
+            return trajectory;
 
         TrajectoryConfig config = new TrajectoryConfig(drivetrain, getReversed());
 
@@ -182,44 +193,52 @@ public class Path {
         } catch (RuntimeException e) {
             System.out.println("ERROR Unable To Generate Trajectory From Path");
             e.printStackTrace();
-            trajectory = Trajectory.from(Arrays.asList(new Pose2d(0d, 0d, new Rotation2d()), new Pose2d(1d, 0d, new Rotation2d())), config);
+            trajectory = Trajectory.from(
+                    Arrays.asList(new Pose2d(0d, 0d, new Rotation2d()), new Pose2d(1d, 0d, new Rotation2d())), config);
         }
 
-        return trajectory; 
+        return trajectory;
     }
 
     /**
      * The duration of time it will take the robot to complete the path
-     * @param drivetrain Drivetrain object of the robot the path should be configured for
-     * @return The number of seconds the robot will need to complete driving the path
+     * 
+     * @param drivetrain Drivetrain object of the robot the path should be
+     *                   configured for
+     * @return The number of seconds the robot will need to complete driving the
+     *         path
      */
     public double getDuration(LightningDrivetrain drivetrain) {
-        if(trajectory != null) return trajectory.getTotalTimeSeconds();
+        if (trajectory != null)
+            return trajectory.getTotalTimeSeconds();
         return this.getTrajectory(drivetrain).getTotalTimeSeconds();
     }
 
     /**
      * Retrieves the path represented as a command
-     * @param drivetrain Drivetrain object of the robot the path should be configured for
-     * @return A {@link edu.wpi.first.wpilibj2.command.Command command} representing the path that can be driven by the given drivetrain
+     * 
+     * @param drivetrain Drivetrain object of the robot the path should be
+     *                   configured for
+     * @return A {@link edu.wpi.first.wpilibj2.command.Command command} representing
+     *         the path that can be driven by the given drivetrain
      * @throws Exception if given drivetrain is unsupported
      */
-    public Command getCommand(LightningDrivetrain drivetrain) throws Exception { 
+    public Command getCommand(LightningDrivetrain drivetrain) throws Exception {
         trajectory = this.getTrajectory(drivetrain);
-        if(drivetrain instanceof DifferentialDrivetrain) {
-            DifferentialDrivetrain differentialDrivetrain = (DifferentialDrivetrain)drivetrain;
-            BiConsumer<Double, Double> voltageConsumer = (l, r) -> ((DifferentialDrivetrain)drivetrain).setVoltage(l,r);
-            return new FollowTrajectory(trajectory, 
-            drivetrain::getPose, 
-            new RamseteController(), 
-            differentialDrivetrain.getFeedforwardController(),
-            (DifferentialKinematics)drivetrain.getGains().getKinematics(), 
-            () -> (DifferentialDrivetrainState)differentialDrivetrain.getDriveState(), 
-            differentialDrivetrain.getLeftriveController(), 
-            differentialDrivetrain.getRightriveController(), 
-            voltageConsumer, 
-            drivetrain) 
-            {
+        if (drivetrain instanceof DifferentialDrivetrain) {
+            DifferentialDrivetrain differentialDrivetrain = (DifferentialDrivetrain) drivetrain;
+            BiConsumer<Double, Double> voltageConsumer = (l, r) -> ((DifferentialDrivetrain) drivetrain).setVoltage(l, r);
+
+            return new FollowTrajectory(trajectory,
+                    drivetrain::getPose,
+                    new RamseteController(),
+                    differentialDrivetrain.getFeedForwardController(),
+                    (DifferentialKinematics) drivetrain.getGains().getKinematics(),
+                    () -> (DifferentialDrivetrainState) differentialDrivetrain.getDriveState(),
+                    differentialDrivetrain.getDrivePIDFController(),
+                    differentialDrivetrain.getDrivePIDFController(),
+                    voltageConsumer,
+                    drivetrain) {
                 @Override
                 public void initialize() {
                     super.initialize();
@@ -227,20 +246,11 @@ public class Path {
                 };
             };
 
-            // BiConsumer<Double, Double> speedConsumer =  (left, right)-> drivetrain.setDriveSpeed(new DrivetrainSpeed(left, right, 0));
-            // return new RamseteCommand(trajectory, 
-            // drivetrain::getPose, 
-            // new RamseteController(), 
-            // (DifferentialDriveKinematics)drivetrain.getGains().getKinematics(), 
-            // speedConsumer, 
-            // drivetrain);
-            
-        }else if(drivetrain instanceof SwerveDrivetrain) {
-
+        } else if (drivetrain instanceof SwerveDrivetrain) {
+            throw new Exception("ERROR: We dont do swerves yet");
         } else {
             throw new Exception("ERROR: Unsupported Drivetrain Type.\nA drivetrain like no other!");
         }
-        return null;
     }
-    
+
 }

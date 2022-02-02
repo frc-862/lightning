@@ -25,7 +25,7 @@ public class RobotContainer extends LightningContainer {
 
 	private static final SwerveDrivetrain drivetrain = new Drivetrain();
 
-	private static final LightningOdometer lo = new LightningOdometer(drivetrain.getGains().getKinematics(), imu);
+	// private static final LightningOdometer lo = new LightningOdometer(drivetrain.getGains().getKinematics(), imu);
 
 	@Override
 	protected void configureButtonBindings() { }
@@ -46,13 +46,13 @@ public class RobotContainer extends LightningContainer {
 
 	@Override
 	protected void configureAutonomousCommands() {
-		try {
-			Autonomous.register("Test Swerve Auton", 
-			(new Path(Arrays.asList(new Pose2d(0d, 0d, Rotation2d.fromDegrees(0d)), 
-				new Pose2d(1d, 0d, Rotation2d.fromDegrees(0d))))).getCommand(drivetrain, false));
-		} catch(Exception e) {
-			System.err.println("Unexpected Error: " + e.getMessage());
-		}
+		// try {
+		// 	Autonomous.register("Test Swerve Auton", 
+		// 	(new Path(Arrays.asList(new Pose2d(0d, 0d, Rotation2d.fromDegrees(0d)), 
+		// 		new Pose2d(1d, 0d, Rotation2d.fromDegrees(0d))))).getCommand(drivetrain, false));
+		// } catch(Exception e) {
+		// 	System.err.println("Unexpected Error: " + e.getMessage());
+		// }
 	}
 
 	@Override
