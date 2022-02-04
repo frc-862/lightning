@@ -4,9 +4,6 @@ import com.lightningrobotics.common.geometry.kinematics.DrivetrainSpeed;
 import com.lightningrobotics.common.geometry.kinematics.DrivetrainState;
 import com.lightningrobotics.common.geometry.kinematics.LightningKinematics;
 import com.lightningrobotics.common.subsystem.drivetrain.differential.DifferentialGains;
-import com.lightningrobotics.common.util.LightningMath;
-
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DifferentialKinematics implements LightningKinematics {
 
