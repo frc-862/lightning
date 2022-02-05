@@ -18,6 +18,11 @@ public class DifferentialDrivetrainState extends DrivetrainState {
 
     public double getRightSpeed() {
         return rightSpeed;
+    }
+
+    @Override
+    public DrivetrainState getState() {
+        return (DifferentialDrivetrainState) this;
     } 
 
 }

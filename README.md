@@ -1,4 +1,6 @@
-# lightning
+<img src="./img/logo.png" width="60%">
+
+# Common Library
 
 ![Build](https://github.com/frc-862/lightning/workflows/Build/badge.svg)
 [![Build Samples](https://github.com/frc-862/lightning/actions/workflows/sample-build.yml/badge.svg)](https://github.com/frc-862/lightning/tree/develop/samples)\

@@ -6,7 +6,6 @@ import com.lightningrobotics.common.subsystem.drivetrain.swerve.SwerveDrivetrain
 import com.lightningrobotics.common.subsystem.drivetrain.swerve.SwerveGains;
 import com.lightningrobotics.common.util.filter.JoystickFilter;
 
-import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 

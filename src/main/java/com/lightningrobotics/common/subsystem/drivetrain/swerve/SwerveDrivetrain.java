@@ -3,11 +3,13 @@ package com.lightningrobotics.common.subsystem.drivetrain.swerve;
 import java.util.function.Consumer;
 
 import com.lightningrobotics.common.geometry.kinematics.DrivetrainSpeed;
+import com.lightningrobotics.common.geometry.kinematics.DrivetrainState;
 import com.lightningrobotics.common.geometry.kinematics.swerve.SwerveDrivetrainState;
 import com.lightningrobotics.common.geometry.kinematics.swerve.SwerveModuleState;
 import com.lightningrobotics.common.subsystem.drivetrain.LightningDrivetrain;
 import com.lightningrobotics.common.subsystem.drivetrain.LightningGains;
 
+import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 
@@ -89,6 +91,17 @@ public abstract class SwerveDrivetrain extends LightningDrivetrain {
             module.setState(moduleState);
         }
     }
+
+    @Override
+    public Pose2d getPose(){
+        return null; // TODO: impletment 
+    }
+
+    @Override
+    public DrivetrainState getDriveState() {
+        return state;
+    }
+
 
     @Override
     public LightningGains getGains() {

@@ -7,7 +7,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath "edu.wpi.first:GradleRIO:2022.1.1"
+        classpath "edu.wpi.first:GradleRIO:2022.2.1"
     }
 }
 
@@ -34,44 +34,14 @@ if(gradleRioInstalled) {
 sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
 
-deploy {
-    targets {
-        roborio(getTargetTypeClass('RoboRIO')) {
-            team = project.frc.getTeamNumber()
-            debug = project.frc.getDebugOrDefault(false)
-            artifacts {
-                frcJava(getArtifactTypeClass('FRCJavaArtifact')) {}
-                frcStaticFileDeploy(getArtifactTypeClass('FileTreeArtifact')) {
-                    files = project.fileTree('src/main/deploy')
-                    directory = '/home/lvuser/deploy'
-                }
-            }
-        }
-    }
-}
-
 dependencies {
 
     implementation wpi.java.deps.wpilib()
     implementation wpi.java.vendor.java()
-
-    roborioDebug wpi.java.deps.wpilibJniDebug(wpi.platforms.roborio)
-    roborioDebug wpi.java.vendor.jniDebug(wpi.platforms.roborio)
-
-    roborioRelease wpi.java.deps.wpilibJniRelease(wpi.platforms.roborio)
-    roborioRelease wpi.java.vendor.jniRelease(wpi.platforms.roborio)
-
-    nativeDebug wpi.java.deps.wpilibJniDebug(wpi.platforms.desktop)
-    nativeDebug wpi.java.vendor.jniDebug(wpi.platforms.desktop)
-    simulationDebug wpi.sim.enableDebug()
-
-    nativeRelease wpi.java.deps.wpilibJniRelease(wpi.platforms.desktop)
-    nativeRelease wpi.java.vendor.jniRelease(wpi.platforms.desktop)
-    simulationRelease wpi.sim.enableRelease()
+    implementation 'org.ejml:ejml-all:0.40'
 
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-core:3.2.4'
-    implementation 'org.ejml:ejml-all:0.40'
 
 }
 
