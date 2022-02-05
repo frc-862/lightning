@@ -1,6 +1,5 @@
 package com.lightningrobotics.common.subsystem.drivetrain.swerve;
 
-import com.lightningrobotics.common.geometry.kinematics.LightningKinematics;
 import com.lightningrobotics.common.geometry.kinematics.swerve.SwerveKinematics;
 import com.lightningrobotics.common.subsystem.drivetrain.LightningGains;
 
