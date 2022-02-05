@@ -96,7 +96,12 @@ public class LightningIMU extends SubsystemBase {
      */
     public Rotation2d getHeading() {
         if(type == IMUType.NAVX && navx != null) {
-            return Rotation2d.fromDegrees(-navx.getAngle()); // TODO: changed to negative
+            double heading = navx.getAngle();
+            double sign = -Math.signum(heading);
+            double filteredRot = sign * (((Math.abs(heading) + 180) % 360) - 180);
+            return Rotation2d.fromDegrees(filteredRot);
+
+
         }
         if(type == IMUType.PIGEON && ypr != null) {
             double heading = ypr[0];
