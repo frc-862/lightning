@@ -8,7 +8,6 @@ public class LightningGains {
 
     private double maxSpeed;
     private double maxAcceleration;
-    private double maxAngularVelocity;
 
     private LightningKinematics kinematics;
 

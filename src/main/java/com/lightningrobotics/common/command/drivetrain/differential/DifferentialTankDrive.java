@@ -5,8 +5,6 @@ import java.util.function.DoubleSupplier;
 import com.lightningrobotics.common.subsystem.drivetrain.differential.DifferentialDrivetrain;
 import com.lightningrobotics.common.util.filter.JoystickFilter;
 
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class DifferentialTankDrive extends CommandBase {
@@ -38,12 +36,6 @@ public class DifferentialTankDrive extends CommandBase {
 
         double leftPwr = filter.filter(left.getAsDouble());
         double rightPwr = filter.filter(right.getAsDouble());
-
-        SmartDashboard.putNumber("left pwr output", leftPwr);
-        SmartDashboard.putNumber("right pwr output", rightPwr);
-
-        SmartDashboard.getNumber("left pwr", leftPwr);
-        SmartDashboard.getNumber("right pwr", rightPwr);
 
         drivetrain.tankDrive(leftPwr, rightPwr);
 

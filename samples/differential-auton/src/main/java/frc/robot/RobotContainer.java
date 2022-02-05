@@ -24,6 +24,11 @@ public class RobotContainer extends LightningContainer {
 
 	private static final DifferentialDrivetrain drivetrain = new Drivetrain();
 
+	private static final LightningIMU imu = LightningIMU.navX();
+
+
+
+
 	@Override
 	protected void configureButtonBindings() { }
 
@@ -81,9 +86,8 @@ public class RobotContainer extends LightningContainer {
 		} catch(Exception e) {
 			System.err.println("Unexpected Error: " + e.getMessage());
 		}
-	}
 
-	
+	}
 
 	@Override
 	protected void configureFaultCodes() { }

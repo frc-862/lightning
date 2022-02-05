@@ -16,57 +16,49 @@ import com.lightningrobotics.common.util.LightningMath;
 
 import com.lightningrobotics.common.controller.FeedForwardController;
 import edu.wpi.first.math.geometry.Pose2d;
-import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.shuffleboard.SimpleWidget;
-import edu.wpi.first.wpilibj.shuffleboard.WidgetType;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import pabeles.concurrency.IntRangeConsumer;
-import com.lightningrobotics.common.subsystem.drivetrain.PIDFDashboardTuner;
 
 public class DifferentialDrivetrain extends LightningDrivetrain {
 
-    private DifferentialDrivetrainState state = new DifferentialDrivetrainState(0,0);
+    private DifferentialDrivetrainState state = new DifferentialDrivetrainState(0, 0);
     private LightningOdometer odometer;
     private DifferentialGains gains;
-    private Pose2d poseOffset;
-    
+
     private MotorController[] leftMotors;
     private MotorController[] rightMotors;
     private DoubleSupplier leftVelocity;
     private DoubleSupplier rightVelocity;
-    private PIDFController leftDriveController;
-    private PIDFController rightDriveController;
-    private FeedForwardController ffController;
     private LightningIMU IMU;
     private DoubleSupplier leftDistance;
     private DoubleSupplier rightDistance;
 
     private int motorCount = 0;
 
-    ShuffleboardTab tab =  Shuffleboard.getTab("Autonomous");
+    ShuffleboardTab tab = Shuffleboard.getTab("Autonomous");
     SimpleWidget leftEncoderWidget, rightEncoderWidget, navXWidget, rightVel, leftVel;
 
-    public DifferentialDrivetrain(DifferentialGains gains, MotorController[] leftMotors, MotorController[] rightMotors, LightningIMU IMU, DoubleSupplier leftVelocity, DoubleSupplier rightVelocity, PIDFController leftDriveController, PIDFController rightDriveController, FeedForwardController ffController, DoubleSupplier leftDistance, DoubleSupplier rightDistance) {
+    public DifferentialDrivetrain(DifferentialGains gains, MotorController[] leftMotors, MotorController[] rightMotors,
+            LightningIMU IMU, DoubleSupplier leftVelocity, DoubleSupplier rightVelocity, DoubleSupplier leftDistance,
+            DoubleSupplier rightDistance) {
+
         this.gains = gains;
         this.leftMotors = leftMotors;
         this.rightMotors = rightMotors;
         this.IMU = IMU;
         this.leftVelocity = leftVelocity;
         this.rightVelocity = rightVelocity;
-        this.leftDriveController = leftDriveController;
-        this.rightDriveController = rightDriveController;
-        this.ffController = ffController;
         this.leftDistance = leftDistance;
         this.rightDistance = rightDistance;
 
         this.odometer = new LightningOdometer(IMU.getHeading()); // TODO: use other params
 
-        leftEncoderWidget = tab.add("EncoderLeftVals", ((WPI_TalonFX)leftMotors[0]).getSelectedSensorPosition());
-        rightEncoderWidget = tab.add("EncoderRightVals", ((WPI_TalonFX)rightMotors[0]).getSelectedSensorPosition());
+        leftEncoderWidget = tab.add("EncoderLeftVals", ((WPI_TalonFX) leftMotors[0]).getSelectedSensorPosition());
+        rightEncoderWidget = tab.add("EncoderRightVals", ((WPI_TalonFX) rightMotors[0]).getSelectedSensorPosition());
 
         leftVel = tab.add("left speed", 0);
         rightVel = tab.add("right speed", 0);
@@ -77,16 +69,16 @@ public class DifferentialDrivetrain extends LightningDrivetrain {
         if (leftMotors.length == rightMotors.length)
             motorCount = leftMotors.length;
 
-            SmartDashboard.putData("Reset everything", new InstantCommand(() -> {
-                ((WPI_TalonFX)leftMotors[0]).setSelectedSensorPosition(0);
-                ((WPI_TalonFX)rightMotors[0]).setSelectedSensorPosition(0);
-                odometer.resetPosition(new Pose2d(), IMU.getHeading());
-            }));
+        SmartDashboard.putData("Reset everything", new InstantCommand(() -> {
+            ((WPI_TalonFX) leftMotors[0]).setSelectedSensorPosition(0);
+            ((WPI_TalonFX) rightMotors[0]).setSelectedSensorPosition(0);
+            odometer.resetPosition(new Pose2d(), IMU.getHeading());
+        }));
     }
 
     @Override
     public void configureMotors() {
-        
+
         var leftInverts = gains.getLeftInverts();
         var rightInverts = gains.getRightInverts();
 
@@ -119,15 +111,19 @@ public class DifferentialDrivetrain extends LightningDrivetrain {
         state = new DifferentialDrivetrainState(leftVelocity.getAsDouble(), rightVelocity.getAsDouble());
         odometer.update(IMU.getHeading(), leftDistance.getAsDouble(), rightDistance.getAsDouble());
 
-        String gyroData = (odometer.getPoseMeters().getX() + " , " + odometer.getPoseMeters().getY() + " " + IMU.getHeading()); // String gyroData = (leftDistance.getAsDouble() + "---" + rightDistance.getAsDouble() + " " + IMU.getHeading());
+        String gyroData = (odometer.getPoseMeters().getX() + " , " + odometer.getPoseMeters().getY() + " "
+                + IMU.getHeading()); // String gyroData = (leftDistance.getAsDouble() + "---" +
+                                     // rightDistance.getAsDouble() + " " + IMU.getHeading());
 
-        leftEncoderWidget.withWidget("").getEntry().setNumber(((WPI_TalonFX)leftMotors[0]).getSelectedSensorPosition());
-        rightEncoderWidget.withWidget("").getEntry().setNumber(((WPI_TalonFX)rightMotors[0]).getSelectedSensorPosition());
+        leftEncoderWidget.withWidget("").getEntry()
+                .setNumber(((WPI_TalonFX) leftMotors[0]).getSelectedSensorPosition());
+        rightEncoderWidget.withWidget("").getEntry()
+                .setNumber(((WPI_TalonFX) rightMotors[0]).getSelectedSensorPosition());
 
         leftVel.withWidget("").getEntry().setNumber(state.getLeftSpeed());
         rightVel.withWidget("").getEntry().setNumber(state.getRightSpeed());
 
-       navXWidget.withWidget("").getEntry().setString(gyroData);
+        navXWidget.withWidget("").getEntry().setString(gyroData);
     }
 
     public DrivetrainState getDriveTrainState() {
@@ -135,31 +131,27 @@ public class DifferentialDrivetrain extends LightningDrivetrain {
     }
 
     @Override
-    public Pose2d getPose(){
+    public Pose2d getPose() {
         return odometer.getPoseMeters();
     }
 
     @Override
-    public DrivetrainState getDriveState(){
+    public DrivetrainState getDriveState() {
         return state;
     }
 
-    public void resetPose(){
-        ((WPI_TalonFX)leftMotors[0]).setSelectedSensorPosition(0);
-        ((WPI_TalonFX)rightMotors[0]).setSelectedSensorPosition(0);
+    public void resetPose() {
+        ((WPI_TalonFX) leftMotors[0]).setSelectedSensorPosition(0);
+        ((WPI_TalonFX) rightMotors[0]).setSelectedSensorPosition(0);
         odometer.resetPosition(new Pose2d(), IMU.getHeading());
     }
 
-    public PIDFController getLeftriveController(){
-        return leftDriveController;
+    public PIDFController getDrivePIDFController() {
+        return gains.getPIDFController();
     }
 
-    public PIDFController getRightriveController(){
-        return rightDriveController;
-    }
-
-    public FeedForwardController getFeedforwardController(){
-        return ffController;
+    public FeedForwardController getFeedForwardController() {
+        return gains.getFeedForwardController();
     }
 
     public void arcadeDrive(double speed, double rot) {
@@ -200,17 +192,21 @@ public class DifferentialDrivetrain extends LightningDrivetrain {
         setRightOutput(rightPWR);
     }
 
-    public void setVoltage(double leftVoltage, double rightVoltage){
+    public void setVoltage(double leftVoltage, double rightVoltage) {
         withEachLeftMotor(m -> m.setVoltage(leftVoltage));
         withEachRightMotor(m -> m.setVoltage(rightVoltage));
     }
 
     protected void setLeftOutput(double output) {
-        withEachLeftMotor(m -> m.set(LightningMath.constrain(output, -1.0, 1.0))); //withEachLeftMotor(m -> m.set(leftDriveController.calculate(LightningMath.constrain(output, -1.0, 1.0))));
+        withEachLeftMotor(m -> m.set(LightningMath.constrain(output, -1.0, 1.0))); // withEachLeftMotor(m ->
+                                                                                   // m.set(leftDriveController.calculate(LightningMath.constrain(output,
+                                                                                   // -1.0, 1.0))));
     }
 
     protected void setRightOutput(double output) {
-        withEachRightMotor(m -> m.set(LightningMath.constrain(output, -1.0, 1.0)));  //withEachRightMotor(m -> m.set(rightDriveController.calculate(LightningMath.constrain(output, -1.0, 1.0))));
+        withEachRightMotor(m -> m.set(LightningMath.constrain(output, -1.0, 1.0))); // withEachRightMotor(m ->
+                                                                                    // m.set(rightDriveController.calculate(LightningMath.constrain(output,
+                                                                                    // -1.0, 1.0))));
     }
 
     protected void withEachMotor(Consumer<MotorController> op) {
@@ -245,4 +241,3 @@ public class DifferentialDrivetrain extends LightningDrivetrain {
     }
 
 }
-

@@ -174,4 +174,17 @@ public final class LightningMath {
     public static double rpmToMetersPerSecond(double rpm, double gearReduction, double wheelCircumference) {
         return rpm / gearReduction * Units.inchesToMeters(wheelCircumference) / 60;
     }
+
+    /**
+     * Converts encoder ticks to a distance (units of input)
+     * @param ticks input to convert
+     * @param wheelDiameter diameter of wheel
+     * @param gearReduction reduction in gearbox
+     * @param ticksPerRev ticks pre revolution of motor shaft
+     * @return distance wheel has travled, in units of the wheel diameter supplied
+     */    
+    public static double ticksToDistance(double ticks, double wheelDiameter, double gearReduction, double ticksPerRev) {
+        return (ticks * (wheelDiameter * Math.PI / (ticksPerRev * gearReduction)));
+    }
+
 }

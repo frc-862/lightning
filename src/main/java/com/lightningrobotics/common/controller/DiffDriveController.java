@@ -33,7 +33,7 @@ import edu.wpi.first.math.geometry.Pose2d;
  * Engineering in the FIRST Robotics Competition</a> section on Ramsete unicycle controller for a
  * derivation and analysis.
  */
-public class RamseteController {
+public class DiffDriveController {
   @SuppressWarnings("MemberName")
   private final double m_b;
 
@@ -53,7 +53,7 @@ public class RamseteController {
    *     more damping in response.
    */
   @SuppressWarnings("ParameterName")
-  public RamseteController(double b, double zeta) {
+  public DiffDriveController(double b, double zeta) {
     m_b = b;
     m_zeta = zeta;
   }
@@ -62,7 +62,7 @@ public class RamseteController {
    * Construct a Ramsete unicycle controller. The default arguments for b and zeta of 2.0 rad²/m²
    * and 0.7 rad⁻¹ have been well-tested to produce desirable results.
    */
-  public RamseteController() {
+  public DiffDriveController() {
     this(2.0, 0.7);
   }
 
