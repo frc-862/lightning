@@ -10,6 +10,7 @@ import com.lightningrobotics.common.subsystem.core.LightningIMU;
 import com.lightningrobotics.common.subsystem.drivetrain.LightningDrivetrain;
 import com.lightningrobotics.common.subsystem.drivetrain.differential.DifferentialDrivetrain;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
@@ -20,14 +21,13 @@ import frc.robot.subsystems.Drivetrain;
 
 public class RobotContainer extends LightningContainer {
 
-	private static final XboxController driver = new XboxController(0);
+	private static final Joystick driver_left = new Joystick(0);
+	private static final Joystick driver_right = new Joystick(1);
+
 
 	private static final DifferentialDrivetrain drivetrain = new Drivetrain();
 
 	private static final LightningIMU imu = LightningIMU.navX();
-
-
-
 
 	@Override
 	protected void configureButtonBindings() { }
@@ -37,7 +37,7 @@ public class RobotContainer extends LightningContainer {
 
 	@Override
 	protected void configureDefaultCommands() {
-		drivetrain.setDefaultCommand(new DifferentialTankDrive(drivetrain, ()-> -driver.getLeftY(), () -> -driver.getRightY()));
+		drivetrain.setDefaultCommand(new DifferentialTankDrive(drivetrain, ()-> -driver_left.getY(), () -> -driver_right.getY()));
 	}
 
 	@Override
