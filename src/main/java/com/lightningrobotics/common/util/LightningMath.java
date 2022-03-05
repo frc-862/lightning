@@ -166,10 +166,10 @@ public final class LightningMath {
 
     /**
      * Converts motor rotational speed to linear speed
-     * @param rpm
-     * @param gearReduction
-     * @param wheelCircumference
-     * @return
+     * @param rpm input speed to convert
+     * @param gearReduction reduction between driver and actuator
+     * @param wheelCircumference circumference of wheel (inches)
+     * @return the speed in meters per second
      */
     public static double rpmToMetersPerSecond(double rpm, double gearReduction, double wheelCircumference) {
         return rpm / gearReduction * Units.inchesToMeters(wheelCircumference) / 60;

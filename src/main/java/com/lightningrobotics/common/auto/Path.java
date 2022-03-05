@@ -177,7 +177,6 @@ public class Path {
      * Obtains an optimized trajectory the robot should follow so it hits all the
      * waypoints
      * 
-     * @param <TrajectoryConfig>
      * @param drivetrain         Drivetrain object of the robot the path should be
      *                           configured for
      * @return A trajectory the robot can follow
