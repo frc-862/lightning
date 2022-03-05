@@ -17,9 +17,6 @@ import com.lightningrobotics.common.util.LightningMath;
 import com.lightningrobotics.common.controller.FeedForwardController;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
-import edu.wpi.first.wpilibj.shuffleboard.SimpleWidget;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 
@@ -39,9 +36,6 @@ public class DifferentialDrivetrain extends LightningDrivetrain {
 
     private int motorCount = 0;
 
-    ShuffleboardTab tab = Shuffleboard.getTab("Autonomous");
-    SimpleWidget leftEncoderWidget, rightEncoderWidget, navXWidget, rightVel, leftVel;
-
     public DifferentialDrivetrain(DifferentialGains gains, MotorController[] leftMotors, MotorController[] rightMotors,
             LightningIMU IMU, DoubleSupplier leftVelocity, DoubleSupplier rightVelocity, DoubleSupplier leftDistance,
             DoubleSupplier rightDistance) {
@@ -56,14 +50,6 @@ public class DifferentialDrivetrain extends LightningDrivetrain {
         this.rightDistance = rightDistance;
 
         this.odometer = new LightningOdometer(IMU.getHeading()); // TODO: use other params
-
-        leftEncoderWidget = tab.add("EncoderLeftVals", ((WPI_TalonFX) leftMotors[0]).getSelectedSensorPosition());
-        rightEncoderWidget = tab.add("EncoderRightVals", ((WPI_TalonFX) rightMotors[0]).getSelectedSensorPosition());
-
-        leftVel = tab.add("left speed", 0);
-        rightVel = tab.add("right speed", 0);
-
-        navXWidget = tab.add("GyroVals", "");
 
         configureMotors();
         if (leftMotors.length == rightMotors.length)
@@ -110,20 +96,6 @@ public class DifferentialDrivetrain extends LightningDrivetrain {
     public void periodic() {
         state = new DifferentialDrivetrainState(leftVelocity.getAsDouble(), rightVelocity.getAsDouble());
         odometer.update(IMU.getHeading(), leftDistance.getAsDouble(), rightDistance.getAsDouble());
-
-        String gyroData = (odometer.getPoseMeters().getX() + " , " + odometer.getPoseMeters().getY() + " "
-                + IMU.getHeading()); // String gyroData = (leftDistance.getAsDouble() + "---" +
-                                     // rightDistance.getAsDouble() + " " + IMU.getHeading());
-
-        leftEncoderWidget.withWidget("").getEntry()
-                .setNumber(((WPI_TalonFX) leftMotors[0]).getSelectedSensorPosition());
-        rightEncoderWidget.withWidget("").getEntry()
-                .setNumber(((WPI_TalonFX) rightMotors[0]).getSelectedSensorPosition());
-
-        leftVel.withWidget("").getEntry().setNumber(state.getLeftSpeed());
-        rightVel.withWidget("").getEntry().setNumber(state.getRightSpeed());
-
-        navXWidget.withWidget("").getEntry().setString(gyroData);
     }
 
     public DrivetrainState getDriveTrainState() {
