@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -178,11 +178,13 @@ extends <a href="../LightningGains.html" title="class in com.lightningrobotics.c
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(double,double,double,boolean%5B%5D,boolean%5B%5D)">DifferentialGains</a></span>&#8203;(double&nbsp;maxSpeed,
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(double,double,double,boolean%5B%5D,boolean%5B%5D,com.lightningrobotics.common.controller.PIDFController,com.lightningrobotics.common.controller.FeedForwardController)">DifferentialGains</a></span>&#8203;(double&nbsp;maxSpeed,
                  double&nbsp;maxAcceleration,
                  double&nbsp;trackWidth,
                  boolean[]&nbsp;leftInverts,
-                 boolean[]&nbsp;rightInverts)</code></th>
+                 boolean[]&nbsp;rightInverts,
+                 <a href="../../../controller/PIDFController.html" title="class in com.lightningrobotics.common.controller">PIDFController</a>&nbsp;driveController,
+                 <a href="../../../controller/FeedForwardController.html" title="class in com.lightningrobotics.common.controller">FeedForwardController</a>&nbsp;driveFFController)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 </table>
@@ -204,36 +206,46 @@ extends <a href="../LightningGains.html" title="class in com.lightningrobotics.c
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
+<td class="colFirst"><code><a href="../../../controller/FeedForwardController.html" title="class in com.lightningrobotics.common.controller">FeedForwardController</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getFeedForwardController()">getFeedForwardController</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="../../../geometry/kinematics/differential/DifferentialKinematics.html" title="class in com.lightningrobotics.common.geometry.kinematics.differential">DifferentialKinematics</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getKinematics()">getKinematics</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i1" class="rowColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>boolean[]</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getLeftInverts()">getLeftInverts</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code><a href="../../../controller/PIDFController.html" title="class in com.lightningrobotics.common.controller">PIDFController</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getPIDFController()">getPIDFController</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>boolean[]</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getRightInverts()">getRightInverts</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getTrackWidth()">getTrackWidth</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setLeftInverts(boolean%5B%5D)">setLeftInverts</a></span>&#8203;(boolean[]&nbsp;leftInverts)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setRightInverts(boolean%5B%5D)">setRightInverts</a></span>&#8203;(boolean[]&nbsp;rightInverts)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setTrackWidth(int)">setTrackWidth</a></span>&#8203;(int&nbsp;trackWidth)</code></th>
 <td class="colLast">&nbsp;</td>
@@ -244,7 +256,7 @@ extends <a href="../LightningGains.html" title="class in com.lightningrobotics.c
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;com.lightningrobotics.common.subsystem.drivetrain.<a href="../LightningGains.html" title="class in com.lightningrobotics.common.subsystem.drivetrain">LightningGains</a></h3>
-<code><a href="../LightningGains.html#getMaxAcceleration()">getMaxAcceleration</a>, <a href="../LightningGains.html#getMaxSpeed()">getMaxSpeed</a>, <a href="../LightningGains.html#setMaxAcceleration(double)">setMaxAcceleration</a>, <a href="../LightningGains.html#setMaxSpeed(double)">setMaxSpeed</a></code></li>
+<code><a href="../LightningGains.html#getMaxAcceleration()">getMaxAcceleration</a>, <a href="../LightningGains.html#getMaxSpeed()">getMaxSpeed</a>, <a href="../LightningGains.html#setKinematics(com.lightningrobotics.common.geometry.kinematics.LightningKinematics)">setKinematics</a>, <a href="../LightningGains.html#setMaxAcceleration(double)">setMaxAcceleration</a>, <a href="../LightningGains.html#setMaxSpeed(double)">setMaxSpeed</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
@@ -278,7 +290,7 @@ extends <a href="../LightningGains.html" title="class in com.lightningrobotics.c
 <pre>public&nbsp;DifferentialGains()</pre>
 </li>
 </ul>
-<a id="&lt;init&gt;(double,double,double,boolean[],boolean[])">
+<a id="&lt;init&gt;(double,double,double,boolean[],boolean[],com.lightningrobotics.common.controller.PIDFController,com.lightningrobotics.common.controller.FeedForwardController)">
 <!--   -->
 </a>
 <ul class="blockListLast">
@@ -288,7 +300,9 @@ extends <a href="../LightningGains.html" title="class in com.lightningrobotics.c
                          double&nbsp;maxAcceleration,
                          double&nbsp;trackWidth,
                          boolean[]&nbsp;leftInverts,
-                         boolean[]&nbsp;rightInverts)</pre>
+                         boolean[]&nbsp;rightInverts,
+                         <a href="../../../controller/PIDFController.html" title="class in com.lightningrobotics.common.controller">PIDFController</a>&nbsp;driveController,
+                         <a href="../../../controller/FeedForwardController.html" title="class in com.lightningrobotics.common.controller">FeedForwardController</a>&nbsp;driveFFController)</pre>
 </li>
 </ul>
 </li>
@@ -308,6 +322,10 @@ extends <a href="../LightningGains.html" title="class in com.lightningrobotics.c
 <li class="blockList">
 <h4>getKinematics</h4>
 <pre class="methodSignature">public&nbsp;<a href="../../../geometry/kinematics/differential/DifferentialKinematics.html" title="class in com.lightningrobotics.common.geometry.kinematics.differential">DifferentialKinematics</a>&nbsp;getKinematics()</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../LightningGains.html#getKinematics()">getKinematics</a></code>&nbsp;in class&nbsp;<code><a href="../LightningGains.html" title="class in com.lightningrobotics.common.subsystem.drivetrain">LightningGains</a></code></dd>
+</dl>
 </li>
 </ul>
 <a id="getTrackWidth()">
@@ -317,6 +335,10 @@ extends <a href="../LightningGains.html" title="class in com.lightningrobotics.c
 <li class="blockList">
 <h4>getTrackWidth</h4>
 <pre class="methodSignature">public&nbsp;double&nbsp;getTrackWidth()</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../LightningGains.html#getTrackWidth()">getTrackWidth</a></code>&nbsp;in class&nbsp;<code><a href="../LightningGains.html" title="class in com.lightningrobotics.common.subsystem.drivetrain">LightningGains</a></code></dd>
+</dl>
 </li>
 </ul>
 <a id="setTrackWidth(int)">
@@ -358,10 +380,28 @@ extends <a href="../LightningGains.html" title="class in com.lightningrobotics.c
 <a id="setRightInverts(boolean[])">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>setRightInverts</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;setRightInverts&#8203;(boolean[]&nbsp;rightInverts)</pre>
+</li>
+</ul>
+<a id="getPIDFController()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getPIDFController</h4>
+<pre class="methodSignature">public&nbsp;<a href="../../../controller/PIDFController.html" title="class in com.lightningrobotics.common.controller">PIDFController</a>&nbsp;getPIDFController()</pre>
+</li>
+</ul>
+<a id="getFeedForwardController()">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>getFeedForwardController</h4>
+<pre class="methodSignature">public&nbsp;<a href="../../../controller/FeedForwardController.html" title="class in com.lightningrobotics.common.controller">FeedForwardController</a>&nbsp;getFeedForwardController()</pre>
 </li>
 </ul>
 </li>

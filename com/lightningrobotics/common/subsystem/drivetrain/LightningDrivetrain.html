@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":6,"i1":6,"i2":6,"i3":6};
+var data = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -192,16 +192,26 @@ extends edu.wpi.first.wpilibj2.command.SubsystemBase</pre>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i1" class="rowColor">
+<td class="colFirst"><code>abstract <a href="../../geometry/kinematics/DrivetrainState.html" title="class in com.lightningrobotics.common.geometry.kinematics">DrivetrainState</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getDriveState()">getDriveState</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>abstract <a href="LightningGains.html" title="class in com.lightningrobotics.common.subsystem.drivetrain">LightningGains</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getGains()">getGains</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code>abstract edu.wpi.first.math.geometry.Pose2d</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getPose()">getPose</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>abstract void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setDriveSpeed(com.lightningrobotics.common.geometry.kinematics.DrivetrainSpeed)">setDriveSpeed</a></span>&#8203;(<a href="../../geometry/kinematics/DrivetrainSpeed.html" title="class in com.lightningrobotics.common.geometry.kinematics">DrivetrainSpeed</a>&nbsp;speed)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>abstract void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#stop()">stop</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
@@ -293,10 +303,28 @@ extends edu.wpi.first.wpilibj2.command.SubsystemBase</pre>
 <a id="stop()">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>stop</h4>
 <pre class="methodSignature">public abstract&nbsp;void&nbsp;stop()</pre>
+</li>
+</ul>
+<a id="getDriveState()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getDriveState</h4>
+<pre class="methodSignature">public abstract&nbsp;<a href="../../geometry/kinematics/DrivetrainState.html" title="class in com.lightningrobotics.common.geometry.kinematics">DrivetrainState</a>&nbsp;getDriveState()</pre>
+</li>
+</ul>
+<a id="getPose()">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>getPose</h4>
+<pre class="methodSignature">public abstract&nbsp;edu.wpi.first.math.geometry.Pose2d&nbsp;getPose()</pre>
 </li>
 </ul>
 </li>

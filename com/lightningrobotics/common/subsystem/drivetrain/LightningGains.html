@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -206,21 +206,36 @@ extends java.lang.Object</pre>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code>double</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getMaxAcceleration()">getMaxAcceleration</a></span>()</code></th>
+<td class="colFirst"><code><a href="../../geometry/kinematics/LightningKinematics.html" title="interface in com.lightningrobotics.common.geometry.kinematics">LightningKinematics</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getKinematics()">getKinematics</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>double</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getMaxSpeed()">getMaxSpeed</a></span>()</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getMaxAcceleration()">getMaxAcceleration</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i2" class="altColor">
+<td class="colFirst"><code>double</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getMaxSpeed()">getMaxSpeed</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code>double</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getTrackWidth()">getTrackWidth</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setKinematics(com.lightningrobotics.common.geometry.kinematics.LightningKinematics)">setKinematics</a></span>&#8203;(<a href="../../geometry/kinematics/LightningKinematics.html" title="interface in com.lightningrobotics.common.geometry.kinematics">LightningKinematics</a>&nbsp;kinematics)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setMaxAcceleration(double)">setMaxAcceleration</a></span>&#8203;(double&nbsp;maxAcceleration)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setMaxSpeed(double)">setMaxSpeed</a></span>&#8203;(double&nbsp;maxSpeed)</code></th>
 <td class="colLast">&nbsp;</td>
@@ -301,6 +316,15 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a id="setKinematics(com.lightningrobotics.common.geometry.kinematics.LightningKinematics)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setKinematics</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;setKinematics&#8203;(<a href="../../geometry/kinematics/LightningKinematics.html" title="interface in com.lightningrobotics.common.geometry.kinematics">LightningKinematics</a>&nbsp;kinematics)</pre>
+</li>
+</ul>
 <a id="getMaxSpeed()">
 <!--   -->
 </a>
@@ -331,10 +355,28 @@ extends java.lang.Object</pre>
 <a id="setMaxAcceleration(double)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>setMaxAcceleration</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;setMaxAcceleration&#8203;(double&nbsp;maxAcceleration)</pre>
+</li>
+</ul>
+<a id="getKinematics()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getKinematics</h4>
+<pre class="methodSignature">public&nbsp;<a href="../../geometry/kinematics/LightningKinematics.html" title="interface in com.lightningrobotics.common.geometry.kinematics">LightningKinematics</a>&nbsp;getKinematics()</pre>
+</li>
+</ul>
+<a id="getTrackWidth()">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>getTrackWidth</h4>
+<pre class="methodSignature">public&nbsp;double&nbsp;getTrackWidth()</pre>
 </li>
 </ul>
 </li>

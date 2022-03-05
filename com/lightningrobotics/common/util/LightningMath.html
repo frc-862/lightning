@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":9,"i1":9,"i2":9,"i3":9,"i4":9,"i5":9,"i6":9,"i7":9,"i8":9,"i9":9,"i10":9,"i11":9,"i12":9,"i13":9,"i14":9,"i15":9,"i16":9,"i17":9,"i18":9,"i19":9,"i20":9};
+var data = {"i0":9,"i1":9,"i2":9,"i3":9,"i4":9,"i5":9,"i6":9,"i7":9,"i8":9,"i9":9,"i10":9,"i11":9,"i12":9,"i13":9,"i14":9,"i15":9,"i16":9,"i17":9,"i18":9,"i19":9,"i20":9,"i21":9,"i22":9};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -283,6 +283,15 @@ extends java.lang.Object</pre>
 </tr>
 <tr id="i19" class="rowColor">
 <td class="colFirst"><code>static double</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#rpmToMetersPerSecond(double,double,double)">rpmToMetersPerSecond</a></span>&#8203;(double&nbsp;rpm,
+                    double&nbsp;gearReduction,
+                    double&nbsp;wheelCircumference)</code></th>
+<td class="colLast">
+<div class="block">Converts motor rotational speed to linear speed</div>
+</td>
+</tr>
+<tr id="i20" class="altColor">
+<td class="colFirst"><code>static double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#scale(double,double,double,double,double)">scale</a></span>&#8203;(double&nbsp;input,
      double&nbsp;lowInput,
      double&nbsp;highInput,
@@ -290,7 +299,7 @@ extends java.lang.Object</pre>
      double&nbsp;highOutput)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i20" class="altColor">
+<tr id="i21" class="rowColor">
 <td class="colFirst"><code>static int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#scale(int,int,int,int,int)">scale</a></span>&#8203;(int&nbsp;input,
      int&nbsp;lowInput,
@@ -298,6 +307,16 @@ extends java.lang.Object</pre>
      int&nbsp;lowOutput,
      int&nbsp;highOutput)</code></th>
 <td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i22" class="altColor">
+<td class="colFirst"><code>static double</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#ticksToDistance(double,double,double,double)">ticksToDistance</a></span>&#8203;(double&nbsp;ticks,
+               double&nbsp;wheelDiameter,
+               double&nbsp;gearReduction,
+               double&nbsp;ticksPerRev)</code></th>
+<td class="colLast">
+<div class="block">Converts encoder ticks to a distance (units of input)</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -582,7 +601,7 @@ extends java.lang.Object</pre>
 <a id="lerp(edu.wpi.first.math.geometry.Pose2d,edu.wpi.first.math.geometry.Pose2d,double)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>lerp</h4>
 <pre class="methodSignature">public static&nbsp;edu.wpi.first.math.geometry.Pose2d&nbsp;lerp&#8203;(edu.wpi.first.math.geometry.Pose2d&nbsp;startValue,
@@ -596,6 +615,48 @@ extends java.lang.Object</pre>
 <dd><code>t</code> - The fraction for interpolation.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The interpolated pose.</dd>
+</dl>
+</li>
+</ul>
+<a id="rpmToMetersPerSecond(double,double,double)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>rpmToMetersPerSecond</h4>
+<pre class="methodSignature">public static&nbsp;double&nbsp;rpmToMetersPerSecond&#8203;(double&nbsp;rpm,
+                                          double&nbsp;gearReduction,
+                                          double&nbsp;wheelCircumference)</pre>
+<div class="block">Converts motor rotational speed to linear speed</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>rpm</code> - input speed to convert</dd>
+<dd><code>gearReduction</code> - reduction between driver and actuator</dd>
+<dd><code>wheelCircumference</code> - circumference of wheel (inches)</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the speed in meters per second</dd>
+</dl>
+</li>
+</ul>
+<a id="ticksToDistance(double,double,double,double)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>ticksToDistance</h4>
+<pre class="methodSignature">public static&nbsp;double&nbsp;ticksToDistance&#8203;(double&nbsp;ticks,
+                                     double&nbsp;wheelDiameter,
+                                     double&nbsp;gearReduction,
+                                     double&nbsp;ticksPerRev)</pre>
+<div class="block">Converts encoder ticks to a distance (units of input)</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>ticks</code> - input to convert</dd>
+<dd><code>wheelDiameter</code> - diameter of wheel</dd>
+<dd><code>gearReduction</code> - reduction in gearbox</dd>
+<dd><code>ticksPerRev</code> - ticks pre revolution of motor shaft</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>distance wheel has travled, in units of the wheel diameter supplied</dd>
 </dl>
 </li>
 </ul>

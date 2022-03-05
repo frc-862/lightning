@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -122,22 +122,22 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li><a href="Controller.html" title="class in com.lightningrobotics.common.controller">com.lightningrobotics.common.controller.Controller</a></li>
-<li>
-<ul class="inheritance">
 <li>com.lightningrobotics.common.controller.PIDFController</li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
 <div class="description">
 <ul class="blockList">
 <li class="blockList">
+<dl>
+<dt>All Implemented Interfaces:</dt>
+<dd><code>edu.wpi.first.util.sendable.Sendable</code>, <code>java.lang.AutoCloseable</code></dd>
+</dl>
 <hr>
 <pre>public class <span class="typeNameLabel">PIDFController</span>
-extends <a href="Controller.html" title="class in com.lightningrobotics.common.controller">Controller</a></pre>
-<div class="block">Simple PID controller with simple Feedforward coefficient.</div>
+extends java.lang.Object
+implements edu.wpi.first.util.sendable.Sendable, java.lang.AutoCloseable</pre>
+<div class="block">Implements a PID control loop.</div>
 </li>
 </ul>
 </div>
@@ -158,19 +158,22 @@ extends <a href="Controller.html" title="class in com.lightningrobotics.common.c
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr class="altColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(double,double,double,double)">PIDFController</a></span>&#8203;(double&nbsp;kP,
-              double&nbsp;kI,
-              double&nbsp;kD,
-              double&nbsp;kF)</code></th>
-<td class="colLast">&nbsp;</td>
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(double,double,double)">PIDFController</a></span>&#8203;(double&nbsp;kp,
+              double&nbsp;ki,
+              double&nbsp;kd)</code></th>
+<td class="colLast">
+<div class="block">Allocates a PIDController with the given constants for kp, ki, and kd and a default period of
+ 0.02 seconds.</div>
+</td>
 </tr>
 <tr class="rowColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(double,double,double,double,double)">PIDFController</a></span>&#8203;(double&nbsp;kP,
-              double&nbsp;kI,
-              double&nbsp;kD,
-              double&nbsp;kF,
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(double,double,double,double)">PIDFController</a></span>&#8203;(double&nbsp;kp,
+              double&nbsp;ki,
+              double&nbsp;kd,
               double&nbsp;period)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Allocates a PIDController with the given constants for kp, ki, and kd.</div>
+</td>
 </tr>
 </table>
 </li>
@@ -191,61 +194,174 @@ extends <a href="Controller.html" title="class in com.lightningrobotics.common.c
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code>double</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#calculate(double,double)">calculate</a></span>&#8203;(double&nbsp;measurement,
-         double&nbsp;setpoint)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#atSetpoint()">atSetpoint</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Returns true if the error is within the tolerance of the setpoint.</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#enableContinuousInput(double,double)">enableContinuousInput</a></span>&#8203;(double&nbsp;minimumInput,
-                     double&nbsp;maximumInput)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colFirst"><code>double</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#calculate(double)">calculate</a></span>&#8203;(double&nbsp;measurement)</code></th>
+<td class="colLast">
+<div class="block">Returns the next output of the PID controller.</div>
+</td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>double</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getkD()">getkD</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#calculate(double,double)">calculate</a></span>&#8203;(double&nbsp;measurement,
+         double&nbsp;setpoint)</code></th>
+<td class="colLast">
+<div class="block">Returns the next output of the PID controller.</div>
+</td>
 </tr>
 <tr id="i3" class="rowColor">
-<td class="colFirst"><code>double</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getkF()">getkF</a></span>()</code></th>
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#close()">close</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i4" class="altColor">
-<td class="colFirst"><code>double</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getkI()">getkI</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#disableContinuousInput()">disableContinuousInput</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Disables continuous input.</div>
+</td>
 </tr>
 <tr id="i5" class="rowColor">
-<td class="colFirst"><code>double</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getkP()">getkP</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#enableContinuousInput(double,double)">enableContinuousInput</a></span>&#8203;(double&nbsp;minimumInput,
+                     double&nbsp;maximumInput)</code></th>
+<td class="colLast">
+<div class="block">Enables continuous input.</div>
+</td>
 </tr>
 <tr id="i6" class="altColor">
-<td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#reset()">reset</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colFirst"><code>double</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getD()">getD</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Get the Differential coefficient.</div>
+</td>
 </tr>
 <tr id="i7" class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setkD(double)">setkD</a></span>&#8203;(double&nbsp;kD)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colFirst"><code>double</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getI()">getI</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Get the Integral coefficient.</div>
+</td>
 </tr>
 <tr id="i8" class="altColor">
-<td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setkF(double)">setkF</a></span>&#8203;(double&nbsp;kF)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colFirst"><code>double</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getP()">getP</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Get the Proportional coefficient.</div>
+</td>
 </tr>
 <tr id="i9" class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setkI(double)">setkI</a></span>&#8203;(double&nbsp;kI)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colFirst"><code>double</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getPeriod()">getPeriod</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Returns the period of this controller.</div>
+</td>
 </tr>
 <tr id="i10" class="altColor">
+<td class="colFirst"><code>double</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getPositionError()">getPositionError</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Returns the difference between the setpoint and the measurement.</div>
+</td>
+</tr>
+<tr id="i11" class="rowColor">
+<td class="colFirst"><code>double</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getSetpoint()">getSetpoint</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Returns the current setpoint of the PIDController.</div>
+</td>
+</tr>
+<tr id="i12" class="altColor">
+<td class="colFirst"><code>double</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getVelocityError()">getVelocityError</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Returns the velocity error.</div>
+</td>
+</tr>
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setkP(double)">setkP</a></span>&#8203;(double&nbsp;kP)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#initSendable(edu.wpi.first.util.sendable.SendableBuilder)">initSendable</a></span>&#8203;(edu.wpi.first.util.sendable.SendableBuilder&nbsp;builder)</code></th>
 <td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i14" class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isContinuousInputEnabled()">isContinuousInputEnabled</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Returns true if continuous input is enabled.</div>
+</td>
+</tr>
+<tr id="i15" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#reset()">reset</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Resets the previous error and the integral term.</div>
+</td>
+</tr>
+<tr id="i16" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setD(double)">setD</a></span>&#8203;(double&nbsp;kd)</code></th>
+<td class="colLast">
+<div class="block">Sets the Differential coefficient of the PID controller gain.</div>
+</td>
+</tr>
+<tr id="i17" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setI(double)">setI</a></span>&#8203;(double&nbsp;ki)</code></th>
+<td class="colLast">
+<div class="block">Sets the Integral coefficient of the PID controller gain.</div>
+</td>
+</tr>
+<tr id="i18" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setIntegratorRange(double,double)">setIntegratorRange</a></span>&#8203;(double&nbsp;minimumIntegral,
+                  double&nbsp;maximumIntegral)</code></th>
+<td class="colLast">
+<div class="block">Sets the minimum and maximum values for the integrator.</div>
+</td>
+</tr>
+<tr id="i19" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setP(double)">setP</a></span>&#8203;(double&nbsp;kp)</code></th>
+<td class="colLast">
+<div class="block">Sets the Proportional coefficient of the PID controller gain.</div>
+</td>
+</tr>
+<tr id="i20" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setPID(double,double,double)">setPID</a></span>&#8203;(double&nbsp;kp,
+      double&nbsp;ki,
+      double&nbsp;kd)</code></th>
+<td class="colLast">
+<div class="block">Sets the PID Controller gain parameters.</div>
+</td>
+</tr>
+<tr id="i21" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setSetpoint(double)">setSetpoint</a></span>&#8203;(double&nbsp;setpoint)</code></th>
+<td class="colLast">
+<div class="block">Sets the setpoint for the PIDController.</div>
+</td>
+</tr>
+<tr id="i22" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setTolerance(double)">setTolerance</a></span>&#8203;(double&nbsp;positionTolerance)</code></th>
+<td class="colLast">
+<div class="block">Sets the error which is considered tolerable for use with atSetpoint().</div>
+</td>
+</tr>
+<tr id="i23" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setTolerance(double,double)">setTolerance</a></span>&#8203;(double&nbsp;positionTolerance,
+            double&nbsp;velocityTolerance)</code></th>
+<td class="colLast">
+<div class="block">Sets the error which is considered tolerable for use with atSetpoint().</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -271,29 +387,43 @@ extends <a href="Controller.html" title="class in com.lightningrobotics.common.c
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a id="&lt;init&gt;(double,double,double,double)">
+<a id="&lt;init&gt;(double,double,double)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>PIDFController</h4>
-<pre>public&nbsp;PIDFController&#8203;(double&nbsp;kP,
-                      double&nbsp;kI,
-                      double&nbsp;kD,
-                      double&nbsp;kF)</pre>
+<pre>public&nbsp;PIDFController&#8203;(double&nbsp;kp,
+                      double&nbsp;ki,
+                      double&nbsp;kd)</pre>
+<div class="block">Allocates a PIDController with the given constants for kp, ki, and kd and a default period of
+ 0.02 seconds.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>kp</code> - The proportional coefficient.</dd>
+<dd><code>ki</code> - The integral coefficient.</dd>
+<dd><code>kd</code> - The derivative coefficient.</dd>
+</dl>
 </li>
 </ul>
-<a id="&lt;init&gt;(double,double,double,double,double)">
+<a id="&lt;init&gt;(double,double,double,double)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>PIDFController</h4>
-<pre>public&nbsp;PIDFController&#8203;(double&nbsp;kP,
-                      double&nbsp;kI,
-                      double&nbsp;kD,
-                      double&nbsp;kF,
+<pre>public&nbsp;PIDFController&#8203;(double&nbsp;kp,
+                      double&nbsp;ki,
+                      double&nbsp;kd,
                       double&nbsp;period)</pre>
+<div class="block">Allocates a PIDController with the given constants for kp, ki, and kd.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>kp</code> - The proportional coefficient.</dd>
+<dd><code>ki</code> - The integral coefficient.</dd>
+<dd><code>kd</code> - The derivative coefficient.</dd>
+<dd><code>period</code> - The period between controller updates in seconds. Must be non-zero and positive.</dd>
+</dl>
 </li>
 </ul>
 </li>
@@ -306,17 +436,178 @@ extends <a href="Controller.html" title="class in com.lightningrobotics.common.c
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a id="calculate(double,double)">
+<a id="close()">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>calculate</h4>
-<pre class="methodSignature">public&nbsp;double&nbsp;calculate&#8203;(double&nbsp;measurement,
-                        double&nbsp;setpoint)</pre>
+<h4>close</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;close()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="Controller.html#calculate(double,double)">calculate</a></code>&nbsp;in class&nbsp;<code><a href="Controller.html" title="class in com.lightningrobotics.common.controller">Controller</a></code></dd>
+<dd><code>close</code>&nbsp;in interface&nbsp;<code>java.lang.AutoCloseable</code></dd>
+</dl>
+</li>
+</ul>
+<a id="setPID(double,double,double)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setPID</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;setPID&#8203;(double&nbsp;kp,
+                   double&nbsp;ki,
+                   double&nbsp;kd)</pre>
+<div class="block">Sets the PID Controller gain parameters.
+
+ <p>Set the proportional, integral, and differential coefficients.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>kp</code> - The proportional coefficient.</dd>
+<dd><code>ki</code> - The integral coefficient.</dd>
+<dd><code>kd</code> - The derivative coefficient.</dd>
+</dl>
+</li>
+</ul>
+<a id="setP(double)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setP</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;setP&#8203;(double&nbsp;kp)</pre>
+<div class="block">Sets the Proportional coefficient of the PID controller gain.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>kp</code> - proportional coefficient</dd>
+</dl>
+</li>
+</ul>
+<a id="setI(double)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setI</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;setI&#8203;(double&nbsp;ki)</pre>
+<div class="block">Sets the Integral coefficient of the PID controller gain.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>ki</code> - integral coefficient</dd>
+</dl>
+</li>
+</ul>
+<a id="setD(double)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setD</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;setD&#8203;(double&nbsp;kd)</pre>
+<div class="block">Sets the Differential coefficient of the PID controller gain.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>kd</code> - differential coefficient</dd>
+</dl>
+</li>
+</ul>
+<a id="getP()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getP</h4>
+<pre class="methodSignature">public&nbsp;double&nbsp;getP()</pre>
+<div class="block">Get the Proportional coefficient.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>proportional coefficient</dd>
+</dl>
+</li>
+</ul>
+<a id="getI()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getI</h4>
+<pre class="methodSignature">public&nbsp;double&nbsp;getI()</pre>
+<div class="block">Get the Integral coefficient.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>integral coefficient</dd>
+</dl>
+</li>
+</ul>
+<a id="getD()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getD</h4>
+<pre class="methodSignature">public&nbsp;double&nbsp;getD()</pre>
+<div class="block">Get the Differential coefficient.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>differential coefficient</dd>
+</dl>
+</li>
+</ul>
+<a id="getPeriod()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getPeriod</h4>
+<pre class="methodSignature">public&nbsp;double&nbsp;getPeriod()</pre>
+<div class="block">Returns the period of this controller.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the period of the controller.</dd>
+</dl>
+</li>
+</ul>
+<a id="setSetpoint(double)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setSetpoint</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;setSetpoint&#8203;(double&nbsp;setpoint)</pre>
+<div class="block">Sets the setpoint for the PIDController.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>setpoint</code> - The desired setpoint.</dd>
+</dl>
+</li>
+</ul>
+<a id="getSetpoint()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getSetpoint</h4>
+<pre class="methodSignature">public&nbsp;double&nbsp;getSetpoint()</pre>
+<div class="block">Returns the current setpoint of the PIDController.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The current setpoint.</dd>
+</dl>
+</li>
+</ul>
+<a id="atSetpoint()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>atSetpoint</h4>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;atSetpoint()</pre>
+<div class="block">Returns true if the error is within the tolerance of the setpoint.
+
+ <p>This will return false until at least one input value has been computed.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Whether the error is within the acceptable bounds.</dd>
 </dl>
 </li>
 </ul>
@@ -328,9 +619,149 @@ extends <a href="Controller.html" title="class in com.lightningrobotics.common.c
 <h4>enableContinuousInput</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;enableContinuousInput&#8203;(double&nbsp;minimumInput,
                                   double&nbsp;maximumInput)</pre>
+<div class="block">Enables continuous input.
+
+ <p>Rather then using the max and min input range as constraints, it considers them to be the
+ same point and automatically calculates the shortest route to the setpoint.</div>
 <dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="Controller.html#enableContinuousInput(double,double)">enableContinuousInput</a></code>&nbsp;in class&nbsp;<code><a href="Controller.html" title="class in com.lightningrobotics.common.controller">Controller</a></code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>minimumInput</code> - The minimum value expected from the input.</dd>
+<dd><code>maximumInput</code> - The maximum value expected from the input.</dd>
+</dl>
+</li>
+</ul>
+<a id="disableContinuousInput()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>disableContinuousInput</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;disableContinuousInput()</pre>
+<div class="block">Disables continuous input.</div>
+</li>
+</ul>
+<a id="isContinuousInputEnabled()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isContinuousInputEnabled</h4>
+<pre class="methodSignature">public&nbsp;boolean&nbsp;isContinuousInputEnabled()</pre>
+<div class="block">Returns true if continuous input is enabled.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>True if continuous input is enabled.</dd>
+</dl>
+</li>
+</ul>
+<a id="setIntegratorRange(double,double)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setIntegratorRange</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;setIntegratorRange&#8203;(double&nbsp;minimumIntegral,
+                               double&nbsp;maximumIntegral)</pre>
+<div class="block">Sets the minimum and maximum values for the integrator.
+
+ <p>When the cap is reached, the integrator value is added to the controller output rather than
+ the integrator value times the integral gain.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>minimumIntegral</code> - The minimum value of the integrator.</dd>
+<dd><code>maximumIntegral</code> - The maximum value of the integrator.</dd>
+</dl>
+</li>
+</ul>
+<a id="setTolerance(double)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setTolerance</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;setTolerance&#8203;(double&nbsp;positionTolerance)</pre>
+<div class="block">Sets the error which is considered tolerable for use with atSetpoint().</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>positionTolerance</code> - Position error which is tolerable.</dd>
+</dl>
+</li>
+</ul>
+<a id="setTolerance(double,double)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setTolerance</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;setTolerance&#8203;(double&nbsp;positionTolerance,
+                         double&nbsp;velocityTolerance)</pre>
+<div class="block">Sets the error which is considered tolerable for use with atSetpoint().</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>positionTolerance</code> - Position error which is tolerable.</dd>
+<dd><code>velocityTolerance</code> - Velocity error which is tolerable.</dd>
+</dl>
+</li>
+</ul>
+<a id="getPositionError()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getPositionError</h4>
+<pre class="methodSignature">public&nbsp;double&nbsp;getPositionError()</pre>
+<div class="block">Returns the difference between the setpoint and the measurement.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The error.</dd>
+</dl>
+</li>
+</ul>
+<a id="getVelocityError()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getVelocityError</h4>
+<pre class="methodSignature">public&nbsp;double&nbsp;getVelocityError()</pre>
+<div class="block">Returns the velocity error.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The velocity error.</dd>
+</dl>
+</li>
+</ul>
+<a id="calculate(double,double)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>calculate</h4>
+<pre class="methodSignature">public&nbsp;double&nbsp;calculate&#8203;(double&nbsp;measurement,
+                        double&nbsp;setpoint)</pre>
+<div class="block">Returns the next output of the PID controller.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>measurement</code> - The current measurement of the process variable.</dd>
+<dd><code>setpoint</code> - The new setpoint of the controller.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The next controller output.</dd>
+</dl>
+</li>
+</ul>
+<a id="calculate(double)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>calculate</h4>
+<pre class="methodSignature">public&nbsp;double&nbsp;calculate&#8203;(double&nbsp;measurement)</pre>
+<div class="block">Returns the next output of the PID controller.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>measurement</code> - The current measurement of the process variable.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The next controller output.</dd>
 </dl>
 </li>
 </ul>
@@ -341,78 +772,20 @@ extends <a href="Controller.html" title="class in com.lightningrobotics.common.c
 <li class="blockList">
 <h4>reset</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;reset()</pre>
+<div class="block">Resets the previous error and the integral term.</div>
 </li>
 </ul>
-<a id="getkP()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getkP</h4>
-<pre class="methodSignature">public&nbsp;double&nbsp;getkP()</pre>
-</li>
-</ul>
-<a id="setkP(double)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>setkP</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;setkP&#8203;(double&nbsp;kP)</pre>
-</li>
-</ul>
-<a id="getkI()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getkI</h4>
-<pre class="methodSignature">public&nbsp;double&nbsp;getkI()</pre>
-</li>
-</ul>
-<a id="setkI(double)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>setkI</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;setkI&#8203;(double&nbsp;kI)</pre>
-</li>
-</ul>
-<a id="getkD()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getkD</h4>
-<pre class="methodSignature">public&nbsp;double&nbsp;getkD()</pre>
-</li>
-</ul>
-<a id="setkD(double)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>setkD</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;setkD&#8203;(double&nbsp;kD)</pre>
-</li>
-</ul>
-<a id="getkF()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getkF</h4>
-<pre class="methodSignature">public&nbsp;double&nbsp;getkF()</pre>
-</li>
-</ul>
-<a id="setkF(double)">
+<a id="initSendable(edu.wpi.first.util.sendable.SendableBuilder)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>setkF</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;setkF&#8203;(double&nbsp;kF)</pre>
+<h4>initSendable</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;initSendable&#8203;(edu.wpi.first.util.sendable.SendableBuilder&nbsp;builder)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code>initSendable</code>&nbsp;in interface&nbsp;<code>edu.wpi.first.util.sendable.Sendable</code></dd>
+</dl>
 </li>
 </ul>
 </li>

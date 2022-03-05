@@ -172,6 +172,14 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/subsystem/drivetrain/differential/DifferentialDrivetrain.html#arcadeDrive(double,double)">arcadeDrive(double, double)</a></span> - Method in class com.lightningrobotics.common.subsystem.drivetrain.differential.<a href="com/lightningrobotics/common/subsystem/drivetrain/differential/DifferentialDrivetrain.html" title="class in com.lightningrobotics.common.subsystem.drivetrain.differential">DifferentialDrivetrain</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/DiffDriveController.html#atReference()">atReference()</a></span> - Method in class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/DiffDriveController.html" title="class in com.lightningrobotics.common.controller">DiffDriveController</a></dt>
+<dd>
+<div class="block">Returns true if the pose error is within tolerance of the reference.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/PIDFController.html#atSetpoint()">atSetpoint()</a></span> - Method in class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/PIDFController.html" title="class in com.lightningrobotics.common.controller">PIDFController</a></dt>
+<dd>
+<div class="block">Returns true if the error is within the tolerance of the setpoint.</div>
+</dd>
 <dt><a href="com/lightningrobotics/common/auto/Autonomous.html" title="class in com.lightningrobotics.common.auto"><span class="typeNameLink">Autonomous</span></a> - Class in <a href="com/lightningrobotics/common/auto/package-summary.html">com.lightningrobotics.common.auto</a></dt>
 <dd>
 <div class="block">Autonomous command configuration class.</div>
@@ -203,10 +211,38 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </a>
 <h2 class="title">C</h2>
 <dl>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/FeedForwardController.html#calculate(double)">calculate(double)</a></span> - Method in class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/FeedForwardController.html" title="class in com.lightningrobotics.common.controller">FeedForwardController</a></dt>
+<dd>
+<div class="block">Calculates the feedforward from the gains and velocity setpoint (acceleration
+ is assumed to be
+ zero).</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/PIDFController.html#calculate(double)">calculate(double)</a></span> - Method in class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/PIDFController.html" title="class in com.lightningrobotics.common.controller">PIDFController</a></dt>
+<dd>
+<div class="block">Returns the next output of the PID controller.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/Controller.html#calculate(double,double)">calculate(double, double)</a></span> - Method in class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/Controller.html" title="class in com.lightningrobotics.common.controller">Controller</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/FeedForwardController.html#calculate(double,double)">calculate(double, double)</a></span> - Method in class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/FeedForwardController.html" title="class in com.lightningrobotics.common.controller">FeedForwardController</a></dt>
+<dd>
+<div class="block">Calculates the feedforward from the gains and setpoints.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/PIDFController.html#calculate(double,double)">calculate(double, double)</a></span> - Method in class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/PIDFController.html" title="class in com.lightningrobotics.common.controller">PIDFController</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Returns the next output of the PID controller.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/FeedForwardController.html#calculate(double,double,double)">calculate(double, double, double)</a></span> - Method in class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/FeedForwardController.html" title="class in com.lightningrobotics.common.controller">FeedForwardController</a></dt>
+<dd>
+<div class="block">Calculates the feedforward from the gains and setpoints.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/DiffDriveController.html#calculate(edu.wpi.first.math.geometry.Pose2d,com.lightningrobotics.common.auto.trajectory.TrajectoryState)">calculate(Pose2d, TrajectoryState)</a></span> - Method in class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/DiffDriveController.html" title="class in com.lightningrobotics.common.controller">DiffDriveController</a></dt>
+<dd>
+<div class="block">Returns the next output of the Ramsete controller.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/DiffDriveController.html#calculate(edu.wpi.first.math.geometry.Pose2d,edu.wpi.first.math.geometry.Pose2d,double,double)">calculate(Pose2d, Pose2d, double, double)</a></span> - Method in class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/DiffDriveController.html" title="class in com.lightningrobotics.common.controller">DiffDriveController</a></dt>
+<dd>
+<div class="block">Returns the next output of the Ramsete controller.</div>
+</dd>
 <dt><a href="com/lightningrobotics/common/command/drivetrain/Characterize.html" title="class in com.lightningrobotics.common.command.drivetrain"><span class="typeNameLink">Characterize</span></a> - Class in <a href="com/lightningrobotics/common/command/drivetrain/package-summary.html">com.lightningrobotics.common.command.drivetrain</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/command/drivetrain/Characterize.html#%3Cinit%3E()">Characterize()</a></span> - Constructor for class com.lightningrobotics.common.command.drivetrain.<a href="com/lightningrobotics/common/command/drivetrain/Characterize.html" title="class in com.lightningrobotics.common.command.drivetrain">Characterize</a></dt>
@@ -239,6 +275,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Returns value clamped between low and high boundaries.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/PIDFController.html#close()">close()</a></span> - Method in class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/PIDFController.html" title="class in com.lightningrobotics.common.controller">PIDFController</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/logging/CommandLogger.html#close()">close()</a></span> - Method in class com.lightningrobotics.common.logging.<a href="com/lightningrobotics/common/logging/CommandLogger.html" title="class in com.lightningrobotics.common.logging">CommandLogger</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/logging/LogWriter.html#close()">close()</a></span> - Method in class com.lightningrobotics.common.logging.<a href="com/lightningrobotics/common/logging/LogWriter.html" title="class in com.lightningrobotics.common.logging">LogWriter</a></dt>
@@ -296,6 +334,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dt><a href="com/lightningrobotics/common/util/filter/package-summary.html">com.lightningrobotics.common.util.filter</a> - package com.lightningrobotics.common.util.filter</dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/lightningrobotics/common/util/operator/trigger/package-summary.html">com.lightningrobotics.common.util.operator.trigger</a> - package com.lightningrobotics.common.util.operator.trigger</dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/command/core/TimedCommand.html#command">command</a></span> - Variable in class com.lightningrobotics.common.command.core.<a href="com/lightningrobotics/common/command/core/TimedCommand.html" title="class in com.lightningrobotics.common.command.core">TimedCommand</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/lightningrobotics/common/logging/CommandLogger.html" title="class in com.lightningrobotics.common.logging"><span class="typeNameLink">CommandLogger</span></a> - Class in <a href="com/lightningrobotics/common/logging/package-summary.html">com.lightningrobotics.common.logging</a></dt>
 <dd>&nbsp;</dd>
@@ -389,6 +429,14 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/command/core/StatefulCommand.html#default_action">default_action</a></span> - Variable in class com.lightningrobotics.common.command.core.<a href="com/lightningrobotics/common/command/core/StatefulCommand.html" title="class in com.lightningrobotics.common.command.core">StatefulCommand</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="com/lightningrobotics/common/command/core/DeleteLogCommand.html" title="class in com.lightningrobotics.common.command.core"><span class="typeNameLink">DeleteLogCommand</span></a> - Class in <a href="com/lightningrobotics/common/command/core/package-summary.html">com.lightningrobotics.common.command.core</a></dt>
+<dd>
+<div class="block">Deletes RoboRio log files</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/command/core/DeleteLogCommand.html#%3Cinit%3E(int)">DeleteLogCommand(int)</a></span> - Constructor for class com.lightningrobotics.common.command.core.<a href="com/lightningrobotics/common/command/core/DeleteLogCommand.html" title="class in com.lightningrobotics.common.command.core">DeleteLogCommand</a></dt>
+<dd>
+<div class="block">Commmand that deletes a certain number of log files, starting from the oldest</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/util/LightningMath.html#deltaThetaInDegrees(double,double)">deltaThetaInDegrees(double, double)</a></span> - Static method in class com.lightningrobotics.common.util.<a href="com/lightningrobotics/common/util/LightningMath.html" title="class in com.lightningrobotics.common.util">LightningMath</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/util/LightningMath.html#deltaThetaInRadians(double,double)">deltaThetaInRadians(double, double)</a></span> - Static method in class com.lightningrobotics.common.util.<a href="com/lightningrobotics/common/util/LightningMath.html" title="class in com.lightningrobotics.common.util">LightningMath</a></dt>
@@ -397,9 +445,22 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Determines passing conditions for the SystemTest</div>
 </dd>
+<dt><a href="com/lightningrobotics/common/controller/DiffDriveController.html" title="class in com.lightningrobotics.common.controller"><span class="typeNameLink">DiffDriveController</span></a> - Class in <a href="com/lightningrobotics/common/controller/package-summary.html">com.lightningrobotics.common.controller</a></dt>
+<dd>
+<div class="block">Ramsete is a nonlinear time-varying feedback controller for unicycle models that drives the model
+ to a desired pose along a two-dimensional trajectory.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/DiffDriveController.html#%3Cinit%3E()">DiffDriveController()</a></span> - Constructor for class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/DiffDriveController.html" title="class in com.lightningrobotics.common.controller">DiffDriveController</a></dt>
+<dd>
+<div class="block">Construct a Ramsete unicycle controller.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/DiffDriveController.html#%3Cinit%3E(double,double)">DiffDriveController(double, double)</a></span> - Constructor for class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/DiffDriveController.html" title="class in com.lightningrobotics.common.controller">DiffDriveController</a></dt>
+<dd>
+<div class="block">Construct a Ramsete unicycle controller.</div>
+</dd>
 <dt><a href="com/lightningrobotics/common/subsystem/drivetrain/differential/DifferentialDrivetrain.html" title="class in com.lightningrobotics.common.subsystem.drivetrain.differential"><span class="typeNameLink">DifferentialDrivetrain</span></a> - Class in <a href="com/lightningrobotics/common/subsystem/drivetrain/differential/package-summary.html">com.lightningrobotics.common.subsystem.drivetrain.differential</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/subsystem/drivetrain/differential/DifferentialDrivetrain.html#%3Cinit%3E(com.lightningrobotics.common.subsystem.drivetrain.differential.DifferentialGains,edu.wpi.first.wpilibj.motorcontrol.MotorController%5B%5D,edu.wpi.first.wpilibj.motorcontrol.MotorController%5B%5D)">DifferentialDrivetrain(DifferentialGains, MotorController[], MotorController[])</a></span> - Constructor for class com.lightningrobotics.common.subsystem.drivetrain.differential.<a href="com/lightningrobotics/common/subsystem/drivetrain/differential/DifferentialDrivetrain.html" title="class in com.lightningrobotics.common.subsystem.drivetrain.differential">DifferentialDrivetrain</a></dt>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/subsystem/drivetrain/differential/DifferentialDrivetrain.html#%3Cinit%3E(com.lightningrobotics.common.subsystem.drivetrain.differential.DifferentialGains,edu.wpi.first.wpilibj.motorcontrol.MotorController%5B%5D,edu.wpi.first.wpilibj.motorcontrol.MotorController%5B%5D,com.lightningrobotics.common.subsystem.core.LightningIMU,java.util.function.DoubleSupplier,java.util.function.DoubleSupplier,java.util.function.DoubleSupplier,java.util.function.DoubleSupplier)">DifferentialDrivetrain(DifferentialGains, MotorController[], MotorController[], LightningIMU, DoubleSupplier, DoubleSupplier, DoubleSupplier, DoubleSupplier)</a></span> - Constructor for class com.lightningrobotics.common.subsystem.drivetrain.differential.<a href="com/lightningrobotics/common/subsystem/drivetrain/differential/DifferentialDrivetrain.html" title="class in com.lightningrobotics.common.subsystem.drivetrain.differential">DifferentialDrivetrain</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/lightningrobotics/common/geometry/kinematics/differential/DifferentialDrivetrainState.html" title="class in com.lightningrobotics.common.geometry.kinematics.differential"><span class="typeNameLink">DifferentialDrivetrainState</span></a> - Class in <a href="com/lightningrobotics/common/geometry/kinematics/differential/package-summary.html">com.lightningrobotics.common.geometry.kinematics.differential</a></dt>
 <dd>&nbsp;</dd>
@@ -409,7 +470,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/subsystem/drivetrain/differential/DifferentialGains.html#%3Cinit%3E()">DifferentialGains()</a></span> - Constructor for class com.lightningrobotics.common.subsystem.drivetrain.differential.<a href="com/lightningrobotics/common/subsystem/drivetrain/differential/DifferentialGains.html" title="class in com.lightningrobotics.common.subsystem.drivetrain.differential">DifferentialGains</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/subsystem/drivetrain/differential/DifferentialGains.html#%3Cinit%3E(double,double,double,boolean%5B%5D,boolean%5B%5D)">DifferentialGains(double, double, double, boolean[], boolean[])</a></span> - Constructor for class com.lightningrobotics.common.subsystem.drivetrain.differential.<a href="com/lightningrobotics/common/subsystem/drivetrain/differential/DifferentialGains.html" title="class in com.lightningrobotics.common.subsystem.drivetrain.differential">DifferentialGains</a></dt>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/subsystem/drivetrain/differential/DifferentialGains.html#%3Cinit%3E(double,double,double,boolean%5B%5D,boolean%5B%5D,com.lightningrobotics.common.controller.PIDFController,com.lightningrobotics.common.controller.FeedForwardController)">DifferentialGains(double, double, double, boolean[], boolean[], PIDFController, FeedForwardController)</a></span> - Constructor for class com.lightningrobotics.common.subsystem.drivetrain.differential.<a href="com/lightningrobotics/common/subsystem/drivetrain/differential/DifferentialGains.html" title="class in com.lightningrobotics.common.subsystem.drivetrain.differential">DifferentialGains</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/lightningrobotics/common/geometry/kinematics/differential/DifferentialKinematics.html" title="class in com.lightningrobotics.common.geometry.kinematics.differential"><span class="typeNameLink">DifferentialKinematics</span></a> - Class in <a href="com/lightningrobotics/common/geometry/kinematics/differential/package-summary.html">com.lightningrobotics.common.geometry.kinematics.differential</a></dt>
 <dd>&nbsp;</dd>
@@ -421,6 +482,10 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/command/drivetrain/differential/DifferentialTankDrive.html#%3Cinit%3E(com.lightningrobotics.common.subsystem.drivetrain.differential.DifferentialDrivetrain,java.util.function.DoubleSupplier,java.util.function.DoubleSupplier,com.lightningrobotics.common.util.filter.JoystickFilter)">DifferentialTankDrive(DifferentialDrivetrain, DoubleSupplier, DoubleSupplier, JoystickFilter)</a></span> - Constructor for class com.lightningrobotics.common.command.drivetrain.differential.<a href="com/lightningrobotics/common/command/drivetrain/differential/DifferentialTankDrive.html" title="class in com.lightningrobotics.common.command.drivetrain.differential">DifferentialTankDrive</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/PIDFController.html#disableContinuousInput()">disableContinuousInput()</a></span> - Method in class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/PIDFController.html" title="class in com.lightningrobotics.common.controller">PIDFController</a></dt>
+<dd>
+<div class="block">Disables continuous input.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/LightningRobot.html#disabledInit()">disabledInit()</a></span> - Method in class com.lightningrobotics.common.<a href="com/lightningrobotics/common/LightningRobot.html" title="class in com.lightningrobotics.common">LightningRobot</a></dt>
 <dd>
 <div class="block">The default implementation configures the default commands in the event they have
@@ -452,7 +517,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dd>
 <dt><a href="com/lightningrobotics/common/geometry/kinematics/DrivetrainState.html" title="class in com.lightningrobotics.common.geometry.kinematics"><span class="typeNameLink">DrivetrainState</span></a> - Class in <a href="com/lightningrobotics/common/geometry/kinematics/package-summary.html">com.lightningrobotics.common.geometry.kinematics</a></dt>
 <dd>
-<div class="block">Base class for a drivetrain state, such a collection of 
+<div class="block">Base class for a drivetrain state, such as a collection of 
  <a href="com/lightningrobotics/common/geometry/kinematics/swerve/SwerveModuleState.html" title="class in com.lightningrobotics.common.geometry.kinematics.swerve"><code>Module States</code></a>.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/geometry/kinematics/DrivetrainState.html#%3Cinit%3E()">DrivetrainState()</a></span> - Constructor for class com.lightningrobotics.common.geometry.kinematics.<a href="com/lightningrobotics/common/geometry/kinematics/DrivetrainState.html" title="class in com.lightningrobotics.common.geometry.kinematics">DrivetrainState</a></dt>
@@ -483,12 +548,20 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/Controller.html#enableContinuousInput(double,double)">enableContinuousInput(double, double)</a></span> - Method in class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/Controller.html" title="class in com.lightningrobotics.common.controller">Controller</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/PIDFController.html#enableContinuousInput(double,double)">enableContinuousInput(double, double)</a></span> - Method in class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/PIDFController.html" title="class in com.lightningrobotics.common.controller">PIDFController</a></dt>
+<dd>
+<div class="block">Enables continuous input.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/command/core/DeleteLogCommand.html#end(boolean)">end(boolean)</a></span> - Method in class com.lightningrobotics.common.command.core.<a href="com/lightningrobotics/common/command/core/DeleteLogCommand.html" title="class in com.lightningrobotics.common.command.core">DeleteLogCommand</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/command/core/LogCommand.html#end(boolean)">end(boolean)</a></span> - Method in class com.lightningrobotics.common.command.core.<a href="com/lightningrobotics/common/command/core/LogCommand.html" title="class in com.lightningrobotics.common.command.core">LogCommand</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/command/core/LoggedCommand.html#end(boolean)">end(boolean)</a></span> - Method in class com.lightningrobotics.common.command.core.<a href="com/lightningrobotics/common/command/core/LoggedCommand.html" title="class in com.lightningrobotics.common.command.core">LoggedCommand</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/command/core/TimedCommand.html#end(boolean)">end(boolean)</a></span> - Method in class com.lightningrobotics.common.command.core.<a href="com/lightningrobotics/common/command/core/TimedCommand.html" title="class in com.lightningrobotics.common.command.core">TimedCommand</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/command/drivetrain/differential/DifferentialTankDrive.html#end(boolean)">end(boolean)</a></span> - Method in class com.lightningrobotics.common.command.drivetrain.differential.<a href="com/lightningrobotics/common/command/drivetrain/differential/DifferentialTankDrive.html" title="class in com.lightningrobotics.common.command.drivetrain.differential">DifferentialTankDrive</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/command/drivetrain/differential/FollowTrajectory.html#end(boolean)">end(boolean)</a></span> - Method in class com.lightningrobotics.common.command.drivetrain.differential.<a href="com/lightningrobotics/common/command/drivetrain/differential/FollowTrajectory.html" title="class in com.lightningrobotics.common.command.drivetrain.differential">FollowTrajectory</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/command/drivetrain/swerve/SwerveDriveCommand.html#end(boolean)">end(boolean)</a></span> - Method in class com.lightningrobotics.common.command.drivetrain.swerve.<a href="com/lightningrobotics/common/command/drivetrain/swerve/SwerveDriveCommand.html" title="class in com.lightningrobotics.common.command.drivetrain.swerve">SwerveDriveCommand</a></dt>
 <dd>&nbsp;</dd>
@@ -500,13 +573,19 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/subsystem/core/LightningIMU.IMUFunction.html#exec()">exec()</a></span> - Method in interface com.lightningrobotics.common.subsystem.core.<a href="com/lightningrobotics/common/subsystem/core/LightningIMU.IMUFunction.html" title="interface in com.lightningrobotics.common.subsystem.core">LightningIMU.IMUFunction</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/command/core/DeleteLogCommand.html#execute()">execute()</a></span> - Method in class com.lightningrobotics.common.command.core.<a href="com/lightningrobotics/common/command/core/DeleteLogCommand.html" title="class in com.lightningrobotics.common.command.core">DeleteLogCommand</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/command/core/LogCommand.html#execute()">execute()</a></span> - Method in class com.lightningrobotics.common.command.core.<a href="com/lightningrobotics/common/command/core/LogCommand.html" title="class in com.lightningrobotics.common.command.core">LogCommand</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/command/core/LoggedCommand.html#execute()">execute()</a></span> - Method in class com.lightningrobotics.common.command.core.<a href="com/lightningrobotics/common/command/core/LoggedCommand.html" title="class in com.lightningrobotics.common.command.core">LoggedCommand</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/command/core/StatefulCommand.html#execute()">execute()</a></span> - Method in class com.lightningrobotics.common.command.core.<a href="com/lightningrobotics/common/command/core/StatefulCommand.html" title="class in com.lightningrobotics.common.command.core">StatefulCommand</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/command/core/TimedCommand.html#execute()">execute()</a></span> - Method in class com.lightningrobotics.common.command.core.<a href="com/lightningrobotics/common/command/core/TimedCommand.html" title="class in com.lightningrobotics.common.command.core">TimedCommand</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/command/drivetrain/differential/DifferentialTankDrive.html#execute()">execute()</a></span> - Method in class com.lightningrobotics.common.command.drivetrain.differential.<a href="com/lightningrobotics/common/command/drivetrain/differential/DifferentialTankDrive.html" title="class in com.lightningrobotics.common.command.drivetrain.differential">DifferentialTankDrive</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/command/drivetrain/differential/FollowTrajectory.html#execute()">execute()</a></span> - Method in class com.lightningrobotics.common.command.drivetrain.differential.<a href="com/lightningrobotics/common/command/drivetrain/differential/FollowTrajectory.html" title="class in com.lightningrobotics.common.command.drivetrain.differential">FollowTrajectory</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/command/drivetrain/swerve/SwerveDriveCommand.html#execute()">execute()</a></span> - Method in class com.lightningrobotics.common.command.drivetrain.swerve.<a href="com/lightningrobotics/common/command/drivetrain/swerve/SwerveDriveCommand.html" title="class in com.lightningrobotics.common.command.drivetrain.swerve">SwerveDriveCommand</a></dt>
 <dd>&nbsp;</dd>
@@ -545,6 +624,19 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/fault/FaultMonitor.html#%3Cinit%3E(com.lightningrobotics.common.fault.LightningFaultCodes.Code,java.util.function.BooleanSupplier,java.lang.String,boolean)">FaultMonitor(LightningFaultCodes.Code, BooleanSupplier, String, boolean)</a></span> - Constructor for class com.lightningrobotics.common.fault.<a href="com/lightningrobotics/common/fault/FaultMonitor.html" title="class in com.lightningrobotics.common.fault">FaultMonitor</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="com/lightningrobotics/common/controller/FeedForwardController.html" title="class in com.lightningrobotics.common.controller"><span class="typeNameLink">FeedForwardController</span></a> - Class in <a href="com/lightningrobotics/common/controller/package-summary.html">com.lightningrobotics.common.controller</a></dt>
+<dd>
+<div class="block">A helper class that computes feedforward outputs for a simple
+ permanent-magnet DC motor.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/FeedForwardController.html#%3Cinit%3E(double,double)">FeedForwardController(double, double)</a></span> - Constructor for class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/FeedForwardController.html" title="class in com.lightningrobotics.common.controller">FeedForwardController</a></dt>
+<dd>
+<div class="block">Creates a new SimpleMotorFeedforward with the specified gains.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/FeedForwardController.html#%3Cinit%3E(double,double,double)">FeedForwardController(double, double, double)</a></span> - Constructor for class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/FeedForwardController.html" title="class in com.lightningrobotics.common.controller">FeedForwardController</a></dt>
+<dd>
+<div class="block">Creates a new SimpleMotorFeedforward with the specified gains.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/util/filter/JoystickFilter.html#filter(double)">filter(double)</a></span> - Method in class com.lightningrobotics.common.util.filter.<a href="com/lightningrobotics/common/util/filter/JoystickFilter.html" title="class in com.lightningrobotics.common.util.filter">JoystickFilter</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/util/filter/KalmanFilter.html#filter(double)">filter(double)</a></span> - Method in class com.lightningrobotics.common.util.filter.<a href="com/lightningrobotics/common/util/filter/KalmanFilter.html" title="class in com.lightningrobotics.common.util.filter">KalmanFilter</a></dt>
@@ -559,10 +651,15 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/logging/LogWriter.html#flush()">flush()</a></span> - Method in class com.lightningrobotics.common.logging.<a href="com/lightningrobotics/common/logging/LogWriter.html" title="class in com.lightningrobotics.common.logging">LogWriter</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="com/lightningrobotics/common/command/drivetrain/FollowTrajectory.html" title="class in com.lightningrobotics.common.command.drivetrain"><span class="typeNameLink">FollowTrajectory</span></a> - Class in <a href="com/lightningrobotics/common/command/drivetrain/package-summary.html">com.lightningrobotics.common.command.drivetrain</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/command/drivetrain/FollowTrajectory.html#%3Cinit%3E()">FollowTrajectory()</a></span> - Constructor for class com.lightningrobotics.common.command.drivetrain.<a href="com/lightningrobotics/common/command/drivetrain/FollowTrajectory.html" title="class in com.lightningrobotics.common.command.drivetrain">FollowTrajectory</a></dt>
-<dd>&nbsp;</dd>
+<dt><a href="com/lightningrobotics/common/command/drivetrain/differential/FollowTrajectory.html" title="class in com.lightningrobotics.common.command.drivetrain.differential"><span class="typeNameLink">FollowTrajectory</span></a> - Class in <a href="com/lightningrobotics/common/command/drivetrain/differential/package-summary.html">com.lightningrobotics.common.command.drivetrain.differential</a></dt>
+<dd>
+<div class="block">A command that uses a RAMSETE controller (<a href="com/lightningrobotics/common/controller/DiffDriveController.html" title="class in com.lightningrobotics.common.controller"><code>DiffDriveController</code></a>) to follow a trajectory
+ <a href="com/lightningrobotics/common/auto/trajectory/Trajectory.html" title="class in com.lightningrobotics.common.auto.trajectory"><code>Trajectory</code></a> with a differential drive.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/command/drivetrain/differential/FollowTrajectory.html#%3Cinit%3E(com.lightningrobotics.common.auto.trajectory.Trajectory,java.util.function.Supplier,com.lightningrobotics.common.controller.DiffDriveController,com.lightningrobotics.common.controller.FeedForwardController,com.lightningrobotics.common.geometry.kinematics.differential.DifferentialKinematics,java.util.function.Supplier,com.lightningrobotics.common.controller.PIDFController,com.lightningrobotics.common.controller.PIDFController,java.util.function.BiConsumer,edu.wpi.first.wpilibj2.command.Subsystem...)">FollowTrajectory(Trajectory, Supplier&lt;Pose2d&gt;, DiffDriveController, FeedForwardController, DifferentialKinematics, Supplier&lt;DifferentialDrivetrainState&gt;, PIDFController, PIDFController, BiConsumer&lt;Double, Double&gt;, Subsystem...)</a></span> - Constructor for class com.lightningrobotics.common.command.drivetrain.differential.<a href="com/lightningrobotics/common/command/drivetrain/differential/FollowTrajectory.html" title="class in com.lightningrobotics.common.command.drivetrain.differential">FollowTrajectory</a></dt>
+<dd>
+<div class="block">Constructs a new RamseteCommand that, when executed, will follow the provided trajectory.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/geometry/kinematics/differential/DifferentialKinematics.html#forward(com.lightningrobotics.common.geometry.kinematics.DrivetrainState)">forward(DrivetrainState)</a></span> - Method in class com.lightningrobotics.common.geometry.kinematics.differential.<a href="com/lightningrobotics/common/geometry/kinematics/differential/DifferentialKinematics.html" title="class in com.lightningrobotics.common.geometry.kinematics.differential">DifferentialKinematics</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/geometry/kinematics/LightningKinematics.html#forward(com.lightningrobotics.common.geometry.kinematics.DrivetrainState)">forward(DrivetrainState)</a></span> - Method in interface com.lightningrobotics.common.geometry.kinematics.<a href="com/lightningrobotics/common/geometry/kinematics/LightningKinematics.html" title="interface in com.lightningrobotics.common.geometry.kinematics">LightningKinematics</a></dt>
@@ -598,6 +695,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/util/operator/trigger/EitherButtonTrigger.html#get()">get()</a></span> - Method in class com.lightningrobotics.common.util.operator.trigger.<a href="com/lightningrobotics/common/util/operator/trigger/EitherButtonTrigger.html" title="class in com.lightningrobotics.common.util.operator.trigger">EitherButtonTrigger</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/util/operator/trigger/TwoButtonTrigger.html#get()">get()</a></span> - Method in class com.lightningrobotics.common.util.operator.trigger.<a href="com/lightningrobotics/common/util/operator/trigger/TwoButtonTrigger.html" title="class in com.lightningrobotics.common.util.operator.trigger">TwoButtonTrigger</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/util/InterpolationMap.html#get(double)">get(double)</a></span> - Method in class com.lightningrobotics.common.util.<a href="com/lightningrobotics/common/util/InterpolationMap.html" title="class in com.lightningrobotics.common.util">InterpolationMap</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/logging/DataLoggerOutOfBand.html#getAsDouble()">getAsDouble()</a></span> - Method in class com.lightningrobotics.common.logging.<a href="com/lightningrobotics/common/logging/DataLoggerOutOfBand.html" title="class in com.lightningrobotics.common.logging">DataLoggerOutOfBand</a></dt>
 <dd>&nbsp;</dd>
@@ -638,16 +737,30 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Getter for the configured robot container.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/PIDFController.html#getD()">getD()</a></span> - Method in class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/PIDFController.html" title="class in com.lightningrobotics.common.controller">PIDFController</a></dt>
+<dd>
+<div class="block">Get the Differential coefficient.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/util/filter/JoystickFilter.html#getDeadband()">getDeadband()</a></span> - Method in class com.lightningrobotics.common.util.filter.<a href="com/lightningrobotics/common/util/filter/JoystickFilter.html" title="class in com.lightningrobotics.common.util.filter">JoystickFilter</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/subsystem/drivetrain/swerve/SwerveModule.html#getDriveMotor()">getDriveMotor()</a></span> - Method in class com.lightningrobotics.common.subsystem.drivetrain.swerve.<a href="com/lightningrobotics/common/subsystem/drivetrain/swerve/SwerveModule.html" title="class in com.lightningrobotics.common.subsystem.drivetrain.swerve">SwerveModule</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/subsystem/drivetrain/swerve/SwerveGains.html#getDriveMotorInverts()">getDriveMotorInverts()</a></span> - Method in class com.lightningrobotics.common.subsystem.drivetrain.swerve.<a href="com/lightningrobotics/common/subsystem/drivetrain/swerve/SwerveGains.html" title="class in com.lightningrobotics.common.subsystem.drivetrain.swerve">SwerveGains</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/subsystem/drivetrain/differential/DifferentialDrivetrain.html#getDrivePIDFController()">getDrivePIDFController()</a></span> - Method in class com.lightningrobotics.common.subsystem.drivetrain.differential.<a href="com/lightningrobotics/common/subsystem/drivetrain/differential/DifferentialDrivetrain.html" title="class in com.lightningrobotics.common.subsystem.drivetrain.differential">DifferentialDrivetrain</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/subsystem/drivetrain/differential/DifferentialDrivetrain.html#getDriveState()">getDriveState()</a></span> - Method in class com.lightningrobotics.common.subsystem.drivetrain.differential.<a href="com/lightningrobotics/common/subsystem/drivetrain/differential/DifferentialDrivetrain.html" title="class in com.lightningrobotics.common.subsystem.drivetrain.differential">DifferentialDrivetrain</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/subsystem/drivetrain/LightningDrivetrain.html#getDriveState()">getDriveState()</a></span> - Method in class com.lightningrobotics.common.subsystem.drivetrain.<a href="com/lightningrobotics/common/subsystem/drivetrain/LightningDrivetrain.html" title="class in com.lightningrobotics.common.subsystem.drivetrain">LightningDrivetrain</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/subsystem/drivetrain/swerve/SwerveDrivetrain.html#getDriveState()">getDriveState()</a></span> - Method in class com.lightningrobotics.common.subsystem.drivetrain.swerve.<a href="com/lightningrobotics/common/subsystem/drivetrain/swerve/SwerveDrivetrain.html" title="class in com.lightningrobotics.common.subsystem.drivetrain.swerve">SwerveDrivetrain</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/LightningContainer.html#getDrivetrain()">getDrivetrain()</a></span> - Method in class com.lightningrobotics.common.<a href="com/lightningrobotics/common/LightningContainer.html" title="class in com.lightningrobotics.common">LightningContainer</a></dt>
 <dd>
 <div class="block">The <a href="com/lightningrobotics/common/subsystem/drivetrain/LightningDrivetrain.html" title="class in com.lightningrobotics.common.subsystem.drivetrain"><code>drivetrain</code></a> object of the robot</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/subsystem/drivetrain/differential/DifferentialDrivetrain.html#getDriveTrainState()">getDriveTrainState()</a></span> - Method in class com.lightningrobotics.common.subsystem.drivetrain.differential.<a href="com/lightningrobotics/common/subsystem/drivetrain/differential/DifferentialDrivetrain.html" title="class in com.lightningrobotics.common.subsystem.drivetrain.differential">DifferentialDrivetrain</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/auto/Path.html#getDuration(com.lightningrobotics.common.subsystem.drivetrain.LightningDrivetrain)">getDuration(LightningDrivetrain)</a></span> - Method in class com.lightningrobotics.common.auto.<a href="com/lightningrobotics/common/auto/Path.html" title="class in com.lightningrobotics.common.auto">Path</a></dt>
 <dd>
 <div class="block">The duration of time it will take the robot to complete the path</div>
@@ -660,6 +773,10 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Retrieve a specific fault code</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/subsystem/drivetrain/differential/DifferentialDrivetrain.html#getFeedForwardController()">getFeedForwardController()</a></span> - Method in class com.lightningrobotics.common.subsystem.drivetrain.differential.<a href="com/lightningrobotics/common/subsystem/drivetrain/differential/DifferentialDrivetrain.html" title="class in com.lightningrobotics.common.subsystem.drivetrain.differential">DifferentialDrivetrain</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/subsystem/drivetrain/differential/DifferentialGains.html#getFeedForwardController()">getFeedForwardController()</a></span> - Method in class com.lightningrobotics.common.subsystem.drivetrain.differential.<a href="com/lightningrobotics/common/subsystem/drivetrain/differential/DifferentialGains.html" title="class in com.lightningrobotics.common.subsystem.drivetrain.differential">DifferentialGains</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/subsystem/drivetrain/differential/DifferentialDrivetrain.html#getGains()">getGains()</a></span> - Method in class com.lightningrobotics.common.subsystem.drivetrain.differential.<a href="com/lightningrobotics/common/subsystem/drivetrain/differential/DifferentialDrivetrain.html" title="class in com.lightningrobotics.common.subsystem.drivetrain.differential">DifferentialDrivetrain</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/subsystem/drivetrain/LightningDrivetrain.html#getGains()">getGains()</a></span> - Method in class com.lightningrobotics.common.subsystem.drivetrain.<a href="com/lightningrobotics/common/subsystem/drivetrain/LightningDrivetrain.html" title="class in com.lightningrobotics.common.subsystem.drivetrain">LightningDrivetrain</a></dt>
@@ -672,27 +789,25 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Get the IMU heading as a <code>Rotation2d</code>.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/PIDFController.html#getI()">getI()</a></span> - Method in class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/PIDFController.html" title="class in com.lightningrobotics.common.controller">PIDFController</a></dt>
+<dd>
+<div class="block">Get the Integral coefficient.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/auto/trajectory/Trajectory.html#getInitialPose()">getInitialPose()</a></span> - Method in class com.lightningrobotics.common.auto.trajectory.<a href="com/lightningrobotics/common/auto/trajectory/Trajectory.html" title="class in com.lightningrobotics.common.auto.trajectory">Trajectory</a></dt>
 <dd>
 <div class="block">Returns the initial pose of the trajectory.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/PIDFController.html#getkD()">getkD()</a></span> - Method in class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/PIDFController.html" title="class in com.lightningrobotics.common.controller">PIDFController</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/PIDFController.html#getkF()">getkF()</a></span> - Method in class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/PIDFController.html" title="class in com.lightningrobotics.common.controller">PIDFController</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/PIDFController.html#getkI()">getkI()</a></span> - Method in class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/PIDFController.html" title="class in com.lightningrobotics.common.controller">PIDFController</a></dt>
-<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/subsystem/drivetrain/differential/DifferentialGains.html#getKinematics()">getKinematics()</a></span> - Method in class com.lightningrobotics.common.subsystem.drivetrain.differential.<a href="com/lightningrobotics/common/subsystem/drivetrain/differential/DifferentialGains.html" title="class in com.lightningrobotics.common.subsystem.drivetrain.differential">DifferentialGains</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/subsystem/drivetrain/swerve/SwerveGains.html#getKinematics()">getKinematics()</a></span> - Method in class com.lightningrobotics.common.subsystem.drivetrain.swerve.<a href="com/lightningrobotics/common/subsystem/drivetrain/swerve/SwerveGains.html" title="class in com.lightningrobotics.common.subsystem.drivetrain.swerve">SwerveGains</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/PIDFController.html#getkP()">getkP()</a></span> - Method in class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/PIDFController.html" title="class in com.lightningrobotics.common.controller">PIDFController</a></dt>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/subsystem/drivetrain/LightningGains.html#getKinematics()">getKinematics()</a></span> - Method in class com.lightningrobotics.common.subsystem.drivetrain.<a href="com/lightningrobotics/common/subsystem/drivetrain/LightningGains.html" title="class in com.lightningrobotics.common.subsystem.drivetrain">LightningGains</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/subsystem/drivetrain/differential/DifferentialGains.html#getLeftInverts()">getLeftInverts()</a></span> - Method in class com.lightningrobotics.common.subsystem.drivetrain.differential.<a href="com/lightningrobotics/common/subsystem/drivetrain/differential/DifferentialGains.html" title="class in com.lightningrobotics.common.subsystem.drivetrain.differential">DifferentialGains</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/geometry/kinematics/differential/DifferentialDrivetrainState.html#getLeftSpeed()">getLeftSpeed()</a></span> - Method in class com.lightningrobotics.common.geometry.kinematics.differential.<a href="com/lightningrobotics/common/geometry/kinematics/differential/DifferentialDrivetrainState.html" title="class in com.lightningrobotics.common.geometry.kinematics.differential">DifferentialDrivetrainState</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/subsystem/drivetrain/swerve/SwerveGains.html#getLength()">getLength()</a></span> - Method in class com.lightningrobotics.common.subsystem.drivetrain.swerve.<a href="com/lightningrobotics/common/subsystem/drivetrain/swerve/SwerveGains.html" title="class in com.lightningrobotics.common.subsystem.drivetrain.swerve">SwerveGains</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/command/core/DeleteLogCommand.html#getLogAmount()">getLogAmount()</a></span> - Method in class com.lightningrobotics.common.command.core.<a href="com/lightningrobotics/common/command/core/DeleteLogCommand.html" title="class in com.lightningrobotics.common.command.core">DeleteLogCommand</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/logging/DataLogger.html#getLogger()">getLogger()</a></span> - Static method in class com.lightningrobotics.common.logging.<a href="com/lightningrobotics/common/logging/DataLogger.html" title="class in com.lightningrobotics.common.logging">DataLogger</a></dt>
 <dd>&nbsp;</dd>
@@ -749,8 +864,30 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Name of the fault code</div>
 </dd>
-<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/geometry/LightningOdometer.html#getPose()">getPose()</a></span> - Method in class com.lightningrobotics.common.geometry.<a href="com/lightningrobotics/common/geometry/LightningOdometer.html" title="class in com.lightningrobotics.common.geometry">LightningOdometer</a></dt>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/PIDFController.html#getP()">getP()</a></span> - Method in class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/PIDFController.html" title="class in com.lightningrobotics.common.controller">PIDFController</a></dt>
+<dd>
+<div class="block">Get the Proportional coefficient.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/PIDFController.html#getPeriod()">getPeriod()</a></span> - Method in class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/PIDFController.html" title="class in com.lightningrobotics.common.controller">PIDFController</a></dt>
+<dd>
+<div class="block">Returns the period of this controller.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/subsystem/drivetrain/differential/DifferentialGains.html#getPIDFController()">getPIDFController()</a></span> - Method in class com.lightningrobotics.common.subsystem.drivetrain.differential.<a href="com/lightningrobotics/common/subsystem/drivetrain/differential/DifferentialGains.html" title="class in com.lightningrobotics.common.subsystem.drivetrain.differential">DifferentialGains</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/subsystem/drivetrain/differential/DifferentialDrivetrain.html#getPose()">getPose()</a></span> - Method in class com.lightningrobotics.common.subsystem.drivetrain.differential.<a href="com/lightningrobotics/common/subsystem/drivetrain/differential/DifferentialDrivetrain.html" title="class in com.lightningrobotics.common.subsystem.drivetrain.differential">DifferentialDrivetrain</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/subsystem/drivetrain/LightningDrivetrain.html#getPose()">getPose()</a></span> - Method in class com.lightningrobotics.common.subsystem.drivetrain.<a href="com/lightningrobotics/common/subsystem/drivetrain/LightningDrivetrain.html" title="class in com.lightningrobotics.common.subsystem.drivetrain">LightningDrivetrain</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/subsystem/drivetrain/swerve/SwerveDrivetrain.html#getPose()">getPose()</a></span> - Method in class com.lightningrobotics.common.subsystem.drivetrain.swerve.<a href="com/lightningrobotics/common/subsystem/drivetrain/swerve/SwerveDrivetrain.html" title="class in com.lightningrobotics.common.subsystem.drivetrain.swerve">SwerveDrivetrain</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/geometry/LightningOdometer.html#getPoseMeters()">getPoseMeters()</a></span> - Method in class com.lightningrobotics.common.geometry.<a href="com/lightningrobotics/common/geometry/LightningOdometer.html" title="class in com.lightningrobotics.common.geometry">LightningOdometer</a></dt>
+<dd>
+<div class="block">Returns the position of the robot on the field.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/PIDFController.html#getPositionError()">getPositionError()</a></span> - Method in class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/PIDFController.html" title="class in com.lightningrobotics.common.controller">PIDFController</a></dt>
+<dd>
+<div class="block">Returns the difference between the setpoint and the measurement.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/testing/SystemTest.html#getPriority()">getPriority()</a></span> - Method in class com.lightningrobotics.common.testing.<a href="com/lightningrobotics/common/testing/SystemTest.html" title="class in com.lightningrobotics.common.testing">SystemTest</a></dt>
 <dd>
 <div class="block">The priority of the SystemTest</div>
@@ -763,6 +900,10 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/geometry/kinematics/differential/DifferentialDrivetrainState.html#getRightSpeed()">getRightSpeed()</a></span> - Method in class com.lightningrobotics.common.geometry.kinematics.differential.<a href="com/lightningrobotics/common/geometry/kinematics/differential/DifferentialDrivetrainState.html" title="class in com.lightningrobotics.common.geometry.kinematics.differential">DifferentialDrivetrainState</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/PIDFController.html#getSetpoint()">getSetpoint()</a></span> - Method in class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/PIDFController.html" title="class in com.lightningrobotics.common.controller">PIDFController</a></dt>
+<dd>
+<div class="block">Returns the current setpoint of the PIDController.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/auto/trajectory/TrajectoryConfig.html#getStartVelocity()">getStartVelocity()</a></span> - Method in class com.lightningrobotics.common.auto.trajectory.<a href="com/lightningrobotics/common/auto/trajectory/TrajectoryConfig.html" title="class in com.lightningrobotics.common.auto.trajectory">TrajectoryConfig</a></dt>
 <dd>
 <div class="block">Returns the starting velocity of the trajectory.</div>
@@ -773,6 +914,12 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">The current state of the fault code</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/geometry/kinematics/differential/DifferentialDrivetrainState.html#getState()">getState()</a></span> - Method in class com.lightningrobotics.common.geometry.kinematics.differential.<a href="com/lightningrobotics/common/geometry/kinematics/differential/DifferentialDrivetrainState.html" title="class in com.lightningrobotics.common.geometry.kinematics.differential">DifferentialDrivetrainState</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/geometry/kinematics/DrivetrainState.html#getState()">getState()</a></span> - Method in class com.lightningrobotics.common.geometry.kinematics.<a href="com/lightningrobotics/common/geometry/kinematics/DrivetrainState.html" title="class in com.lightningrobotics.common.geometry.kinematics">DrivetrainState</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/geometry/kinematics/swerve/SwerveDrivetrainState.html#getState()">getState()</a></span> - Method in class com.lightningrobotics.common.geometry.kinematics.swerve.<a href="com/lightningrobotics/common/geometry/kinematics/swerve/SwerveDrivetrainState.html" title="class in com.lightningrobotics.common.geometry.kinematics.swerve">SwerveDrivetrainState</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/subsystem/drivetrain/swerve/SwerveModule.html#getState()">getState()</a></span> - Method in class com.lightningrobotics.common.subsystem.drivetrain.swerve.<a href="com/lightningrobotics/common/subsystem/drivetrain/swerve/SwerveModule.html" title="class in com.lightningrobotics.common.subsystem.drivetrain.swerve">SwerveModule</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/auto/trajectory/Trajectory.html#getStates()">getStates()</a></span> - Method in class com.lightningrobotics.common.auto.trajectory.<a href="com/lightningrobotics/common/auto/trajectory/Trajectory.html" title="class in com.lightningrobotics.common.auto.trajectory">Trajectory</a></dt>
@@ -787,9 +934,12 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/subsystem/drivetrain/differential/DifferentialGains.html#getTrackWidth()">getTrackWidth()</a></span> - Method in class com.lightningrobotics.common.subsystem.drivetrain.differential.<a href="com/lightningrobotics/common/subsystem/drivetrain/differential/DifferentialGains.html" title="class in com.lightningrobotics.common.subsystem.drivetrain.differential">DifferentialGains</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/subsystem/drivetrain/LightningGains.html#getTrackWidth()">getTrackWidth()</a></span> - Method in class com.lightningrobotics.common.subsystem.drivetrain.<a href="com/lightningrobotics/common/subsystem/drivetrain/LightningGains.html" title="class in com.lightningrobotics.common.subsystem.drivetrain">LightningGains</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/auto/Path.html#getTrajectory(com.lightningrobotics.common.subsystem.drivetrain.LightningDrivetrain)">getTrajectory(LightningDrivetrain)</a></span> - Method in class com.lightningrobotics.common.auto.<a href="com/lightningrobotics/common/auto/Path.html" title="class in com.lightningrobotics.common.auto">Path</a></dt>
 <dd>
-<div class="block">Obtains an optimized trajectory the robot should follow so it hits all the waypoints</div>
+<div class="block">Obtains an optimized trajectory the robot should follow so it hits all the
+ waypoints</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/subsystem/drivetrain/swerve/SwerveGains.html#getTurnMotorInverts()">getTurnMotorInverts()</a></span> - Method in class com.lightningrobotics.common.subsystem.drivetrain.swerve.<a href="com/lightningrobotics/common/subsystem/drivetrain/swerve/SwerveGains.html" title="class in com.lightningrobotics.common.subsystem.drivetrain.swerve">SwerveGains</a></dt>
 <dd>&nbsp;</dd>
@@ -797,6 +947,10 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/subsystem/drivetrain/swerve/SwerveModule.html#getVelocity()">getVelocity()</a></span> - Method in class com.lightningrobotics.common.subsystem.drivetrain.swerve.<a href="com/lightningrobotics/common/subsystem/drivetrain/swerve/SwerveModule.html" title="class in com.lightningrobotics.common.subsystem.drivetrain.swerve">SwerveModule</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/PIDFController.html#getVelocityError()">getVelocityError()</a></span> - Method in class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/PIDFController.html" title="class in com.lightningrobotics.common.controller">PIDFController</a></dt>
+<dd>
+<div class="block">Returns the velocity error.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/subsystem/drivetrain/swerve/SwerveGains.html#getWidth()">getWidth()</a></span> - Method in class com.lightningrobotics.common.subsystem.drivetrain.swerve.<a href="com/lightningrobotics/common/subsystem/drivetrain/swerve/SwerveGains.html" title="class in com.lightningrobotics.common.subsystem.drivetrain.swerve">SwerveGains</a></dt>
 <dd>&nbsp;</dd>
 </dl>
@@ -826,6 +980,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Push each fault code to the dashboard</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/command/core/DeleteLogCommand.html#initialize()">initialize()</a></span> - Method in class com.lightningrobotics.common.command.core.<a href="com/lightningrobotics/common/command/core/DeleteLogCommand.html" title="class in com.lightningrobotics.common.command.core">DeleteLogCommand</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/command/core/FaultCommand.html#initialize()">initialize()</a></span> - Method in class com.lightningrobotics.common.command.core.<a href="com/lightningrobotics/common/command/core/FaultCommand.html" title="class in com.lightningrobotics.common.command.core">FaultCommand</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/command/core/LogCommand.html#initialize()">initialize()</a></span> - Method in class com.lightningrobotics.common.command.core.<a href="com/lightningrobotics/common/command/core/LogCommand.html" title="class in com.lightningrobotics.common.command.core">LogCommand</a></dt>
@@ -834,7 +990,11 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/command/core/StatefulCommand.html#initialize()">initialize()</a></span> - Method in class com.lightningrobotics.common.command.core.<a href="com/lightningrobotics/common/command/core/StatefulCommand.html" title="class in com.lightningrobotics.common.command.core">StatefulCommand</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/command/core/TimedCommand.html#initialize()">initialize()</a></span> - Method in class com.lightningrobotics.common.command.core.<a href="com/lightningrobotics/common/command/core/TimedCommand.html" title="class in com.lightningrobotics.common.command.core">TimedCommand</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/command/core/WaitCommand.html#initialize()">initialize()</a></span> - Method in class com.lightningrobotics.common.command.core.<a href="com/lightningrobotics/common/command/core/WaitCommand.html" title="class in com.lightningrobotics.common.command.core">WaitCommand</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/command/drivetrain/differential/FollowTrajectory.html#initialize()">initialize()</a></span> - Method in class com.lightningrobotics.common.command.drivetrain.differential.<a href="com/lightningrobotics/common/command/drivetrain/differential/FollowTrajectory.html" title="class in com.lightningrobotics.common.command.drivetrain.differential">FollowTrajectory</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/testing/AbstractTimedSystemTest.html#initialize()">initialize()</a></span> - Method in class com.lightningrobotics.common.testing.<a href="com/lightningrobotics/common/testing/AbstractTimedSystemTest.html" title="class in com.lightningrobotics.common.testing">AbstractTimedSystemTest</a></dt>
 <dd>&nbsp;</dd>
@@ -844,21 +1004,41 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Puts command buttons on the dashboard</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/PIDFController.html#initSendable(edu.wpi.first.util.sendable.SendableBuilder)">initSendable(SendableBuilder)</a></span> - Method in class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/PIDFController.html" title="class in com.lightningrobotics.common.controller">PIDFController</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/util/LightningMath.html#inputModulus(double,double,double)">inputModulus(double, double, double)</a></span> - Static method in class com.lightningrobotics.common.util.<a href="com/lightningrobotics/common/util/LightningMath.html" title="class in com.lightningrobotics.common.util">LightningMath</a></dt>
 <dd>
 <div class="block">Returns modulus of input.</div>
 </dd>
+<dt><a href="com/lightningrobotics/common/util/InterpolationMap.html" title="class in com.lightningrobotics.common.util"><span class="typeNameLink">InterpolationMap</span></a> - Class in <a href="com/lightningrobotics/common/util/package-summary.html">com.lightningrobotics.common.util</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/util/InterpolationMap.html#%3Cinit%3E()">InterpolationMap()</a></span> - Constructor for class com.lightningrobotics.common.util.<a href="com/lightningrobotics/common/util/InterpolationMap.html" title="class in com.lightningrobotics.common.util">InterpolationMap</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/util/InterpolationMap.html#%3Cinit%3E(double...)">InterpolationMap(double...)</a></span> - Constructor for class com.lightningrobotics.common.util.<a href="com/lightningrobotics/common/util/InterpolationMap.html" title="class in com.lightningrobotics.common.util">InterpolationMap</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/util/InterpolationMap.html#%3Cinit%3E(java.lang.Double%5B%5D)">InterpolationMap(Double[])</a></span> - Constructor for class com.lightningrobotics.common.util.<a href="com/lightningrobotics/common/util/InterpolationMap.html" title="class in com.lightningrobotics.common.util">InterpolationMap</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/geometry/kinematics/differential/DifferentialKinematics.html#inverse(com.lightningrobotics.common.geometry.kinematics.DrivetrainSpeed)">inverse(DrivetrainSpeed)</a></span> - Method in class com.lightningrobotics.common.geometry.kinematics.differential.<a href="com/lightningrobotics/common/geometry/kinematics/differential/DifferentialKinematics.html" title="class in com.lightningrobotics.common.geometry.kinematics.differential">DifferentialKinematics</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/geometry/kinematics/LightningKinematics.html#inverse(com.lightningrobotics.common.geometry.kinematics.DrivetrainSpeed)">inverse(DrivetrainSpeed)</a></span> - Method in interface com.lightningrobotics.common.geometry.kinematics.<a href="com/lightningrobotics/common/geometry/kinematics/LightningKinematics.html" title="interface in com.lightningrobotics.common.geometry.kinematics">LightningKinematics</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/geometry/kinematics/swerve/SwerveKinematics.html#inverse(com.lightningrobotics.common.geometry.kinematics.DrivetrainSpeed)">inverse(DrivetrainSpeed)</a></span> - Method in class com.lightningrobotics.common.geometry.kinematics.swerve.<a href="com/lightningrobotics/common/geometry/kinematics/swerve/SwerveKinematics.html" title="class in com.lightningrobotics.common.geometry.kinematics.swerve">SwerveKinematics</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/PIDFController.html#isContinuousInputEnabled()">isContinuousInputEnabled()</a></span> - Method in class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/PIDFController.html" title="class in com.lightningrobotics.common.controller">PIDFController</a></dt>
+<dd>
+<div class="block">Returns true if continuous input is enabled.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/command/core/DeleteLogCommand.html#isFinished()">isFinished()</a></span> - Method in class com.lightningrobotics.common.command.core.<a href="com/lightningrobotics/common/command/core/DeleteLogCommand.html" title="class in com.lightningrobotics.common.command.core">DeleteLogCommand</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/command/core/LogCommand.html#isFinished()">isFinished()</a></span> - Method in class com.lightningrobotics.common.command.core.<a href="com/lightningrobotics/common/command/core/LogCommand.html" title="class in com.lightningrobotics.common.command.core">LogCommand</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/command/core/StatefulCommand.html#isFinished()">isFinished()</a></span> - Method in class com.lightningrobotics.common.command.core.<a href="com/lightningrobotics/common/command/core/StatefulCommand.html" title="class in com.lightningrobotics.common.command.core">StatefulCommand</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/command/core/TimedCommand.html#isFinished()">isFinished()</a></span> - Method in class com.lightningrobotics.common.command.core.<a href="com/lightningrobotics/common/command/core/TimedCommand.html" title="class in com.lightningrobotics.common.command.core">TimedCommand</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/command/core/WaitCommand.html#isFinished()">isFinished()</a></span> - Method in class com.lightningrobotics.common.command.core.<a href="com/lightningrobotics/common/command/core/WaitCommand.html" title="class in com.lightningrobotics.common.command.core">WaitCommand</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/command/drivetrain/differential/FollowTrajectory.html#isFinished()">isFinished()</a></span> - Method in class com.lightningrobotics.common.command.drivetrain.differential.<a href="com/lightningrobotics/common/command/drivetrain/differential/FollowTrajectory.html" title="class in com.lightningrobotics.common.command.drivetrain.differential">FollowTrajectory</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/testing/AbstractTimedSystemTest.html#isFinished()">isFinished()</a></span> - Method in class com.lightningrobotics.common.testing.<a href="com/lightningrobotics/common/testing/AbstractTimedSystemTest.html" title="class in com.lightningrobotics.common.testing">AbstractTimedSystemTest</a></dt>
 <dd>&nbsp;</dd>
@@ -890,11 +1070,17 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </a>
 <h2 class="title">K</h2>
 <dl>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/FeedForwardController.html#ka">ka</a></span> - Variable in class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/FeedForwardController.html" title="class in com.lightningrobotics.common.controller">FeedForwardController</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="com/lightningrobotics/common/util/filter/KalmanFilter.html" title="class in com.lightningrobotics.common.util.filter"><span class="typeNameLink">KalmanFilter</span></a> - Class in <a href="com/lightningrobotics/common/util/filter/package-summary.html">com.lightningrobotics.common.util.filter</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/util/filter/KalmanFilter.html#%3Cinit%3E()">KalmanFilter()</a></span> - Constructor for class com.lightningrobotics.common.util.filter.<a href="com/lightningrobotics/common/util/filter/KalmanFilter.html" title="class in com.lightningrobotics.common.util.filter">KalmanFilter</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/util/filter/KalmanFilter.html#%3Cinit%3E(double,double)">KalmanFilter(double, double)</a></span> - Constructor for class com.lightningrobotics.common.util.filter.<a href="com/lightningrobotics/common/util/filter/KalmanFilter.html" title="class in com.lightningrobotics.common.util.filter">KalmanFilter</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/FeedForwardController.html#ks">ks</a></span> - Variable in class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/FeedForwardController.html" title="class in com.lightningrobotics.common.controller">FeedForwardController</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/FeedForwardController.html#kv">kv</a></span> - Variable in class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/FeedForwardController.html" title="class in com.lightningrobotics.common.controller">FeedForwardController</a></dt>
 <dd>&nbsp;</dd>
 </dl>
 <a id="I:L">
@@ -959,11 +1145,17 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dt><a href="com/lightningrobotics/common/util/LightningMath.html" title="class in com.lightningrobotics.common.util"><span class="typeNameLink">LightningMath</span></a> - Class in <a href="com/lightningrobotics/common/util/package-summary.html">com.lightningrobotics.common.util</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/lightningrobotics/common/geometry/LightningOdometer.html" title="class in com.lightningrobotics.common.geometry"><span class="typeNameLink">LightningOdometer</span></a> - Class in <a href="com/lightningrobotics/common/geometry/package-summary.html">com.lightningrobotics.common.geometry</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/geometry/LightningOdometer.html#%3Cinit%3E(com.lightningrobotics.common.geometry.kinematics.LightningKinematics,edu.wpi.first.math.geometry.Rotation2d)">LightningOdometer(LightningKinematics, Rotation2d)</a></span> - Constructor for class com.lightningrobotics.common.geometry.<a href="com/lightningrobotics/common/geometry/LightningOdometer.html" title="class in com.lightningrobotics.common.geometry">LightningOdometer</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/geometry/LightningOdometer.html#%3Cinit%3E(com.lightningrobotics.common.geometry.kinematics.LightningKinematics,edu.wpi.first.math.geometry.Rotation2d,edu.wpi.first.math.geometry.Pose2d)">LightningOdometer(LightningKinematics, Rotation2d, Pose2d)</a></span> - Constructor for class com.lightningrobotics.common.geometry.<a href="com/lightningrobotics/common/geometry/LightningOdometer.html" title="class in com.lightningrobotics.common.geometry">LightningOdometer</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Class for differential drive odometry.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/geometry/LightningOdometer.html#%3Cinit%3E(edu.wpi.first.math.geometry.Rotation2d)">LightningOdometer(Rotation2d)</a></span> - Constructor for class com.lightningrobotics.common.geometry.<a href="com/lightningrobotics/common/geometry/LightningOdometer.html" title="class in com.lightningrobotics.common.geometry">LightningOdometer</a></dt>
+<dd>
+<div class="block">Constructs a DifferentialDriveOdometry object with the default pose at the origin.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/geometry/LightningOdometer.html#%3Cinit%3E(edu.wpi.first.math.geometry.Rotation2d,edu.wpi.first.math.geometry.Pose2d)">LightningOdometer(Rotation2d, Pose2d)</a></span> - Constructor for class com.lightningrobotics.common.geometry.<a href="com/lightningrobotics/common/geometry/LightningOdometer.html" title="class in com.lightningrobotics.common.geometry">LightningOdometer</a></dt>
+<dd>
+<div class="block">Constructs a DifferentialDriveOdometry object.</div>
+</dd>
 <dt><a href="com/lightningrobotics/common/LightningRobot.html" title="class in com.lightningrobotics.common"><span class="typeNameLink">LightningRobot</span></a> - Class in <a href="com/lightningrobotics/common/package-summary.html">com.lightningrobotics.common</a></dt>
 <dd>
 <div class="block">Base robot class, provides
@@ -1060,12 +1252,32 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/auto/trajectory/TrajectoryConstraint.AccelerationLimit.html#maxAccelerationMetersPerSecondSq">maxAccelerationMetersPerSecondSq</a></span> - Variable in class com.lightningrobotics.common.auto.trajectory.<a href="com/lightningrobotics/common/auto/trajectory/TrajectoryConstraint.AccelerationLimit.html" title="class in com.lightningrobotics.common.auto.trajectory">TrajectoryConstraint.AccelerationLimit</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/FeedForwardController.html#maxAchievableAcceleration(double,double)">maxAchievableAcceleration(double, double)</a></span> - Method in class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/FeedForwardController.html" title="class in com.lightningrobotics.common.controller">FeedForwardController</a></dt>
+<dd>
+<div class="block">Calculates the maximum achievable acceleration given a maximum voltage supply
+ and a velocity.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/FeedForwardController.html#maxAchievableVelocity(double,double)">maxAchievableVelocity(double, double)</a></span> - Method in class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/FeedForwardController.html" title="class in com.lightningrobotics.common.controller">FeedForwardController</a></dt>
+<dd>
+<div class="block">Calculates the maximum achievable velocity given a maximum voltage supply and
+ an acceleration.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/testing/SystemTest.Priority.html#MED">MED</a></span> - com.lightningrobotics.common.testing.<a href="com/lightningrobotics/common/testing/SystemTest.Priority.html" title="enum in com.lightningrobotics.common.testing">SystemTest.Priority</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/command/core/StatefulCommand.html#methodName(java.lang.Enum)">methodName(Enum&lt;?&gt;)</a></span> - Method in class com.lightningrobotics.common.command.core.<a href="com/lightningrobotics/common/command/core/StatefulCommand.html" title="class in com.lightningrobotics.common.command.core">StatefulCommand</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/auto/trajectory/TrajectoryConstraint.AccelerationLimit.html#minAccelerationMetersPerSecondSq">minAccelerationMetersPerSecondSq</a></span> - Variable in class com.lightningrobotics.common.auto.trajectory.<a href="com/lightningrobotics/common/auto/trajectory/TrajectoryConstraint.AccelerationLimit.html" title="class in com.lightningrobotics.common.auto.trajectory">TrajectoryConstraint.AccelerationLimit</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/FeedForwardController.html#minAchievableAcceleration(double,double)">minAchievableAcceleration(double, double)</a></span> - Method in class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/FeedForwardController.html" title="class in com.lightningrobotics.common.controller">FeedForwardController</a></dt>
+<dd>
+<div class="block">Calculates the minimum achievable acceleration given a maximum voltage supply
+ and a velocity.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/FeedForwardController.html#minAchievableVelocity(double,double)">minAchievableVelocity(double, double)</a></span> - Method in class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/FeedForwardController.html" title="class in com.lightningrobotics.common.controller">FeedForwardController</a></dt>
+<dd>
+<div class="block">Calculates the minimum achievable velocity given a maximum voltage supply and
+ an acceleration.</div>
+</dd>
 <dt><a href="com/lightningrobotics/common/util/filter/MovingAverageFilter.html" title="class in com.lightningrobotics.common.util.filter"><span class="typeNameLink">MovingAverageFilter</span></a> - Class in <a href="com/lightningrobotics/common/util/filter/package-summary.html">com.lightningrobotics.common.util.filter</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/util/filter/MovingAverageFilter.html#%3Cinit%3E(int)">MovingAverageFilter(int)</a></span> - Constructor for class com.lightningrobotics.common.util.filter.<a href="com/lightningrobotics/common/util/filter/MovingAverageFilter.html" title="class in com.lightningrobotics.common.util.filter">MovingAverageFilter</a></dt>
@@ -1128,8 +1340,12 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dl>
 <dt><a href="com/lightningrobotics/common/auto/Path.html" title="class in com.lightningrobotics.common.auto"><span class="typeNameLink">Path</span></a> - Class in <a href="com/lightningrobotics/common/auto/package-summary.html">com.lightningrobotics.common.auto</a></dt>
 <dd>
-<div class="block">Object class representing a path a <a href="com/lightningrobotics/common/subsystem/drivetrain/LightningDrivetrain.html" title="class in com.lightningrobotics.common.subsystem.drivetrain"><code>LightningDrivetrain</code></a> can follow.</div>
+<div class="block">Object class representing a path a
+ <a href="com/lightningrobotics/common/subsystem/drivetrain/LightningDrivetrain.html" title="class in com.lightningrobotics.common.subsystem.drivetrain"><code>LightningDrivetrain</code></a>
+ can follow.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/auto/Path.html#%3Cinit%3E(java.lang.String,boolean)">Path(String, boolean)</a></span> - Constructor for class com.lightningrobotics.common.auto.<a href="com/lightningrobotics/common/auto/Path.html" title="class in com.lightningrobotics.common.auto">Path</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/auto/Path.html#%3Cinit%3E(java.lang.String,java.util.List)">Path(String, List&lt;Pose2d&gt;)</a></span> - Constructor for class com.lightningrobotics.common.auto.<a href="com/lightningrobotics/common/auto/Path.html" title="class in com.lightningrobotics.common.auto">Path</a></dt>
 <dd>
 <div class="block">Constructor creates path object</div>
@@ -1142,15 +1358,32 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Constructor creates path object</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/auto/Path.html#%3Cinit%3E(java.util.List,boolean)">Path(List&lt;Pose2d&gt;, boolean)</a></span> - Constructor for class com.lightningrobotics.common.auto.<a href="com/lightningrobotics/common/auto/Path.html" title="class in com.lightningrobotics.common.auto">Path</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/subsystem/core/LightningIMU.html#periodic()">periodic()</a></span> - Method in class com.lightningrobotics.common.subsystem.core.<a href="com/lightningrobotics/common/subsystem/core/LightningIMU.html" title="class in com.lightningrobotics.common.subsystem.core">LightningIMU</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/subsystem/drivetrain/differential/DifferentialDrivetrain.html#periodic()">periodic()</a></span> - Method in class com.lightningrobotics.common.subsystem.drivetrain.differential.<a href="com/lightningrobotics/common/subsystem/drivetrain/differential/DifferentialDrivetrain.html" title="class in com.lightningrobotics.common.subsystem.drivetrain.differential">DifferentialDrivetrain</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/subsystem/drivetrain/PIDFDashboardTuner.html#periodic()">periodic()</a></span> - Method in class com.lightningrobotics.common.subsystem.drivetrain.<a href="com/lightningrobotics/common/subsystem/drivetrain/PIDFDashboardTuner.html" title="class in com.lightningrobotics.common.subsystem.drivetrain">PIDFDashboardTuner</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/lightningrobotics/common/controller/PIDFController.html" title="class in com.lightningrobotics.common.controller"><span class="typeNameLink">PIDFController</span></a> - Class in <a href="com/lightningrobotics/common/controller/package-summary.html">com.lightningrobotics.common.controller</a></dt>
 <dd>
-<div class="block">Simple PID controller with simple Feedforward coefficient.</div>
+<div class="block">Implements a PID control loop.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/PIDFController.html#%3Cinit%3E(double,double,double)">PIDFController(double, double, double)</a></span> - Constructor for class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/PIDFController.html" title="class in com.lightningrobotics.common.controller">PIDFController</a></dt>
+<dd>
+<div class="block">Allocates a PIDController with the given constants for kp, ki, and kd and a default period of
+ 0.02 seconds.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/PIDFController.html#%3Cinit%3E(double,double,double,double)">PIDFController(double, double, double, double)</a></span> - Constructor for class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/PIDFController.html" title="class in com.lightningrobotics.common.controller">PIDFController</a></dt>
+<dd>
+<div class="block">Allocates a PIDController with the given constants for kp, ki, and kd.</div>
+</dd>
+<dt><a href="com/lightningrobotics/common/subsystem/drivetrain/PIDFDashboardTuner.html" title="class in com.lightningrobotics.common.subsystem.drivetrain"><span class="typeNameLink">PIDFDashboardTuner</span></a> - Class in <a href="com/lightningrobotics/common/subsystem/drivetrain/package-summary.html">com.lightningrobotics.common.subsystem.drivetrain</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/PIDFController.html#%3Cinit%3E(double,double,double,double,double)">PIDFController(double, double, double, double, double)</a></span> - Constructor for class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/PIDFController.html" title="class in com.lightningrobotics.common.controller">PIDFController</a></dt>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/subsystem/drivetrain/PIDFDashboardTuner.html#%3Cinit%3E(java.lang.String,com.lightningrobotics.common.controller.PIDFController)">PIDFDashboardTuner(String, PIDFController)</a></span> - Constructor for class com.lightningrobotics.common.subsystem.drivetrain.<a href="com/lightningrobotics/common/subsystem/drivetrain/PIDFDashboardTuner.html" title="class in com.lightningrobotics.common.subsystem.drivetrain">PIDFDashboardTuner</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/subsystem/drivetrain/PIDFDashboardTuner.html#%3Cinit%3E(java.lang.String,com.lightningrobotics.common.controller.PIDFController,java.lang.String)">PIDFDashboardTuner(String, PIDFController, String)</a></span> - Constructor for class com.lightningrobotics.common.subsystem.drivetrain.<a href="com/lightningrobotics/common/subsystem/drivetrain/PIDFDashboardTuner.html" title="class in com.lightningrobotics.common.subsystem.drivetrain">PIDFDashboardTuner</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/subsystem/core/LightningIMU.html#pigeon(int)">pigeon(int)</a></span> - Static method in class com.lightningrobotics.common.subsystem.core.<a href="com/lightningrobotics/common/subsystem/core/LightningIMU.html" title="class in com.lightningrobotics.common.subsystem.core">LightningIMU</a></dt>
 <dd>
@@ -1199,7 +1432,9 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">Cancles all default commands</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/PIDFController.html#reset()">reset()</a></span> - Method in class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/PIDFController.html" title="class in com.lightningrobotics.common.controller">PIDFController</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Resets the previous error and the integral term.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/logging/CommandLogger.html#reset()">reset()</a></span> - Method in class com.lightningrobotics.common.logging.<a href="com/lightningrobotics/common/logging/CommandLogger.html" title="class in com.lightningrobotics.common.logging">CommandLogger</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/subsystem/core/LightningIMU.html#reset()">reset()</a></span> - Method in class com.lightningrobotics.common.subsystem.core.<a href="com/lightningrobotics/common/subsystem/core/LightningIMU.html" title="class in com.lightningrobotics.common.subsystem.core">LightningIMU</a></dt>
@@ -1216,10 +1451,14 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/util/filter/ValueFilter.html#reset()">reset()</a></span> - Method in interface com.lightningrobotics.common.util.filter.<a href="com/lightningrobotics/common/util/filter/ValueFilter.html" title="interface in com.lightningrobotics.common.util.filter">ValueFilter</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/geometry/LightningOdometer.html#reset(edu.wpi.first.math.geometry.Pose2d,edu.wpi.first.math.geometry.Rotation2d)">reset(Pose2d, Rotation2d)</a></span> - Method in class com.lightningrobotics.common.geometry.<a href="com/lightningrobotics/common/geometry/LightningOdometer.html" title="class in com.lightningrobotics.common.geometry">LightningOdometer</a></dt>
-<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/logging/DataLogger.html#reset_file()">reset_file()</a></span> - Method in class com.lightningrobotics.common.logging.<a href="com/lightningrobotics/common/logging/DataLogger.html" title="class in com.lightningrobotics.common.logging">DataLogger</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/subsystem/drivetrain/differential/DifferentialDrivetrain.html#resetPose()">resetPose()</a></span> - Method in class com.lightningrobotics.common.subsystem.drivetrain.differential.<a href="com/lightningrobotics/common/subsystem/drivetrain/differential/DifferentialDrivetrain.html" title="class in com.lightningrobotics.common.subsystem.drivetrain.differential">DifferentialDrivetrain</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/geometry/LightningOdometer.html#resetPosition(edu.wpi.first.math.geometry.Pose2d,edu.wpi.first.math.geometry.Rotation2d)">resetPosition(Pose2d, Rotation2d)</a></span> - Method in class com.lightningrobotics.common.geometry.<a href="com/lightningrobotics/common/geometry/LightningOdometer.html" title="class in com.lightningrobotics.common.geometry">LightningOdometer</a></dt>
+<dd>
+<div class="block">Resets the robot's position on the field.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/LightningRobot.html#robotBackgroundPeriodic()">robotBackgroundPeriodic()</a></span> - Method in class com.lightningrobotics.common.<a href="com/lightningrobotics/common/LightningRobot.html" title="class in com.lightningrobotics.common">LightningRobot</a></dt>
 <dd>
 <div class="block">A slower loop, running once every 10 seconds
@@ -1253,6 +1492,10 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">This function is called every robot packet, no matter the mode.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/util/LightningMath.html#rpmToMetersPerSecond(double,double,double)">rpmToMetersPerSecond(double, double, double)</a></span> - Static method in class com.lightningrobotics.common.util.<a href="com/lightningrobotics/common/util/LightningMath.html" title="class in com.lightningrobotics.common.util">LightningMath</a></dt>
+<dd>
+<div class="block">Converts motor rotational speed to linear speed</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/logging/CrashTrackingRunnable.html#run()">run()</a></span> - Method in class com.lightningrobotics.common.logging.<a href="com/lightningrobotics/common/logging/CrashTrackingRunnable.html" title="class in com.lightningrobotics.common.logging">CrashTrackingRunnable</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/logging/CrashTrackingRunnable.html#runCrashTracked()">runCrashTracked()</a></span> - Method in class com.lightningrobotics.common.logging.<a href="com/lightningrobotics/common/logging/CrashTrackingRunnable.html" title="class in com.lightningrobotics.common.logging">CrashTrackingRunnable</a></dt>
@@ -1279,6 +1522,10 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/logging/DataLogger.html#setBaseFileName(java.lang.String)">setBaseFileName(String)</a></span> - Static method in class com.lightningrobotics.common.logging.<a href="com/lightningrobotics/common/logging/DataLogger.html" title="class in com.lightningrobotics.common.logging">DataLogger</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/PIDFController.html#setD(double)">setD(double)</a></span> - Method in class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/PIDFController.html" title="class in com.lightningrobotics.common.controller">PIDFController</a></dt>
+<dd>
+<div class="block">Sets the Differential coefficient of the PID controller gain.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/util/filter/JoystickFilter.html#setDeadband(double)">setDeadband(double)</a></span> - Method in class com.lightningrobotics.common.util.filter.<a href="com/lightningrobotics/common/util/filter/JoystickFilter.html" title="class in com.lightningrobotics.common.util.filter">JoystickFilter</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/command/core/StatefulCommand.html#setDefaultAction(java.lang.Runnable)">setDefaultAction(Runnable)</a></span> - Method in class com.lightningrobotics.common.command.core.<a href="com/lightningrobotics/common/command/core/StatefulCommand.html" title="class in com.lightningrobotics.common.command.core">StatefulCommand</a></dt>
@@ -1291,6 +1538,10 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/subsystem/drivetrain/swerve/SwerveDrivetrain.html#setDriveSpeed(com.lightningrobotics.common.geometry.kinematics.DrivetrainSpeed)">setDriveSpeed(DrivetrainSpeed)</a></span> - Method in class com.lightningrobotics.common.subsystem.drivetrain.swerve.<a href="com/lightningrobotics/common/subsystem/drivetrain/swerve/SwerveDrivetrain.html" title="class in com.lightningrobotics.common.subsystem.drivetrain.swerve">SwerveDrivetrain</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/DiffDriveController.html#setEnabled(boolean)">setEnabled(boolean)</a></span> - Method in class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/DiffDriveController.html" title="class in com.lightningrobotics.common.controller">DiffDriveController</a></dt>
+<dd>
+<div class="block">Enables and disables the controller for troubleshooting purposes.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/auto/trajectory/TrajectoryConfig.html#setEndVelocity(double)">setEndVelocity(double)</a></span> - Method in class com.lightningrobotics.common.auto.trajectory.<a href="com/lightningrobotics/common/auto/trajectory/TrajectoryConfig.html" title="class in com.lightningrobotics.common.auto.trajectory">TrajectoryConfig</a></dt>
 <dd>
 <div class="block">Sets the end velocity of the trajectory.</div>
@@ -1301,13 +1552,15 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Configures if <a href="com/lightningrobotics/common/auto/Autonomous.html#register(java.lang.String,edu.wpi.first.wpilibj2.command.Command)"><code>Autonomous.register(String, Command)</code></a> will group command with a <a href="com/lightningrobotics/common/command/core/WaitCommand.html" title="class in com.lightningrobotics.common.command.core"><code>WaitCommand</code></a>.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/PIDFController.html#setkD(double)">setkD(double)</a></span> - Method in class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/PIDFController.html" title="class in com.lightningrobotics.common.controller">PIDFController</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/PIDFController.html#setkF(double)">setkF(double)</a></span> - Method in class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/PIDFController.html" title="class in com.lightningrobotics.common.controller">PIDFController</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/PIDFController.html#setkI(double)">setkI(double)</a></span> - Method in class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/PIDFController.html" title="class in com.lightningrobotics.common.controller">PIDFController</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/PIDFController.html#setkP(double)">setkP(double)</a></span> - Method in class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/PIDFController.html" title="class in com.lightningrobotics.common.controller">PIDFController</a></dt>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/PIDFController.html#setI(double)">setI(double)</a></span> - Method in class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/PIDFController.html" title="class in com.lightningrobotics.common.controller">PIDFController</a></dt>
+<dd>
+<div class="block">Sets the Integral coefficient of the PID controller gain.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/PIDFController.html#setIntegratorRange(double,double)">setIntegratorRange(double, double)</a></span> - Method in class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/PIDFController.html" title="class in com.lightningrobotics.common.controller">PIDFController</a></dt>
+<dd>
+<div class="block">Sets the minimum and maximum values for the integrator.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/subsystem/drivetrain/LightningGains.html#setKinematics(com.lightningrobotics.common.geometry.kinematics.LightningKinematics)">setKinematics(LightningKinematics)</a></span> - Method in class com.lightningrobotics.common.subsystem.drivetrain.<a href="com/lightningrobotics/common/subsystem/drivetrain/LightningGains.html" title="class in com.lightningrobotics.common.subsystem.drivetrain">LightningGains</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/subsystem/drivetrain/differential/DifferentialGains.html#setLeftInverts(boolean%5B%5D)">setLeftInverts(boolean[])</a></span> - Method in class com.lightningrobotics.common.subsystem.drivetrain.differential.<a href="com/lightningrobotics/common/subsystem/drivetrain/differential/DifferentialGains.html" title="class in com.lightningrobotics.common.subsystem.drivetrain.differential">DifferentialGains</a></dt>
 <dd>&nbsp;</dd>
@@ -1337,6 +1590,16 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Links a <a href="com/lightningrobotics/common/fault/LightningFaultCodes.Code.html" title="class in com.lightningrobotics.common.fault"><code>LightningFaultCodes.Code</code></a> with a <code>NetworkTableEntry</code></div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/PIDFController.html#setP(double)">setP(double)</a></span> - Method in class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/PIDFController.html" title="class in com.lightningrobotics.common.controller">PIDFController</a></dt>
+<dd>
+<div class="block">Sets the Proportional coefficient of the PID controller gain.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/PIDFController.html#setPID(double,double,double)">setPID(double, double, double)</a></span> - Method in class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/PIDFController.html" title="class in com.lightningrobotics.common.controller">PIDFController</a></dt>
+<dd>
+<div class="block">Sets the PID Controller gain parameters.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/geometry/LightningOdometer.html#setPose(edu.wpi.first.math.geometry.Pose2d)">setPose(Pose2d)</a></span> - Method in class com.lightningrobotics.common.geometry.<a href="com/lightningrobotics/common/geometry/LightningOdometer.html" title="class in com.lightningrobotics.common.geometry">LightningOdometer</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/util/filter/JoystickFilter.html#setRampDelta(double)">setRampDelta(double)</a></span> - Method in class com.lightningrobotics.common.util.filter.<a href="com/lightningrobotics/common/util/filter/JoystickFilter.html" title="class in com.lightningrobotics.common.util.filter">JoystickFilter</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/subsystem/drivetrain/swerve/SwerveModule.html#setRawAzimuthPower(double)">setRawAzimuthPower(double)</a></span> - Method in class com.lightningrobotics.common.subsystem.drivetrain.swerve.<a href="com/lightningrobotics/common/subsystem/drivetrain/swerve/SwerveModule.html" title="class in com.lightningrobotics.common.subsystem.drivetrain.swerve">SwerveModule</a></dt>
@@ -1351,6 +1614,10 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/subsystem/drivetrain/differential/DifferentialDrivetrain.html#setRightOutput(double)">setRightOutput(double)</a></span> - Method in class com.lightningrobotics.common.subsystem.drivetrain.differential.<a href="com/lightningrobotics/common/subsystem/drivetrain/differential/DifferentialDrivetrain.html" title="class in com.lightningrobotics.common.subsystem.drivetrain.differential">DifferentialDrivetrain</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/PIDFController.html#setSetpoint(double)">setSetpoint(double)</a></span> - Method in class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/PIDFController.html" title="class in com.lightningrobotics.common.controller">PIDFController</a></dt>
+<dd>
+<div class="block">Sets the setpoint for the PIDController.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/auto/trajectory/TrajectoryConfig.html#setStartVelocity(double)">setStartVelocity(double)</a></span> - Method in class com.lightningrobotics.common.auto.trajectory.<a href="com/lightningrobotics/common/auto/trajectory/TrajectoryConfig.html" title="class in com.lightningrobotics.common.auto.trajectory">TrajectoryConfig</a></dt>
 <dd>
 <div class="block">Sets the start velocity of the trajectory.</div>
@@ -1365,9 +1632,23 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/geometry/kinematics/swerve/SwerveDrivetrainState.html#setStates(com.lightningrobotics.common.geometry.kinematics.swerve.SwerveModuleState%5B%5D)">setStates(SwerveModuleState[])</a></span> - Method in class com.lightningrobotics.common.geometry.kinematics.swerve.<a href="com/lightningrobotics/common/geometry/kinematics/swerve/SwerveDrivetrainState.html" title="class in com.lightningrobotics.common.geometry.kinematics.swerve">SwerveDrivetrainState</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/PIDFController.html#setTolerance(double)">setTolerance(double)</a></span> - Method in class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/PIDFController.html" title="class in com.lightningrobotics.common.controller">PIDFController</a></dt>
+<dd>
+<div class="block">Sets the error which is considered tolerable for use with atSetpoint().</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/PIDFController.html#setTolerance(double,double)">setTolerance(double, double)</a></span> - Method in class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/PIDFController.html" title="class in com.lightningrobotics.common.controller">PIDFController</a></dt>
+<dd>
+<div class="block">Sets the error which is considered tolerable for use with atSetpoint().</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/controller/DiffDriveController.html#setTolerance(edu.wpi.first.math.geometry.Pose2d)">setTolerance(Pose2d)</a></span> - Method in class com.lightningrobotics.common.controller.<a href="com/lightningrobotics/common/controller/DiffDriveController.html" title="class in com.lightningrobotics.common.controller">DiffDriveController</a></dt>
+<dd>
+<div class="block">Sets the pose error which is considered tolerable for use with atReference().</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/subsystem/drivetrain/differential/DifferentialGains.html#setTrackWidth(int)">setTrackWidth(int)</a></span> - Method in class com.lightningrobotics.common.subsystem.drivetrain.differential.<a href="com/lightningrobotics/common/subsystem/drivetrain/differential/DifferentialGains.html" title="class in com.lightningrobotics.common.subsystem.drivetrain.differential">DifferentialGains</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/subsystem/drivetrain/swerve/SwerveGains.html#setTurnMotorInverts(boolean%5B%5D)">setTurnMotorInverts(boolean[])</a></span> - Method in class com.lightningrobotics.common.subsystem.drivetrain.swerve.<a href="com/lightningrobotics/common/subsystem/drivetrain/swerve/SwerveGains.html" title="class in com.lightningrobotics.common.subsystem.drivetrain.swerve">SwerveGains</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/subsystem/drivetrain/differential/DifferentialDrivetrain.html#setVoltage(double,double)">setVoltage(double, double)</a></span> - Method in class com.lightningrobotics.common.subsystem.drivetrain.differential.<a href="com/lightningrobotics/common/subsystem/drivetrain/differential/DifferentialDrivetrain.html" title="class in com.lightningrobotics.common.subsystem.drivetrain.differential">DifferentialDrivetrain</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/subsystem/drivetrain/swerve/SwerveGains.html#setWidth(double)">setWidth(double)</a></span> - Method in class com.lightningrobotics.common.subsystem.drivetrain.swerve.<a href="com/lightningrobotics/common/subsystem/drivetrain/swerve/SwerveGains.html" title="class in com.lightningrobotics.common.subsystem.drivetrain.swerve">SwerveGains</a></dt>
 <dd>&nbsp;</dd>
@@ -1467,16 +1748,30 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/LightningRobot.html#testPeriodic()">testPeriodic()</a></span> - Method in class com.lightningrobotics.common.<a href="com/lightningrobotics/common/LightningRobot.html" title="class in com.lightningrobotics.common">LightningRobot</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/util/LightningMath.html#ticksToDistance(double,double,double,double)">ticksToDistance(double, double, double, double)</a></span> - Static method in class com.lightningrobotics.common.util.<a href="com/lightningrobotics/common/util/LightningMath.html" title="class in com.lightningrobotics.common.util">LightningMath</a></dt>
+<dd>
+<div class="block">Converts encoder ticks to a distance (units of input)</div>
+</dd>
+<dt><a href="com/lightningrobotics/common/command/core/TimedCommand.html" title="class in com.lightningrobotics.common.command.core"><span class="typeNameLink">TimedCommand</span></a> - Class in <a href="com/lightningrobotics/common/command/core/package-summary.html">com.lightningrobotics.common.command.core</a></dt>
+<dd>
+<div class="block">Command to run a command for a set time.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/command/core/TimedCommand.html#%3Cinit%3E(edu.wpi.first.wpilibj2.command.Command,double)">TimedCommand(Command, double)</a></span> - Constructor for class com.lightningrobotics.common.command.core.<a href="com/lightningrobotics/common/command/core/TimedCommand.html" title="class in com.lightningrobotics.common.command.core">TimedCommand</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="com/lightningrobotics/common/fault/TimedFaultMonitor.html" title="class in com.lightningrobotics.common.fault"><span class="typeNameLink">TimedFaultMonitor</span></a> - Class in <a href="com/lightningrobotics/common/fault/package-summary.html">com.lightningrobotics.common.fault</a></dt>
 <dd>
 <div class="block">A fault monitor that checks if a condition has existed for a given period of time</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/fault/TimedFaultMonitor.html#%3Cinit%3E(com.lightningrobotics.common.fault.LightningFaultCodes.Code,java.util.function.BooleanSupplier,double,java.lang.String)">TimedFaultMonitor(LightningFaultCodes.Code, BooleanSupplier, double, String)</a></span> - Constructor for class com.lightningrobotics.common.fault.<a href="com/lightningrobotics/common/fault/TimedFaultMonitor.html" title="class in com.lightningrobotics.common.fault">TimedFaultMonitor</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/command/core/TimedCommand.html#timeout">timeout</a></span> - Variable in class com.lightningrobotics.common.command.core.<a href="com/lightningrobotics/common/command/core/TimedCommand.html" title="class in com.lightningrobotics.common.command.core">TimedCommand</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/auto/trajectory/TrajectoryInterpolater.html#timeParameterizeTrajectory(java.util.List,java.util.List,double,double,double,double,boolean)">timeParameterizeTrajectory(List&lt;PoseWithCurvature&gt;, List&lt;TrajectoryConstraint&gt;, double, double, double, double, boolean)</a></span> - Static method in class com.lightningrobotics.common.auto.trajectory.<a href="com/lightningrobotics/common/auto/trajectory/TrajectoryInterpolater.html" title="class in com.lightningrobotics.common.auto.trajectory">TrajectoryInterpolater</a></dt>
 <dd>
 <div class="block">Parameterize the trajectory by time.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/command/core/TimedCommand.html#timer">timer</a></span> - Variable in class com.lightningrobotics.common.command.core.<a href="com/lightningrobotics/common/command/core/TimedCommand.html" title="class in com.lightningrobotics.common.command.core">TimedCommand</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/auto/trajectory/TrajectoryState.html#timeSeconds">timeSeconds</a></span> - Variable in class com.lightningrobotics.common.auto.trajectory.<a href="com/lightningrobotics/common/auto/trajectory/TrajectoryState.html" title="class in com.lightningrobotics.common.auto.trajectory">TrajectoryState</a></dt>
 <dd>
 <div class="block">The time elapsed since the beginning of the trajectory.</div>
@@ -1571,10 +1866,10 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">Updates the <code>NetworkTableEntry</code> for each 
  <a href="com/lightningrobotics/common/fault/LightningFaultCodes.Code.html" title="class in com.lightningrobotics.common.fault"><code>LightningFaultCodes.Code</code></a>.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/geometry/LightningOdometer.html#update(edu.wpi.first.math.geometry.Rotation2d,com.lightningrobotics.common.geometry.kinematics.DrivetrainState)">update(Rotation2d, DrivetrainState)</a></span> - Method in class com.lightningrobotics.common.geometry.<a href="com/lightningrobotics/common/geometry/LightningOdometer.html" title="class in com.lightningrobotics.common.geometry">LightningOdometer</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/geometry/LightningOdometer.html#updateTime(double,edu.wpi.first.math.geometry.Rotation2d,com.lightningrobotics.common.geometry.kinematics.DrivetrainState)">updateTime(double, Rotation2d, DrivetrainState)</a></span> - Method in class com.lightningrobotics.common.geometry.<a href="com/lightningrobotics/common/geometry/LightningOdometer.html" title="class in com.lightningrobotics.common.geometry">LightningOdometer</a></dt>
-<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/geometry/LightningOdometer.html#update(edu.wpi.first.math.geometry.Rotation2d,double,double)">update(Rotation2d, double, double)</a></span> - Method in class com.lightningrobotics.common.geometry.<a href="com/lightningrobotics/common/geometry/LightningOdometer.html" title="class in com.lightningrobotics.common.geometry">LightningOdometer</a></dt>
+<dd>
+<div class="block">Updates the robot position on the field using distance measurements from encoders.</div>
+</dd>
 </dl>
 <a id="I:V">
 <!--   -->

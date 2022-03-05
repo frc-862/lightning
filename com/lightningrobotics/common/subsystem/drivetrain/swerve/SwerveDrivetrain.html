@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -217,31 +217,41 @@ extends <a href="../LightningDrivetrain.html" title="class in com.lightningrobot
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i1" class="rowColor">
+<td class="colFirst"><code><a href="../../../geometry/kinematics/DrivetrainState.html" title="class in com.lightningrobotics.common.geometry.kinematics">DrivetrainState</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getDriveState()">getDriveState</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="../LightningGains.html" title="class in com.lightningrobotics.common.subsystem.drivetrain">LightningGains</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getGains()">getGains</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code>edu.wpi.first.math.geometry.Pose2d</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getPose()">getPose</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setDriveSpeed(com.lightningrobotics.common.geometry.kinematics.DrivetrainSpeed)">setDriveSpeed</a></span>&#8203;(<a href="../../../geometry/kinematics/DrivetrainSpeed.html" title="class in com.lightningrobotics.common.geometry.kinematics">DrivetrainSpeed</a>&nbsp;speed)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#stop()">stop</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#withEachAzimuthMotor(java.util.function.Consumer)">withEachAzimuthMotor</a></span>&#8203;(java.util.function.Consumer&lt;edu.wpi.first.wpilibj.motorcontrol.MotorController&gt;&nbsp;op)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#withEachDriveMotor(java.util.function.Consumer)">withEachDriveMotor</a></span>&#8203;(java.util.function.Consumer&lt;edu.wpi.first.wpilibj.motorcontrol.MotorController&gt;&nbsp;op)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#withEachModule(java.util.function.Consumer)">withEachModule</a></span>&#8203;(java.util.function.Consumer&lt;<a href="SwerveModule.html" title="class in com.lightningrobotics.common.subsystem.drivetrain.swerve">SwerveModule</a>&gt;&nbsp;op)</code></th>
 <td class="colLast">&nbsp;</td>
@@ -327,6 +337,32 @@ extends <a href="../LightningDrivetrain.html" title="class in com.lightningrobot
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../LightningDrivetrain.html#setDriveSpeed(com.lightningrobotics.common.geometry.kinematics.DrivetrainSpeed)">setDriveSpeed</a></code>&nbsp;in class&nbsp;<code><a href="../LightningDrivetrain.html" title="class in com.lightningrobotics.common.subsystem.drivetrain">LightningDrivetrain</a></code></dd>
+</dl>
+</li>
+</ul>
+<a id="getPose()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getPose</h4>
+<pre class="methodSignature">public&nbsp;edu.wpi.first.math.geometry.Pose2d&nbsp;getPose()</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../LightningDrivetrain.html#getPose()">getPose</a></code>&nbsp;in class&nbsp;<code><a href="../LightningDrivetrain.html" title="class in com.lightningrobotics.common.subsystem.drivetrain">LightningDrivetrain</a></code></dd>
+</dl>
+</li>
+</ul>
+<a id="getDriveState()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getDriveState</h4>
+<pre class="methodSignature">public&nbsp;<a href="../../../geometry/kinematics/DrivetrainState.html" title="class in com.lightningrobotics.common.geometry.kinematics">DrivetrainState</a>&nbsp;getDriveState()</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../LightningDrivetrain.html#getDriveState()">getDriveState</a></code>&nbsp;in class&nbsp;<code><a href="../LightningDrivetrain.html" title="class in com.lightningrobotics.common.subsystem.drivetrain">LightningDrivetrain</a></code></dd>
 </dl>
 </li>
 </ul>

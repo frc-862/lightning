@@ -132,6 +132,14 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <hr>
 <pre>public class <span class="typeNameLabel">LightningOdometer</span>
 extends java.lang.Object</pre>
+<div class="block">Class for differential drive odometry. Odometry allows you to track the robot's position on the
+ field over the course of a match using readings from 2 encoders and a gyroscope.
+
+ <p>Teams can use odometry during the autonomous period for complex tasks like path following.
+ Furthermore, odometry can be used for latency compensation when using computer-vision systems.
+
+ <p>It is important that you reset your encoders to zero before using this class. Any subsequent
+ pose resets also require the encoders to be reset to zero.</div>
 </li>
 </ul>
 </div>
@@ -152,15 +160,17 @@ extends java.lang.Object</pre>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr class="altColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(com.lightningrobotics.common.geometry.kinematics.LightningKinematics,edu.wpi.first.math.geometry.Rotation2d)">LightningOdometer</a></span>&#8203;(<a href="kinematics/LightningKinematics.html" title="interface in com.lightningrobotics.common.geometry.kinematics">LightningKinematics</a>&nbsp;kinematics,
-                 edu.wpi.first.math.geometry.Rotation2d&nbsp;heading)</code></th>
-<td class="colLast">&nbsp;</td>
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(edu.wpi.first.math.geometry.Rotation2d)">LightningOdometer</a></span>&#8203;(edu.wpi.first.math.geometry.Rotation2d&nbsp;gyroAngle)</code></th>
+<td class="colLast">
+<div class="block">Constructs a DifferentialDriveOdometry object with the default pose at the origin.</div>
+</td>
 </tr>
 <tr class="rowColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(com.lightningrobotics.common.geometry.kinematics.LightningKinematics,edu.wpi.first.math.geometry.Rotation2d,edu.wpi.first.math.geometry.Pose2d)">LightningOdometer</a></span>&#8203;(<a href="kinematics/LightningKinematics.html" title="interface in com.lightningrobotics.common.geometry.kinematics">LightningKinematics</a>&nbsp;kinematics,
-                 edu.wpi.first.math.geometry.Rotation2d&nbsp;heading,
-                 edu.wpi.first.math.geometry.Pose2d&nbsp;initialPose)</code></th>
-<td class="colLast">&nbsp;</td>
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(edu.wpi.first.math.geometry.Rotation2d,edu.wpi.first.math.geometry.Pose2d)">LightningOdometer</a></span>&#8203;(edu.wpi.first.math.geometry.Rotation2d&nbsp;gyroAngle,
+                 edu.wpi.first.math.geometry.Pose2d&nbsp;initialPoseMeters)</code></th>
+<td class="colLast">
+<div class="block">Constructs a DifferentialDriveOdometry object.</div>
+</td>
 </tr>
 </table>
 </li>
@@ -182,27 +192,32 @@ extends java.lang.Object</pre>
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>edu.wpi.first.math.geometry.Pose2d</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getPose()">getPose</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getPoseMeters()">getPoseMeters</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Returns the position of the robot on the field.</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#reset(edu.wpi.first.math.geometry.Pose2d,edu.wpi.first.math.geometry.Rotation2d)">reset</a></span>&#8203;(edu.wpi.first.math.geometry.Pose2d&nbsp;pose,
-     edu.wpi.first.math.geometry.Rotation2d&nbsp;heading)</code></th>
-<td class="colLast">&nbsp;</td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#resetPosition(edu.wpi.first.math.geometry.Pose2d,edu.wpi.first.math.geometry.Rotation2d)">resetPosition</a></span>&#8203;(edu.wpi.first.math.geometry.Pose2d&nbsp;poseMeters,
+             edu.wpi.first.math.geometry.Rotation2d&nbsp;gyroAngle)</code></th>
+<td class="colLast">
+<div class="block">Resets the robot's position on the field.</div>
+</td>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><code>edu.wpi.first.math.geometry.Pose2d</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#update(edu.wpi.first.math.geometry.Rotation2d,com.lightningrobotics.common.geometry.kinematics.DrivetrainState)">update</a></span>&#8203;(edu.wpi.first.math.geometry.Rotation2d&nbsp;heading,
-      <a href="kinematics/DrivetrainState.html" title="class in com.lightningrobotics.common.geometry.kinematics">DrivetrainState</a>&nbsp;state)</code></th>
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setPose(edu.wpi.first.math.geometry.Pose2d)">setPose</a></span>&#8203;(edu.wpi.first.math.geometry.Pose2d&nbsp;pose)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>edu.wpi.first.math.geometry.Pose2d</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#updateTime(double,edu.wpi.first.math.geometry.Rotation2d,com.lightningrobotics.common.geometry.kinematics.DrivetrainState)">updateTime</a></span>&#8203;(double&nbsp;currentTime,
-          edu.wpi.first.math.geometry.Rotation2d&nbsp;heading,
-          <a href="kinematics/DrivetrainState.html" title="class in com.lightningrobotics.common.geometry.kinematics">DrivetrainState</a>&nbsp;state)</code></th>
-<td class="colLast">&nbsp;</td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#update(edu.wpi.first.math.geometry.Rotation2d,double,double)">update</a></span>&#8203;(edu.wpi.first.math.geometry.Rotation2d&nbsp;gyroAngle,
+      double&nbsp;leftDistanceMeters,
+      double&nbsp;rightDistanceMeters)</code></th>
+<td class="colLast">
+<div class="block">Updates the robot position on the field using distance measurements from encoders.</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -228,25 +243,34 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a id="&lt;init&gt;(com.lightningrobotics.common.geometry.kinematics.LightningKinematics,edu.wpi.first.math.geometry.Rotation2d,edu.wpi.first.math.geometry.Pose2d)">
+<a id="&lt;init&gt;(edu.wpi.first.math.geometry.Rotation2d,edu.wpi.first.math.geometry.Pose2d)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>LightningOdometer</h4>
-<pre>public&nbsp;LightningOdometer&#8203;(<a href="kinematics/LightningKinematics.html" title="interface in com.lightningrobotics.common.geometry.kinematics">LightningKinematics</a>&nbsp;kinematics,
-                         edu.wpi.first.math.geometry.Rotation2d&nbsp;heading,
-                         edu.wpi.first.math.geometry.Pose2d&nbsp;initialPose)</pre>
+<pre>public&nbsp;LightningOdometer&#8203;(edu.wpi.first.math.geometry.Rotation2d&nbsp;gyroAngle,
+                         edu.wpi.first.math.geometry.Pose2d&nbsp;initialPoseMeters)</pre>
+<div class="block">Constructs a DifferentialDriveOdometry object.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>gyroAngle</code> - The angle reported by the gyroscope.</dd>
+<dd><code>initialPoseMeters</code> - The starting position of the robot on the field.</dd>
+</dl>
 </li>
 </ul>
-<a id="&lt;init&gt;(com.lightningrobotics.common.geometry.kinematics.LightningKinematics,edu.wpi.first.math.geometry.Rotation2d)">
+<a id="&lt;init&gt;(edu.wpi.first.math.geometry.Rotation2d)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>LightningOdometer</h4>
-<pre>public&nbsp;LightningOdometer&#8203;(<a href="kinematics/LightningKinematics.html" title="interface in com.lightningrobotics.common.geometry.kinematics">LightningKinematics</a>&nbsp;kinematics,
-                         edu.wpi.first.math.geometry.Rotation2d&nbsp;heading)</pre>
+<pre>public&nbsp;LightningOdometer&#8203;(edu.wpi.first.math.geometry.Rotation2d&nbsp;gyroAngle)</pre>
+<div class="block">Constructs a DifferentialDriveOdometry object with the default pose at the origin.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>gyroAngle</code> - The angle reported by the gyroscope.</dd>
+</dl>
 </li>
 </ul>
 </li>
@@ -259,44 +283,70 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a id="reset(edu.wpi.first.math.geometry.Pose2d,edu.wpi.first.math.geometry.Rotation2d)">
+<a id="resetPosition(edu.wpi.first.math.geometry.Pose2d,edu.wpi.first.math.geometry.Rotation2d)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>reset</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;reset&#8203;(edu.wpi.first.math.geometry.Pose2d&nbsp;pose,
-                  edu.wpi.first.math.geometry.Rotation2d&nbsp;heading)</pre>
+<h4>resetPosition</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;resetPosition&#8203;(edu.wpi.first.math.geometry.Pose2d&nbsp;poseMeters,
+                          edu.wpi.first.math.geometry.Rotation2d&nbsp;gyroAngle)</pre>
+<div class="block">Resets the robot's position on the field.
+
+ <p>You NEED to reset your encoders (to zero) when calling this method.
+
+ <p>The gyroscope angle does not need to be reset here on the user's robot code. The library
+ automatically takes care of offsetting the gyro angle.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>poseMeters</code> - The position on the field that your robot is at.</dd>
+<dd><code>gyroAngle</code> - The angle reported by the gyroscope.</dd>
+</dl>
 </li>
 </ul>
-<a id="getPose()">
+<a id="setPose(edu.wpi.first.math.geometry.Pose2d)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getPose</h4>
-<pre class="methodSignature">public&nbsp;edu.wpi.first.math.geometry.Pose2d&nbsp;getPose()</pre>
+<h4>setPose</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;setPose&#8203;(edu.wpi.first.math.geometry.Pose2d&nbsp;pose)</pre>
 </li>
 </ul>
-<a id="update(edu.wpi.first.math.geometry.Rotation2d,com.lightningrobotics.common.geometry.kinematics.DrivetrainState)">
+<a id="getPoseMeters()">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>update</h4>
-<pre class="methodSignature">public&nbsp;edu.wpi.first.math.geometry.Pose2d&nbsp;update&#8203;(edu.wpi.first.math.geometry.Rotation2d&nbsp;heading,
-                                                 <a href="kinematics/DrivetrainState.html" title="class in com.lightningrobotics.common.geometry.kinematics">DrivetrainState</a>&nbsp;state)</pre>
+<h4>getPoseMeters</h4>
+<pre class="methodSignature">public&nbsp;edu.wpi.first.math.geometry.Pose2d&nbsp;getPoseMeters()</pre>
+<div class="block">Returns the position of the robot on the field.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The pose of the robot (x and y are in meters).</dd>
+</dl>
 </li>
 </ul>
-<a id="updateTime(double,edu.wpi.first.math.geometry.Rotation2d,com.lightningrobotics.common.geometry.kinematics.DrivetrainState)">
+<a id="update(edu.wpi.first.math.geometry.Rotation2d,double,double)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>updateTime</h4>
-<pre class="methodSignature">public&nbsp;edu.wpi.first.math.geometry.Pose2d&nbsp;updateTime&#8203;(double&nbsp;currentTime,
-                                                     edu.wpi.first.math.geometry.Rotation2d&nbsp;heading,
-                                                     <a href="kinematics/DrivetrainState.html" title="class in com.lightningrobotics.common.geometry.kinematics">DrivetrainState</a>&nbsp;state)</pre>
+<h4>update</h4>
+<pre class="methodSignature">public&nbsp;edu.wpi.first.math.geometry.Pose2d&nbsp;update&#8203;(edu.wpi.first.math.geometry.Rotation2d&nbsp;gyroAngle,
+                                                 double&nbsp;leftDistanceMeters,
+                                                 double&nbsp;rightDistanceMeters)</pre>
+<div class="block">Updates the robot position on the field using distance measurements from encoders. This method
+ is more numerically accurate than using velocities to integrate the pose and is also
+ advantageous for teams that are using lower CPR encoders.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>gyroAngle</code> - The angle reported by the gyroscope.</dd>
+<dd><code>leftDistanceMeters</code> - The distance traveled by the left encoder.</dd>
+<dd><code>rightDistanceMeters</code> - The distance traveled by the right encoder.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The new pose of the robot.</dd>
+</dl>
 </li>
 </ul>
 </li>
