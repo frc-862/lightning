@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.function.DoubleSupplier;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import edu.wpi.first.wpilibj.DriverStation;
@@ -17,7 +18,7 @@ public class DataLogger implements Loop {
 
     private LogWriter writer;
     private ArrayList<String> fieldNames = new ArrayList<>();
-    private ArrayList<DoubleSupplier> fieldValues = new ArrayList<>();
+    private ArrayList<Supplier<String>> fieldValues = new ArrayList<>();
     private boolean first_time = true;
     private boolean preventNewElements = false;
 
@@ -39,17 +40,25 @@ public class DataLogger implements Loop {
         DataLogger.getLogger().addElement(name, val);
     }
 
+    public static void addDataElement(String name, Supplier<String> val) {
+        DataLogger.getLogger().addElement(name, val);
+    }
+
     public static void addDelayedDataElement(String name, DoubleSupplier val) {
         DataLogger.getLogger().addElement(name, new DataLoggerOutOfBand(val));
     }
 
-    public void addElement(String name, DoubleSupplier val) {
+    public void addElement(String name, Supplier<String> val) {
         if (preventNewElements) {
             System.err.println("Unexpected call to addDataElement: " + name);
         } else {
             fieldNames.add(name);
             fieldValues.add(val);
         }
+    }
+
+    public void addElement(String name, DoubleSupplier val) {
+        addElement(name, () -> Double.toString(val.getAsDouble()));
     }
 
     public void onStart() {
@@ -79,8 +88,7 @@ public class DataLogger implements Loop {
         }
 
         String valueList = fieldValues.parallelStream()
-                           .map(fn -> Double.toString(fn.getAsDouble()))
-//        .map(fn -> "0.0")
+                           .map(fn -> fn.get())
                            .collect(Collectors.joining(","));
 
         // System.out.println(valueList);
