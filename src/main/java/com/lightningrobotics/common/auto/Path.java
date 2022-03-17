@@ -5,8 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.BiConsumer;
 
-import com.lightningrobotics.common.auto.trajectory.Trajectory;
-import com.lightningrobotics.common.auto.trajectory.TrajectoryConfig;
+import com.lightningrobotics.common.auto.trajectory.*;
 import com.lightningrobotics.common.command.drivetrain.differential.FollowTrajectory;
 import com.lightningrobotics.common.controller.DiffDriveController;
 import com.lightningrobotics.common.geometry.kinematics.differential.DifferentialDrivetrainState;
@@ -15,8 +14,10 @@ import com.lightningrobotics.common.subsystem.drivetrain.LightningDrivetrain;
 import com.lightningrobotics.common.subsystem.drivetrain.differential.DifferentialDrivetrain;
 import com.lightningrobotics.common.subsystem.drivetrain.swerve.SwerveDrivetrain;
 
+import edu.wpi.first.math.WPIMathJNI;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.trajectory.TrajectoryUtil;
 import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj2.command.Command;
 
@@ -92,67 +93,100 @@ public class Path {
 
         List<Pose2d> waypoints = new ArrayList<Pose2d>();
 
-        File file = Paths.get(Filesystem.getDeployDirectory().getAbsolutePath(), "paths", fname).toFile();
+        if(fname.contains(".path")) {
+            File file = Paths.get(Filesystem.getDeployDirectory().getAbsolutePath(), "paths", fname).toFile();
 
-        try {
-            double x_prime;
-            double y_prime;
+            try {
+                double x_prime;
+                double y_prime;
 
-            double max_y = 8.229;
+                double max_y = 8.229;
 
-            Scanner in = new Scanner(file);
-            in.useDelimiter(",");
-            in.nextLine(); // Skip first line with "X Y Theta"
+                Scanner in = new Scanner(file);
+                in.useDelimiter(",");
+                in.nextLine(); // Skip first line with "X Y Theta"
 
-            double start_x = in.nextDouble();
-            double start_y = max_y + in.nextDouble();
-            double start_theta_x = in.nextDouble();
-            double start_theta_y = in.nextDouble();
-            double start_theta = Math.toDegrees(Math.atan2(start_theta_y, start_theta_x));
+                double start_x = in.nextDouble();
+                double start_y = max_y + in.nextDouble();
+                double start_theta_x = in.nextDouble();
+                double start_theta_y = in.nextDouble();
+                double start_theta = Math.toDegrees(Math.atan2(start_theta_y, start_theta_x));
 
-            double rotaional_theta = start_theta;
-
-            in.nextLine();
-            waypoints.add(new Pose2d((start_x - start_x), (start_y - start_y),
-                    Rotation2d.fromDegrees((start_theta - start_theta))));
-
-            while (in.hasNextDouble()) {
-                double x = in.nextDouble() - start_x;
-                double y = (max_y + in.nextDouble()) - start_y;
-
-                x_prime = (x * Math.cos(Math.toRadians(rotaional_theta)))
-                        + (y * Math.sin(Math.toRadians(rotaional_theta)));
-                y_prime = -(x * Math.sin(Math.toRadians(rotaional_theta)))
-                        + (y * Math.cos(Math.toRadians(rotaional_theta)));
-
-                if (reversed == true) { // TODO: check if these really need to be sign filpped
-                    y = -y;
-                    x = -x;
-                }
-
-                double theta_x = in.nextDouble();
-                double theta_y = in.nextDouble();
-                double theta = Math.toDegrees(Math.atan2(theta_y, theta_x)) - start_theta;
-
-                if (theta < -180) {
-                    theta = theta + 360;
-                } else if (theta > 180) {
-                    theta = theta - 360;
-                }
-
-                waypoints.add(new Pose2d(x_prime, y_prime, Rotation2d.fromDegrees(theta)));
+                double rotaional_theta = start_theta;
 
                 in.nextLine();
+                waypoints.add(new Pose2d((start_x - start_x), (start_y - start_y),
+                        Rotation2d.fromDegrees((start_theta - start_theta))));
+
+                while (in.hasNextDouble()) {
+                    double x = in.nextDouble() - start_x;
+                    double y = (max_y + in.nextDouble()) - start_y;
+
+                    x_prime = (x * Math.cos(Math.toRadians(rotaional_theta)))
+                            + (y * Math.sin(Math.toRadians(rotaional_theta)));
+                    y_prime = -(x * Math.sin(Math.toRadians(rotaional_theta)))
+                            + (y * Math.cos(Math.toRadians(rotaional_theta)));
+
+                    if (reversed == true) { // TODO: check if these really need to be sign filpped
+                        y = -y;
+                        x = -x;
+                    }
+
+                    double theta_x = in.nextDouble();
+                    double theta_y = in.nextDouble();
+                    double theta = Math.toDegrees(Math.atan2(theta_y, theta_x)) - start_theta;
+
+                    if (theta < -180) {
+                        theta = theta + 360;
+                    } else if (theta > 180) {
+                        theta = theta - 360;
+                    }
+
+                    waypoints.add(new Pose2d(x_prime, y_prime, Rotation2d.fromDegrees(theta)));
+
+                    in.nextLine();
+                }
+                in.close();
+            } catch (Exception e) {
+                System.err.println("COULD NOT READ PATH");
+                e.printStackTrace();
             }
-            in.close();
-        } catch (Exception e) {
-            System.err.println("COULD NOT READ PATH");
-            e.printStackTrace();
+        }
+        else if(fname.contains(".json")){
+            var filePath = Filesystem.getDeployDirectory().toPath().resolve("/pathplanner/generatedJSON/" + fname).toString();
+            try {
+                this.trajectory = fromJson(filePath);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         this.waypoints = waypoints;
         this.reversed = reversed;
         this.name = "";
+    }
+
+    private Trajectory fromJson(String path) throws Exception {
+        var elements = WPIMathJNI.fromPathweaverJson(path);
+
+        // Make sure that the elements have the correct length.
+        if (elements.length % 7 != 0) {
+            throw new Exception("An error occurred when converting trajectory elements into a trajectory.");
+        }
+  
+        // Create a list of states from the elements.
+        List<TrajectoryState> states = new ArrayList<>();
+        for (int i = 0; i < elements.length; i += 7) {
+            states.add(
+                new TrajectoryState(
+                    elements[i],
+                    elements[i + 1],
+                    elements[i + 2],
+                    new Pose2d(elements[i + 3], elements[i + 4], new Rotation2d(elements[i + 5])),
+                    elements[i + 6]));
+        }
+        return new Trajectory(states);
+
     }
 
     /**
