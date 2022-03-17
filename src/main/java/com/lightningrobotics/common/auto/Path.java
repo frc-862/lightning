@@ -17,7 +17,6 @@ import com.lightningrobotics.common.subsystem.drivetrain.swerve.SwerveDrivetrain
 import edu.wpi.first.math.WPIMathJNI;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.math.trajectory.TrajectoryUtil;
 import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj2.command.Command;
 
@@ -78,7 +77,6 @@ public class Path {
 
     /**
      * Constructor creates path object
-     * 
      * @param name      The name of the path
      * @param waypoints List of waypoints for the optimized path to follow
      * @param reversed  Direction robot should follow path
@@ -89,6 +87,11 @@ public class Path {
         this.reversed = reversed;
     }
 
+	/**
+	 * Constructor creates path object
+	 * @param fname The file name of the path to load (either a path file or a json file)
+	 * @param reversed Direction robot should follow path
+	 */
     public Path(String fname, boolean reversed) {
 
         List<Pose2d> waypoints = new ArrayList<Pose2d>();
@@ -151,8 +154,7 @@ public class Path {
                 System.err.println("COULD NOT READ PATH");
                 e.printStackTrace();
             }
-        }
-        else if(fname.contains(".json")){
+        } else if(fname.contains(".json")) {
             var filePath = Filesystem.getDeployDirectory().toPath().resolve("/pathplanner/generatedJSON/" + fname).toString();
             try {
                 this.trajectory = fromJson(filePath);
@@ -166,7 +168,15 @@ public class Path {
         this.name = "";
     }
 
+	/**
+	 * Gets a trajectory from a json file
+	 * @param path The path to the json as a string
+	 * @return The generated trajectory
+	 * @throws Exception The json format is incorrect
+	 */
     private Trajectory fromJson(String path) throws Exception {
+
+		// Get elements from path json
         var elements = WPIMathJNI.fromPathweaverJson(path);
 
         // Make sure that the elements have the correct length.
