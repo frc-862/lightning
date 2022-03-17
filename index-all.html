@@ -148,9 +148,13 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/logging/DataLogger.html#addDataElement(java.lang.String,java.util.function.DoubleSupplier)">addDataElement(String, DoubleSupplier)</a></span> - Static method in class com.lightningrobotics.common.logging.<a href="com/lightningrobotics/common/logging/DataLogger.html" title="class in com.lightningrobotics.common.logging">DataLogger</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/logging/DataLogger.html#addDataElement(java.lang.String,java.util.function.Supplier)">addDataElement(String, Supplier&lt;String&gt;)</a></span> - Static method in class com.lightningrobotics.common.logging.<a href="com/lightningrobotics/common/logging/DataLogger.html" title="class in com.lightningrobotics.common.logging">DataLogger</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/logging/DataLogger.html#addDelayedDataElement(java.lang.String,java.util.function.DoubleSupplier)">addDelayedDataElement(String, DoubleSupplier)</a></span> - Static method in class com.lightningrobotics.common.logging.<a href="com/lightningrobotics/common/logging/DataLogger.html" title="class in com.lightningrobotics.common.logging">DataLogger</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/logging/DataLogger.html#addElement(java.lang.String,java.util.function.DoubleSupplier)">addElement(String, DoubleSupplier)</a></span> - Method in class com.lightningrobotics.common.logging.<a href="com/lightningrobotics/common/logging/DataLogger.html" title="class in com.lightningrobotics.common.logging">DataLogger</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="com/lightningrobotics/common/logging/DataLogger.html#addElement(java.lang.String,java.util.function.Supplier)">addElement(String, Supplier&lt;String&gt;)</a></span> - Method in class com.lightningrobotics.common.logging.<a href="com/lightningrobotics/common/logging/DataLogger.html" title="class in com.lightningrobotics.common.logging">DataLogger</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/fault/LightningFaultCodes.html#addFaultCode(com.lightningrobotics.common.fault.LightningFaultCodes.Code)">addFaultCode(LightningFaultCodes.Code)</a></span> - Static method in class com.lightningrobotics.common.fault.<a href="com/lightningrobotics/common/fault/LightningFaultCodes.html" title="class in com.lightningrobotics.common.fault">LightningFaultCodes</a></dt>
 <dd>
@@ -653,12 +657,14 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><a href="com/lightningrobotics/common/command/drivetrain/differential/FollowTrajectory.html" title="class in com.lightningrobotics.common.command.drivetrain.differential"><span class="typeNameLink">FollowTrajectory</span></a> - Class in <a href="com/lightningrobotics/common/command/drivetrain/differential/package-summary.html">com.lightningrobotics.common.command.drivetrain.differential</a></dt>
 <dd>
-<div class="block">A command that uses a RAMSETE controller (<a href="com/lightningrobotics/common/controller/DiffDriveController.html" title="class in com.lightningrobotics.common.controller"><code>DiffDriveController</code></a>) to follow a trajectory
+<div class="block">A command that uses a RAMSETE controller (<a href="com/lightningrobotics/common/controller/DiffDriveController.html" title="class in com.lightningrobotics.common.controller"><code>DiffDriveController</code></a>) to
+ follow a trajectory
  <a href="com/lightningrobotics/common/auto/trajectory/Trajectory.html" title="class in com.lightningrobotics.common.auto.trajectory"><code>Trajectory</code></a> with a differential drive.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/command/drivetrain/differential/FollowTrajectory.html#%3Cinit%3E(com.lightningrobotics.common.auto.trajectory.Trajectory,java.util.function.Supplier,com.lightningrobotics.common.controller.DiffDriveController,com.lightningrobotics.common.controller.FeedForwardController,com.lightningrobotics.common.geometry.kinematics.differential.DifferentialKinematics,java.util.function.Supplier,com.lightningrobotics.common.controller.PIDFController,com.lightningrobotics.common.controller.PIDFController,java.util.function.BiConsumer,edu.wpi.first.wpilibj2.command.Subsystem...)">FollowTrajectory(Trajectory, Supplier&lt;Pose2d&gt;, DiffDriveController, FeedForwardController, DifferentialKinematics, Supplier&lt;DifferentialDrivetrainState&gt;, PIDFController, PIDFController, BiConsumer&lt;Double, Double&gt;, Subsystem...)</a></span> - Constructor for class com.lightningrobotics.common.command.drivetrain.differential.<a href="com/lightningrobotics/common/command/drivetrain/differential/FollowTrajectory.html" title="class in com.lightningrobotics.common.command.drivetrain.differential">FollowTrajectory</a></dt>
 <dd>
-<div class="block">Constructs a new RamseteCommand that, when executed, will follow the provided trajectory.</div>
+<div class="block">Constructs a new FollowTrajectory that, when executed, will follow the
+ provided trajectory.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/geometry/kinematics/differential/DifferentialKinematics.html#forward(com.lightningrobotics.common.geometry.kinematics.DrivetrainState)">forward(DrivetrainState)</a></span> - Method in class com.lightningrobotics.common.geometry.kinematics.differential.<a href="com/lightningrobotics/common/geometry/kinematics/differential/DifferentialKinematics.html" title="class in com.lightningrobotics.common.geometry.kinematics.differential">DifferentialKinematics</a></dt>
 <dd>&nbsp;</dd>
@@ -1345,7 +1351,9 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
  can follow.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/auto/Path.html#%3Cinit%3E(java.lang.String,boolean)">Path(String, boolean)</a></span> - Constructor for class com.lightningrobotics.common.auto.<a href="com/lightningrobotics/common/auto/Path.html" title="class in com.lightningrobotics.common.auto">Path</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Constructor creates path object</div>
+</dd>
 <dt><span class="memberNameLink"><a href="com/lightningrobotics/common/auto/Path.html#%3Cinit%3E(java.lang.String,java.util.List)">Path(String, List&lt;Pose2d&gt;)</a></span> - Constructor for class com.lightningrobotics.common.auto.<a href="com/lightningrobotics/common/auto/Path.html" title="class in com.lightningrobotics.common.auto">Path</a></dt>
 <dd>
 <div class="block">Constructor creates path object</div>
