@@ -25,134 +25,148 @@ import com.lightningrobotics.common.subsystem.drivetrain.LightningDrivetrain;
  */
 public class TrajectoryConfig {
 
-    private final double maxVelocity;
+	private final double maxVelocity;
 
-    private final double maxAcceleration;
+	private final double maxAcceleration;
 
-    private final List<TrajectoryConstraint> constraints;
+	private final List<TrajectoryConstraint> constraints;
 
-    private double startVelocity;
+	private double startVelocity;
 
-    private double endVelocity;
+	private double endVelocity;
 
-    private boolean reversed;
+	private boolean reversed;
 
-    /**
-     * Constructs the trajectory configuration class.
-     * @param drivetrain Drivetrain that will be driving the trajectory.
-     * @param reversed If the trajectory should be driven backwards.
-     */
-    public TrajectoryConfig(LightningDrivetrain drivetrain, boolean reversed) {
-        maxVelocity = drivetrain.getGains().getMaxSpeed();
-        maxAcceleration = drivetrain.getGains().getMaxAcceleration();
-        constraints = new ArrayList<>();
-        //addConstraint(drivetrain.getConstraint(maxVelocity)); // TODO may need to implement this
-        this.reversed = reversed;
-    }
+	/**
+	 * Constructs the trajectory configuration class.
+	 * 
+	 * @param drivetrain Drivetrain that will be driving the trajectory.
+	 * @param reversed   If the trajectory should be driven backwards.
+	 */
+	public TrajectoryConfig(LightningDrivetrain drivetrain, boolean reversed) {
+		maxVelocity = drivetrain.getGains().getMaxSpeed();
+		maxAcceleration = drivetrain.getGains().getMaxAcceleration();
+		constraints = new ArrayList<>();
+		// addConstraint(drivetrain.getConstraint(maxVelocity)); // TODO may need to
+		// implement this
+		this.reversed = reversed;
+	}
 
-    /**
-     * Constructs the trajectory configuration class.
-     * @param drivetrain Drivetrain that will be driving the trajectory.
-     */
-    public TrajectoryConfig(LightningDrivetrain drivetrain) {
-        this(drivetrain, false);
-    }
+	/**
+	 * Constructs the trajectory configuration class.
+	 * 
+	 * @param drivetrain Drivetrain that will be driving the trajectory.
+	 */
+	public TrajectoryConfig(LightningDrivetrain drivetrain) {
+		this(drivetrain, false);
+	}
 
-    /**
-     * Adds a user-defined constraint to the trajectory.
-     * @param constraint The user-defined constraint.
-     * @return Instance of the current config object.
-     */
-    public TrajectoryConfig addConstraint(TrajectoryConstraint constraint) {
-        constraints.add(constraint);
-        return this;
-    }
+	/**
+	 * Adds a user-defined constraint to the trajectory.
+	 * 
+	 * @param constraint The user-defined constraint.
+	 * @return Instance of the current config object.
+	 */
+	public TrajectoryConfig addConstraint(TrajectoryConstraint constraint) {
+		constraints.add(constraint);
+		return this;
+	}
 
-    /**
-     * Adds all user-defined constraints from a list to the trajectory.
-     * @param constraints List of user-defined constraints.
-     * @return Instance of the current config object.
-     */
-    public TrajectoryConfig addConstraints(List<? extends TrajectoryConstraint> constraints) {
-        this.constraints.addAll(constraints);
-        return this;
-    }
+	/**
+	 * Adds all user-defined constraints from a list to the trajectory.
+	 * 
+	 * @param constraints List of user-defined constraints.
+	 * @return Instance of the current config object.
+	 */
+	public TrajectoryConfig addConstraints(List<? extends TrajectoryConstraint> constraints) {
+		this.constraints.addAll(constraints);
+		return this;
+	}
 
-    /**
-     * Returns the starting velocity of the trajectory.
-     * @return The starting velocity of the trajectory.
-     */
-    public double getStartVelocity() {
-        return startVelocity;
-    }
+	/**
+	 * Returns the starting velocity of the trajectory.
+	 * 
+	 * @return The starting velocity of the trajectory.
+	 */
+	public double getStartVelocity() {
+		return startVelocity;
+	}
 
-    /**
-     * Sets the start velocity of the trajectory.
-     * @param startVelocityMetersPerSecond The start velocity of the trajectory.
-     * @return Instance of the current config object.
-     */
-    public TrajectoryConfig setStartVelocity(double startVelocityMetersPerSecond) {
-        startVelocity = startVelocityMetersPerSecond;
-        return this;
-    }
+	/**
+	 * Sets the start velocity of the trajectory.
+	 * 
+	 * @param startVelocityMetersPerSecond The start velocity of the trajectory.
+	 * @return Instance of the current config object.
+	 */
+	public TrajectoryConfig setStartVelocity(double startVelocityMetersPerSecond) {
+		startVelocity = startVelocityMetersPerSecond;
+		return this;
+	}
 
-    /**
-     * Returns the starting velocity of the trajectory.
-     * @return The starting velocity of the trajectory.
-     */
-    public double getEndVelocity() {
-        return endVelocity;
-    }
+	/**
+	 * Returns the starting velocity of the trajectory.
+	 * 
+	 * @return The starting velocity of the trajectory.
+	 */
+	public double getEndVelocity() {
+		return endVelocity;
+	}
 
-    /**
-     * Sets the end velocity of the trajectory.
-     * @param endVelocityMetersPerSecond The end velocity of the trajectory.
-     * @return Instance of the current config object.
-     */
-    public TrajectoryConfig setEndVelocity(double endVelocityMetersPerSecond) {
-        endVelocity = endVelocityMetersPerSecond;
-        return this;
-    }
+	/**
+	 * Sets the end velocity of the trajectory.
+	 * 
+	 * @param endVelocityMetersPerSecond The end velocity of the trajectory.
+	 * @return Instance of the current config object.
+	 */
+	public TrajectoryConfig setEndVelocity(double endVelocityMetersPerSecond) {
+		endVelocity = endVelocityMetersPerSecond;
+		return this;
+	}
 
-    /**
-     * Returns the maximum velocity of the trajectory.
-     * @return The maximum velocity of the trajectory.
-     */
-    public double getMaxVelocity() {
-        return maxVelocity;
-    }
+	/**
+	 * Returns the maximum velocity of the trajectory.
+	 * 
+	 * @return The maximum velocity of the trajectory.
+	 */
+	public double getMaxVelocity() {
+		return maxVelocity;
+	}
 
-    /**
-     * Returns the maximum acceleration of the trajectory.
-     * @return The maximum acceleration of the trajectory.
-     */
-    public double getMaxAcceleration() {
-        return maxAcceleration;
-    }
+	/**
+	 * Returns the maximum acceleration of the trajectory.
+	 * 
+	 * @return The maximum acceleration of the trajectory.
+	 */
+	public double getMaxAcceleration() {
+		return maxAcceleration;
+	}
 
-    /**
-     * Returns the user-defined constraints of the trajectory.
-     * @return The user-defined constraints of the trajectory.
-     */
-    public List<TrajectoryConstraint> getConstraints() {
-        return constraints;
-    }
+	/**
+	 * Returns the user-defined constraints of the trajectory.
+	 * 
+	 * @return The user-defined constraints of the trajectory.
+	 */
+	public List<TrajectoryConstraint> getConstraints() {
+		return constraints;
+	}
 
-    /**
-     * Returns whether the trajectory is reversed or not.
-     * @return whether the trajectory is reversed or not.
-     */
-    public boolean isReversed() {
-        return reversed;
-    }
+	/**
+	 * Returns whether the trajectory is reversed or not.
+	 * 
+	 * @return whether the trajectory is reversed or not.
+	 */
+	public boolean isReversed() {
+		return reversed;
+	}
 
-    /**
-     * Sets the reversed flag of the trajectory.
-     * @param reversed Whether the trajectory should be reversed or not.
-     * @return Instance of the current config object.
-     */
-    public TrajectoryConfig setReversed(boolean reversed) {
-        this.reversed = reversed;
-        return this;
-    }
+	/**
+	 * Sets the reversed flag of the trajectory.
+	 * 
+	 * @param reversed Whether the trajectory should be reversed or not.
+	 * @return Instance of the current config object.
+	 */
+	public TrajectoryConfig setReversed(boolean reversed) {
+		this.reversed = reversed;
+		return this;
+	}
 }
