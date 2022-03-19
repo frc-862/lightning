@@ -155,7 +155,7 @@ public class Path {
                 e.printStackTrace();
             }
         } else if(fname.contains(".json")) {
-            var filePath = Filesystem.getDeployDirectory().toPath().resolve("/pathplanner/generatedJSON/" + fname).toString();
+            var filePath = Filesystem.getDeployDirectory().getAbsolutePath() + "/pathplanner/generatedJSON/" + fname;
             try {
                 this.trajectory = fromJson(filePath);
             } catch (Exception e) {
@@ -286,6 +286,7 @@ public class Path {
                 public void initialize() {
                     super.initialize();
                     differentialDrivetrain.resetPose();
+                    differentialDrivetrain.setPose(trajectory.getInitialPose());
                 };
             };
 

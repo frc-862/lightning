@@ -90,6 +90,23 @@ public class LightningIMU extends SubsystemBase {
         return type;
     }
 
+
+    /**
+     * Get the IMU pitch as a {@link edu.wpi.first.math.geometry.Rotation2d Rotation2d}.
+     * @return the pitch from the gyro
+     */
+    public Rotation2d getPitch() {
+        if(type == IMUType.NAVX && navx != null) {
+            Rotation2d pitch = Rotation2d.fromDegrees(navx.getPitch());
+            return pitch;
+        }
+        if(type == IMUType.PIGEON && ypr != null) {
+            
+            return Rotation2d.fromDegrees(ypr[1]);
+        }
+        return Rotation2d.fromDegrees(0d);
+    }
+
     /**
      * Get the IMU heading as a {@link edu.wpi.first.math.geometry.Rotation2d Rotation2d}.
      * @return The heading
@@ -100,8 +117,6 @@ public class LightningIMU extends SubsystemBase {
             double sign = -Math.signum(heading);
             double filteredRot = sign * (((Math.abs(heading) + 180) % 360) - 180);
             return Rotation2d.fromDegrees(filteredRot);
-
-
         }
         if(type == IMUType.PIGEON && ypr != null) {
             double heading = ypr[0];

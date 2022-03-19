@@ -98,6 +98,9 @@ public abstract class SwerveDrivetrain extends LightningDrivetrain {
     }
 
     @Override
+    public void setPose(Pose2d newPose) {}
+
+    @Override
     public DrivetrainState getDriveState() {
         return state;
     }
