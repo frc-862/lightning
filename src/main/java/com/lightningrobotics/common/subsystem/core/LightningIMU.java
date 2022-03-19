@@ -92,7 +92,7 @@ public class LightningIMU extends SubsystemBase {
 
 
     /**
-     * 
+     * Get the IMU pitch as a {@link edu.wpi.first.math.geometry.Rotation2d Rotation2d}.
      * @return the pitch from the gyro
      */
     public Rotation2d getPitch() {
