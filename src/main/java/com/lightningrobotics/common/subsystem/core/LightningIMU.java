@@ -90,6 +90,11 @@ public class LightningIMU extends SubsystemBase {
         return type;
     }
 
+
+    /**
+     * 
+     * @return the pitch from the gyro
+     */
     public Rotation2d getPitch() {
         if(type == IMUType.NAVX && navx != null) {
             Rotation2d pitch = Rotation2d.fromDegrees(navx.getPitch());
