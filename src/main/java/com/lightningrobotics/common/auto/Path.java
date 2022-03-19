@@ -156,7 +156,6 @@ public class Path {
             }
         } else if(fname.contains(".json")) {
             var filePath = Filesystem.getDeployDirectory().getAbsolutePath() + "/pathplanner/generatedJSON/" + fname;
-            // var filePath = Filesystem.getDeployDirectory().toPath().resolve("/pathplanner/generatedJSON/" + fname).toString();
             try {
                 this.trajectory = fromJson(filePath);
             } catch (Exception e) {
