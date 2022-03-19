@@ -108,6 +108,11 @@ public class DifferentialDrivetrain extends LightningDrivetrain {
     }
 
     @Override
+    public void setPose(Pose2d newPose) {
+        odometer.setPose(newPose);
+    }
+
+    @Override
     public DrivetrainState getDriveState() {
         return state;
     }

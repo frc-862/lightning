@@ -17,7 +17,6 @@ import com.lightningrobotics.common.subsystem.drivetrain.swerve.SwerveDrivetrain
 import edu.wpi.first.math.WPIMathJNI;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.math.trajectory.TrajectoryUtil;
 import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj2.command.Command;
 
@@ -151,9 +150,9 @@ public class Path {
                 System.err.println("COULD NOT READ PATH");
                 e.printStackTrace();
             }
-        }
-        else if(fname.contains(".json")){
-            var filePath = Filesystem.getDeployDirectory().toPath().resolve("/pathplanner/generatedJSON/" + fname).toString();
+        } else if(fname.contains(".json")) {
+            var filePath = Filesystem.getDeployDirectory().getAbsolutePath() + "/pathplanner/generatedJSON/" + fname;
+            // var filePath = Filesystem.getDeployDirectory().toPath().resolve("/pathplanner/generatedJSON/" + fname).toString();
             try {
                 this.trajectory = fromJson(filePath);
             } catch (Exception e) {
@@ -276,6 +275,7 @@ public class Path {
                 public void initialize() {
                     super.initialize();
                     differentialDrivetrain.resetPose();
+                    differentialDrivetrain.setPose(trajectory.getInitialPose());
                 };
             };
 

@@ -20,4 +20,6 @@ public abstract class LightningDrivetrain extends SubsystemBase {
     
     public abstract Pose2d getPose();
 
+    public abstract void setPose(Pose2d newPose);
+
 }
