@@ -23,18 +23,27 @@ import com.lightningrobotics.common.geometry.kinematics.differential.Differentia
 import com.lightningrobotics.common.geometry.kinematics.differential.DifferentialKinematics;
 
 /**
- * A command that uses a RAMSETE controller ({@link DiffDriveController}) to follow a trajectory
+ * A command that uses a RAMSETE controller ({@link DiffDriveController}) to
+ * follow a trajectory
  * {@link Trajectory} with a differential drive.
  *
- * <p>The command handles trajectory-following, PID calculations, and feedforwards internally. This
- * is intended to be a more-or-less "complete solution" that can be used by teams without a great
+ * <p>
+ * The command handles trajectory-following, PID calculations, and feedforwards
+ * internally. This
+ * is intended to be a more-or-less "complete solution" that can be used by
+ * teams without a great
  * deal of controls expertise.
  *
- * <p>Advanced teams seeking more flexibility (for example, those who wish to use the onboard PID
- * functionality of a "smart" motor controller) may use the secondary constructor that omits the PID
- * and feedforward functionality, returning only the raw wheel speeds from the RAMSETE controller.
+ * <p>
+ * Advanced teams seeking more flexibility (for example, those who wish to use
+ * the onboard PID
+ * functionality of a "smart" motor controller) may use the secondary
+ * constructor that omits the PID
+ * and feedforward functionality, returning only the raw wheel speeds from the
+ * RAMSETE controller.
  *
- * <p>This class is provided by the NewCommands VendorDep
+ * <p>
+ * This class is provided by the NewCommands VendorDep
  */
 
 public class FollowTrajectory extends CommandBase {
@@ -120,7 +129,6 @@ public class FollowTrajectory extends CommandBase {
 		m_timer.start();
 		m_leftController.reset();
 		m_rightController.reset();
-		
 	}
 
 	@Override

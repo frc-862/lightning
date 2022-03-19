@@ -77,7 +77,6 @@ public class Path {
 
     /**
      * Constructor creates path object
-     * 
      * @param name      The name of the path
      * @param waypoints List of waypoints for the optimized path to follow
      * @param reversed  Direction robot should follow path
@@ -88,6 +87,11 @@ public class Path {
         this.reversed = reversed;
     }
 
+	/**
+	 * Constructor creates path object
+	 * @param fname The file name of the path to load (either a path file or a json file)
+	 * @param reversed Direction robot should follow path
+	 */
     public Path(String fname, boolean reversed) {
 
         List<Pose2d> waypoints = new ArrayList<Pose2d>();
@@ -165,7 +169,15 @@ public class Path {
         this.name = "";
     }
 
+	/**
+	 * Gets a trajectory from a json file
+	 * @param path The path to the json as a string
+	 * @return The generated trajectory
+	 * @throws Exception The json format is incorrect
+	 */
     private Trajectory fromJson(String path) throws Exception {
+
+		// Get elements from path json
         var elements = WPIMathJNI.fromPathweaverJson(path);
 
         // Make sure that the elements have the correct length.
