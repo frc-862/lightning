@@ -37,6 +37,25 @@ public class TrajectoryConfig {
 
 	private boolean reversed;
 
+	public TrajectoryConfig(LightningDrivetrain drivetrain, boolean reversed, double maxVelocity, double maxAcceleration) {
+		if (maxVelocity > 0) {
+			this.maxVelocity = maxVelocity;
+		} else {
+			this.maxVelocity = drivetrain.getGains().getMaxSpeed();
+		}
+
+		if (maxAcceleration > 0) {
+			this.maxAcceleration = maxAcceleration;
+		} else {
+			this.maxAcceleration = drivetrain.getGains().getMaxAcceleration();
+		}
+
+		constraints = new ArrayList<>();
+		// addConstraint(drivetrain.getConstraint(maxVelocity)); // TODO may need to
+		// implement this
+		this.reversed = reversed;
+	}
+
 	/**
 	 * Constructs the trajectory configuration class.
 	 * 
