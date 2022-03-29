@@ -217,6 +217,10 @@ public class Path {
         return reversed;
     }
 
+    public Trajectory getTrajectory(LightningDrivetrain drivetrain) {
+        return getTrajectory(drivetrain, -1, -1);
+    }
+
     /**
      * Obtains an optimized trajectory the robot should follow so it hits all the
      * waypoints
@@ -225,11 +229,11 @@ public class Path {
      *                           configured for
      * @return A trajectory the robot can follow
      */
-    public Trajectory getTrajectory(LightningDrivetrain drivetrain) {
+    public Trajectory getTrajectory(LightningDrivetrain drivetrain, double max_speed, double max_accel) {
         if (trajectory != null)
             return trajectory;
 
-        TrajectoryConfig config = new TrajectoryConfig(drivetrain, getReversed());
+        TrajectoryConfig config = new TrajectoryConfig(drivetrain, getReversed(), max_speed, max_accel);
 
         try {
             trajectory = Trajectory.from(waypoints, config);
@@ -257,6 +261,10 @@ public class Path {
         return this.getTrajectory(drivetrain).getTotalTimeSeconds();
     }
 
+    public Command getCommand(LightningDrivetrain drivetrain) throws Exception {
+        return getCommand(drivetrain, -1, -1);
+    }
+
     /**
      * Retrieves the path represented as a command
      * 
@@ -266,8 +274,8 @@ public class Path {
      *         the path that can be driven by the given drivetrain
      * @throws Exception if given drivetrain is unsupported
      */
-    public Command getCommand(LightningDrivetrain drivetrain) throws Exception {
-        trajectory = this.getTrajectory(drivetrain);
+    public Command getCommand(LightningDrivetrain drivetrain, double max_speed, double max_accel) throws Exception {
+        trajectory = this.getTrajectory(drivetrain, max_speed, max_accel);
         if (drivetrain instanceof DifferentialDrivetrain) {
             DifferentialDrivetrain differentialDrivetrain = (DifferentialDrivetrain) drivetrain;
             BiConsumer<Double, Double> voltageConsumer = (l, r) -> ((DifferentialDrivetrain) drivetrain).setVoltage(l, r);

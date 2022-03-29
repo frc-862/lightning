@@ -87,6 +87,10 @@ public class DifferentialDrivetrain extends LightningDrivetrain {
         return gains;
     }
 
+    public void setGains(DifferentialGains gains) {
+        this.gains = gains;
+    }
+
     @Override
     public void stop() {
         tankDrive(0.0, 0.0);
