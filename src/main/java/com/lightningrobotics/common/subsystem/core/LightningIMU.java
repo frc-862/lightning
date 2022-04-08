@@ -156,6 +156,25 @@ public class LightningIMU extends SubsystemBase {
         return this::reset;
     }
 
+    public double getNavxAccelerationX(){
+        if(type == IMUType.NAVX && navx != null) {
+            return navx.getRawAccelX();
+        }
+        return 0;
+    }
+    public double getNavxAccelerationY(){
+        if(type == IMUType.NAVX && navx != null) {
+            return navx.getRawAccelY();
+        }
+        return 0;
+    }
+    public double getNavxAccelerationZ(){
+        if(type == IMUType.NAVX && navx != null) {
+            return navx.getRawAccelZ();
+        }
+        return 0;
+    }
+
     @Override
     public void periodic() {
         if(type == IMUType.PIGEON && pigeon != null && ypr != null) {

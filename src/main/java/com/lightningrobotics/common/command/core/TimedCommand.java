@@ -38,7 +38,7 @@ public class TimedCommand extends CommandBase {
 
 	@Override
 	public boolean isFinished() {
-		return timer.hasElapsed(timeout);
+		return timer.hasElapsed(timeout) || command.isFinished();
 	}
 
 }
